@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#424753", "on-secondary-fixed-variant": "#633f00", "surface": "#f8f9ff", "on-tertiary-fixed": "#40000f", "on-secondary-fixed": "#291800", "primary-fixed-dim": "#acc7ff", "primary-fixed": "#d7e2ff", "secondary-fixed": "#ffddb3", "outline-variant": "#c2c6d5", "tertiary-fixed": "#ffdadb", "secondary-fixed-dim": "#ffb951", "on-tertiary-container": "#fffbff", "on-background": "#121c2a", "inverse-primary": "#acc7ff", "surface-container-low": "#eff4ff", "on-secondary-container": "#704800", "surface-bright": "#f8f9ff", "on-tertiary-fixed-variant": "#861e32", "surface-container-highest": "#d9e3f6", "surface-container-high": "dee9fc", "primary": "#0059ba", "on-surface": "#121c2a", "secondary": "#825500", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-primary-fixed": "#001a40", "surface-tint": "#005bbf", "background": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary": "#a33446", "surface-variant": "#d9e3f6", "surface-container": "#e6eeff", "tertiary-container": "#c34c5d", "on-primary-fixed-variant": "#004492", "surface-dim": "#d0dbed", "inverse-on-surface": "#eaf1ff", "on-primary": "#ffffff", "secondary-container": "#fdb64b", "primary-container": "#2c72d9", "on-tertiary": "#ffffff", "outline": "#727784", "tertiary-fixed-dim": "#ffb2b8", "on-primary-container": "#fefcff", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "inverse-surface": "#27313f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter-compact": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem", "margin-window": "0.75rem", "gutter": "1.25rem", "margin": "1.5rem" }, "fontFamily": { "caption": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ] }, "fontSize": { "caption": [ "10px", { "lineHeight": "14px", "fontWeight": "500" } ], "display-md": [ "26px", { "lineHeight": "36px", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-lg": [ "32px", { "lineHeight": "44px", "fontWeight": "700" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "28px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased select-none"><div class="fixed top-0 left-0 right-0 h-[38px] bg-surface-container-high text-on-surface-variant z-50 flex items-center justify-between px-space-md shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-base">child_care</span><span class="font-label-sm text-label-sm font-semibold tracking-wide text-on-surface">روضتي — نظام إدارة الروضة المكتبي (الإصدار 2.0)</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">غير متصل بالسحاب • محلي 100%</span></div><div class="flex items-center gap-1"><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تصغير (Minimize)" type="button"><span class="material-symbols-outlined text-sm">minimize</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تكبير / استعادة (Maximize)" type="button"><span class="material-symbols-outlined text-sm">crop_square</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-error hover:text-on-error text-on-surface-variant transition-colors" title="إغلاق البرنامج (Close)" type="button"><span class="material-symbols-outlined text-sm">close</span></button></div></div><header class="fixed top-[38px] right-0 left-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm pl-space-md"><img alt="Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-primary-fixed shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/><div class="leading-tight"><span class="font-headline-sm text-headline-sm text-primary font-bold block">روضتي</span><span class="font-caption text-caption text-on-surface-variant">فرع الياسمين النموذجي</span></div></div><div class="relative flex items-center w-80 lg:w-96"><span class="material-symbols-outlined absolute right-3 text-outline pointer-events-none text-lg">search</span><input class="w-full h-9 pr-9 pl-14 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer hover:bg-surface-container transition-colors" placeholder="بحث فوري عن طفل، ولي أمر، فاتورة..." readonly="" type="text"/><kbd class="absolute left-2.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption font-semibold shadow-xs">Ctrl+K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><a class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs" data-path="safe-pickup" href="#"><span class="material-symbols-outlined text-base">qr_code_scanner</span><span>بوابة الاستقبال والباركود</span></a><a class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors shadow-xs" data-path="child-id-cards" href="#"><span class="material-symbols-outlined text-base">badge</span><span>طباعة بطاقة هوية</span></a><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors shadow-xs" type="button"><span class="material-symbols-outlined text-base">payments</span><span>تسجيل دفعة</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">checklist</span><span>حضور اليوم</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">person_add</span><span>طفل جديد</span></button></div><div class="h-6 w-px bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="قفل الشاشة (Ctrl+L)" type="button"><span class="material-symbols-outlined text-lg">lock</span></button><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="التنبيهات المحلية" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-2 pr-1"><div class="text-left"><div class="font-label-md text-label-md font-semibold text-on-surface">أ. نادية المنصوري</div><div class="flex items-center gap-1 justify-end"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="font-caption text-caption text-on-surface-variant">متصل محلياً</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/></div></div></div></header><aside class="fixed right-0 top-[102px] bottom-[32px] w-64 bg-surface-container-lowest z-30 flex flex-col justify-between py-space-sm px-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="overflow-y-auto flex-1 space-y-1"><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs"><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="dashboard" href="#">الرئيسية</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="children" href="#">الأطفال</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="classrooms" href="#">الفصول ووضع الفصل</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="attendance" href="#">الحضور والانصراف</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="safe-pickup" href="#">الاستلام الآمن عند البوابة</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="child-id-cards" href="#">بطاقات هوية الطفل والاستلام الآمن</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="registration-form" href="#">استمارة تسجيل طفل (A4)</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="finances" href="#">المالية والمدفوعات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="daily-reports" href="#">التقرير اليومي</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="health-safety" href="#">الصحة والسلامة</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="parents" href="#">أولياء الأمور</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="staff" href="#">الموظفون</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="reports" href="#">التقارير والمطبوعات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="backup-data" href="#">النسخ الاحتياطي والبيانات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#">الإعدادات</a></nav></div><div class="p-space-sm rounded-lg bg-surface-container-low mx-1"><div class="flex items-center justify-between text-on-surface-variant font-caption text-caption mb-1"><span>سعة التخزين المحلي</span><span>12%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-1.5 rounded-full" style="width: 12%"></div></div><div class="flex items-center justify-between mt-2 font-caption text-caption text-outline"><span>مفتاح سريع</span><span class="font-mono">F11 ملء الشاشة</span></div></div></aside><div class="pr-64 pt-[102px] pb-[32px]"><main class="w-full min-h-[calc(100vh-134px)] px-space-lg py-space-md bg-surface"><div class="flex flex-col w-full gap-space-md" dir="rtl">
+<!-- 1. شريط إشعار نجاح التسليم الاستثنائي (Toast / Success Banner) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-md transition-all duration-300">
+<div class="flex flex-col xl:flex-row items-stretch justify-between p-space-md gap-space-md bg-gradient-to-l from-emerald-500/10 via-surface-container-lowest to-surface-container-lowest">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-display-md" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              تم توثيق التسليم بنجاح
+            </span>
+<span class="font-mono text-label-sm text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">
+              16:28:14
+            </span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary-fixed px-2 py-0.5 rounded font-semibold">
+              تفويض استثنائي رقم #AUTH-2026-403
+            </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+            تم تسليم الطفل <span class="text-primary font-bold">ريان بن ماجد الصالح</span> (فصل العصافير) إلى <span class="text-on-surface font-bold">العم: خالد بن عبد الله الصالح</span>
+</h2>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm pt-0.5">
+<span class="flex items-center gap-1 text-emerald-800">
+<span class="material-symbols-outlined text-base text-emerald-600">cloud_download</span>
+              تم إرسال أمر الطباعة التلقائي لطابعة الإيصالات الحرارية 80mm [TM-T20III] — سند رقم #SEC-2026-8925
+            </span>
+<span>•</span>
+<span class="font-mono text-caption text-on-surface-variant">رقم الهوية الوطنية للمستلم: 1048291823</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between xl:justify-end gap-space-md border-t xl:border-t-0 pt-2 xl:pt-0">
+<div class="text-right pl-4">
+<div class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">عداد انصراف اليوم</div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">
+            تم تسليم <span class="text-emerald-700">36</span> طفلاً
+            <span class="text-on-surface-variant font-normal text-body-sm">• متبقي 12 فقط</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-high text-primary hover:bg-surface-container-highest transition-colors font-label-md text-label-md font-semibold shadow-xs" id="reprintBtn" onclick="triggerReprint()">
+<span class="material-symbols-outlined text-base">receipt_long</span>
+<span>إعادة طباعة السند (Ctrl+P)</span>
+</button>
+<button class="w-8 h-8 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors flex items-center justify-center" onclick="dismissNotification(this)" title="إغلاق الإشعار">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. شريط قارئ الباركود ومسح البطاقات الفوري (Active Listening Bar F2) -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- حقل المسح السريع مع وميض التركيز الجاهز للعمل بدون ماوس -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-primary">
+<span class="material-symbols-outlined text-headline-lg animate-pulse" style="font-variation-settings: 'FILL' 1;">barcode_scanner</span>
+</div>
+<input autofocus="" class="w-full h-14 pr-14 pl-36 rounded-xl bg-surface-container-low text-on-surface font-headline-sm text-headline-sm font-semibold placeholder:text-outline/80 placeholder:font-normal focus:outline-none focus:bg-surface-container-lowest focus:shadow-md transition-all shadow-inner" id="gateBarcodeInput" onkeydown="handleBarcodeKey(event)" placeholder="امسح بطاقة الطفل الآن (QR / باركود) أو أدخل رقم القيد / الهوية... [جاهز للمسح F2]" type="text"/>
+<div class="absolute inset-y-0 left-2.5 flex items-center gap-1">
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-mono text-label-sm font-bold shadow-xs">F2 مسح فوري</span>
+<button class="p-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-xs" onclick="document.getElementById('gateBarcodeInput').focus()" title="بدء الفحص">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+<!-- أزرار الإجراءات السريعة للبوابة -->
+<div class="flex items-center gap-2 shrink-0 flex-wrap">
+<button class="flex items-center gap-1.5 px-4 h-14 rounded-xl bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-colors font-label-lg text-label-lg font-bold shadow-xs" onclick="openIntercomModal()">
+<span class="material-symbols-outlined text-headline-sm">mic</span>
+<span>نداء إذاعي للمشرفات (F3)</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 h-14 rounded-xl bg-surface-container-high text-tertiary hover:bg-tertiary-fixed hover:text-on-tertiary-fixed-variant transition-colors font-label-lg text-label-lg font-bold shadow-xs" onclick="openExceptionModal()">
+<span class="material-symbols-outlined text-headline-sm">security</span>
+<span>تفويض استثنائي طارئ (F4)</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 h-14 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" onclick="toggleGateCamera()" title="التحكم في الكاميرا">
+<span class="material-symbols-outlined text-headline-sm">videocam</span>
+<span class="hidden sm:inline">كاميرا البوابة</span>
+</button>
+</div>
+</div>
+<!-- مؤشرات جاهزية أجهزة البوابة المحلية (Hardware Bus Offline Indicators) -->
+<div class="flex items-center justify-between pt-3 mt-3 flex-wrap gap-2 text-on-surface-variant font-caption text-caption">
+<div class="flex items-center gap-4 flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-medium text-on-surface">قارئ USB:</span>
+<span>Honeywell Voyager 1400g (متصل HID)</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-medium text-on-surface">طابعة السندات:</span>
+<span>Epson TM-T20III (ورق حراري 80mm - ممتلئ)</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-medium text-on-surface">كاميرا الدخول HD:</span>
+<span>Hikvision DS-2CD (تغذية حية 1080p 30fps)</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">فترة الانصراف المسائي الرسمية: 15:30 — 17:00</span>
+<span class="font-mono text-outline">|</span>
+<span class="text-emerald-700 font-semibold">حارس البوابة: أ. أحمد العوفي (بوابة 01 الرئيسية)</span>
+</div>
+</div>
+</div>
+<!-- 3. مساحة العمل الرئيسية المقسمة (شبكة المراقبة اللحظية + السجل اللحظي) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- العمود الأيسر/المركزي (8 أعمدة): لوحة التحكم والتحليل اللحظي لحضور البوابة -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- ثلاث بطاقات بيانات لحظية مدمجة (KPIs) -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<!-- نسبة إنجاز الانصراف -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">نسبة الانصراف المكتمل</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-md text-display-md font-bold text-primary">75%</span>
+<span class="font-caption text-caption text-on-surface-variant">36 من 48 طفلاً</span>
+</div>
+<div class="w-28 bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-headline-lg">checklist_rtl</span>
+</div>
+</div>
+<!-- الأطفال بانتظار الاستلام -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-medium">بانتظار الاستلام حالياً</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-md text-display-md font-bold text-secondary">12</span>
+<span class="font-caption text-caption text-on-surface-variant">طفلاً في بهو الانتظار</span>
+</div>
+<span class="font-caption text-caption text-secondary font-semibold">4 فصول متبقية</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-headline-lg">hourglass_top</span>
+</div>
+</div>
+<!-- حالات التفويض والاستثناءات المعتمدة -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-tertiary font-medium">تفويضات استثنائية موثقة</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-md text-display-md font-bold text-tertiary">1</span>
+<span class="font-caption text-caption text-emerald-700 font-medium">تم اعتمادها وسليم</span>
+</div>
+<span class="font-caption text-caption text-outline">حالة ريان الصالح (#403)</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-headline-lg">verified_user</span>
+</div>
+</div>
+</div>
+<!-- نافذة الكاميرا الحية وشاشة الاستعداد التفاعلية -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<!-- كاميرا مراقبة الرصيف وبوابة الانتظار (Live Feed Box) -->
+<div class="md:col-span-5 rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">بث مباشر: رصيف استلام السيارات</span>
+</div>
+<span class="font-mono text-caption text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">CAM-01</span>
+</div>
+<!-- إطار الصورة الحي مع توثيق بصري للسيارة الواقفة -->
+<div class="relative w-full h-48 rounded-lg overflow-hidden bg-surface-container-highest">
+<div class="w-full h-full bg-cover bg-center" data-alt="A realistic high-definition CCTV security monitor view of a Saudi kindergarten pick-up driveway outside the modern entrance. A clean white family SUV is stopped at the covered reception gate bay. Parents and a smiling female nursery teacher in uniform stand by with clipboards. Warm late afternoon golden hour daylight, clear license plate detection overlay, Arabic security branding on walls, peaceful educational institutional ambiance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfgY8XFMf5FugGaWbqXtKx9I4T5eVxGI4Ijdb4ZnSxxWc_ZWt8yt2GfFuM6Z_SSLOJg9g7kffcfBPMWBlWZ-uutT82bKvYMJBub8XUDOzw7Y3lsvdndtRKe7hf59Ky-4L9BuFwGLqlfINHLzKgOzHQGxqwd5lDYhfql1faM1s1JtWcUr60jEIjboLoacUyMpFuqhr9_Z3f02S1Y0kWBpLgwqd2-e_lGBmHkGoRy2J0Uh5J4olVJLE')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-between p-2 pointer-events-none">
+<div class="flex justify-between items-start">
+<span class="bg-black/70 text-white font-mono text-caption px-1.5 py-0.5 rounded">16:28:40 REC</span>
+<span class="bg-emerald-600/90 text-white font-label-sm text-caption px-1.5 py-0.5 rounded">رصد لوحة: أ ب د ٤٠٩٢</span>
+</div>
+<div class="text-white font-caption text-caption flex items-center justify-between">
+<span>السيارة التالية: تويوتا لاندكروزر بيضاء</span>
+<span class="font-mono">FPS: 30</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 gap-2">
+<button class="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+<span>التقاط لقطة أمنية</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-sm">open_in_full</span>
+<span>تكبير الكاميرا</span>
+</button>
+</div>
+</div>
+<!-- قائمة سريعة: الأطفال المنتظرون حالياً مع أزرار نداء فوري -->
+<div class="md:col-span-7 rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-sm">groups</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">أطفال في بهو الانتظار الآن (12)</h3>
+</div>
+<span class="font-caption text-caption text-outline">تحديث تلقائي كل 5 ثوانٍ</span>
+</div>
+<!-- قائمة مدمجة سهلة الوصول -->
+<div class="space-y-1.5 max-h-52 overflow-y-auto pr-1">
+<!-- طفل 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-caption">
+                    س
+                  </div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">سعود بن فيصل العتيبي</div>
+<div class="font-caption text-caption text-on-surface-variant">فصل النجوم • بانتظار الوالد</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container transition-colors flex items-center gap-1" onclick="callChildIntercom('سعود بن فيصل')">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+<span>نداء</span>
+</button>
+<button class="p-1 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" title="عرض الملف">
+<span class="material-symbols-outlined text-sm">info</span>
+</button>
+</div>
+</div>
+<!-- طفل 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-caption">
+                    م
+                  </div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">مريم بنت طارق الدوسري</div>
+<div class="font-caption text-caption text-on-surface-variant">فصل الفراشات • وصل السائق الخاص</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container transition-colors flex items-center gap-1" onclick="callChildIntercom('مريم بنت طارق')">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+<span>نداء</span>
+</button>
+<button class="p-1 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" title="عرض الملف">
+<span class="material-symbols-outlined text-sm">info</span>
+</button>
+</div>
+</div>
+<!-- طفل 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-bold text-caption">
+                    ع
+                  </div>
+<div>
+<div class="font-label-md text-label-md font-semibold text-on-surface">عبد الله بن فهد القحطاني</div>
+<div class="font-caption text-caption text-on-surface-variant">فصل الأبطال • بانتظار الحافلة رقم 03</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container transition-colors flex items-center gap-1" onclick="callChildIntercom('عبد الله بن فهد')">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+<span>نداء</span>
+</button>
+<button class="p-1 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" title="عرض الملف">
+<span class="material-symbols-outlined text-sm">info</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t mt-2">
+<span class="font-caption text-caption text-on-surface-variant">يتم عرض أحدث المسجلين في صالة المغادرة</span>
+<button class="text-primary font-label-sm text-label-sm font-semibold hover:underline flex items-center gap-0.5">
+<span>عرض جميع الـ 12 طفلاً</span>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+<!-- كرت إرشادي لموظف البوابة: دليل فوري للمصادقة وتفادي الأخطاء -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-headline-sm">contactless</span>
+</div>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">طريقة العمل السريعة عبر لوحة المفاتيح:</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+              امسح بطاقة QR مباشرة بالماسح الضوئي — ستظهر صورة الطفل مع الأشخاص المخولين بالاستلام تلقائياً للمطابقة الفورية دون استخدام الماوس.
+            </div>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-mono text-label-sm font-semibold">Enter: تسليم</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-mono text-label-sm font-semibold">Esc: إلغاء</span>
+</div>
+</div>
+</div>
+<!-- العمود الأيمن (4 أعمدة): سجل حركات الاستلام الأخيرة اليومية (Real-time Audit Log) -->
+<div class="xl:col-span-4 flex flex-col rounded-xl bg-surface-container-lowest p-space-md shadow-sm h-full">
+<div class="flex items-center justify-between pb-3 mb-2 border-b">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-sm">history</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">سجل التسليم الأخير (اليوم)</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 font-mono text-caption font-bold">
+          36 عملية مؤكدة
+        </span>
+</div>
+<!-- قائمة السجلات مرتبة تنازلياً مع إبراز العملية الأخيرة -->
+<div class="flex-1 space-y-2 overflow-y-auto max-h-[520px] pr-1">
+<!-- 1. العملية الأخيرة الأحدث (ريان الصالح - تفويض استثنائي) -->
+<div class="p-3 rounded-xl bg-emerald-500/10 transition-all border-r-4 border-emerald-500 shadow-xs">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold text-emerald-800">أحدث تسليم (قبل دقيقة)</span>
+</div>
+<span class="font-mono text-caption text-emerald-900 font-bold">16:28</span>
+</div>
+<div class="flex items-center gap-2.5 my-1.5">
+<div class="w-10 h-10 rounded-full bg-cover bg-center ring-2 ring-emerald-500 shrink-0" data-alt="Close-up circular portrait of a cute 4-year-old Saudi boy with a joyful smile wearing a light blue kindergarten uniform polo. Neutral studio nursery background, soft natural lighting, sharp photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4VqMbzHXpeIhMkYkPMuUQsHVwgT-A-z1nh5FUiUEhQX4vbeOPwRlOcLW3Pxh-QrepkBsZJPIcnW0tZ3ZAX5dbP2Cd9AkeYF5hUAqgDM2eDBNGVcpzQ3Ab2h3QIlCUckwI9klCw33u0EgXjFBE_PpCDsXoQVuFJP61CCoqfH66SeteAm3s9kshYN3gfz0Rn_ZJVAagmpH2VZvhkcaIL5YgR-aTwBHA5pioNqOguTK7u9vGU3xEKa8')"></div>
+<div>
+<div class="font-label-md text-label-md font-bold text-on-surface">ريان بن ماجد الصالح</div>
+<div class="font-caption text-caption text-on-surface-variant">فصل العصافير (روضة 1)</div>
+</div>
+</div>
+<div class="mt-2 pt-2 border-t border-emerald-500/20 text-caption font-body-sm space-y-1 text-on-surface">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">المستلم الفعلي:</span>
+<span class="font-semibold text-emerald-950">خالد عبد الله الصالح (عم الطفل)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">نوع الاعتماد:</span>
+<span class="font-semibold text-tertiary">تفويض استثنائي F4 (#403)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">الموظف المسؤول:</span>
+<span class="font-medium">أ. نادية المنصوري</span>
+</div>
+</div>
+</div>
+<!-- 2. العملية السابقة: سارة علي -->
+<div class="p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">سارة بنت علي بن علي</span>
+<span class="font-mono text-caption text-on-surface-variant">16:22</span>
+</div>
+<div class="flex items-center justify-between text-caption text-on-surface-variant">
+<span>فصل الفراشات • المستلم: الوالدة (هند التميمي)</span>
+<span class="text-emerald-700 font-medium">مطابق 100%</span>
+</div>
+<div class="mt-1 flex items-center justify-between font-mono text-caption text-outline">
+<span>سند: #SEC-8924</span>
+<span>بوابة 01</span>
+</div>
+</div>
+<!-- 3. العملية السابقة: كريم منصور -->
+<div class="p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">كريم بن منصور الدخيل</span>
+<span class="font-mono text-caption text-on-surface-variant">16:15</span>
+</div>
+<div class="flex items-center justify-between text-caption text-on-surface-variant">
+<span>فصل النجوم • المستلم: الوالد (منصور الدخيل)</span>
+<span class="text-emerald-700 font-medium">بطاقة رقمية QR</span>
+</div>
+<div class="mt-1 flex items-center justify-between font-mono text-caption text-outline">
+<span>سند: #SEC-8923</span>
+<span>بوابة 01</span>
+</div>
+</div>
+<!-- 4. العملية السابقة: يوسف خالد -->
+<div class="p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">يوسف بن خالد الشمري</span>
+<span class="font-mono text-caption text-on-surface-variant">16:08</span>
+</div>
+<div class="flex items-center justify-between text-caption text-on-surface-variant">
+<span>فصل الأبطال • المستلم: السائق المعتمد (سليم إقبال)</span>
+<span class="text-emerald-700 font-medium">بصمة موثقة</span>
+</div>
+<div class="mt-1 flex items-center justify-between font-mono text-caption text-outline">
+<span>سند: #SEC-8922</span>
+<span>بوابة 01</span>
+</div>
+</div>
+<!-- 5. العملية السابقة: ليلى عثماني -->
+<div class="p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">ليلى بنت عثمان العثماني</span>
+<span class="font-mono text-caption text-on-surface-variant">15:58</span>
+</div>
+<div class="flex items-center justify-between text-caption text-on-surface-variant">
+<span>فصل العصافير • المستلم: الجدة (فاطمة السبيعي)</span>
+<span class="text-emerald-700 font-medium">تفويض سنوي مسجل</span>
+</div>
+<div class="mt-1 flex items-center justify-between font-mono text-caption text-outline">
+<span>سند: #SEC-8921</span>
+<span>بوابة 01</span>
+</div>
+</div>
+</div>
+<div class="pt-3 mt-2 border-t flex items-center justify-between">
+<button class="w-full py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-base">print</span>
+<span>طباعة كشف تسليم اليوم الكامل (A4)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4. شريط الاختصارات المكتبي السريع الدائم أسفل الواجهة (Desktop Hotkeys Footer Bar) -->
+<div class="rounded-xl bg-surface-container-high/60 backdrop-blur p-2.5 shadow-xs">
+<div class="flex items-center justify-between flex-wrap gap-2 font-caption text-caption">
+<div class="flex items-center gap-3 flex-wrap text-on-surface">
+<span class="font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">keyboard</span>
+          اختصارات سطح المكتب السريعة:
+        </span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">F2</kbd>
+<span class="text-on-surface-variant">تركيز الباركود</span>
+</span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">Enter / F10</kbd>
+<span class="text-on-surface-variant">تأكيد التسليم</span>
+</span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">Space</kbd>
+<span class="text-on-surface-variant">تبديل المستلم</span>
+</span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">F4</kbd>
+<span class="text-on-surface-variant">تفويض استثنائي</span>
+</span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">Ctrl+P</kbd>
+<span class="text-on-surface-variant">طباعة إيصال حراري</span>
+</span>
+<span class="inline-flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono font-bold shadow-xs text-on-surface">Esc</kbd>
+<span class="text-on-surface-variant">مسح وتفريغ الشاشة</span>
+</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-mono">محلي 100% Offline DB: v2.0.4-L</span>
+<span>•</span>
+<span class="text-emerald-700 font-medium">الاستجابة: 8ms</span>
+</div>
+</div>
+</div>
+<!-- صندوق حوار تجريبي لنداء الإذاعة الداخلية (Intercom Mock Modal) -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4" id="intercomModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-md w-full p-space-lg shadow-xl space-y-4">
+<div class="flex items-center justify-between border-b pb-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-headline-md">mic</span>
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">إذاعة النداء الداخلي للفصول</h4>
+</div>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline" onclick="closeIntercomModal()">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">الرسالة الصوتية الموجهة لمكبرات الصوت:</label>
+<div class="p-3 rounded-lg bg-surface-container-low font-headline-sm text-headline-sm font-bold text-primary" id="intercomTarget">
+          نداء للطفل: سعود بن فيصل العتيبي — التوجه للبوابة الرئيسية
+        </div>
+<p class="font-caption text-caption text-on-surface-variant">سيتم إذاعة التنبيه تلقائياً عبر نظام المكبرات المحلي في الفصل وقاعة الألعاب.</p>
+</div>
+<div class="flex items-center justify-end gap-2 pt-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeIntercomModal()">
+          إلغاء
+        </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors flex items-center gap-1" onclick="playIntercomSound()">
+<span class="material-symbols-outlined text-base">campaign</span>
+<span>بث النداء الآن (Enter)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // الاستماع لاختصارات لوحة المفاتيح المكتبية
+  document.addEventListener('keydown', function(e) {
+    // F2: التركيز الفوري على حقل الباركود
+    if (e.key === 'F2') {
+      e.preventDefault();
+      const input = document.getElementById('gateBarcodeInput');
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    }
+    // F3: فتح نافذة النداء الداخلي
+    if (e.key === 'F3') {
+      e.preventDefault();
+      openIntercomModal();
+    }
+    // F4: فتح نافذة التفويض الاستثنائي
+    if (e.key === 'F4') {
+      e.preventDefault();
+      openExceptionModal();
+    }
+    // Ctrl+P: إعادة طباعة الإيصال
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+      e.preventDefault();
+      triggerReprint();
+    }
+    // Esc: تفريغ الحقل أو إغلاق المودال
+    if (e.key === 'Escape') {
+      closeIntercomModal();
+      const input = document.getElementById('gateBarcodeInput');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+    }
+  });
+
+  // معالجة قراءة الباركود عند الضغط على Enter من قارئ USB
+  function handleBarcodeKey(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const code = event.target.value.trim();
+      if (code) {
+        // محاكاة استجابة فورية لبوابة الاستقبال
+        alert('تم مسح الرمز: [' + code + ']\nجاري جلب بيانات الطفل والمصرح لهم بالاستلام من قاعدة البيانات المحلية...');
+        event.target.value = '';
+      }
+    }
+  }
+
+  // إعادة طباعة السند الحراري
+  function triggerReprint() {
+    const btn = document.getElementById('reprintBtn');
+    if (btn) {
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span><span>جاري إرسال الأمر للطابعة...</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-base text-emerald-600">check</span><span>تمت الطباعة بنجاح</span>';
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+        }, 2000);
+      }, 700);
+    }
+  }
+
+  // إغلاق إشعار النجاح العلوي
+  function dismissNotification(btn) {
+    const banner = btn.closest('.relative.overflow-hidden');
+    if (banner) {
+      banner.style.transition = 'opacity 0.25s ease, max-height 0.25s ease';
+      banner.style.opacity = '0';
+      banner.style.maxHeight = '0';
+      setTimeout(() => banner.remove(), 250);
+    }
+  }
+
+  // التحكم بنافذة النداء الداخلي Intercom
+  function openIntercomModal() {
+    const m = document.getElementById('intercomModal');
+    if (m) m.classList.remove('hidden');
+  }
+
+  function closeIntercomModal() {
+    const m = document.getElementById('intercomModal');
+    if (m) m.classList.add('hidden');
+  }
+
+  function callChildIntercom(childName) {
+    const target = document.getElementById('intercomTarget');
+    if (target) {
+      target.textContent = 'نداء للطفل: ' + childName + ' — التوجه للبوابة الرئيسية للاستلام';
+    }
+    openIntercomModal();
+  }
+
+  function playIntercomSound() {
+    closeIntercomModal();
+    // إشعار مؤقت
+    const bar = document.getElementById('gateBarcodeInput');
+    if (bar) {
+      bar.placeholder = 'تم بث النداء الصوتي بنجاح عبر النظام الإذاعي الداخلي... جاهز للمسح F2';
+      setTimeout(() => {
+        bar.placeholder = 'امسح بطاقة الطفل الآن (QR / باركود) أو أدخل رقم القيد / الهوية... [جاهز للمسح F2]';
+      }, 3500);
+    }
+  }
+
+  function openExceptionModal() {
+    alert('شاشة "التفويض الاستثنائي F4":\nتستخدم عند حضور شخص غير مسجل مسبقاً، وتتطلب إدخال رقم الهوية الوطنية، رمز التحقق OTP المرسل لولي الأمر، وتصوير المستلم عبر كاميرا البوابة.');
+  }
+
+  function toggleGateCamera() {
+    alert('كاميرا البوابة الرئيسية: متصلة بدقة 1080p بمعدل 30 إطاراً في الثانية عبر شبكة الروضة المحلية RTSP.');
+  }
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-[32px] bg-inverse-surface text-inverse-on-surface z-50 flex items-center justify-between px-space-md font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-inverse-on-surface font-body-sm text-body-sm">قاعدة البيانات المحلية: SQLite متصلة وسليمة 100%</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-emerald-400">check_circle</span><span class="text-inverse-on-surface/90 font-body-sm text-body-sm">آخر نسخة احتياطية: اليوم 14:30 (24.3 MB)</span><a class="underline text-primary-fixed-dim hover:text-primary-fixed mr-1 font-semibold" data-path="backup-data" href="#">نسخ الآن</a></div></div><div class="flex items-center gap-space-lg"><div class="text-inverse-on-surface/80 font-body-sm text-body-sm">السنة الدراسية: 2026 / 2027</div><div class="flex items-center gap-space-sm"><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+N طفل جديد</span><span class="font-mono text-caption text-inverse-on-surface/70">•</span><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+P طباعة بطاقة CR80</span></div><div class="px-2 py-0.5 rounded bg-surface-container-highest/20 font-mono text-caption text-inverse-on-surface/90">v2.0 Desktop Offline</div></div></footer></body></html>

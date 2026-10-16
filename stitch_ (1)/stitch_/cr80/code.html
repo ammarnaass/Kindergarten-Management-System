@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#424753", "on-secondary-fixed-variant": "#633f00", "surface": "#f8f9ff", "on-tertiary-fixed": "#40000f", "on-secondary-fixed": "#291800", "primary-fixed-dim": "#acc7ff", "primary-fixed": "#d7e2ff", "secondary-fixed": "#ffddb3", "outline-variant": "#c2c6d5", "tertiary-fixed": "#ffdadb", "secondary-fixed-dim": "#ffb951", "on-tertiary-container": "#fffbff", "on-background": "#121c2a", "inverse-primary": "#acc7ff", "surface-container-low": "#eff4ff", "on-secondary-container": "#704800", "surface-bright": "#f8f9ff", "on-tertiary-fixed-variant": "#861e32", "surface-container-highest": "#d9e3f6", "surface-container-high": "dee9fc", "primary": "#0059ba", "on-surface": "#121c2a", "secondary": "#825500", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-primary-fixed": "#001a40", "surface-tint": "#005bbf", "background": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary": "#a33446", "surface-variant": "#d9e3f6", "surface-container": "#e6eeff", "tertiary-container": "#c34c5d", "on-primary-fixed-variant": "#004492", "surface-dim": "#d0dbed", "inverse-on-surface": "#eaf1ff", "on-primary": "#ffffff", "secondary-container": "#fdb64b", "primary-container": "#2c72d9", "on-tertiary": "#ffffff", "outline": "#727784", "tertiary-fixed-dim": "#ffb2b8", "on-primary-container": "#fefcff", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "inverse-surface": "#27313f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter-compact": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem", "margin-window": "0.75rem", "gutter": "1.25rem", "margin": "1.5rem" }, "fontFamily": { "caption": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ] }, "fontSize": { "caption": [ "10px", { "lineHeight": "14px", "fontWeight": "500" } ], "display-md": [ "26px", { "lineHeight": "36px", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-lg": [ "32px", { "lineHeight": "44px", "fontWeight": "700" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "28px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased select-none"><div class="fixed top-0 left-0 right-0 h-[38px] bg-surface-container-high text-on-surface-variant z-50 flex items-center justify-between px-space-md shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-base">child_care</span><span class="font-label-sm text-label-sm font-semibold tracking-wide text-on-surface">روضتي — نظام إدارة الروضة المكتبي (الإصدار 2.0)</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">غير متصل بالسحاب • محلي 100%</span></div><div class="flex items-center gap-1"><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تصغير (Minimize)" type="button"><span class="material-symbols-outlined text-sm">minimize</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تكبير / استعادة (Maximize)" type="button"><span class="material-symbols-outlined text-sm">crop_square</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-error hover:text-on-error text-on-surface-variant transition-colors" title="إغلاق البرنامج (Close)" type="button"><span class="material-symbols-outlined text-sm">close</span></button></div></div><header class="fixed top-[38px] right-0 left-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm pl-space-md"><img alt="Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-primary-fixed shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/><div class="leading-tight"><span class="font-headline-sm text-headline-sm text-primary font-bold block">روضتي</span><span class="font-caption text-caption text-on-surface-variant">فرع الياسمين النموذجي</span></div></div><div class="relative flex items-center w-80 lg:w-96"><span class="material-symbols-outlined absolute right-3 text-outline pointer-events-none text-lg">search</span><input class="w-full h-9 pr-9 pl-14 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer hover:bg-surface-container transition-colors" placeholder="بحث فوري عن طفل، ولي أمر، فاتورة..." readonly="" type="text"/><kbd class="absolute left-2.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption font-semibold shadow-xs">Ctrl+K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs" type="button"><span class="material-symbols-outlined text-base">badge</span><span>طباعة بطاقة هوية</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors shadow-xs" type="button"><span class="material-symbols-outlined text-base">payments</span><span>تسجيل دفعة</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">checklist</span><span>حضور اليوم</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">person_add</span><span>طفل جديد</span></button></div><div class="h-6 w-px bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="قفل الشاشة (Ctrl+L)" type="button"><span class="material-symbols-outlined text-lg">lock</span></button><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="التنبيهات المحلية" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-2 pr-1"><div class="text-left"><div class="font-label-md text-label-md font-semibold text-on-surface">أ. نادية المنصوري</div><div class="flex items-center gap-1 justify-end"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="font-caption text-caption text-on-surface-variant">متصل محلياً</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/></div></div></div></header><aside class="fixed right-0 top-[102px] bottom-[32px] w-64 bg-surface-container-lowest z-30 flex flex-col justify-between py-space-sm px-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="overflow-y-auto flex-1 space-y-1"><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs"><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="dashboard" href="#">الرئيسية</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="children" href="#">الأطفال المسجلون</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="child-id-cards" href="#">بطاقات هوية الطفل والاستلام الآمن</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="registration-form" href="#">استمارة تسجيل طفل (A4)</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="classrooms" href="#">الفصول ووضع الفصل</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="attendance" href="#">الحضور والانصراف</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="finances" href="#">المالية والمدفوعات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="daily-reports" href="#">التقرير اليومي</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="health-safety" href="#">الصحة والسلامة والحساسية</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="parents" href="#">أولياء الأمور والمخولون</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="staff" href="#">الموظفون</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="reports" href="#">التقارير والمطبوعات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="backup-data" href="#">النسخ الاحتياطي والبيانات</a><a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#">الإعدادات</a></nav></div><div class="p-space-sm rounded-lg bg-surface-container-low mx-1"><div class="flex items-center justify-between text-on-surface-variant font-caption text-caption mb-1"><span>سعة التخزين المحلي</span><span>12%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-1.5 rounded-full" style="width: 12%"></div></div><div class="flex items-center justify-between mt-2 font-caption text-caption text-outline"><span>مفتاح سريع</span><span class="font-mono">F11 ملء الشاشة</span></div></div></aside><div class="pr-64 pt-[102px] pb-[32px]"><main class="w-full min-h-[calc(100vh-134px)] px-space-lg py-space-md bg-surface"><div class="flex flex-col w-full">
+<!-- Top Context Header & Batch Print Banner -->
+<div class="flex flex-col gap-space-sm mb-space-lg">
+<!-- Breadcrumb & Mode Pills -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">الرئيسية</span>
+<span class="material-symbols-outlined text-xs">chevron_left</span>
+<span class="hover:text-primary cursor-pointer transition-colors">التقارير والمطبوعات</span>
+<span class="material-symbols-outlined text-xs">chevron_left</span>
+<span class="text-on-surface font-semibold">بطاقات هوية الطفل والاستلام الآمن (CR80)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-emerald-500/10 text-emerald-800 text-caption font-caption">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>جاهز للطباعة المباشرة • معيار ISO/IEC 7810 ID-1 (CR80)</span>
+</div>
+<div class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface-variant text-caption font-caption">
+<span class="material-symbols-outlined text-xs">sd_card</span>
+<span>تشفير محلي SQLite بدون إنترنت</span>
+</div>
+</div>
+</div>
+<!-- Title, Quick Select & Primary Actions -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-2xl">badge</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">إصدار بطاقة هوية الطفل والاستلام الآمن</h1>
+<span class="px-2 py-0.5 rounded text-caption font-caption bg-secondary-fixed text-on-secondary-fixed font-semibold">CR80 • 85.6 × 54 مم</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">إصدار هوية بلاستيكية ذكية مع شفرة تحقق مشفرة محلياً وصور أولياء الأمور المخولين بالاستلام</p>
+</div>
+</div>
+<div class="flex items-center flex-wrap gap-space-xs">
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container transition-all font-label-md text-label-md shadow-xs" id="batch-print-btn" type="button">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>طباعة بطاقات الفصل كاملاً (14 طفل)</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container transition-all font-label-md text-label-md shadow-xs" id="export-pdf-btn" type="button">
+<span class="material-symbols-outlined text-base">picture_as_pdf</span>
+<span>تصدير عالي الدقة (300 DPI)</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-lg py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md shadow-md active:scale-95" id="quick-print-btn" type="button">
+<span class="material-symbols-outlined text-base">print</span>
+<span class="font-semibold">طباعة البطاقة الحالية (Ctrl+P)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Student Selector Ribbon -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md items-center mb-space-lg p-space-sm rounded-xl bg-surface-container-low shadow-xs">
+<div class="xl:col-span-4 flex items-center gap-space-sm">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline text-base">search</span>
+<input class="w-full h-9 pr-9 pl-8 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary shadow-xs" id="student-search-input" placeholder="ابحث باسم الطفل أو رقم القيد..." type="text" value="سارة بنت علي بن علي"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline-variant text-base cursor-pointer hover:text-primary" title="مسح باركود USB">qr_code_scanner</span>
+</div>
+</div>
+<div class="xl:col-span-5 flex items-center justify-between gap-space-sm px-space-sm bg-surface-container-lowest rounded-lg py-1 shadow-xs">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover ring-1 ring-primary-fixed" data-alt="Clear high resolution ID portrait of a cheerful 4-year-old girl named Sarah smiling gently in front of a neutral soft blue background for kindergarten registry badge, studio soft illumination, photorealistic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvwRqZDeAspajEXqrA49MKSkOWcc0r8DFi44hB8aKrxs17cmj3TZMQaQkT4tQARAQuQ6WsAISeJkTlDnesDYve2JFdQPSkB_5oWWZPcaXqiRwNW6i_FmSAkLRm_O51DC93PT-j69CdZz8IGfphsCwOFInSmi5HXXQJQ1d_pX3Pw2dxWfkU0FtTcXBXcl39R23hKNzsNCKJfYM4U14eiHQ-ZsCBmuHYaQPys-VE4-tOEAPfAFj97Tk"/>
+<div class="leading-tight">
+<div class="font-label-md text-label-md font-bold text-on-surface">سارة بنت علي بن علي</div>
+<div class="font-caption text-caption text-on-surface-variant flex items-center gap-1">
+<span>القيد: KDG-2024-118#</span>
+<span>•</span>
+<span class="text-primary font-semibold">فصل النجوم (KG2)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-7 h-7 rounded flex items-center justify-center hover:bg-surface-container-low text-on-surface-variant" title="الطفل السابق (السهم الأيمن)" type="button">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<span class="font-caption text-caption font-mono px-1">04 / 14</span>
+<button class="w-7 h-7 rounded flex items-center justify-center hover:bg-surface-container-low text-on-surface-variant" title="الطفل التالي (السهم الأيسر)" type="button">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+</div>
+<div class="xl:col-span-3 flex items-center justify-end gap-space-xs font-caption text-caption">
+<span class="px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant font-mono">طابعة: Evolis Zenius</span>
+<span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-800 font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        جاهزة للطباعة
+      </span>
+</div>
+</div>
+<!-- Print Mode Tabs Strip -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm mb-space-md bg-surface-container-lowest p-1.5 rounded-xl shadow-xs">
+<div class="flex items-center gap-1">
+<button class="print-mode-tab active flex items-center gap-2 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-base">credit_card</span>
+<span>طابعة بطاقات بلاستيكية (CR80 PVC Direct - وجهين تلقائي)</span>
+</button>
+<button class="print-mode-tab flex items-center gap-2 px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-base">dashboard_customize</span>
+<span>ورقة A4 مقوى مجمّعة (8 بطاقات بالصفحة مع علامات القص)</span>
+</button>
+<button class="print-mode-tab flex items-center gap-2 px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-base">auto_stories</span>
+<span>ورقة A4 فردية (وجهين متجاورين للطي والتدبيس أو التغليف)</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption px-2">
+<span class="material-symbols-outlined text-sm text-primary">zoom_in</span>
+<span>معاينة حية بقياس 100% بنسبة أبعاد البطاقة الرسمية</span>
+</div>
+</div>
+<!-- Main Workstation Layout: Preview Stage (Left/Center) + Controls Tray (Right) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT & CENTER: Realistic Dual CR80 Card Canvas (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Stage Header with Visual Zoom & Quick Info -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-xl shadow-xs">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1 text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-base">visibility</span>
+<span>المعاينة المباشرة للوجهين (CR80 Standard: 85.6mm × 53.98mm)</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="font-caption text-caption text-on-surface-variant">السمك: 0.76 مم (30 mil) • زوايا دائرية R3.18mm</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="flex items-center gap-1 px-2 py-1 rounded text-caption font-caption bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors" id="flip-view-toggle" type="button">
+<span class="material-symbols-outlined text-xs">sync_alt</span>
+<span>تبديل ترتيب الوجهين</span>
+</button>
+</div>
+</div>
+<!-- CR80 Realistic Card Showcase Container -->
+<div class="flex flex-col xl:flex-row gap-space-lg items-center justify-center p-space-xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high rounded-2xl shadow-inner relative overflow-hidden">
+<!-- Subtle Grid watermark simulating calibration mat -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#0059ba_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<!-- CARD 1: FRONT FACE (CR80 Standard Dimensions: 85.6mm x 53.98mm ratio ~ 1.586) -->
+<div class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-between w-full px-2 font-caption text-caption text-on-surface-variant">
+<span class="font-semibold text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              الوجه الأمامي (هوية الطفل)
+            </span>
+<span class="font-mono text-outline">Face A • ISO 7810</span>
+</div>
+<!-- PHYSICAL CARD SURFACE (Front) -->
+<div class="relative w-[342px] h-[216px] rounded-[13px] bg-surface-container-lowest shadow-[0_8px_24px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col justify-between transition-transform duration-300 hover:shadow-xl hover:-translate-y-0.5" id="cr80-front">
+<!-- Card Top Header Band -->
+<div class="bg-primary text-on-primary px-3 py-2 flex items-center justify-between relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-16 h-16 rounded-full bg-white/10 pointer-events-none"></div>
+<div class="flex items-center gap-2 z-10">
+<div class="w-6 h-6 rounded-md bg-white flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-sm font-bold">child_care</span>
+</div>
+<div class="leading-none">
+<div class="font-label-md text-label-md font-bold tracking-tight">روضتي النموذجية</div>
+<div class="font-caption text-[9px] text-primary-fixed-dim">فرع الياسمين • العام 2026/2027</div>
+</div>
+</div>
+<div class="text-left z-10">
+<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-white/20 text-white uppercase tracking-wider">بطاقة طفل</span>
+</div>
+</div>
+<!-- Card Mid Body: Photo, Info & Class Badge -->
+<div class="px-3 py-1 flex items-start gap-3 flex-1 mt-1">
+<!-- Child Official Portrait with Class Badge -->
+<div class="relative shrink-0">
+<img class="w-[84px] h-[102px] object-cover rounded-lg shadow-sm ring-2 ring-primary-fixed" data-alt="Official kindergarten student badge photo of a sweet little 4-year-old girl named Sarah Ali with braided hair, high key soft studio lighting, ultra clean neutral background, crisp details, high quality portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8dgEQJWyeWjdkNy_kv3iZHQApoi6nO5blX4mn0OcMNNA_h6kRYwMnr3JixoiojUIqj1n082tL9y6Zn-LaM8DX7SiQ7xuEY52YEF4W54tWo-ypZD1icZx5jvOhQVfAbBcleUIpflN1iSP7sojBlYShKUbcieBZ6KZA83ZTR24tyb24McBHAbzIKR1-ySKFYnwYaeXWX2xO9kbhmhnq3NN0mU1O4_TgjncFJnnG1iu2wzVw8-5vreM"/>
+<div class="absolute -bottom-1.5 -right-1 px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[9px] font-bold shadow-xs flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">star</span>
+<span>النجوم</span>
+</div>
+</div>
+<!-- Student Attributes Grid -->
+<div class="flex flex-col justify-between h-[102px] flex-1">
+<div>
+<div class="font-headline-sm text-[15px] font-bold text-on-surface leading-tight">سارة بنت علي بن علي</div>
+<div class="font-mono text-caption text-primary font-semibold">KDG-2024-118#</div>
+</div>
+<div class="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] leading-tight">
+<div class="bg-surface-container-low px-1.5 py-0.5 rounded">
+<span class="text-on-surface-variant text-[9px] block">الميلاد:</span>
+<span class="font-semibold text-on-surface">12 يوليو 2022</span>
+</div>
+<div class="bg-surface-container-low px-1.5 py-0.5 rounded">
+<span class="text-on-surface-variant text-[9px] block">الفصيلة:</span>
+<span class="font-bold text-tertiary font-mono">+A الموجبة</span>
+</div>
+</div>
+<!-- Emergency Contact Strip -->
+<div class="flex items-center gap-1 bg-surface-container px-1.5 py-0.5 rounded text-[10px]">
+<span class="material-symbols-outlined text-xs text-primary">call</span>
+<span class="text-on-surface-variant text-[9px]">طوارئ الأب:</span>
+<span class="font-mono font-bold text-on-surface mr-auto" dir="ltr">0550 12 34 56</span>
+</div>
+</div>
+</div>
+<!-- Card Bottom Strip: High Alert Health Notice -->
+<div class="bg-tertiary-container text-on-tertiary-container px-2.5 py-1 flex items-center justify-between text-[10px] font-semibold" id="preview-health-strip">
+<div class="flex items-center gap-1 leading-none">
+<span class="material-symbols-outlined text-xs animate-bounce">warning</span>
+<span>تنبيه صحي: حساسية مفرطة من الفول السوداني (يحمل Epipen)</span>
+</div>
+<span class="material-symbols-outlined text-xs">medical_services</span>
+</div>
+<!-- Holographic security overlay simulation -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<button class="text-caption font-caption text-primary hover:underline flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-xs">edit</span>
+<span>تعديل الصورة</span>
+</button>
+<span class="text-outline-variant">•</span>
+<button class="text-caption font-caption text-primary hover:underline flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-xs">refresh</span>
+<span>إعادة إنشاء الشارة</span>
+</button>
+</div>
+</div>
+<!-- CARD 2: BACK FACE (CR80 Standard Dimensions) -->
+<div class="flex flex-col items-center gap-2 group">
+<div class="flex items-center justify-between w-full px-2 font-caption text-caption text-on-surface-variant">
+<span class="font-semibold text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              الوجه الخلفي (التسليم والتحقق الآمن)
+            </span>
+<span class="font-mono text-outline">Face B • Secure Pickup</span>
+</div>
+<!-- PHYSICAL CARD SURFACE (Back) -->
+<div class="relative w-[342px] h-[216px] rounded-[13px] bg-surface-container-lowest shadow-[0_8px_24px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col justify-between p-2.5 transition-transform duration-300 hover:shadow-xl hover:-translate-y-0.5" id="cr80-back">
+<!-- Top Security Header -->
+<div class="flex items-center justify-between border-b-0 pb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary">verified_user</span>
+<span class="font-label-sm text-[11px] font-bold text-on-surface">نظام الاستلام والتسليم الآمن (Secure Token)</span>
+</div>
+<span class="font-caption text-[8px] bg-surface-container-high px-1.5 py-0.5 rounded text-on-surface-variant font-mono">SQLite-OFFLINE-ID</span>
+</div>
+<!-- Middle Section: Authorized Guardians (3 Persons) + Encrypted QR Code -->
+<div class="flex items-center gap-2 my-auto">
+<!-- Left side: 3 Authorized Persons -->
+<div class="flex flex-col gap-1 flex-1">
+<div class="text-[9px] font-bold text-on-surface-variant mb-0.5 flex items-center gap-1">
+<span>الأشخاص المخولون رسمياً باستلام الطفل:</span>
+</div>
+<!-- Guardian 1 -->
+<div class="flex items-center gap-1.5 bg-surface-container-low px-1.5 py-0.5 rounded">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-outline-variant" data-alt="Small round avatar photo of a respectful Middle Eastern father named Tariq in formal clothing, soft lighting, sharp facial features" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC4G4uWohd3DXch2cbG_YFgSeXLQJ8BP-WPzhq8_-m2spwRcXo3CD6fvU7cCezLLfd23kyR0XUpNnSrbcH5zmxP1nLQ9MxG-R58XsTUwP-DXwBAKE9llJgD1ok50ZNSl3tWXkktbSayW4gBgvnbobNsQ9PYLdIdRwzeUZxJKtvdIYLueRc_n73Li7VFGbE4Di86PS88snXd0UFQDbeflei4RzfuUkp_Un6Zd3XCjnK8Lr4x2pd3uw"/>
+<div class="flex items-center justify-between w-full text-[10px]">
+<span class="font-bold text-on-surface">طارق بن علي</span>
+<span class="text-primary text-[9px] font-semibold">(الأب)</span>
+</div>
+</div>
+<!-- Guardian 2 -->
+<div class="flex items-center gap-1.5 bg-surface-container-low px-1.5 py-0.5 rounded">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-outline-variant" data-alt="Small round avatar photo of an educated professional mother wearing modest scarf smiling warmly, doctor Amina, high clarity portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa1mFBvfAKyKdZxTByzESu3ESXV16uFTZ98U5vpat4IlhVhTwiLHsww9cCaJR145-NmSlR41GxH0pDnut_Ia458y1Uu8nKvPIpNHhYxDNzZLTBYn4OxSYWEcjP9O2Rw5qIZlJBhkLq7s8o21R6cde3_85fdAY0PSqXBkuUvllIAQeE8ZVi6IUZn9ODn7jax2MSjTqODdxH1JkJNhi1XhyUA4zCsVna5xel-wqZ3LOXyaspWvAeb3A"/>
+<div class="flex items-center justify-between w-full text-[10px]">
+<span class="font-bold text-on-surface">د. أمينة حمدي</span>
+<span class="text-primary text-[9px] font-semibold">(الأم)</span>
+</div>
+</div>
+<!-- Guardian 3 -->
+<div class="flex items-center gap-1.5 bg-surface-container-low px-1.5 py-0.5 rounded">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-outline-variant" data-alt="Small round avatar photo of an elderly caring grandmother wearing traditional headscarf named Fatima, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClW9dJy3YZKR_e44RTR5pBt00A8__-eZkttdFFPJ4t_g8ZCbyrBUmz4BDybOcWKeb6qAZWCFSS258wOLSpfJ4jVbDh1T85qHkimReHYHFdAUYf8A_QQDnFOlD-ScFaE0nYy4NP1_ltqoCDCEaWATkvc3YXU6WGcrSLmB08seE0jL2gx4NGbUQE4jTxArAq2uzDE9u2x1EJ_dov8lTkLOFAlazyVOdHR1ClfhI_uciXiL6VfjYM-HM"/>
+<div class="flex items-center justify-between w-full text-[10px]">
+<span class="font-bold text-on-surface">فاطمة بوعزيز</span>
+<span class="text-on-surface-variant text-[9px]">(الجدة: #1098442)</span>
+</div>
+</div>
+</div>
+<!-- Right side: High Contrast Offline Encrypted QR Code -->
+<div class="flex flex-col items-center justify-center p-1.5 rounded-lg bg-surface-container-low shrink-0">
+<div class="w-20 h-20 bg-white p-1 rounded-md flex items-center justify-center shadow-xs">
+<!-- Vector QR Code with high scanning contrast -->
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- Top Left Finder -->
+<rect height="26" rx="2" width="26" x="5" y="5"></rect>
+<rect fill="white" height="18" width="18" x="9" y="9"></rect>
+<rect height="10" width="10" x="13" y="13"></rect>
+<!-- Top Right Finder -->
+<rect height="26" rx="2" width="26" x="69" y="5"></rect>
+<rect fill="white" height="18" width="18" x="73" y="9"></rect>
+<rect height="10" width="10" x="77" y="13"></rect>
+<!-- Bottom Left Finder -->
+<rect height="26" rx="2" width="26" x="5" y="69"></rect>
+<rect fill="white" height="18" width="18" x="9" y="73"></rect>
+<rect height="10" width="10" x="13" y="77"></rect>
+<!-- Security Token Dense Pixels Pattern -->
+<rect height="5" width="5" x="36" y="8"></rect>
+<rect height="5" width="5" x="44" y="8"></rect>
+<rect height="5" width="8" x="54" y="8"></rect>
+<rect height="6" width="12" x="36" y="18"></rect>
+<rect height="6" width="10" x="52" y="18"></rect>
+<rect height="12" width="6" x="8" y="36"></rect>
+<rect height="6" width="8" x="18" y="40"></rect>
+<rect height="8" width="8" x="36" y="34"></rect>
+<rect height="6" width="6" x="48" y="34"></rect>
+<rect height="6" width="14" x="58" y="34"></rect>
+<rect height="6" width="14" x="78" y="36"></rect>
+<rect height="12" width="6" x="36" y="46"></rect>
+<rect height="6" width="16" x="46" y="46"></rect>
+<rect height="14" width="8" x="66" y="46"></rect>
+<rect height="8" width="14" x="78" y="46"></rect>
+<rect height="6" width="12" x="36" y="62"></rect>
+<rect height="10" width="8" x="52" y="60"></rect>
+<rect height="16" width="8" x="40" y="72"></rect>
+<rect height="14" width="6" x="52" y="74"></rect>
+<rect height="6" width="12" x="62" y="72"></rect>
+<rect height="10" width="8" x="62" y="82"></rect>
+<rect height="8" width="18" x="74" y="82"></rect>
+</svg>
+</div>
+<span class="text-[8px] font-mono text-on-surface-variant font-bold mt-0.5 tracking-tight">KDG-SEC-9921B</span>
+</div>
+</div>
+<!-- Legal Safety Condition & Offline Stamp Footer -->
+<div class="mt-1 pt-1 bg-surface-container-high/40 rounded p-1 flex items-end justify-between gap-1 text-[8px] leading-tight text-on-surface-variant">
+<div class="max-w-[200px]">
+<p class="font-medium text-[7.5px] leading-tight text-on-surface">يُمنع منعاً باتاً تسليم الطفل لأي شخص غير وارد اسمه وصورته بهذه البطاقة. في حال الطوارئ يلزم تفويض إداري مسجل.</p>
+<div class="text-[7px] text-outline font-mono mt-0.5">نظام روضتي v2.0 • محلي 100% بدون إنترنت</div>
+</div>
+<!-- Official Kindergarten Local Seal -->
+<div class="flex items-center gap-1 shrink-0">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex flex-col items-center justify-center text-primary text-[6px] font-bold leading-none p-0.5 text-center">
+<span class="material-symbols-outlined text-[10px]">verified</span>
+<span>ختم الإدارة</span>
+</div>
+</div>
+</div>
+<!-- Holographic security overlay simulation -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<button class="text-caption font-caption text-primary hover:underline flex items-center gap-0.5" id="trigger-qr-test" type="button">
+<span class="material-symbols-outlined text-xs">qr_code_scanner</span>
+<span>تجربة مسح الـ QR الآمن</span>
+</button>
+<span class="text-outline-variant">•</span>
+<button class="text-caption font-caption text-primary hover:underline flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-xs">manage_accounts</span>
+<span>تعديل قائمة المخولين</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Sheet Assembly Preview for Multi-card A4 Print Mode (Collapsible / Informative) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-xs flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">grid_view</span>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold">مخطط الورقة المقواة A4 (8 بطاقات بالصفحة)</div>
+<div class="font-caption text-caption text-on-surface-variant">توزيع مثالي مع علامات القص (Crop Marks) وهوامش أمان 3 مم لتوفير التكاليف باستخدام طابعات الليزر والتغليف الحراري</div>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container-low text-primary font-caption text-caption font-bold">ورقة 1 من 2 لـ فصل النجوم</span>
+</div>
+<div class="grid grid-cols-4 gap-2 p-3 bg-surface-container-low rounded-lg">
+<!-- 8 Miniature Card slots simulating sheet layout -->
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs ring-2 ring-primary">
+<div class="w-7 h-10 rounded bg-primary-fixed shrink-0 flex items-center justify-center text-[10px] font-bold text-primary">سارة</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">سارة بنت علي</div>
+<div class="text-[8px] font-mono text-outline">KDG-118</div>
+<div class="text-[8px] text-emerald-800 font-semibold">مكتملة الهوية</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">عمر</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">عمر بن خالد</div>
+<div class="text-[8px] font-mono text-outline">KDG-119</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">مريم</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">مريم السويدي</div>
+<div class="text-[8px] font-mono text-outline">KDG-120</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">يوسف</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">يوسف المنصوري</div>
+<div class="text-[8px] font-mono text-outline">KDG-121</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">نور</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">نور العتيبي</div>
+<div class="text-[8px] font-mono text-outline">KDG-122</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">ريان</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">ريان الشمري</div>
+<div class="text-[8px] font-mono text-outline">KDG-123</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">جود</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">جود القحطاني</div>
+<div class="text-[8px] font-mono text-outline">KDG-124</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+<div class="h-16 rounded bg-surface-container-lowest p-1 flex items-center gap-1.5 shadow-xs opacity-80">
+<div class="w-7 h-10 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">فيصل</div>
+<div class="overflow-hidden leading-tight">
+<div class="font-bold text-[9px] text-on-surface truncate">فيصل الدوسري</div>
+<div class="text-[8px] font-mono text-outline">KDG-125</div>
+<div class="text-[8px] text-emerald-800 font-semibold">جاهز</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT: Interactive Customization & Hardware Control Panel (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Panel 1: Card Fields & Design Customizer -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">palette</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">تخصيص قالب البطاقة</h2>
+</div>
+<span class="px-2 py-0.5 rounded text-caption font-caption bg-surface-container text-on-surface-variant font-mono">Template: v2-CR80</span>
+</div>
+<!-- Design Style Selection -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold">نمط الهوية البصرية:</label>
+<div class="grid grid-cols-3 gap-1.5 text-center">
+<button class="template-style-btn active px-2 py-1.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold transition-all shadow-xs" type="button">
+              مرح ومعتمد
+            </button>
+<button class="template-style-btn px-2 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all" type="button">
+              رسمي كلاسيكي
+            </button>
+<button class="template-style-btn px-2 py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm transition-all" type="button">
+              أحادي (Monochrome)
+            </button>
+</div>
+</div>
+<!-- Field Visibility Toggles -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">حقول البطاقة النشطة:</label>
+<div class="flex flex-col gap-1.5 font-label-sm text-label-sm">
+<label class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-base text-primary">image</span>
+<span>الصورة الشخصية للطفل (عالية الدقة)</span>
+</span>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-base text-tertiary">warning</span>
+<span>شريط التنبيه الصحي والحساسية (إلزامي للسلامة)</span>
+</span>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="toggle-health-strip" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-base text-primary">diversity_3</span>
+<span>صور وأسماء المخولين بالاستلام (الوجه الخلفي)</span>
+</span>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-base text-primary">qr_code</span>
+<span>رمز الاستلام المشفر المحمي (Encrypted Token)</span>
+</span>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-base text-primary">verified</span>
+<span>ختم الروضة الإلكتروني المحلي</span>
+</span>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Panel 2: Real-time QR Verification & Barcode Scanner Simulator -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">security</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">فحص وتشفير رمز الـ QR</h2>
+</div>
+<span class="px-2 py-0.5 rounded text-caption font-caption bg-emerald-500/10 text-emerald-800 font-bold">مشفر بدون إنترنت</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          يحتوي الرمز على توقيع رقمي محلي يمنع تزوير البطاقات ويوفر فحصاً سريعاً عند بوابة الاستلام بواسطة قارئ الباركود USB أو كاميرا البوابة.
+        </p>
+<!-- Simulated Scan Result Area -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-2 font-mono text-caption text-caption" id="qr-scan-box">
+<div class="flex items-center justify-between text-on-surface-variant font-semibold">
+<span>حالة فك التشفير المحلي:</span>
+<span class="text-emerald-800 flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">verified</span>
+              صالح ومطابق 100%
+            </span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest font-body-sm text-body-sm text-on-surface space-y-1">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">الطفل:</span>
+<span class="font-bold">سارة بنت علي بن علي</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">رقم القيد:</span>
+<span class="font-mono text-primary font-bold">KDG-2024-118</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">المخولون المصرح لهم:</span>
+<span class="font-bold">3 أشخاص (الأب، الأم، الجدة)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">مفتاح الحماية المحلي:</span>
+<span class="font-mono text-[10px] text-outline">SHA256: 4f98...e102</span>
+</div>
+</div>
+<button class="w-full py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5 mt-1" id="simulate-scan-action" type="button">
+<span class="material-symbols-outlined text-base">barcode_reader</span>
+<span>محاكاة مسح بقارئ الباركود اليدوي USB</span>
+</button>
+</div>
+</div>
+<!-- Panel 3: Local Hardware & Card Printer Settings -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">print</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">إعدادات الطابعة المحلية</h2>
+</div>
+<span class="font-caption text-caption text-emerald-800 font-semibold">متصل USB</span>
+</div>
+<div class="flex flex-col gap-3 font-label-md text-label-md">
+<!-- Printer Selector -->
+<div class="flex flex-col gap-1">
+<label class="text-on-surface font-semibold">اسم الطابعة المتصلة:</label>
+<div class="relative">
+<select class="w-full h-9 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option selected="">Evolis Zenius CR80 (Plastic Dye-Sublimation)</option>
+<option>Zebra ZC300 Card Printer (Dual Sided)</option>
+<option>HP LaserJet Pro M404dn (A4 Cardstock Paper)</option>
+</select>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline pointer-events-none text-base">arrow_drop_down</span>
+</div>
+</div>
+<!-- Print Quality & Duplex Mode -->
+<div class="grid grid-cols-2 gap-2">
+<div class="flex flex-col gap-1">
+<label class="text-on-surface-variant font-medium">الدقة (DPI):</label>
+<select class="w-full h-8 px-2 rounded-lg bg-surface-container-low text-on-surface font-caption text-caption focus:outline-none focus:ring-1 focus:ring-primary">
+<option selected="">300 DPI (جودة عالية للصور)</option>
+<option>600 DPI (فائقة الدقة)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-on-surface-variant font-medium">نمط الطباعة:</label>
+<select class="w-full h-8 px-2 rounded-lg bg-surface-container-low text-on-surface font-caption text-caption focus:outline-none focus:ring-1 focus:ring-primary">
+<option selected="">وجهين تلقائي (Duplex)</option>
+<option>وجه أمامي فقط</option>
+<option>وجه خلفي فقط</option>
+</select>
+</div>
+</div>
+<!-- Number of Copies Stepper -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="leading-tight">
+<span class="font-semibold text-on-surface block">عدد النسخ المطلوبة:</span>
+<span class="font-caption text-caption text-on-surface-variant">نسخة معلقة مع الطفل + نسخة لولي الأمر</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold flex items-center justify-center hover:bg-surface-container shadow-xs active:scale-95" id="copy-dec" type="button">-</button>
+<span class="font-mono font-bold text-on-surface w-6 text-center" id="copies-count">2</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-bold flex items-center justify-center hover:bg-surface-container shadow-xs active:scale-95" id="copy-inc" type="button">+</button>
+</div>
+</div>
+</div>
+<!-- Action Print Button within Settings -->
+<button class="w-full py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg font-bold transition-all shadow-md flex items-center justify-center gap-2 active:scale-98" id="side-print-action" type="button">
+<span class="material-symbols-outlined text-lg">print</span>
+<span>إرسال أمر الطباعة الآن (Ctrl+P)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Notification Toast Container for Offline Feedback (Hidden by default, shown via JS) -->
+<div class="fixed bottom-12 right-1/2 translate-x-1/2 z-50 transform transition-all duration-300 opacity-0 pointer-events-none translate-y-4" id="print-toast">
+<div class="flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl">
+<span class="material-symbols-outlined text-emerald-400 text-lg">check_circle</span>
+<span class="font-label-md text-label-md" id="toast-message">تم إرسال بطاقة "سارة بنت علي" لطابعة Evolis Zenius بنجاح!</span>
+</div>
+</div>
+</div>
+<script>
+  // Desktop Micro-interactions and Offline Simulation Handlers
+  document.addEventListener('DOMContentLoaded', () => {
+    const toast = document.getElementById('print-toast');
+    const toastMessage = document.getElementById('toast-message');
+    
+    function showToast(msg) {
+      if (!toast) return;
+      toastMessage.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 3500);
+    }
+
+    // Quick print and action triggers
+    const printBtns = [
+      document.getElementById('quick-print-btn'),
+      document.getElementById('side-print-action')
+    ];
+    printBtns.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          showToast('جاري طباعة بطاقة CR80 لسارة بنت علي بن علي بدقة 300 DPI...');
+        });
+      }
+    });
+
+    const batchPrintBtn = document.getElementById('batch-print-btn');
+    if (batchPrintBtn) {
+      batchPrintBtn.addEventListener('click', () => {
+        showToast('تم إعداد 14 بطاقة لفصل النجوم في قائمة انتظار الطباعة المحلية.');
+      });
+    }
+
+    const exportPdfBtn = document.getElementById('export-pdf-btn');
+    if (exportPdfBtn) {
+      exportPdfBtn.addEventListener('click', () => {
+        showToast('تم تصدير ملف الطباعة بدقة 300 DPI وحفظه في مجلد المطبوعات المحلي.');
+      });
+    }
+
+    // Toggle Health Strip on card
+    const healthToggle = document.getElementById('toggle-health-strip');
+    const healthStrip = document.getElementById('preview-health-strip');
+    if (healthToggle && healthStrip) {
+      healthToggle.addEventListener('change', (e) => {
+        healthStrip.style.display = e.target.checked ? 'flex' : 'none';
+      });
+    }
+
+    // Copies Counter
+    const countDisplay = document.getElementById('copies-count');
+    const incBtn = document.getElementById('copy-inc');
+    const decBtn = document.getElementById('copy-dec');
+    let copies = 2;
+
+    if (incBtn && decBtn && countDisplay) {
+      incBtn.addEventListener('click', () => {
+        if (copies < 10) copies++;
+        countDisplay.textContent = copies;
+      });
+      decBtn.addEventListener('click', () => {
+        if (copies > 1) copies--;
+        countDisplay.textContent = copies;
+      });
+    }
+
+    // QR Scan Simulation
+    const scanBtn = document.getElementById('simulate-scan-action');
+    const qrTrigger = document.getElementById('trigger-qr-test');
+    function testScan() {
+      showToast('تم مسح الرمز المشفر بنجاح بقارئ USB: طفل مصرح بالاستلام.');
+    }
+    if (scanBtn) scanBtn.addEventListener('click', testScan);
+    if (qrTrigger) qrTrigger.addEventListener('click', testScan);
+
+    // Print Mode Tab Switch
+    const tabs = document.querySelectorAll('.print-mode-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('bg-primary', 'text-on-primary', 'active');
+          t.classList.add('text-on-surface-variant');
+        });
+        tab.classList.remove('text-on-surface-variant');
+        tab.classList.add('bg-primary', 'text-on-primary', 'active');
+        showToast('تم تحويل وضع الإخراج لـ: ' + tab.textContent.trim().split('(')[0]);
+      });
+    });
+
+    // Keyboard shortcut listener (Ctrl+P, Ctrl+F)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        showToast('اختصار لوحة المفاتيح Ctrl+P: جاري بدء الطباعة على طابعة CR80...');
+      }
+    });
+  });
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-[32px] bg-inverse-surface text-inverse-on-surface z-50 flex items-center justify-between px-space-md font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-inverse-on-surface font-body-sm text-body-sm">قاعدة البيانات المحلية: SQLite متصلة وسليمة 100%</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-emerald-400">check_circle</span><span class="text-inverse-on-surface/90 font-body-sm text-body-sm">آخر نسخة احتياطية: اليوم 14:30 (24.3 MB)</span><a class="underline text-primary-fixed-dim hover:text-primary-fixed mr-1 font-semibold" data-path="backup-data" href="#">نسخ الآن</a></div></div><div class="flex items-center gap-space-lg"><div class="text-inverse-on-surface/80 font-body-sm text-body-sm">السنة الدراسية: 2026 / 2027</div><div class="flex items-center gap-space-sm"><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+N طفل جديد</span><span class="font-mono text-caption text-inverse-on-surface/70">•</span><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+P طباعة بطاقة CR80</span></div><div class="px-2 py-0.5 rounded bg-surface-container-highest/20 font-mono text-caption text-inverse-on-surface/90">v2.0 Desktop Offline</div></div></footer></body></html>

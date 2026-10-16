@@ -1,0 +1,6 @@
+export { default as Dashboard } from './Dashboard'
+export * from './components/ExecutiveBanner'
+export * from './components/MetricCardsGrid'
+export * from './components/UrgentAttentionBanner'
+export * from './components/ClassroomAttendanceSection'
+export * from './components/RecentTransactionsSection'

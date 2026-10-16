@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#424753", "on-secondary-fixed-variant": "#633f00", "surface": "#f8f9ff", "on-tertiary-fixed": "#40000f", "on-secondary-fixed": "#291800", "primary-fixed-dim": "#acc7ff", "primary-fixed": "#d7e2ff", "secondary-fixed": "#ffddb3", "outline-variant": "#c2c6d5", "tertiary-fixed": "#ffdadb", "secondary-fixed-dim": "#ffb951", "on-tertiary-container": "#fffbff", "on-background": "#121c2a", "inverse-primary": "#acc7ff", "surface-container-low": "#eff4ff", "on-secondary-container": "#704800", "surface-bright": "#f8f9ff", "on-tertiary-fixed-variant": "#861e32", "surface-container-highest": "#d9e3f6", "surface-container-high": "dee9fc", "primary": "#0059ba", "on-surface": "#121c2a", "secondary": "#825500", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-primary-fixed": "#001a40", "surface-tint": "#005bbf", "background": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary": "#a33446", "surface-variant": "#d9e3f6", "surface-container": "#e6eeff", "tertiary-container": "#c34c5d", "on-primary-fixed-variant": "#004492", "surface-dim": "#d0dbed", "inverse-on-surface": "#eaf1ff", "on-primary": "#ffffff", "secondary-container": "#fdb64b", "primary-container": "#2c72d9", "on-tertiary": "#ffffff", "outline": "#727784", "tertiary-fixed-dim": "#ffb2b8", "on-primary-container": "#fefcff", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "inverse-surface": "#27313f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter-compact": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem", "margin-window": "0.75rem", "gutter": "1.25rem", "margin": "1.5rem" }, "fontFamily": { "caption": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ] }, "fontSize": { "caption": [ "10px", { "lineHeight": "14px", "fontWeight": "500" } ], "display-md": [ "26px", { "lineHeight": "36px", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-lg": [ "32px", { "lineHeight": "44px", "fontWeight": "700" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "28px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased select-none"><div class="fixed top-0 left-0 right-0 h-[38px] bg-surface-container-high text-on-surface-variant z-50 flex items-center justify-between px-space-md shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-base">child_care</span><span class="font-label-sm text-label-sm font-semibold tracking-wide text-on-surface">روضتي — نظام إدارة الروضة المكتبي (الإصدار 2.0)</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">غير متصل بالسحاب • محلي 100%</span></div><div class="flex items-center gap-1"><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تصغير (Minimize)" type="button"><span class="material-symbols-outlined text-sm">minimize</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تكبير / استعادة (Maximize)" type="button"><span class="material-symbols-outlined text-sm">crop_square</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-error hover:text-on-error text-on-surface-variant transition-colors" title="إغلاق البرنامج (Close)" type="button"><span class="material-symbols-outlined text-sm">close</span></button></div></div><header class="fixed top-[38px] right-0 left-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm pl-space-md"><img alt="Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-primary-fixed shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/><div class="leading-tight"><span class="font-headline-sm text-headline-sm text-primary font-bold block">روضتي</span><span class="font-caption text-caption text-on-surface-variant">فرع الياسمين النموذجي</span></div></div><div class="relative flex items-center w-80 lg:w-96"><span class="material-symbols-outlined absolute right-3 text-outline pointer-events-none text-lg">search</span><input class="w-full h-9 pr-9 pl-14 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer hover:bg-surface-container transition-colors" placeholder="بحث فوري عن طفل، ولي أمر، فاتورة..." readonly="" type="text"/><kbd class="absolute left-2.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption font-semibold shadow-xs">Ctrl+K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs" type="button"><span class="material-symbols-outlined text-base">payments</span><span>تسجيل دفعة</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">checklist</span><span>حضور اليوم</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">person_add</span><span>طفل جديد</span></button></div><div class="h-6 w-px bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="قفل الشاشة (Ctrl+L)" type="button"><span class="material-symbols-outlined text-lg">lock</span></button><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="التنبيهات المحلية" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-2 pr-1"><div class="text-left"><div class="font-label-md text-label-md font-semibold text-on-surface">أ. نادية المنصوري</div><div class="flex items-center gap-1 justify-end"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="font-caption text-caption text-on-surface-variant">متصل محلياً</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/></div></div></div></header><aside class="fixed right-0 top-[102px] bottom-[32px] w-64 bg-surface-container-lowest z-30 flex flex-col justify-between py-space-sm px-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="overflow-y-auto flex-1 space-y-1"><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs"><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-lg">dashboard</span><span>الرئيسية</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="children" href="#"><span class="material-symbols-outlined text-lg">escalator_warning</span><span>الأطفال</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="classrooms" href="#"><span class="material-symbols-outlined text-lg">meeting_room</span><span>الفصول ووضع الفصل</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="attendance" href="#"><span class="material-symbols-outlined text-lg">how_to_reg</span><span>الحضور والانصراف</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="finances" href="#"><span class="material-symbols-outlined text-lg">account_balance_wallet</span><span>المالية والمدفوعات</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="daily-reports" href="#"><span class="material-symbols-outlined text-lg">assignment</span><span>التقرير اليومي</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="health-safety" href="#"><span class="material-symbols-outlined text-lg">medical_services</span><span>الصحة والسلامة</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="parents" href="#"><span class="material-symbols-outlined text-lg">family_restroom</span><span>أولياء الأمور</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="staff" href="#"><span class="material-symbols-outlined text-lg">badge</span><span>الموظفون</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="reports" href="#"><span class="material-symbols-outlined text-lg">print</span><span>التقارير والمطبوعات</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2 transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs" data-path="backup-data" href="#"><span class="material-symbols-outlined text-lg">database</span><span>النسخ الاحتياطي والبيانات</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#"><span class="material-symbols-outlined text-lg">settings</span><span>الإعدادات</span></a></nav></div><div class="p-space-sm rounded-lg bg-surface-container-low mx-1"><div class="flex items-center justify-between text-on-surface-variant font-caption text-caption mb-1"><span>سعة التخزين المحلي</span><span>12%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-1.5 rounded-full" style="width: 12%"></div></div><div class="flex items-center justify-between mt-2 font-caption text-caption text-outline"><span>مفتاح سريع</span><span class="font-mono">F11 ملء الشاشة</span></div></div></aside><div class="pr-64 pt-[102px] pb-[32px]"><main class="w-full min-h-[calc(100vh-134px)] px-space-lg py-space-md bg-surface"><div class="flex flex-col w-full">
+<!-- Top Ambient Glow Decorator (contained) -->
+<div class="relative w-full overflow-hidden rounded-xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary-fixed/40 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-secondary-fixed/30 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-md shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">إدارة النسخ الاحتياطي والبيانات المحلية</span>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+              SQLite نشط وسليم 100% (Drizzle ORM)
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2 flex-wrap">
+<span class="material-symbols-outlined text-base text-primary">verified_user</span>
+<span>نظام تخزين محلي غير معتمد على الإنترنت، يحفظ سجلات الأطفال، الدفعات، والملفات الطبية بأمان عالي.</span>
+</p>
+<div class="flex items-center gap-space-md pt-1 font-caption text-caption text-outline">
+<span>إصدار المحرك: SQLite v3.45.1</span>
+<span>•</span>
+<span>معيار التشفير: AES-GCM-256</span>
+<span>•</span>
+<span>حجم ملف العمليات (WAL): 1.4 MB</span>
+</div>
+</div>
+</div>
+<!-- Quick Status & Primary Trigger -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md w-full xl:w-auto shrink-0">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-xs flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<div>
+<span class="block font-caption text-caption text-on-surface-variant">آخر نسخة احتياطية ناجحة</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">اليوم، 14:30 <span class="font-caption text-caption text-emerald-700 font-semibold">(24.3 MB)</span></span>
+</div>
+</div>
+<button class="group relative overflow-hidden flex items-center justify-center gap-2 px-space-xl py-3 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:bg-primary-container transition-all active:scale-[0.98]" id="btn-create-backup" type="button">
+<span class="material-symbols-outlined text-xl group-hover:rotate-12 transition-transform">save</span>
+<span>إنشاء نسخة احتياطية الآن</span>
+<kbd class="px-1.5 py-0.5 rounded bg-on-primary/20 text-on-primary font-caption text-caption font-mono mr-1">Ctrl+B</kbd>
+</button>
+</div>
+</div>
+</div>
+<!-- Notification Banner / Guided Restore Safety Notice -->
+<div class="flex items-center gap-space-md p-space-md rounded-xl bg-surface-container-highest/60 text-on-surface mb-space-lg shadow-xs">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex-1 min-w-0">
+<span class="font-label-md text-label-md font-bold block text-primary">بروتوكول أمان الاستعادة الذاتي:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        عند طلب استعادة أي نسخة احتياطية، يُنشئ النظام تلقائياً نقطة أمان (<span class="font-mono text-caption bg-surface-container-low px-1 py-0.5 rounded text-on-surface">Pre-Restore Snapshot</span>) من الحالة الحالية قبيل بدء الاستبدال، لضمان عدم فقدان أي معاملة حتى في حال انقطاع التيار الكهربائي.
+      </p>
+</div>
+<button class="px-space-md py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-label-sm shrink-0 transition-colors" type="button">
+      سجل العمليات
+    </button>
+</div>
+<!-- 3-Action Quick Maintenance Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-lg">
+<!-- Card 1: External USB Export -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">usb</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed/40 text-on-secondary-fixed-variant font-caption text-caption font-semibold">حماية فيزيائية</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">تصدير إلى قرص خارجي (USB)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+          حفظ نسخة مغلّفة ومضغوطة خارج جهاز الروضة لحماية أرشيف الأطفال والمالية ضد تلف القرص الصلب أو تعطل نظام التشغيل.
+        </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary font-label-md text-label-md font-semibold transition-colors" type="button">
+<span class="material-symbols-outlined text-lg">drive_file_move</span>
+<span>اختيار فلاش ميموري والتصدير</span>
+</button>
+</div>
+<!-- Card 2: Import & Restore External .rawdatibak -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">settings_backup_restore</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/40 text-on-primary-fixed-variant font-caption text-caption font-semibold">استرجاع شامل</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">استيراد واستعادة من ملف خارجي</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+          استعادة أرشيف من ملف امتداد <span class="font-mono text-caption text-primary font-semibold">.rawdatibak</span> منقول من حاسوب إدارة آخر أو نسخة منقذة من وسيط تخزين.
+        </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold transition-colors" id="btn-import-modal" type="button">
+<span class="material-symbols-outlined text-lg">file_open</span>
+<span>تحديد ملف (.rawdatibak)</span>
+</button>
+</div>
+<!-- Card 3: Database Health & Vacuum (Integrity Check) -->
+<div class="group bg-surface-container-lowest rounded-xl p-space-lg shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-800 font-caption text-caption font-semibold">سلامة: 100%</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">فحص السلامة وإصلاح الفهارس</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+          تنفيذ <span class="font-mono text-caption text-on-surface font-semibold">PRAGMA integrity_check</span> وإلغاء التجزئة (<span class="font-mono text-caption text-on-surface font-semibold">VACUUM</span>) لتحسين سرعة استعلامات البحث وتطهير المساحة المهدرة.
+        </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-tertiary font-label-md text-label-md font-semibold transition-colors" id="btn-integrity-check" type="button">
+<span class="material-symbols-outlined text-lg">speed</span>
+<span>بدء فحص السلامة (Integrity Check)</span>
+</button>
+</div>
+</div>
+<!-- Main Grid: Backup Configuration & Storage Path Settings -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Right Panel (8 cols): Backup Configuration Form -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-xs">
+<div class="flex items-center justify-between pb-space-md mb-space-md bg-surface-container-low/40 -mx-space-lg -mt-space-lg px-space-lg pt-space-lg rounded-t-xl">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">folder_managed</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">إعدادات موقع التخزين والجدولة التلقائية</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">تُحفظ الإعدادات محلياً في preferences.json</span>
+</div>
+<div class="space-y-space-md">
+<!-- Storage Directory Path Selector -->
+<div>
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-1.5">
+            مسار حفظ ملفات النسخ الاحتياطي على القرص المحلي:
+          </label>
+<div class="flex items-center gap-space-xs">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-primary text-base">folder</span>
+<input class="w-full h-10 pr-9 pl-3 rounded-lg bg-surface-container-low text-on-surface font-mono text-body-sm font-semibold focus:outline-none" readonly="" type="text" value="D:\Rawdati_Backups\"/>
+</div>
+<button class="h-10 px-space-md rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">drive_file_move</span>
+<span>تغيير المجلد...</span>
+</button>
+<button class="h-10 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors flex items-center gap-1" title="فتح في مستعرض ملفات ويندوز" type="button">
+<span class="material-symbols-outlined text-base">launch</span>
+<span class="hidden sm:inline">فتح في Explorer</span>
+</button>
+</div>
+<span class="block font-caption text-caption text-on-surface-variant mt-1">يُفضل استخدام قرص مختلف عن قرص نظام التشغيل C: لتفادي فقدان البيانات عند صيانة النظام.</span>
+</div>
+<!-- Automated Rules Checkboxes -->
+<div class="pt-space-sm space-y-space-sm">
+<span class="font-label-md text-label-md font-bold text-on-surface block">قواعد النسخ الآلي والمجدول:</span>
+<label class="flex items-start gap-space-sm p-space-sm rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">أخذ نسخة احتياطية تلقائياً عند إغلاق التطبيق</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">يقوم النظام بحفظ التغييرات اليومية بصمت قبل إغلاق نافذة سطح المكتب مع تحديث سجل الأرشيف.</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm p-space-sm rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">أخذ نسخة دورية خفية كل 4 ساعات أثناء ساعات الدوام</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">تعمل في خلفية النظام (Background Thread) بدون تعطيل تسجيل حضور الأطفال أو طباعة السندات المالية.</span>
+</div>
+</label>
+</div>
+<!-- Retention Policy & Encryption -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-xs">
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex flex-col justify-between">
+<label class="font-label-md text-label-md font-semibold text-on-surface block mb-1">
+              سياسة تدوير النسخ (Retention Policy):
+            </label>
+<p class="font-caption text-caption text-on-surface-variant mb-2">حذف النسخ الأقدم تلقائياً لمنع امتلاء مساحة القرص:</p>
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface">الاحتفاظ بآخر</span>
+<input class="w-16 h-8 text-center rounded bg-surface-container-lowest font-mono font-bold text-primary focus:outline-none ring-1 ring-outline-variant/40" max="365" min="5" type="number" value="30"/>
+<span class="font-body-sm text-body-sm text-on-surface">نسخة أرشيفية</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md font-semibold text-on-surface">
+                أمان وتشفير الملفات:
+              </label>
+<span class="material-symbols-outlined text-secondary text-lg">lock</span>
+</div>
+<label class="flex items-center gap-2 cursor-pointer mt-1">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">تشفير الملفات بكلمة مرور الروضة (AES-256)</span>
+</label>
+<span class="font-caption text-caption text-on-surface-variant mt-1">تمنع فتح الملفات في برامج خارجية دون إدخال كلمة سر المشرف.</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors" type="button">
+            استعادة الإعدادات الافتراضية
+          </button>
+<button class="px-space-lg py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-semibold transition-colors shadow-xs" type="button">
+            حفظ إعدادات النسخ الاحتياطي
+          </button>
+</div>
+</div>
+</div>
+<!-- Left Panel (4 cols): Live Storage & Database Telemetry -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Drive D Storage Gauge -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-xs flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-lg text-label-lg font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">hard_drive</span>
+<span>حالة القرص المحلي (D:)</span>
+</span>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-800 font-caption text-caption font-semibold">مساحة ممتازة</span>
+</div>
+<div class="my-space-md">
+<div class="flex items-baseline justify-between mb-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">142.5 GB</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">متبقي من إجمالي 256 GB</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 44%" title="المستخدم الكلي 44%"></div>
+</div>
+<div class="flex justify-between font-caption text-caption text-outline mt-1.5">
+<span>مجلد روضتي: 384 MB (0.1%)</span>
+<span>متاح: 56%</span>
+</div>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low font-body-sm text-body-sm space-y-1 text-on-surface-variant">
+<div class="flex justify-between">
+<span>عدد النسخ المحفوظة حالياً:</span>
+<span class="font-mono font-bold text-on-surface">18 نسخة</span>
+</div>
+<div class="flex justify-between">
+<span>معدل نمو البيانات الشهري:</span>
+<span class="font-mono font-bold text-emerald-700">~ 18 MB / شهر</span>
+</div>
+</div>
+</div>
+<!-- Quick Snapshot Info Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-xs">
+<div class="flex items-center gap-space-sm mb-2">
+<span class="material-symbols-outlined text-secondary text-base">lightbulb</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">نصيحة الأمان الأسبوعية</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+          يوصى بتصدير نسخة أسبوعية واحدة كل يوم خميس إلى محرك أقراص محمول (Flash Memory) وحفظه خارج مبنى الروضة لحماية سجلات الرسوم وقوائم الاتصال في حالات الطوارئ القصوى.
+        </p>
+</div>
+</div>
+</div>
+<!-- Available Local Backups Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-xs overflow-hidden mb-space-lg">
+<!-- Header of Table -->
+<div class="p-space-md bg-surface-container-low/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">dataset</span>
+<div>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">سجل النسخ الاحتياطية المتوفرة محلياً</span>
+<span class="font-caption text-caption text-on-surface-variant block">مفهرسة من الأحدث إلى الأقدم وجاهزة للاستعادة الفورية</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-stretch sm:self-auto">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute right-2.5 top-2 text-outline text-base">filter_list</span>
+<input class="w-full h-8 pr-8 pl-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none ring-1 ring-outline-variant/30" placeholder="تصفية النسخ بالتاريخ أو النوع..." type="text"/>
+</div>
+<button class="p-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant transition-colors" title="تحديث القائمة" type="button">
+<span class="material-symbols-outlined text-lg">refresh</span>
+</button>
+</div>
+</div>
+<!-- Table Element -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-right border-collapse">
+<thead>
+<tr class="bg-surface-container-high/60 text-on-surface-variant font-label-md text-label-md">
+<th class="py-2.5 px-space-md font-semibold">تاريخ ووقت النسخة</th>
+<th class="py-2.5 px-space-md font-semibold">النوع ونقطة الإنشاء</th>
+<th class="py-2.5 px-space-md font-semibold">الحجم</th>
+<th class="py-2.5 px-space-md font-semibold">محتوى السجلات الموثقة</th>
+<th class="py-2.5 px-space-md font-semibold">مسار الملف</th>
+<th class="py-2.5 px-space-md font-semibold text-center">الإجراءات</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md text-on-surface">
+<!-- Row 1 (Latest) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors bg-primary-fixed/10">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-bold">16 أكتوبر 2026</span>
+<span class="font-mono text-caption text-on-surface-variant font-semibold">14:30</span>
+<span class="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-caption text-caption font-bold">الأحدث</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">autorenew</span>
+<span>تلقائي دوري</span>
+</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono font-bold text-on-surface">
+              24.3 MB
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2 font-caption text-caption">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface font-semibold">52 طفلاً مسجلاً</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface font-semibold">142 فاتورة وسند</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono text-caption text-on-surface-variant max-w-[200px] truncate" title="D:\Rawdati_Backups\auto_periodic_20261016_1430.rawdatibak">
+              D:\Rawdati_Backups\auto_20261016.bak
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="flex items-center justify-center gap-1.5">
+<button class="px-3 py-1 rounded bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1 shadow-2xs" onclick="confirmRestore('16 أكتوبر 2026 - 14:30')" type="button">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>استعادة</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="نسخ إلى مكان آخر" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-error hover:text-on-error text-outline transition-colors" title="حذف النسخة" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+<span class="font-semibold">15 أكتوبر 2026</span>
+<span class="font-mono text-caption text-on-surface-variant">17:00</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">power_settings_new</span>
+<span>عند إغلاق التطبيق</span>
+</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono font-semibold text-on-surface">
+              24.1 MB
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2 font-caption text-caption">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">52 طفلاً مسجلاً</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">138 فاتورة وسند</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono text-caption text-on-surface-variant max-w-[200px] truncate" title="D:\Rawdati_Backups\close_20261015.bak">
+              D:\Rawdati_Backups\close_20261015.bak
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="flex items-center justify-center gap-1.5">
+<button class="px-3 py-1 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1" onclick="confirmRestore('15 أكتوبر 2026 - 17:00')" type="button">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>استعادة</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="نسخ إلى مكان آخر" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-error hover:text-on-error text-outline transition-colors" title="حذف النسخة" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-semibold">14 أكتوبر 2026</span>
+<span class="font-mono text-caption text-on-surface-variant">08:30</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">upgrade</span>
+<span>قبل تحديث النظام v2.0</span>
+</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono font-semibold text-on-surface">
+              23.8 MB
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2 font-caption text-caption">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">51 طفلاً مسجلاً</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">130 فاتورة وسند</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono text-caption text-on-surface-variant max-w-[200px] truncate" title="D:\Rawdati_Backups\pre_upgrade.bak">
+              D:\Rawdati_Backups\pre_upgrade.bak
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="flex items-center justify-center gap-1.5">
+<button class="px-3 py-1 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1" onclick="confirmRestore('14 أكتوبر 2026 - 08:30')" type="button">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>استعادة</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="نسخ إلى مكان آخر" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-error hover:text-on-error text-outline transition-colors" title="حذف النسخة" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 (Manual Snapshot) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+<span class="font-semibold">12 أكتوبر 2026</span>
+<span class="font-mono text-caption text-on-surface-variant">11:15</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs">touch_app</span>
+<span>يدوي (سارة أحمد)</span>
+</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono font-semibold text-on-surface">
+              23.5 MB
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2 font-caption text-caption">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">50 طفلاً مسجلاً</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-on-surface">124 فاتورة وسند</span>
+</div>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap font-mono text-caption text-on-surface-variant max-w-[200px] truncate" title="D:\Rawdati_Backups\manual_snap_20261012.bak">
+              D:\Rawdati_Backups\manual_snap_20261012.bak
+            </td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="flex items-center justify-center gap-1.5">
+<button class="px-3 py-1 rounded bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1" onclick="confirmRestore('12 أكتوبر 2026 - 11:15')" type="button">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>استعادة</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="نسخ إلى مكان آخر" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high hover:bg-error hover:text-on-error text-outline transition-colors" title="حذف النسخة" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination / Footer Summary -->
+<div class="p-space-sm px-space-md bg-surface-container-low/30 flex items-center justify-between text-on-surface-variant font-caption text-caption">
+<span>عرض 4 من أصل 18 نسخة محفوظة محلياً</span>
+<div class="flex items-center gap-2">
+<span>ترتيب: تنازلي بحسب تاريخ الإنشاء</span>
+<button class="underline text-primary hover:text-primary-container font-semibold" type="button">عرض الأرشيف الكامل</button>
+</div>
+</div>
+</div>
+<!-- Interactive Modal: Guided Restore Safety Confirmation (Hidden by default) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-space-md" id="restore-modal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-2xl shadow-xl overflow-hidden p-space-lg animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-center gap-space-md mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md font-bold text-on-surface">تأكيد استعادة النسخة الاحتياطية</h4>
+<span class="font-caption text-caption text-outline">عملية دقيقة تتطلب إعادة تشغيل محرك قاعدة البيانات</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low mb-space-md space-y-2">
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">النسخة المستهدفة:</span>
+<span class="font-bold text-on-surface" id="restore-target-name">16 أكتوبر 2026 - 14:30</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">إجراء الحماية التلقائي:</span>
+<span class="font-semibold text-emerald-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+            أخذ نسخة فورية للحالة الحالية أولاً
+          </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+        سيتم استبدال قاعدة البيانات النشطة بمحتوى هذه النسخة. سيتم حفظ أي تسجيل حضور أو دفعات تمت بعد هذا التوقيت في ملف أمان مؤقت باسم <span class="font-mono text-caption text-primary">rollback_safe.bak</span> تفادياً لأي خطأ بشري.
+      </p>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="closeRestoreModal()" type="button">
+          إلغاء الأمر
+        </button>
+<button class="px-space-lg py-2 rounded-lg bg-error text-on-error hover:bg-red-700 font-label-md text-label-md font-bold transition-colors shadow-sm flex items-center gap-1.5" onclick="executeRestoreMock()" type="button">
+<span class="material-symbols-outlined text-sm">settings_backup_restore</span>
+<span>تأكيد الاستعادة الآن</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Toast Notification Placeholder -->
+<div class="fixed bottom-10 left-8 z-50 bg-inverse-surface text-inverse-on-surface px-space-lg py-space-sm rounded-xl shadow-lg flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-3" id="toast-msg">
+<span class="material-symbols-outlined text-emerald-400" id="toast-icon">check_circle</span>
+<span class="font-label-md text-label-md" id="toast-text">تم إنشاء النسخة الاحتياطية بنجاح وحفظها في القرص D:</span>
+</div>
+</div>
+<script>
+  // Quick Micro-interactions for Backup screen
+  const backupBtn = document.getElementById('btn-create-backup');
+  const restoreModal = document.getElementById('restore-modal');
+  const restoreTargetLabel = document.getElementById('restore-target-name');
+  const integrityBtn = document.getElementById('btn-integrity-check');
+  const toast = document.getElementById('toast-msg');
+  const toastText = document.getElementById('toast-text');
+
+  function showToast(message, isSuccess = true) {
+    if (!toast) return;
+    toastText.textContent = message;
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 3500);
+  }
+
+  if (backupBtn) {
+    backupBtn.addEventListener('click', () => {
+      backupBtn.disabled = true;
+      backupBtn.classList.add('opacity-80');
+      const originalText = backupBtn.innerHTML;
+      backupBtn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin text-xl">progress_activity</span>
+        <span>جارٍ تجميد المعاملات وضغط SQLite...</span>
+      `;
+      setTimeout(() => {
+        backupBtn.innerHTML = originalText;
+        backupBtn.disabled = false;
+        backupBtn.classList.remove('opacity-80');
+        showToast('تم إنشاء نسخة احتياطية جديدة بنجاح (D:\\Rawdati_Backups\\auto_now.bak)');
+      }, 1200);
+    });
+  }
+
+  // Keyboard shortcut Ctrl+B
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      if (backupBtn) backupBtn.click();
+    }
+  });
+
+  if (integrityBtn) {
+    integrityBtn.addEventListener('click', () => {
+      integrityBtn.disabled = true;
+      const prev = integrityBtn.innerHTML;
+      integrityBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">sync</span> <span>فحص الجداول...</span>`;
+      setTimeout(() => {
+        integrityBtn.innerHTML = prev;
+        integrityBtn.disabled = false;
+        showToast('نتيجة الفحص: PRAGMA integrity_check: ok — قاعدة البيانات سليمة وخالية من أي تلف.');
+      }, 900);
+    });
+  }
+
+  window.confirmRestore = function(versionDate) {
+    if (restoreTargetLabel) restoreTargetLabel.textContent = versionDate;
+    if (restoreModal) {
+      restoreModal.classList.remove('hidden');
+      restoreModal.classList.add('flex');
+    }
+  };
+
+  window.closeRestoreModal = function() {
+    if (restoreModal) {
+      restoreModal.classList.add('hidden');
+      restoreModal.classList.remove('flex');
+    }
+  };
+
+  window.executeRestoreMock = function() {
+    closeRestoreModal();
+    showToast('جاري استعادة الأرشيف... تم أخذ نقطة أمان Snapshot واسترجاع البيانات بنجاح.');
+  };
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-[32px] bg-inverse-surface text-inverse-on-surface z-50 flex items-center justify-between px-space-md font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-inverse-on-surface font-body-sm text-body-sm">قاعدة البيانات المحلية: SQLite متصلة وسليمة 100%</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-emerald-400">check_circle</span><span class="text-inverse-on-surface/90 font-body-sm text-body-sm">آخر نسخة احتياطية: اليوم 14:30 (24.3 MB)</span><a class="underline text-primary-fixed-dim hover:text-primary-fixed mr-1 font-semibold" data-path="backup-data" href="#">نسخ الآن</a></div></div><div class="flex items-center gap-space-lg"><div class="text-inverse-on-surface/80 font-body-sm text-body-sm">السنة الدراسية: 2026 / 2027</div><div class="flex items-center gap-space-sm"><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+N طفل جديد</span><span class="font-mono text-caption text-inverse-on-surface/70">•</span><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+P طباعة</span></div><div class="px-2 py-0.5 rounded bg-surface-container-highest/20 font-mono text-caption text-inverse-on-surface/90">v2.0 Desktop Offline</div></div></footer></body></html>

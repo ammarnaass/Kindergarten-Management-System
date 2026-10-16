@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#424753", "on-secondary-fixed-variant": "#633f00", "surface": "#f8f9ff", "on-tertiary-fixed": "#40000f", "on-secondary-fixed": "#291800", "primary-fixed-dim": "#acc7ff", "primary-fixed": "#d7e2ff", "secondary-fixed": "#ffddb3", "outline-variant": "#c2c6d5", "tertiary-fixed": "#ffdadb", "secondary-fixed-dim": "#ffb951", "on-tertiary-container": "#fffbff", "on-background": "#121c2a", "inverse-primary": "#acc7ff", "surface-container-low": "#eff4ff", "on-secondary-container": "#704800", "surface-bright": "#f8f9ff", "on-tertiary-fixed-variant": "#861e32", "surface-container-highest": "#d9e3f6", "surface-container-high": "dee9fc", "primary": "#0059ba", "on-surface": "#121c2a", "secondary": "#825500", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-primary-fixed": "#001a40", "surface-tint": "#005bbf", "background": "#f8f9ff", "error-container": "#ffdad6", "on-error": "#ffffff", "tertiary": "#a33446", "surface-variant": "#d9e3f6", "surface-container": "#e6eeff", "tertiary-container": "#c34c5d", "on-primary-fixed-variant": "#004492", "surface-dim": "#d0dbed", "inverse-on-surface": "#eaf1ff", "on-primary": "#ffffff", "secondary-container": "#fdb64b", "primary-container": "#2c72d9", "on-tertiary": "#ffffff", "outline": "#727784", "tertiary-fixed-dim": "#ffb2b8", "on-primary-container": "#fefcff", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "inverse-surface": "#27313f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter-compact": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-lg": "1.25rem", "space-xl": "2rem", "margin-window": "0.75rem", "gutter": "1.25rem", "margin": "1.5rem" }, "fontFamily": { "caption": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ] }, "fontSize": { "caption": [ "10px", { "lineHeight": "14px", "fontWeight": "500" } ], "display-md": [ "26px", { "lineHeight": "36px", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "display-lg": [ "32px", { "lineHeight": "44px", "fontWeight": "700" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "28px", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased select-none"><div class="fixed top-0 left-0 right-0 h-[38px] bg-surface-container-high text-on-surface-variant z-50 flex items-center justify-between px-space-md shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-base">child_care</span><span class="font-label-sm text-label-sm font-semibold tracking-wide text-on-surface">روضتي — نظام إدارة الروضة المكتبي (الإصدار 2.0)</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">غير متصل بالسحاب • محلي 100%</span></div><div class="flex items-center gap-1"><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تصغير (Minimize)" type="button"><span class="material-symbols-outlined text-sm">minimize</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-surface-container-highest text-on-surface-variant transition-colors" title="تكبير / استعادة (Maximize)" type="button"><span class="material-symbols-outlined text-sm">crop_square</span></button><button class="w-7 h-6 rounded flex items-center justify-center hover:bg-error hover:text-on-error text-on-surface-variant transition-colors" title="إغلاق البرنامج (Close)" type="button"><span class="material-symbols-outlined text-sm">close</span></button></div></div><header class="fixed top-[38px] right-0 left-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm pl-space-md"><img alt="Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-primary-fixed shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/><div class="leading-tight"><span class="font-headline-sm text-headline-sm text-primary font-bold block">روضتي</span><span class="font-caption text-caption text-on-surface-variant">فرع الياسمين النموذجي</span></div></div><div class="relative flex items-center w-80 lg:w-96"><span class="material-symbols-outlined absolute right-3 text-outline pointer-events-none text-lg">search</span><input class="w-full h-9 pr-9 pl-14 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer hover:bg-surface-container transition-colors" placeholder="بحث فوري عن طفل، ولي أمر، فاتورة..." readonly="" type="text"/><kbd class="absolute left-2.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption font-semibold shadow-xs">Ctrl+K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs" type="button"><span class="material-symbols-outlined text-base">payments</span><span>تسجيل دفعة</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">checklist</span><span>حضور اليوم</span></button><button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-base">person_add</span><span>طفل جديد</span></button></div><div class="h-6 w-px bg-outline-variant/50"></div><div class="flex items-center gap-space-sm"><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="قفل الشاشة (Ctrl+L)" type="button"><span class="material-symbols-outlined text-lg">lock</span></button><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="التنبيهات المحلية" type="button"><span class="material-symbols-outlined text-lg">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-2 pr-1"><div class="text-left"><div class="font-label-md text-label-md font-semibold text-on-surface">أ. نادية المنصوري</div><div class="flex items-center gap-1 justify-end"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="font-caption text-caption text-on-surface-variant">متصل محلياً</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHvVfzvV1ytO6LJDBKQuIChrEQBMpCg1cz9Lt7a2LkPx1i8AcqHxpBvnRM3ad4LZtkU3XGSGjnU89KdcNkbuGVHUAtlJLptHOtcrMzdAfwh9lRanrQg0gHrcCxqSXem3X6Y6F1YdEX2d4C746XeMPUHmymRGRgkUqBNlKOfv9GQ8xsGj3hQ6aDlMX3HGjSUiO89Ky_F8yDb0eMQKCfDBl75SQRz8RrxBuFdUpMQaRT_RjODNWdZ3g"/></div></div></div></header><aside class="fixed right-0 top-[102px] bottom-[32px] w-64 bg-surface-container-lowest z-30 flex flex-col justify-between py-space-sm px-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="overflow-y-auto flex-1 space-y-1"><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs"><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-lg">dashboard</span><span>الرئيسية</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2 transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs" data-path="children" href="#"><span class="material-symbols-outlined text-lg">escalator_warning</span><span>الأطفال</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="classrooms" href="#"><span class="material-symbols-outlined text-lg">meeting_room</span><span>الفصول ووضع الفصل</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="attendance" href="#"><span class="material-symbols-outlined text-lg">how_to_reg</span><span>الحضور والانصراف</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="finances" href="#"><span class="material-symbols-outlined text-lg">account_balance_wallet</span><span>المالية والمدفوعات</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="daily-reports" href="#"><span class="material-symbols-outlined text-lg">assignment</span><span>التقرير اليومي</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="health-safety" href="#"><span class="material-symbols-outlined text-lg">medical_services</span><span>الصحة والسلامة</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="parents" href="#"><span class="material-symbols-outlined text-lg">family_restroom</span><span>أولياء الأمور</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="staff" href="#"><span class="material-symbols-outlined text-lg">badge</span><span>الموظفون</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="reports" href="#"><span class="material-symbols-outlined text-lg">print</span><span>التقارير والمطبوعات</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="backup-data" href="#"><span class="material-symbols-outlined text-lg">database</span><span>النسخ الاحتياطي والبيانات</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#"><span class="material-symbols-outlined text-lg">settings</span><span>الإعدادات</span></a></nav></div><div class="p-space-sm rounded-lg bg-surface-container-low mx-1"><div class="flex items-center justify-between text-on-surface-variant font-caption text-caption mb-1"><span>سعة التخزين المحلي</span><span>12%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary h-1.5 rounded-full" style="width: 12%"></div></div><div class="flex items-center justify-between mt-2 font-caption text-caption text-outline"><span>مفتاح سريع</span><span class="font-mono">F11 ملء الشاشة</span></div></div></aside><div class="pr-64 pt-[102px] pb-[32px]"><main class="w-full min-h-[calc(100vh-134px)] px-space-lg py-space-md bg-surface"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Profile Hero Banner Bento -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm relative overflow-hidden">
+<div class="absolute -top-16 -left-16 w-56 h-56 bg-primary-fixed/25 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<!-- Student Identity Block -->
+<div class="flex items-center gap-space-lg">
+<div class="relative shrink-0">
+<img class="w-24 h-24 lg:w-28 lg:h-28 rounded-xl object-cover shadow-sm bg-surface-container" data-alt="Close-up joyful portrait of a 4-year-old North African little girl named Sara with curly dark hair, wearing a neat pastel yellow school smock, warm bright daylight, soft institutional kindergarten background, studio clarity, candid gentle smile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSAh6q5jRtb7brw5hhE6DaWQh1HBsSM_qh6amVTz9xU1WvG4TW1xqVvHIh1MymWPekSdgdzaijbHjMMTFwLDf1bvme75EbqsSkQLpNkxKrRL2h7FMEjmhh7tthNddVhrRwi7nX-UgSfImwXpORgnRWTwv4mPylAt5R_2Sz9klxZL9IibB60w-2sBOyF934YRUyYcsS1ZBAWQ0maw-5NmDlh-uAMFrB41pZHFX_cTM2Kq_R9jgtoAo"/>
+<span class="absolute -bottom-2 -right-1 px-2 py-0.5 rounded-full bg-emerald-600 text-surface-container-lowest font-caption text-caption flex items-center gap-1 shadow-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
+            نشِطة ومسجلة
+          </span>
+</div>
+<div class="space-y-1">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-display-md text-display-md text-on-surface">سارة بنت طارق بن علي</h1>
+<span class="font-caption text-caption font-semibold px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono">
+              #KDG-2024-118
+            </span>
+<span class="font-caption text-caption px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-medium">
+              العام 2026/2027
+            </span>
+</div>
+<div class="flex flex-wrap items-center gap-x-space-lg gap-y-1 text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-primary">cake</span>
+<span>4 سنوات و 3 أشهر (مواليد 12 يوليو 2022)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">meeting_room</span>
+<span>الفصل: <strong class="text-on-surface font-semibold">فصل النجوم</strong></span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-outline">badge</span>
+<span>المعلمة: أ. مريم العابد</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm pt-1">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-caption text-caption font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">emergency</span>
+              حساسية حرجة موثقة
+            </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption">
+              ملف محلي مشفر ومحمي
+            </span>
+</div>
+</div>
+</div>
+<!-- Quick Actions Group -->
+<div class="flex flex-wrap items-center gap-space-xs self-start lg:self-center">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+<span>تعديل البيانات</span>
+<kbd class="font-mono text-caption px-1.5 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Ctrl+E</kbd>
+</button>
+<div class="relative group">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-base">print</span>
+<span>طباعة الملف / البطاقة</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</button>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-base">payments</span>
+<span>تسجيل دفعة للطفل</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Critical Permanent Health Alert Banner (High Contrast) -->
+<section class="bg-error-container text-on-error-container rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-error text-on-error flex items-center justify-center shrink-0 shadow-xs animate-pulse">
+<span class="material-symbols-outlined text-2xl">warning</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h2 class="font-headline-sm text-headline-sm text-error font-bold">تنبيه صحي شديد الأهمية: حساسية حادة من الفول السوداني ومشتقات المكسرات</h2>
+<span class="font-caption text-caption px-2 py-0.5 rounded bg-error text-on-error font-bold tracking-wider">ANAPHYLAXIS RISK</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-error-container leading-relaxed">
+          يتطلب حقنة إبينفرين (EpiPen Jr) متوفرة فوراً بصيدلية الإدارة الطارئة (درج أدوية فصل النجوم) | فصيلة الدم: <strong class="font-bold underline">A+</strong> | طبيب العائلة: <span class="font-semibold">د. حسان البشير</span> (هاتف الطوارئ: <span class="font-mono text-body-sm font-bold text-on-error-container" dir="ltr">0555 987 654</span>)
+        </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 self-end md:self-center">
+<button class="px-3 py-1.5 rounded-lg bg-error text-on-error font-label-sm text-label-sm font-semibold hover:bg-on-error-container transition-colors shadow-xs flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">medical_services</span>
+        بروتوكول الطوارئ
+      </button>
+<button class="p-1.5 rounded-lg bg-surface-container-lowest/80 text-error hover:bg-surface-container-lowest transition-colors" title="طباعة تحذير للحقيبة ومقعد الطعام" type="button">
+<span class="material-symbols-outlined text-base">label</span>
+</button>
+</div>
+</section>
+<!-- Navigation Tabs Strip -->
+<nav aria-label="أقسام ملف الطفل" class="flex items-center gap-1 overflow-x-auto bg-surface-container-lowest p-1.5 rounded-xl shadow-xs scrollbar-none">
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold whitespace-nowrap shadow-xs flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">visibility</span>
+<span>نظرة عامة</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">family_restroom</span>
+<span>بيانات الأولياء والمخوّلين</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">how_to_reg</span>
+<span>سجل الحضور والغياب</span>
+<span class="font-caption text-caption px-1.5 py-0.2 rounded bg-surface-container-highest">96%</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">assignment</span>
+<span>التقارير اليومية والنمو</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">account_balance_wallet</span>
+<span>الملف المالي والفواتير</span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">folder_open</span>
+<span>المستندات الورقية الممسوحة (3)</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">history</span>
+<span>سجل التغييرات والتدقيق</span>
+<span class="font-mono text-caption text-on-surface-variant">Audit</span>
+</button>
+</nav>
+<!-- Two-Column Rich Desktop Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Right Side (Column 7): Family Contacts & Authorized Pickups -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Parents Information Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">escalator_warning</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">معلومات الوالدين الرسمية</h3>
+</div>
+<button class="text-primary hover:text-primary-container font-label-sm text-label-sm flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">call</span>
+<span>سجل الاتصالات السريعة</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Father Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed">ولي الأمر الأول (الأب)</span>
+<span class="material-symbols-outlined text-base text-primary">verified_user</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">طارق بن علي</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">المهنة: مهندس برمجيات</p>
+<div class="flex items-center gap-1.5 pt-1 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm text-primary">smartphone</span>
+<span class="font-mono font-semibold" dir="ltr">0550 12 34 56</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant font-caption text-caption pt-0.5">
+<span class="material-symbols-outlined text-sm shrink-0">home_pin</span>
+<span>العنوان: حي الياسمين، العمارة ب، شقة رقم 14</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<a class="flex-1 py-1 px-2 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-center hover:bg-surface-container-high transition-colors" href="#">مراسلة واتساب</a>
+<a class="py-1 px-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-container transition-colors flex items-center justify-center" href="#">
+<span class="material-symbols-outlined text-sm">phone</span>
+</a>
+</div>
+</div>
+<!-- Mother Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed">ولي الأمر الثاني (الأم)</span>
+<span class="material-symbols-outlined text-base text-secondary">verified_user</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">د. أمينة حمدي</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">المهنة: طبيبة أسنان ممارسة</p>
+<div class="flex items-center gap-1.5 pt-1 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm text-secondary">smartphone</span>
+<span class="font-mono font-semibold" dir="ltr">0661 23 45 67</span>
+</div>
+<div class="flex items-start gap-1.5 text-on-surface-variant font-caption text-caption pt-0.5">
+<span class="material-symbols-outlined text-sm shrink-0">domain</span>
+<span>عيادة النور لطب الأسنان (شارع الاستقلال)</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<a class="flex-1 py-1 px-2 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-center hover:bg-surface-container-high transition-colors" href="#">مراسلة واتساب</a>
+<a class="py-1 px-2 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm hover:bg-on-secondary-container transition-colors flex items-center justify-center" href="#">
+<span class="material-symbols-outlined text-sm">phone</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Authorized Pickup Persons Section -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">how_to_reg</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">الأشخاص المخوّلون رسمياً بالاستلام والانصراف</h3>
+<p class="font-caption text-caption text-on-surface-variant">مطابقة الهوية إلزامية عند بوابة الانصراف اليومية</p>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">person_add</span>
+<span>إضافة مخوّل جديد</span>
+</button>
+</div>
+<!-- Authorized List Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<!-- Pickup 1: Father -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col items-center text-center space-y-2 relative">
+<span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-caption text-caption font-semibold">مخوّل دائم</span>
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Polished corporate headshot of a handsome 35-year-old Arab father wearing eyeglasses and casual polo shirt, soft natural office illumination, professional passport style portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBax4o3WoNP5nsszLfi71PIauTuMSKrLTBEi8Ld6fNjUyMj46L35A6mT9BOhhCXpZQGdsSRoEv9EYd2AibDYi79ftmg_CTTDBh_pTaNLYewgpC10pSWMng8vgnBshPtzgjyERkJhVLFVSpeQG1qSN8IHG-pNx5huu16k2AWTXSp2vjIg_dwKqtzF4RdLIgUDTFrEhOPvEOv3NtLqyun1l8fIhj2a2SVLIQufl1dU40_ru_1xEgHQo8"/>
+<div class="space-y-0.5">
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">طارق بن علي</h5>
+<p class="font-caption text-caption text-on-surface-variant">الأب (وصي شرعي)</p>
+<p class="font-mono text-caption text-on-surface-variant" dir="ltr">0550123456</p>
+</div>
+<div class="w-full pt-1">
+<span class="w-full py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption block">بصمة بيومترية مسجلة</span>
+</div>
+</div>
+<!-- Pickup 2: Mother -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col items-center text-center space-y-2 relative">
+<span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-caption text-caption font-semibold">مخوّلة دائمة</span>
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Professional warm headshot portrait of a 33-year-old North African woman wearing light blue medical scrubs with an approachable friendly smile, studio portrait lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAKOWyAq5ztOhn0jEgkAEAl2aVdDCQAG6nrUqIcNQuTsWAnq297i-eSsOJQgIzJ0OczyBYH28GK0bJLn61qdYHSL_CrS5izhzgmTQ8gy69mmG3t6BcmJVRd27d7QSfXKCwsZFEB6C0wpETqqs5vDl97NOINZNIjLlftPPD8n40rvtyDyvbePpSU_QtiKGArSw3bzj_iQfWBnyyzVOgrB2UqOh971QnPw6CE3V7wM8edwwEurb3HFo"/>
+<div class="space-y-0.5">
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">د. أمينة حمدي</h5>
+<p class="font-caption text-caption text-on-surface-variant">الأم (وصية شرعية)</p>
+<p class="font-mono text-caption text-on-surface-variant" dir="ltr">0661234567</p>
+</div>
+<div class="w-full pt-1">
+<span class="w-full py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption block">بصمة بيومترية مسجلة</span>
+</div>
+</div>
+<!-- Pickup 3: Grandmother -->
+<div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col items-center text-center space-y-2 relative">
+<span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-caption text-caption font-semibold">مع بطاقة الهوية</span>
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Dignified warm headshot of a 62-year-old North African grandmother wearing an elegant traditional headscarf with kind eyes, softly lit indoor portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBepeMnt0z1pJ8JwhKWT8jAS1KDPFNhcDUCbZWxtow4EE79Ycm3TTRSiN9thyhnPgHb4VS8T354o7f0ZrEN0TCxHYDHOjyfPkVdDlS3_KtqQkV2jVzBJaEJrMpIeYd35AxFYym4bPYAUvdf5q7CLfHcADKb-WfqNa-kQkaIj5LSCQmp_k2i97gBWO_OKFGwxfrEjbxY60IF-TvcBUv0gm2325Mgco7-EWRnZOMpVevlCklvD1oyxcM"/>
+<div class="space-y-0.5">
+<h5 class="font-label-lg text-label-lg font-bold text-on-surface">فاطمة بوعزيز</h5>
+<p class="font-caption text-caption text-on-surface-variant">الجدة (من طرف الأم)</p>
+<p class="font-mono text-caption text-on-surface-variant" dir="ltr">0558774411</p>
+</div>
+<div class="w-full pt-1">
+<span class="w-full py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption block">بطاقة تعريف رقم: 1098442</span>
+</div>
+</div>
+</div>
+<!-- Strict Safety Warning Box -->
+<div class="bg-surface-container-high rounded-lg p-space-md flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-xl shrink-0">shield</span>
+<div class="space-y-0.5">
+<h5 class="font-label-md text-label-md font-bold text-on-surface">تنبيه الحماية والسلامة المشدد:</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              يُمنع منعاً باتاً تسليم الطفلة لأي شخص آخر دون إذن خطي مسجل مسبقاً في النظام وتأكيد هاتفي مباشر من هاتف الأب أو الأم المسجلين أعلاه حصراً.
+            </p>
+</div>
+</div>
+</section>
+<!-- Local Attached Documents (Scanned PDF Archive) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">attach_file</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">المستندات الورقية الممسوحة والمخزنة محلياً</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant font-mono">SQLite Local Blob Archive</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-2xl">picture_as_pdf</span>
+<div>
+<h6 class="font-label-md text-label-md font-semibold text-on-surface">شهادة الميلاد الرسمية</h6>
+<p class="font-caption text-caption text-on-surface-variant">PDF • 1.2 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-base">visibility</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">medical_information</span>
+<div>
+<h6 class="font-label-md text-label-md font-semibold text-on-surface">دفتر التلقيحات المحدث</h6>
+<p class="font-caption text-caption text-on-surface-variant">كامل التطعيمات • 2.8 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-base">visibility</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-2xl">edit_document</span>
+<div>
+<h6 class="font-label-md text-label-md font-semibold text-on-surface">استمارة التسجيل الموقعة</h6>
+<p class="font-caption text-caption text-on-surface-variant">توقيع الولي • 890 KB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary text-base">visibility</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Left Side (Column 5): Growth Metrics, Attendance, Finance & Audit Log -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Growth & Health Quick Metrics Bento -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">vital_signs</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">مؤشرات النمو والتطور البدني</h3>
+</div>
+<span class="font-caption text-caption px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">منحنى نمو طبيعي ممتاز</span>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between">
+<div>
+<span class="font-caption text-caption text-on-surface-variant">الطول الحالي</span>
+<div class="font-display-md text-display-md text-on-surface font-bold">102 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">سم</span></div>
+<span class="font-caption text-caption text-emerald-600 flex items-center gap-0.5 pt-0.5">
+<span class="material-symbols-outlined text-xs">trending_up</span> +3 سم آخر فحص
+              </span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">height</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between">
+<div>
+<span class="font-caption text-caption text-on-surface-variant">الوزن الحالي</span>
+<div class="font-display-md text-display-md text-on-surface font-bold">16.2 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">كغ</span></div>
+<span class="font-caption text-caption text-on-surface-variant flex items-center gap-0.5 pt-0.5">
+                فئة المئين 65% (مثالي)
+              </span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">scale</span>
+</div>
+</div>
+</div>
+<!-- Inline SVG Growth Curve Sparkline -->
+<div class="bg-surface-container rounded-lg p-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-caption text-caption mb-1">
+<span>منحنى الزيادة في الوزن والطول (آخر 6 أشهر)</span>
+<span class="font-mono text-primary font-bold">قياس 10 أكتوبر 2026</span>
+</div>
+<svg class="w-full h-12 text-primary" fill="none" viewbox="0 0 300 48">
+<path d="M0,40 Q40,35 75,32 T150,22 T225,14 T300,6" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M0,40 Q40,35 75,32 T150,22 T225,14 T300,6 L300,48 L0,48 Z" fill="currentColor" fill-opacity="0.08"></path>
+<circle cx="75" cy="32" fill="currentColor" r="3"></circle>
+<circle cx="150" cy="22" fill="currentColor" r="3"></circle>
+<circle cx="225" cy="14" fill="currentColor" r="3"></circle>
+<circle class="animate-ping" cx="300" cy="6" fill="currentColor" r="4"></circle>
+<circle cx="300" cy="6" fill="currentColor" r="3.5"></circle>
+</svg>
+</div>
+</section>
+<!-- Attendance & Financial Status Split Card -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Attendance Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">الحضور الشهري</span>
+<span class="material-symbols-outlined text-base text-primary">calendar_month</span>
+</div>
+<div class="flex items-center gap-space-md">
+<!-- Attendance Donut SVG -->
+<div class="relative w-14 h-14 shrink-0 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<span class="absolute font-mono text-xs font-bold text-on-surface">96%</span>
+</div>
+<div class="space-y-0.5">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">22 / 23 يوم</div>
+<p class="font-caption text-caption text-on-surface-variant">غياب يومين فقط (عذر صحي موثق)</p>
+</div>
+</div>
+<a class="font-caption text-caption text-primary hover:underline font-semibold flex items-center gap-0.5 justify-end" href="#">
+            سجل الشهر المفصل ←
+          </a>
+</div>
+<!-- Financial Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">الملف المالي</span>
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-caption text-caption font-bold">منتظم ومسوى</span>
+</div>
+<div>
+<span class="font-caption text-caption text-on-surface-variant">الرصيد المستحق الحالي</span>
+<div class="font-display-md text-display-md text-emerald-700 font-bold">0 <span class="font-body-sm text-body-sm font-normal">دج</span></div>
+<p class="font-caption text-caption text-on-surface-variant truncate">آخر إيصال: <span class="font-mono font-semibold">REC-2026-00842</span></p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-caption text-caption text-outline">تم دفع شهر أكتوبر كاملاً</span>
+<button class="text-primary hover:text-primary-container font-caption text-caption font-bold" type="button">الفواتير</button>
+</div>
+</div>
+</div>
+<!-- Audit Log Snapshot (Local Traceability) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">lock_clock</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">سجل التدقيق والتغييرات المحلي</h3>
+<p class="font-caption text-caption text-on-surface-variant">غير قابل للتعديل • محفوظ في قاعدة البيانات</p>
+</div>
+</div>
+<span class="font-caption text-caption px-2 py-0.5 rounded bg-surface-container font-mono text-on-surface-variant">SQLite Triggers</span>
+</div>
+<!-- Timeline Items -->
+<div class="space-y-space-sm relative">
+<!-- Timeline Entry 1 -->
+<div class="flex items-start gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">payments</span>
+</div>
+<div class="space-y-0.5 flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">أ. نادية المنصوري (مديرة)</span>
+<span class="font-mono text-caption text-on-surface-variant">اليوم 10:45 ص</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+                سجلت دفعة نقدية بمبلغ <strong class="font-mono font-bold text-emerald-700">20,000 دج</strong> (اشتراك شهر أكتوبر مع النقل المدرسي والإطعام).
+              </p>
+</div>
+</div>
+<!-- Timeline Entry 2 -->
+<div class="flex items-start gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">rate_review</span>
+</div>
+<div class="space-y-0.5 flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">أ. مريم العابد (معلمة الفصل)</span>
+<span class="font-mono text-caption text-on-surface-variant">أمس 14:15 م</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+                أضافت ملاحظة التقرير اليومي: <span class="italic text-on-surface-variant">"أظهرت سارة تفاعلاً مميزاً وسرعة استيعاب في نشاط الرسم الجماعي للألوان الأساسية."</span>
+</p>
+</div>
+</div>
+<!-- Timeline Entry 3 -->
+<div class="flex items-start gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest text-on-surface-variant flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">edit_note</span>
+</div>
+<div class="space-y-0.5 flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">أمانة السكرتارية (محلي)</span>
+<span class="font-mono text-caption text-on-surface-variant">10 أكتوبر 2026</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+                تم تحديث رقم هاتف الأم د. أمينة حمدي وتثبيت بطاقة الهوية الوطنية للجدة فاطمة في قائمة المخولين.
+              </p>
+</div>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors text-center" type="button">
+          عرض كامل سجل التدقيق التاريخي (14 حركة سابقة)
+        </button>
+</section>
+</div>
+</div>
+</div></main></div><footer class="fixed bottom-0 left-0 right-0 h-[32px] bg-inverse-surface text-inverse-on-surface z-50 flex items-center justify-between px-space-md font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-inverse-on-surface font-body-sm text-body-sm">قاعدة البيانات المحلية: SQLite متصلة وسليمة 100%</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-emerald-400">check_circle</span><span class="text-inverse-on-surface/90 font-body-sm text-body-sm">آخر نسخة احتياطية: اليوم 14:30 (24.3 MB)</span><a class="underline text-primary-fixed-dim hover:text-primary-fixed mr-1 font-semibold" data-path="backup-data" href="#">نسخ الآن</a></div></div><div class="flex items-center gap-space-lg"><div class="text-inverse-on-surface/80 font-body-sm text-body-sm">السنة الدراسية: 2026 / 2027</div><div class="flex items-center gap-space-sm"><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+N طفل جديد</span><span class="font-mono text-caption text-inverse-on-surface/70">•</span><span class="font-mono text-caption text-inverse-on-surface/70">Ctrl+P طباعة</span></div><div class="px-2 py-0.5 rounded bg-surface-container-highest/20 font-mono text-caption text-inverse-on-surface/90">v2.0 Desktop Offline</div></div></footer></body></html>
