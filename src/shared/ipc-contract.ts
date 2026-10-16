@@ -26,7 +26,11 @@ export const ipcContract = {
   'payments:record': { input: paymentCreateSchema },
   'backup:create': { input: z.object({ destDir: z.string().optional() }).optional() },
   'backup:list': { input: z.void() },
-  'app:diagnostics': { input: z.void() }
+  'app:diagnostics': { input: z.void() },
+  'window:minimize': { input: z.void().optional() },
+  'window:maximize': { input: z.void().optional() },
+  'window:close': { input: z.void().optional() },
+  'window:isMaximized': { input: z.void().optional() }
 } as const
 
 export type Channel = keyof typeof ipcContract

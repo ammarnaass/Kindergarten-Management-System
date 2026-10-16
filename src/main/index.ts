@@ -13,6 +13,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1280, height: 800, show: false,
     autoHideMenuBar: true,
+    frame: false,
     icon: join(__dirname, '../../resources/icon.png'),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),

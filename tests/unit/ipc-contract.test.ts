@@ -30,5 +30,11 @@ describe('ipc-contract', () => {
     const r = (ipcContract['classrooms:list'].input as any).safeParse(undefined)
     expect(r.success).toBe(true)
   })
+  it('validates window control channels accept empty payload', () => {
+    expect((ipcContract['window:minimize'].input as any).safeParse(undefined).success).toBe(true)
+    expect((ipcContract['window:maximize'].input as any).safeParse(undefined).success).toBe(true)
+    expect((ipcContract['window:close'].input as any).safeParse(undefined).success).toBe(true)
+    expect((ipcContract['window:isMaximized'].input as any).safeParse(undefined).success).toBe(true)
+  })
 })
 

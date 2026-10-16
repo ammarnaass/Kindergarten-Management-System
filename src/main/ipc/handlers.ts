@@ -1,3 +1,4 @@
+import { BrowserWindow } from 'electron'
 import { handle } from './register'
 import { PERMISSIONS } from '@shared/constants'
 import { authService } from '../services/authService'
@@ -39,4 +40,30 @@ export function registerHandlers() {
     dbSize: (() => { try { return (getSqlite().prepare("select page_count*page_size as s from pragma_page_count, pragma_page_size").get() as any)?.s ?? 0 } catch { return 0 } })(),
     backups: listBackups().length
   }))
+
+  handle('window:minimize', null, (_input: any, ctx: any) => {
+    const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow()
+    win?.minimize()
+    return true
+  })
+  handle('window:maximize', null, (_input: any, ctx: any) => {
+    const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow()
+    if (!win) return false
+    if (win.isMaximized()) {
+      win.unmaximize()
+      return false
+    } else {
+      win.maximize()
+      return true
+    }
+  })
+  handle('window:close', null, (_input: any, ctx: any) => {
+    const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow()
+    win?.close()
+    return true
+  })
+  handle('window:isMaximized', null, (_input: any, ctx: any) => {
+    const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow()
+    return win?.isMaximized() ?? false
+  })
 }

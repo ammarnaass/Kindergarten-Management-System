@@ -5,10 +5,11 @@ import type { IpcResult } from '@shared/ipc-contract'
 const ALLOWED: Channel[] = [
   'auth:login','auth:logout','auth:me','users:create',
   'children:list','children:get','children:guardians','children:pickups','children:create','children:update','children:remove',
-  'guardians:create','children:linkGuardian',
+  'guardians:create','children:linkGuardian','classrooms:list',
   'attendance:mark','attendance:list',
   'invoices:create','invoices:issue','payments:record',
-  'backup:create','backup:list','app:diagnostics'
+  'backup:create','backup:list','app:diagnostics',
+  'window:minimize','window:maximize','window:close','window:isMaximized'
 ]
 
 const api = {
