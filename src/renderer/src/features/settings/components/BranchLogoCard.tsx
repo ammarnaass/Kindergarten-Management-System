@@ -14,11 +14,18 @@ export function BranchLogoCard({ settings, onChange }: BranchLogoCardProps) {
           الهوية البصرية والشعار المعتمد
         </span>
         <div className="relative group my-space-md w-36 h-36 rounded-2xl bg-surface-container-low p-2 flex items-center justify-center overflow-hidden shadow-inner border border-surface-variant/30">
-          <img
-            src={settings.logoUrl}
-            alt="شعار الروضة المعتمد"
-            className="w-full h-full object-contain rounded-xl"
-          />
+          {settings.logoUrl ? (
+            <img
+              src={settings.logoUrl}
+              alt="شعار الروضة المعتمد"
+              className="w-full h-full object-contain rounded-xl"
+            />
+          ) : (
+            <div className="w-full h-full rounded-xl bg-primary/10 flex flex-col items-center justify-center text-primary gap-1">
+              <span className="material-symbols-outlined text-4xl">local_florist</span>
+              <span className="text-xs font-bold">روضتي</span>
+            </div>
+          )}
           <div className="absolute inset-0 bg-inverse-surface/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 cursor-pointer">
             <span className="material-symbols-outlined text-surface text-[24px]">
               photo_camera

@@ -27,6 +27,7 @@ export const childFilterSchema = z.object({
   offset: z.number().int().min(0).default(0)
 })
 export type ChildFilter = z.infer<typeof childFilterSchema>
+export type ChildFilterInput = z.input<typeof childFilterSchema>
 
 export const guardianCreateSchema = z.object({
   firstName: z.string().min(1).max(100),
@@ -46,3 +47,12 @@ export const childGuardianLinkSchema = z.object({
   canPickup: z.boolean().default(true)
 })
 export type ChildGuardianLink = z.infer<typeof childGuardianLinkSchema>
+
+export const authorizedPickupCreateSchema = z.object({
+  childId: z.string().uuid(),
+  fullName: z.string().min(1).max(100),
+  phone: z.string().min(6).max(20).optional().nullable(),
+  nationalId: z.string().optional().nullable(),
+  note: z.string().optional().nullable()
+})
+export type AuthorizedPickupCreate = z.infer<typeof authorizedPickupCreateSchema>

@@ -7,13 +7,15 @@ interface CommandPaletteProps {
   onClose: () => void
   onOpenQuickPayment?: () => void
   onOpenNewChild?: () => void
+  onOpenNotifications?: () => void
 }
 
 export function CommandPalette({
   open,
   onClose,
   onOpenQuickPayment,
-  onOpenNewChild
+  onOpenNewChild,
+  onOpenNotifications
 }: CommandPaletteProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<any[]>([])
@@ -150,6 +152,48 @@ export function CommandPalette({
                 <div>
                   <div className="font-label-md text-label-md font-bold">بوابة الاستلام الآمن</div>
                   <div className="font-caption text-caption text-on-surface-variant">التحقق بالباركود</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  onClose()
+                  onOpenNotifications?.()
+                }}
+                className="flex items-center gap-2.5 p-space-sm rounded-xl bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface transition-colors text-right"
+              >
+                <div className="w-8 h-8 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+                  <span className="material-symbols-outlined text-base">notifications_active</span>
+                </div>
+                <div>
+                  <div className="font-label-md text-label-md font-bold">مركز التنبيهات والإشعارات</div>
+                  <div className="font-caption text-caption text-on-surface-variant">اختصار: Ctrl+J</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => quickNav('/parents')}
+                className="flex items-center gap-2.5 p-space-sm rounded-xl bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface transition-colors text-right"
+              >
+                <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                  <span className="material-symbols-outlined text-base">family_restroom</span>
+                </div>
+                <div>
+                  <div className="font-label-md text-label-md font-bold">أولياء الأمور والتفويضات</div>
+                  <div className="font-caption text-caption text-on-surface-variant">البطاقات وقناة SMS</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => quickNav('/timetable')}
+                className="flex items-center gap-2.5 p-space-sm rounded-xl bg-surface-container-low hover:bg-primary-container hover:text-on-primary-container text-on-surface transition-colors text-right"
+              >
+                <div className="w-8 h-8 rounded-lg bg-cyan-100 text-cyan-800 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-base">schedule</span>
+                </div>
+                <div>
+                  <div className="font-label-md text-label-md font-bold">التوقيت والجدول اليومي</div>
+                  <div className="font-caption text-caption text-on-surface-variant">الفترات والحصص والمناوبة</div>
                 </div>
               </button>
             </div>

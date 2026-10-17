@@ -4,12 +4,14 @@ interface SqliteWalHealthCardProps {
   settings: DatabaseSettings
   onChange: (fields: Partial<DatabaseSettings>) => void
   onOptimize: () => void
+  onOpenFolder?: () => void
 }
 
 export function SqliteWalHealthCard({
   settings,
   onChange,
-  onOptimize
+  onOptimize,
+  onOpenFolder
 }: SqliteWalHealthCardProps) {
   return (
     <div className="lg:col-span-6 bg-surface-container-lowest rounded-2xl p-space-lg shadow-xs flex flex-col justify-between border border-surface-variant/40">
@@ -46,12 +48,16 @@ export function SqliteWalHealthCard({
                 value={settings.activeDbPath}
                 className="flex-1 px-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-mono text-body-sm border border-surface-variant/30"
               />
-              <button
-                type="button"
-                className="px-3 py-2 bg-surface-container hover:bg-surface-variant rounded-xl text-on-surface font-label-sm text-label-sm font-semibold transition-colors"
-              >
-                فتح المجلد
-              </button>
+              {onOpenFolder && (
+                <button
+                  type="button"
+                  onClick={onOpenFolder}
+                  className="px-3 py-2 bg-surface-container hover:bg-surface-variant rounded-xl text-primary font-label-sm text-label-sm font-bold transition-colors flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-[16px]">folder_open</span>
+                  <span>فتح المجلد</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -70,7 +76,7 @@ export function SqliteWalHealthCard({
               </span>
             </div>
             <div className="flex flex-col border-r border-surface-variant">
-              <span className="font-caption text-caption text-on-surface-variant">التشفير</span>
+              <span className="font-caption text-caption text-on-surface-variant">وضع التسجيل</span>
               <span className="font-headline-sm text-headline-sm font-bold text-secondary font-mono">
                 {settings.encryptionType}
               </span>
@@ -112,9 +118,9 @@ export function SqliteWalHealthCard({
           className="flex items-center gap-1.5 px-space-md py-2 rounded-xl bg-surface-container text-primary font-label-md text-label-md font-semibold hover:bg-surface-variant transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">build_circle</span>
-          <span>فحص وضغط البيانات الآن</span>
+          <span>فحص وضغط البيانات الآن (VACUUM)</span>
         </button>
-        <span className="font-caption text-caption text-outline">آخر فحص: منذ 4 دقائق</span>
+        <span className="font-caption text-caption text-outline">محرك SQLite مدمج محلياً</span>
       </div>
     </div>
   )

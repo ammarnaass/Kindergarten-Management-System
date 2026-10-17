@@ -36,6 +36,7 @@ export function BranchIdentityForm({
                 type="text"
                 value={settings.kindergartenNameAr}
                 onChange={(e) => onChange({ kindergartenNameAr: e.target.value })}
+                placeholder="أدخل اسم الروضة بالعربية..."
                 className="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -54,6 +55,7 @@ export function BranchIdentityForm({
                 type="text"
                 value={settings.kindergartenNameEn}
                 onChange={(e) => onChange({ kindergartenNameEn: e.target.value })}
+                placeholder="Kindergarten English Name..."
                 className="w-full pl-10 pr-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all text-left border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -71,6 +73,7 @@ export function BranchIdentityForm({
                 type="text"
                 value={settings.crLicenseNumber}
                 onChange={(e) => onChange({ crLicenseNumber: e.target.value })}
+                placeholder="رقم السجل أو الترخيص..."
                 className="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-mono font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -88,6 +91,7 @@ export function BranchIdentityForm({
                 type="text"
                 value={settings.branchName}
                 onChange={(e) => onChange({ branchName: e.target.value })}
+                placeholder="الفرع الرئيسي / فرع 1..."
                 className="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -106,6 +110,7 @@ export function BranchIdentityForm({
                 type="tel"
                 value={settings.phone}
                 onChange={(e) => onChange({ phone: e.target.value })}
+                placeholder="05XXXXXXXX"
                 className="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-mono font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all text-right border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -124,6 +129,7 @@ export function BranchIdentityForm({
                 type="email"
                 value={settings.email}
                 onChange={(e) => onChange({ email: e.target.value })}
+                placeholder="info@your-kindergarten.com"
                 className="w-full pl-10 pr-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all text-left border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -141,6 +147,7 @@ export function BranchIdentityForm({
                 type="text"
                 value={settings.nationalAddress}
                 onChange={(e) => onChange({ nationalAddress: e.target.value })}
+                placeholder="المدينة، الحي، الشارع..."
                 className="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all border border-transparent focus:border-primary/20"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">

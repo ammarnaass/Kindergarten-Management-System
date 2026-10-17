@@ -1,16 +1,20 @@
-import { PrinterSettings } from '../types'
+import { PrinterSettings, SystemPrinter } from '../types'
 
 interface PvcCardPrinterCardProps {
   settings: PrinterSettings
+  printersList?: SystemPrinter[]
   onChange: (fields: Partial<PrinterSettings>) => void
   onTestPrint: (printerName: string) => void
 }
 
 export function PvcCardPrinterCard({
   settings,
+  printersList = [],
   onChange,
   onTestPrint
 }: PvcCardPrinterCardProps) {
+  const hasPrinters = printersList.length > 0
+
   return (
     <div className="bg-surface-container-lowest rounded-2xl p-space-lg shadow-xs flex flex-col justify-between border border-surface-variant/40">
       <div className="flex flex-col gap-space-md">
@@ -30,22 +34,29 @@ export function PvcCardPrinterCard({
           </div>
           <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm font-bold">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            متصلة (USB)
+            {settings.pvcCardPrinter ? 'محددة' : 'غير محددة'}
           </span>
         </div>
 
         <div className="flex flex-col gap-space-sm">
           <label className="font-label-md text-label-md font-semibold text-on-surface">
-            اختر طابعة البطاقات البلاستيكية المعتمدة
+            اختر طابعة البطاقات البلاستيكية من قائمة أجهزة النظام
           </label>
           <select
             value={settings.pvcCardPrinter}
             onChange={(e) => onChange({ pvcCardPrinter: e.target.value })}
             className="w-full px-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none border border-transparent focus:border-primary/20"
           >
-            <option>Zebra ZC300 Dual-Sided ID Card Printer (USB)</option>
-            <option>Fargo DTC1250e Plastic Card Printer (USB)</option>
-            <option>Evolis Primacy 2 Dual-Sided PVC</option>
+            <option value="">-- اختر طابعة بطاقات بلاستيكية --</option>
+            {hasPrinters ? (
+              printersList.map((p) => (
+                <option key={p.name} value={p.name}>
+                  {p.displayName || p.name} {p.isDefault ? '• (الافتراضية)' : ''}
+                </option>
+              ))
+            ) : (
+              <option value="Generic Card Printer">طابعة بطاقات قياسية (Generic PVC Printer)</option>
+            )}
           </select>
         </div>
 
@@ -93,13 +104,15 @@ export function PvcCardPrinterCard({
       <div className="mt-space-lg pt-space-md border-t border-surface-variant flex items-center justify-between">
         <button
           type="button"
-          onClick={() => onTestPrint('بطاقات PVC الذكية (Zebra)')}
+          onClick={() => onTestPrint(settings.pvcCardPrinter || 'طابعة بطاقات PVC')}
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">credit_card</span>
           <span>طباعة بطاقة تجريبية (Sample PVC Badge)</span>
         </button>
-        <span className="font-caption text-caption text-outline">مخزون البطاقات: 84 بطاقة</span>
+        <span className="font-caption text-caption text-outline">
+          {settings.pvcCardPrinter ? `المحددة: ${settings.pvcCardPrinter}` : 'جاهز للتهيئة'}
+        </span>
       </div>
     </div>
   )

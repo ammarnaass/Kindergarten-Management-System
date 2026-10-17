@@ -14,10 +14,11 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'attendance', label: 'الحضور والانصراف', icon: 'how_to_reg', path: '/attendance' },
   { id: 'safe-pickup', label: 'الاستلام الآمن عند البوابة', icon: 'qr_code_scanner', path: '/safe-pickup' },
   { id: 'finance', label: 'المالية والمدفوعات', icon: 'account_balance_wallet', path: '/finance' },
-  { id: 'daily-reports', label: 'التقرير اليومي', icon: 'assignment', path: '/reports' },
-  { id: 'health-safety', label: 'الصحة والسلامة', icon: 'medical_services', path: '/children' },
-  { id: 'parents', label: 'أولياء الأمور', icon: 'family_restroom', path: '/children' },
-  { id: 'staff', label: 'الموظفون', icon: 'badge', path: '/settings' },
+  { id: 'daily-reports', label: 'التقرير اليومي والملاحظات', icon: 'summarize', path: '/daily' },
+  { id: 'timetable', label: 'التوقيت والجدول اليومي', icon: 'schedule', path: '/timetable' },
+  { id: 'health-safety', label: 'الصحة والسلامة', icon: 'medical_services', path: '/health' },
+  { id: 'parents', label: 'أولياء الأمور', icon: 'family_restroom', path: '/parents' },
+  { id: 'staff', label: 'الموظفون', icon: 'badge', path: '/staff' },
   { id: 'reports', label: 'التقارير والمطبوعات', icon: 'print', path: '/reports' },
   { id: 'backup', label: 'النسخ الاحتياطي والبيانات', icon: 'database', path: '/backup' },
   { id: 'settings', label: 'الإعدادات', icon: 'settings', path: '/settings' },
@@ -36,7 +37,7 @@ export function AppSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-space-sm px-space-md py-2 transition-all font-label-lg text-label-lg ${
                   isActive
-                    ? 'bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-xs'
+                    ? 'bg-primary-container text-on-primary-container font-bold rounded-lg shadow-2xs border-r-3 border-primary'
                     : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface rounded-lg'
                 }`
               }

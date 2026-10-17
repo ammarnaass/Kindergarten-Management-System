@@ -21,55 +21,34 @@ export function ShiftsOperatingTimesCard({
         <span className="material-symbols-outlined text-outline text-[18px]">verified_user</span>
       </div>
 
-      {/* Shift 1: Morning */}
+      {/* Threshold Setting */}
       <div className="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm border border-surface-variant/30">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-secondary text-[20px]">wb_sunny</span>
+            <span className="material-symbols-outlined text-primary text-[20px]">timer</span>
             <span className="font-label-md text-label-md font-bold text-on-surface">
-              الفترة الصباحية الأساسية
+              توقيت احتساب التأخر الصباحي
             </span>
           </div>
           <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container text-primary">
-            إلزامية لكافة المراحل
+            تلقائي
           </span>
         </div>
-        <div className="grid grid-cols-2 gap-space-sm font-label-sm text-label-sm">
-          <div className="bg-surface-container-lowest p-2 rounded-lg flex flex-col border border-surface-variant/20">
-            <span className="text-outline text-caption">فتح البوابة والاستقبال</span>
-            <span className="font-bold text-on-surface font-mono">07:00 ص</span>
-          </div>
-          <div className="bg-surface-container-lowest p-2 rounded-lg flex flex-col border border-surface-variant/20">
-            <span className="text-outline text-caption">طابور الصباح والتمارين</span>
-            <span className="font-bold text-on-surface font-mono">07:30 ص</span>
-          </div>
-          <div className="bg-surface-container-lowest p-2 rounded-lg flex flex-col border border-surface-variant/20">
-            <span className="text-outline text-caption">انتهاء الحصص التعليمية</span>
-            <span className="font-bold text-on-surface font-mono">12:30 م</span>
-          </div>
-          <div className="bg-surface-container-lowest p-2 rounded-lg flex flex-col border border-surface-variant/20">
-            <span className="text-outline text-caption">الحد الأقصى للاستلام</span>
-            <span className="font-bold text-primary font-mono">01:30 م</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Shift 2: Aftercare */}
-      <div className="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm border border-surface-variant/30">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary text-[20px]">nightlife</span>
-            <span className="font-label-md text-label-md font-bold text-on-surface">
-              رعاية ما بعد الدوام (الحضانة المسائية)
-            </span>
-          </div>
-          <span className="font-mono text-label-sm text-on-surface-variant font-bold">
-            01:30 م - 04:30 م
+        <p className="font-caption text-caption text-on-surface-variant">
+          يتم تسجيل الطفل كـ (متأخر) تلقائياً في سجل الحضور اليومي إذا تجاوز وقت الحضور هذا الحد:
+        </p>
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            value={settings.autoTardinessThreshold}
+            onChange={(e) => onChange({ autoTardinessThreshold: e.target.value })}
+            placeholder="مثال: 08:15 ص"
+            className="px-3 py-2 bg-surface-container-lowest rounded-lg border border-surface-variant/30 font-mono text-on-surface text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+          />
+          <span className="font-caption text-caption text-outline">
+            تنسيق الوقت المعتمد لبوابة الاستقبال
           </span>
         </div>
-        <span className="font-caption text-caption text-outline">
-          تشمل وجبة خفيفة ومسار أنشطة حركية للأطفال المشتركين
-        </span>
       </div>
 
       {/* Automation Switches */}
@@ -80,7 +59,7 @@ export function ShiftsOperatingTimesCard({
               تحديد حالة التأخر التلقائي
             </span>
             <span className="font-caption text-caption text-on-surface-variant">
-              تسجيل متأخر في سجل الحضور بعد {settings.autoTardinessThreshold}
+              تسجيل متأخر في سجل الحضور فوراً بعد حلول الوقت المحدد
             </span>
           </div>
           <input
@@ -97,7 +76,7 @@ export function ShiftsOperatingTimesCard({
               تنبيه بوابة الاستلام الآمن
             </span>
             <span className="font-caption text-caption text-on-surface-variant">
-              صوت تحذيري عند مغادرة طفل بدون تمرير بطاقة ولي الأمر
+              تنبيه صوتي وبصري عند محاولة تسليم طفل بدون تمرير بطاقة مصرح بها
             </span>
           </div>
           <input

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { ipc } from '@/lib/ipc'
+import { api } from '@/lib/api'
 import { ExecutiveBanner } from './components/ExecutiveBanner'
 import { MetricCardsGrid } from './components/MetricCardsGrid'
 import { UrgentAttentionBanner } from './components/UrgentAttentionBanner'
@@ -7,49 +7,80 @@ import { ClassroomAttendanceSection } from './components/ClassroomAttendanceSect
 import { RecentTransactionsSection } from './components/RecentTransactionsSection'
 
 export default function Dashboard() {
-  const diag = useQuery({
+  const today = new Date().toISOString().slice(0, 10)
+
+  const { data: stats, isLoading: statsLoading } = useQuery({
+    queryKey: ['dashboard:stats'],
+    queryFn: () => api.dashboard.stats(),
+    refetchInterval: 30_000 // تحديث كل 30 ثانية
+  })
+
+  const { data: classroomStats } = useQuery({
+    queryKey: ['classrooms:attendance', today],
+    queryFn: () => api.classrooms.attendance(today),
+    refetchInterval: 60_000
+  })
+
+  const { data: recentPayments } = useQuery({
+    queryKey: ['payments:recent'],
+    queryFn: () => api.finance.recentPayments(8),
+    refetchInterval: 30_000
+  })
+
+  const { data: birthdays } = useQuery({
+    queryKey: ['children:birthdaysSoon'],
+    queryFn: () => api.children.birthdaysSoon(7)
+  })
+
+  const { data: diag } = useQuery({
     queryKey: ['diagnostics'],
-    queryFn: () => ipc<any>('app:diagnostics'),
+    queryFn: () => api.diagnostics.get(),
+    refetchInterval: 120_000
   })
 
-  const childrenQuery = useQuery({
-    queryKey: ['children-count'],
-    queryFn: () => ipc<any>('children:list', { limit: 1 }),
+  // التاريخ الهجري / الميلادي بالعربية
+  const dateString = new Date().toLocaleDateString('ar-DZ', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   })
-
-  const totalChildren = childrenQuery.data?.total ?? 52
 
   return (
     <div className="flex flex-col w-full gap-space-lg select-none pb-6">
-      {/* 1. Executive Top Greeting & Command Ribbon */}
-      <ExecutiveBanner teacherName="أ. نادية" />
+      {/* 1. شريط الترحيب والأوامر السريعة */}
+      <ExecutiveBanner dateString={dateString} />
 
-      {/* 2. KPI Metric Bento Grid */}
+      {/* 2. بطاقات المؤشرات الرئيسية */}
       <MetricCardsGrid
-        totalCount={totalChildren}
-        presentCount={Math.round(totalChildren * 0.9)}
-        attendanceRate="90.4%"
-        tuitionPercent={84}
-        collectedAmount="840,000 دج"
-        totalTargetAmount="1,000,000 دج"
-        overdueInvoicesCount={12}
-        overdueAmount="186,000 دج"
-        backupTimeAgo="قبل 45 دقيقة"
+        isLoading={statsLoading}
+        totalChildren={stats?.totalChildren ?? 0}
+        presentCount={stats?.presentToday ?? 0}
+        absentCount={stats?.absentToday ?? 0}
+        lateCount={stats?.lateToday ?? 0}
+        attendanceRate={stats ? `${stats.attendanceRate}%` : '—'}
+        tuitionPercent={stats?.tuitionPercent ?? 0}
+        collectedAmountCents={stats?.collectedThisMonthCents ?? 0}
+        totalTargetAmountCents={stats?.totalTargetThisMonthCents ?? 0}
+        overdueInvoicesCount={stats?.overdueInvoicesCount ?? 0}
+        overdueAmountCents={stats?.overdueAmountCents ?? 0}
+        dbSizeBytes={diag?.dbSize ?? 0}
+        backupsCount={diag?.backups ?? 0}
       />
 
-      {/* 3. Urgent Action Center Banner */}
-      <UrgentAttentionBanner />
+      {/* 3. مركز الانتباه العاجل */}
+      <UrgentAttentionBanner
+        overdueInvoicesCount={stats?.overdueInvoicesCount ?? 0}
+        birthdays={birthdays ?? []}
+      />
 
-      {/* 4. Split Grid Section (60% Classroom Attendance / 40% Recent Financial Transactions) */}
+      {/* 4. شبكة مزدوجة: حضور الفصول + آخر المدفوعات */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
-        {/* Right Column (7 cols): Classroom Attendance Overview */}
         <div className="lg:col-span-7 flex flex-col gap-space-md">
-          <ClassroomAttendanceSection />
+          <ClassroomAttendanceSection classrooms={classroomStats ?? []} />
         </div>
-
-        {/* Left Column (5 cols): Recent Financial Transactions */}
         <div className="lg:col-span-5 flex flex-col gap-space-md">
-          <RecentTransactionsSection />
+          <RecentTransactionsSection payments={recentPayments ?? []} />
         </div>
       </div>
     </div>

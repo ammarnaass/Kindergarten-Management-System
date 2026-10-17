@@ -3,12 +3,24 @@ import type { Channel } from '@shared/ipc-contract'
 import type { IpcResult } from '@shared/ipc-contract'
 
 const ALLOWED: Channel[] = [
-  'auth:login','auth:logout','auth:me','users:create',
-  'children:list','children:get','children:guardians','children:pickups','children:create','children:update','children:remove',
-  'guardians:create','children:linkGuardian','classrooms:list',
+  'auth:login','auth:loginPin','auth:logout','auth:me','auth:listUsers','auth:checkSetup','auth:registerSuperAdmin','users:create',
+  'system:integrityCheck','system:getPrinters','system:openPath','system:selectDirectory',
+  'children:list','children:get','children:guardians','children:pickups','children:createPickup',
+  'children:create','children:update','children:remove','children:birthdaysSoon',
+  'guardians:create','children:linkGuardian',
+  'classrooms:list','classrooms:attendance',
   'attendance:mark','attendance:list',
-  'invoices:create','invoices:issue','payments:record',
+  'daily:get','daily:save','daily:listByClassroom',
+  'health:stats','health:clinicVisits','health:incidents','health:medications','health:criticalAllergies',
+  'health:recordClinicVisit','health:recordIncident','health:recordMedication',
+  'staff:stats','staff:list','staff:get','staff:create','staff:update',
+  'staff:attendance:list','staff:attendance:record','staff:attendance:batch',
+  'staff:leaves:list','staff:leaves:create',
+  'invoices:list','invoices:get','invoices:create','invoices:createAndIssue','invoices:issue','invoices:listByChild','invoices:generateMonthly',
+  'dashboard:stats',
+  'timetable:listPeriods','timetable:savePeriod','timetable:deletePeriod','timetable:listDuties','timetable:saveDuty','timetable:deleteDuty',
   'backup:create','backup:list','app:diagnostics',
+  'settings:getAll','settings:get','settings:set','settings:setMany','settings:vacuum',
   'window:minimize','window:maximize','window:close','window:isMaximized'
 ]
 

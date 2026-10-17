@@ -13,6 +13,7 @@ export function SettingsPage() {
     activeTab,
     setActiveTab,
     settings,
+    printersList,
     isSaving,
     toastMessage,
     scannedCodeFeedback,
@@ -21,7 +22,9 @@ export function SettingsPage() {
     simulateTestPrint,
     optimizeLocalDb,
     triggerImmediateBackup,
-    rescanPorts,
+    openDbFolder,
+    chooseExternalBackupPath,
+    rescanPrinters,
     handleScanCode,
     updateBranch,
     updatePrinters,
@@ -56,8 +59,10 @@ export function SettingsPage() {
         {activeTab === 'printers' && (
           <HardwarePrintersTab
             settings={settings.printers}
+            printersList={printersList}
             onChange={updatePrinters}
             onTestPrint={simulateTestPrint}
+            onRefreshPrinters={rescanPrinters}
           />
         )}
 
@@ -67,7 +72,7 @@ export function SettingsPage() {
             scannedCodeFeedback={scannedCodeFeedback}
             onChange={updateScanner}
             onScanCode={handleScanCode}
-            onRescanPorts={rescanPorts}
+            onRescanPorts={rescanPrinters}
           />
         )}
 
@@ -77,6 +82,8 @@ export function SettingsPage() {
             onChange={updateDatabase}
             onOptimize={optimizeLocalDb}
             onBackupNow={triggerImmediateBackup}
+            onOpenDbFolder={openDbFolder}
+            onChooseBackupPath={chooseExternalBackupPath}
           />
         )}
 
@@ -96,3 +103,4 @@ export function SettingsPage() {
     </div>
   )
 }
+export default SettingsPage

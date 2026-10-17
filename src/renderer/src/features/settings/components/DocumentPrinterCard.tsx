@@ -1,16 +1,21 @@
-import { PrinterSettings } from '../types'
+import { PrinterSettings, SystemPrinter } from '../types'
 
 interface DocumentPrinterCardProps {
   settings: PrinterSettings
+  printersList?: SystemPrinter[]
   onChange: (fields: Partial<PrinterSettings>) => void
   onTestPrint: (printerName: string) => void
 }
 
 export function DocumentPrinterCard({
   settings,
+  printersList = [],
   onChange,
   onTestPrint
 }: DocumentPrinterCardProps) {
+  const hasPrinters = printersList.length > 0
+  const defaultPrinter = printersList.find((p) => p.isDefault)
+
   return (
     <div className="bg-surface-container-lowest rounded-2xl p-space-lg shadow-xs flex flex-col justify-between border border-surface-variant/40">
       <div className="flex flex-col gap-space-md">
@@ -30,7 +35,7 @@ export function DocumentPrinterCard({
           </div>
           <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm font-bold">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            متصلة (LAN/USB)
+            {hasPrinters ? `متصلة (${printersList.length} طابعة بنظام التشغيل)` : 'تصدير PDF محلي'}
           </span>
         </div>
 
@@ -43,9 +48,19 @@ export function DocumentPrinterCard({
             onChange={(e) => onChange({ documentPrinter: e.target.value })}
             className="w-full px-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none border border-transparent focus:border-primary/20"
           >
-            <option>HP LaserJet Pro M404n (Network: 192.168.1.114)</option>
-            <option>Canon imageCLASS LBP6030w (USB)</option>
-            <option>Microsoft Print to PDF (تصدير كملف أرشفة محلي)</option>
+            <option value="">-- اختر طابعة من النظام --</option>
+            {hasPrinters ? (
+              printersList.map((p) => (
+                <option key={p.name} value={p.name}>
+                  {p.displayName || p.name} {p.isDefault ? '• (الطابعة الافتراضية)' : ''}
+                </option>
+              ))
+            ) : (
+              <>
+                <option value="Microsoft Print to PDF">Microsoft Print to PDF (تصدير كملف أرشفة محلي)</option>
+                <option value="Save as PDF">حفظ بصيغة مستند PDF</option>
+              </>
+            )}
           </select>
         </div>
 
@@ -108,13 +123,15 @@ export function DocumentPrinterCard({
       <div className="mt-space-lg pt-space-md border-t border-surface-variant flex items-center justify-between">
         <button
           type="button"
-          onClick={() => onTestPrint('A4 LaserJet')}
+          onClick={() => onTestPrint(settings.documentPrinter || defaultPrinter?.name || 'طابعة المستندات')}
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">document_scanner</span>
           <span>طباعة كشف تجريبي (A4 Test Page)</span>
         </button>
-        <span className="font-caption text-caption text-outline">حالة الحبر: 82%</span>
+        <span className="font-caption text-caption text-outline">
+          {defaultPrinter ? `الافتراضية: ${defaultPrinter.name}` : 'جاهز للطباعة'}
+        </span>
       </div>
     </div>
   )

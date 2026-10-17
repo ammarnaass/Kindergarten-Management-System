@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { Layout } from './Layout'
-import { Login } from '../features/auth'
+import { Login, RegistrationWizardPage } from '../features/auth'
 import { Dashboard } from '../features/dashboard'
 import { ChildrenPage } from '../features/children'
 import { AttendancePage } from '../features/attendance'
@@ -8,10 +8,17 @@ import { FinancePage } from '../features/finance'
 import { BackupPage } from '../features/backup'
 import { ChildProfilePage } from '../features/child-profile'
 import { SafePickupPage } from '../features/safe-pickup'
+import { DailyReportPage } from '../features/daily'
+import { HealthPage } from '../features/health'
+import { StaffPage } from '../features/staff'
+import { ParentsPage } from '../features/parents'
+import { ReportsPage } from '../features/reports'
 import { SettingsPage } from '../features/settings'
+import { TimetablePage } from '../features/timetable'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
+  { path: '/register', element: <RegistrationWizardPage /> },
   {
     path: '/',
     element: <Layout />,
@@ -22,6 +29,12 @@ export const router = createBrowserRouter([
       { path: 'children/:id', element: <ChildProfilePage /> },
       { path: 'attendance', element: <AttendancePage /> },
       { path: 'safe-pickup', element: <SafePickupPage /> },
+      { path: 'daily', element: <DailyReportPage /> },
+      { path: 'timetable', element: <TimetablePage /> },
+      { path: 'health', element: <HealthPage /> },
+      { path: 'parents', element: <ParentsPage /> },
+      { path: 'staff', element: <StaffPage /> },
+      { path: 'reports', element: <ReportsPage /> },
       { path: 'finance', element: <FinancePage /> },
       { path: 'backup', element: <BackupPage /> },
       { path: 'settings', element: <SettingsPage /> }

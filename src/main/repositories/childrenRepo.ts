@@ -75,4 +75,82 @@ export const childrenRepo = {
     const db = getDb() as any
     return db.select().from(authorizedPickups).where(eq(authorizedPickups.childId, childId)).all()
   },
+  createAuthorizedPickup(v: { childId: string; fullName: string; phone?: string | null; nationalId?: string | null; note?: string | null }) {
+    const db = getDb() as any
+    const id = randomUUID()
+    db.insert(authorizedPickups).values({ id, ...v }).run()
+    return db.select().from(authorizedPickups).where(eq(authorizedPickups.id, id)).all()[0]
+  },
+  deleteAuthorizedPickup(id: string) {
+    const db = getDb() as any
+    db.delete(authorizedPickups).where(eq(authorizedPickups.id, id)).run()
+    return true
+  },
+  listGuardians() {
+    const db = getDb() as any
+    const guardianRows = db.select().from(guardians).all()
+    const links = db
+      .select({
+        guardianId: childGuardians.guardianId,
+        childId: childGuardians.childId,
+        childFirstName: children.firstName,
+        childLastName: children.lastName,
+        classroomId: children.classroomId,
+        relation: childGuardians.relation,
+        isPrimary: childGuardians.isPrimary,
+        canPickup: childGuardians.canPickup
+      })
+      .from(childGuardians)
+      .innerJoin(children, eq(childGuardians.childId, children.id))
+      .all()
+
+    const linksByGuardian: Record<string, any[]> = {}
+    for (const link of links) {
+      if (!linksByGuardian[link.guardianId]) {
+        linksByGuardian[link.guardianId] = []
+      }
+      linksByGuardian[link.guardianId].push({
+        childId: link.childId,
+        childName: `${link.childFirstName} ${link.childLastName}`.trim(),
+        classroomId: link.classroomId,
+        relation: link.relation,
+        isPrimary: Boolean(link.isPrimary),
+        canPickup: Boolean(link.canPickup)
+      })
+    }
+
+    return guardianRows.map((g: any) => ({
+      ...g,
+      children: linksByGuardian[g.id] ?? []
+    }))
+  },
+  listAllAuthorizedPickups() {
+    const db = getDb() as any
+    const rows = db
+      .select({
+        id: authorizedPickups.id,
+        childId: authorizedPickups.childId,
+        childFirstName: children.firstName,
+        childLastName: children.lastName,
+        fullName: authorizedPickups.fullName,
+        phone: authorizedPickups.phone,
+        nationalId: authorizedPickups.nationalId,
+        note: authorizedPickups.note,
+        createdAt: authorizedPickups.createdAt
+      })
+      .from(authorizedPickups)
+      .innerJoin(children, eq(authorizedPickups.childId, children.id))
+      .all()
+
+    return rows.map((r: any) => ({
+      id: r.id,
+      childId: r.childId,
+      childName: `${r.childFirstName} ${r.childLastName}`.trim(),
+      fullName: r.fullName,
+      phone: r.phone,
+      nationalId: r.nationalId,
+      note: r.note,
+      createdAt: r.createdAt
+    }))
+  }
 }

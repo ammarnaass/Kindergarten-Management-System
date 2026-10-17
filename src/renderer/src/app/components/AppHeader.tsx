@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { AppLogo } from './AppLogo'
+import { useTheme } from '@/app/providers/ThemeProvider'
 
 interface AppHeaderProps {
   onOpenSearch: () => void
   onOpenQuickPayment?: () => void
   onOpenNewChild?: () => void
+  onOpenNotifications?: () => void
+  unreadNotificationsCount?: number
+  hasCriticalAlerts?: boolean
   currentUser?: { username: string; role: string } | null
 }
 
@@ -12,9 +16,13 @@ export function AppHeader({
   onOpenSearch,
   onOpenQuickPayment,
   onOpenNewChild,
+  onOpenNotifications,
+  unreadNotificationsCount = 0,
+  hasCriticalAlerts = false,
   currentUser = { username: 'أ. نادية المنصوري', role: 'مديرة الروضة' }
 }: AppHeaderProps) {
   const navigate = useNavigate()
+  const { isDark, toggleTheme } = useTheme()
 
   return (
     <header className="fixed top-[38px] right-0 left-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] select-none">
@@ -52,7 +60,7 @@ export function AppHeader({
         <div className="flex items-center gap-space-xs">
           <button
             onClick={() => (onOpenQuickPayment ? onOpenQuickPayment() : navigate('/finance'))}
-            className="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-xs"
+            className="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary/90 active:scale-95 transition-all shadow-xs"
             type="button"
           >
             <span className="material-symbols-outlined text-base">payments</span>
@@ -83,20 +91,44 @@ export function AppHeader({
         {/* Utilities & User Status */}
         <div className="flex items-center gap-space-sm">
           <button
+            onClick={() => navigate('/login')}
             className="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors"
-            title="قفل الشاشة (Ctrl+L)"
+            title="قفل الشاشة وتبديل المستخدم (Ctrl+L)"
             type="button"
           >
             <span className="material-symbols-outlined text-lg">lock</span>
           </button>
 
           <button
+            onClick={onOpenNotifications}
             className="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors"
-            title="التنبيهات المحلية"
+            title="التنبيهات المحلية (Ctrl+J)"
             type="button"
           >
-            <span className="material-symbols-outlined text-lg">notifications</span>
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error" />
+            <span className="material-symbols-outlined text-lg">
+              {hasCriticalAlerts ? 'notification_important' : 'notifications'}
+            </span>
+            {unreadNotificationsCount > 0 ? (
+              <span
+                className={`absolute -top-0.5 -right-0.5 min-w-[17px] h-[17px] px-1 rounded-full text-[10px] font-bold flex items-center justify-center text-white leading-none shadow-xs ${
+                  hasCriticalAlerts ? 'bg-error animate-pulse' : 'bg-primary'
+                }`}
+              >
+                {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
+              </span>
+            ) : null}
+          </button>
+
+          {/* Quick Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-all active:scale-90"
+            title={isDark ? 'التبديل إلى النمط النهاري المشرق (Ctrl+Shift+D)' : 'التبديل إلى النمط الليلي المظلم (Ctrl+Shift+D)'}
+            type="button"
+          >
+            <span className="material-symbols-outlined text-lg">
+              {isDark ? 'light_mode' : 'dark_mode'}
+            </span>
           </button>
 
           {/* User Profile */}

@@ -1,4 +1,4 @@
-import { getDb } from '../db/client'
+import { getDb, getSqlite } from '../db/client'
 import { roles, permissions, rolePermissions, users } from '../db/schema/system'
 import { eq } from 'drizzle-orm'
 import { randomUUID } from 'crypto'
@@ -13,6 +13,8 @@ const ROLE_DEFS: Record<string, string[]> = {
 }
 
 import { classrooms } from '../db/schema/classrooms'
+import { staff } from '../db/schema/staff'
+import { children, guardians, childGuardians, authorizedPickups } from '../db/schema/children'
 import { session } from './session'
 
 const DEFAULT_CLASSROOMS = [
@@ -35,19 +37,202 @@ export function ensureSeed() {
     }
   } catch {}
 
-  const existing = db.select().from(users).limit(1).all()
-  if (existing.length > 0) {
-    const adminUser = existing[0]
-    session.set({
-      id: adminUser.id,
-      username: adminUser.username,
-      displayName: adminUser.displayName,
-      role: 'admin',
-      permissions: Object.values(PERMISSIONS)
-    })
-    return
-  }
+  // Seed default staff members if empty
+  try {
+    const existingStaff = db.select().from(staff).limit(1).all()
+    if (existingStaff.length === 0) {
+      const sampleStaff = [
+        {
+          id: randomUUID(),
+          firstName: 'نورة',
+          lastName: 'العتيبي',
+          role: 'معلمة رياض أطفال',
+          phone: '0555123456',
+          email: 'noura@rawdati.local',
+          salaryCents: 550000,
+          hiredAt: '2024-09-01',
+          isActive: true
+        },
+        {
+          id: randomUUID(),
+          firstName: 'سارة',
+          lastName: 'السبيعي',
+          role: 'ممرضة صحية',
+          phone: '0555987654',
+          email: 'sara.nurse@rawdati.local',
+          salaryCents: 600000,
+          hiredAt: '2024-08-15',
+          isActive: true
+        },
+        {
+          id: randomUUID(),
+          firstName: 'فاطمة',
+          lastName: 'الغامدي',
+          role: 'مساعدة معلمة',
+          phone: '0555333444',
+          email: 'fatimah@rawdati.local',
+          salaryCents: 400000,
+          hiredAt: '2024-10-01',
+          isActive: true
+        }
+      ]
+      for (const s of sampleStaff) {
+        db.insert(staff).values(s).run()
+      }
+    }
+  } catch {}
 
+  // Seed default children and guardians if empty
+  try {
+    const existingGuardians = db.select().from(guardians).limit(1).all()
+    if (existingGuardians.length === 0) {
+      const clsList = db.select().from(classrooms).all()
+      const cls1 = clsList[0]?.id ?? null
+      const cls2 = clsList[1]?.id ?? null
+      const cls3 = clsList[2]?.id ?? null
+
+      const child1Id = randomUUID()
+      const child2Id = randomUUID()
+      const child3Id = randomUUID()
+      const child4Id = randomUUID()
+
+      db.insert(children).values([
+        {
+          id: child1Id,
+          firstName: 'سعود',
+          lastName: 'العتيبي',
+          birthDate: '2020-04-12',
+          gender: 'male',
+          classroomId: cls1,
+          status: 'active'
+        },
+        {
+          id: child2Id,
+          firstName: 'سارة',
+          lastName: 'محمد',
+          birthDate: '2021-01-18',
+          gender: 'female',
+          classroomId: cls2,
+          status: 'active'
+        },
+        {
+          id: child3Id,
+          firstName: 'ليان',
+          lastName: 'المطيري',
+          birthDate: '2020-09-05',
+          gender: 'female',
+          classroomId: cls1,
+          status: 'active'
+        },
+        {
+          id: child4Id,
+          firstName: 'ياسمين',
+          lastName: 'الدوسري',
+          birthDate: '2021-03-22',
+          gender: 'female',
+          classroomId: cls3,
+          status: 'active'
+        }
+      ]).run()
+
+      const g1Id = randomUUID()
+      const g2Id = randomUUID()
+      const g3Id = randomUUID()
+      const g4Id = randomUUID()
+
+      db.insert(guardians).values([
+        {
+          id: g1Id,
+          firstName: 'فيصل بن عبد الله',
+          lastName: 'العتيبي',
+          phone: '0554918820',
+          email: 'faisal.otaibi@example.com',
+          address: 'حي النرجس، شارع 14',
+          nationalId: '1048829103'
+        },
+        {
+          id: g2Id,
+          firstName: 'نورة بنت سعد',
+          lastName: 'القحطاني',
+          phone: '0503129941',
+          email: 'noura.qahtani@example.com',
+          address: 'حي الملقا',
+          nationalId: '1087443190'
+        },
+        {
+          id: g3Id,
+          firstName: 'فهد بن مشعل',
+          lastName: 'المطيري',
+          phone: '0542201883',
+          email: 'fahad.mutairi@example.com',
+          address: 'حي الصحافة',
+          nationalId: '1029481944'
+        },
+        {
+          id: g4Id,
+          firstName: 'خالد بن راشد',
+          lastName: 'الدوسري',
+          phone: '0509924110',
+          email: null,
+          address: 'حي الياسمين',
+          nationalId: '1039912001'
+        }
+      ]).run()
+
+      db.insert(childGuardians).values([
+        { childId: child1Id, guardianId: g1Id, relation: 'أب (ولي شرعي)', isPrimary: true, canPickup: true },
+        { childId: child2Id, guardianId: g2Id, relation: 'أم', isPrimary: true, canPickup: true },
+        { childId: child3Id, guardianId: g3Id, relation: 'أب', isPrimary: true, canPickup: true },
+        { childId: child4Id, guardianId: g4Id, relation: 'قريب سابق', isPrimary: false, canPickup: false }
+      ]).run()
+
+      db.insert(authorizedPickups).values([
+        {
+          id: randomUUID(),
+          childId: child1Id,
+          fullName: 'مشعل بن عبد الله العتيبي',
+          phone: '0559013328',
+          nationalId: '1066542109',
+          note: 'العم - تفويض موسمي'
+        },
+        {
+          id: randomUUID(),
+          childId: child1Id,
+          fullName: 'محمد كومار خان',
+          phone: '0568812049',
+          nationalId: '2391094821',
+          note: 'سائق خاص - مشروط بالرمز QR'
+        }
+      ]).run()
+    }
+  } catch {}
+
+function ensureUserColumns() {
+  const sqlite = getSqlite()
+  try {
+    const cols = sqlite.pragma('table_info(users)') as { name: string }[]
+    const colNames = new Set(cols.map((c) => c.name))
+    const required = [
+      { name: 'pin_hash', type: 'TEXT' },
+      { name: 'role_title', type: 'TEXT' },
+      { name: 'phone', type: 'TEXT' },
+      { name: 'national_id', type: 'TEXT' },
+      { name: 'email', type: 'TEXT' },
+      { name: 'avatar_icon', type: 'TEXT' },
+      { name: 'recovery_key_hash', type: 'TEXT' },
+      { name: 'security_questions', type: 'TEXT' }
+    ]
+    for (const req of required) {
+      if (!colNames.has(req.name)) {
+        sqlite.exec(`ALTER TABLE users ADD COLUMN ${req.name} ${req.type};`)
+      }
+    }
+  } catch {}
+}
+
+  ensureUserColumns()
+
+  // Ensure permissions and roles exist
   for (const code of Object.values(PERMISSIONS)) {
     const rows = db.select().from(permissions).where(eq(permissions.code, code)).all()
     if (rows.length === 0) db.insert(permissions).values({ id: randomUUID(), code, description: code }).run()
@@ -66,20 +251,97 @@ export function ensureSeed() {
       }
     }
   }
-  const adminRole = db.select().from(roles).where(eq(roles.name, 'admin')).all()[0]
-  const adminId = randomUUID()
-  db.insert(users).values({
-    id: adminId, username: 'admin',
-    passwordHash: hashPassword('admin123'),
-    displayName: 'المدير', roleId: adminRole.id, isActive: true
-  }).run()
 
-  session.set({
-    id: adminId,
-    username: 'admin',
-    displayName: 'المدير',
-    role: 'admin',
-    permissions: Object.values(PERMISSIONS)
-  })
+  const roleList = db.select().from(roles).all()
+  const roleIdMap: Record<string, string> = {}
+  for (const r of roleList) roleIdMap[r.name] = r.id
+
+  const DEFAULT_USERS = [
+    {
+      username: 'nadia',
+      displayName: 'د. نادية المنصوري',
+      role: 'admin',
+      roleTitle: 'المشرفة العامة للنظام — إدارة الروضة',
+      avatarIcon: 'shield_person',
+      pin: '849201',
+      password: 'admin'
+    },
+    {
+      username: 'fatima',
+      displayName: 'أ. فاطمة الزهراني',
+      role: 'educator',
+      roleTitle: 'معلمة معتمدة — فصل الأبطال KG2',
+      avatarIcon: 'school',
+      pin: '2222',
+      password: 'user123'
+    },
+    {
+      username: 'sarah',
+      displayName: 'أ. سارة القحطاني',
+      role: 'staff',
+      roleTitle: 'مسؤولة الاستقبال وبوابة الاستلام الآمن',
+      avatarIcon: 'badge',
+      pin: '3333',
+      password: 'user123'
+    },
+    {
+      username: 'reem',
+      displayName: 'أ. ريم الدوسري',
+      role: 'accountant',
+      roleTitle: 'قسم المحاسبة والمصروفات والرسوم الدراسية',
+      avatarIcon: 'payments',
+      pin: '4444',
+      password: 'user123'
+    },
+    {
+      username: 'admin',
+      displayName: 'المدير العام',
+      role: 'admin',
+      roleTitle: 'مدير النظام الأعلى',
+      avatarIcon: 'shield_person',
+      pin: '1234',
+      password: 'admin123'
+    }
+  ]
+
+  for (const du of DEFAULT_USERS) {
+    const existing = db.select().from(users).where(eq(users.username, du.username)).all()
+    const rId = roleIdMap[du.role] || roleIdMap['admin']
+    if (existing.length === 0) {
+      db.insert(users).values({
+        id: randomUUID(),
+        username: du.username,
+        displayName: du.displayName,
+        roleId: rId,
+        roleTitle: du.roleTitle,
+        avatarIcon: du.avatarIcon,
+        passwordHash: hashPassword(du.password),
+        pinHash: hashPassword(du.pin),
+        isActive: true,
+        lastLoginAt: new Date()
+      }).run()
+    } else {
+      // Ensure pinHash and roleTitle are populated if empty
+      const u = existing[0]
+      if (!u.pinHash || !u.roleTitle || !u.avatarIcon) {
+        db.update(users).set({
+          pinHash: u.pinHash || hashPassword(du.pin),
+          roleTitle: u.roleTitle || du.roleTitle,
+          avatarIcon: u.avatarIcon || du.avatarIcon
+        }).where(eq(users.id, u.id)).run()
+      }
+    }
+  }
+
+  const primaryAdmin = db.select().from(users).where(eq(users.username, 'nadia')).all()[0] || db.select().from(users).limit(1).all()[0]
+  if (primaryAdmin) {
+    session.set({
+      id: primaryAdmin.id,
+      username: primaryAdmin.username,
+      displayName: primaryAdmin.displayName,
+      role: 'admin',
+      permissions: Object.values(PERMISSIONS)
+    })
+  }
 }
 

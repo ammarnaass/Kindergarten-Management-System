@@ -1,16 +1,20 @@
-import { PrinterSettings } from '../types'
+import { PrinterSettings, SystemPrinter } from '../types'
 
 interface ThermalPrinterCardProps {
   settings: PrinterSettings
+  printersList?: SystemPrinter[]
   onChange: (fields: Partial<PrinterSettings>) => void
   onTestPrint: (printerName: string) => void
 }
 
 export function ThermalPrinterCard({
   settings,
+  printersList = [],
   onChange,
   onTestPrint
 }: ThermalPrinterCardProps) {
+  const hasPrinters = printersList.length > 0
+
   return (
     <div className="bg-surface-container-lowest rounded-2xl p-space-lg shadow-xs flex flex-col justify-between border border-surface-variant/40">
       <div className="flex flex-col gap-space-md">
@@ -30,22 +34,29 @@ export function ThermalPrinterCard({
           </div>
           <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm font-bold">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            جاهزة (COM3)
+            {settings.thermalPrinter ? 'طابعة مخصصة' : 'غير محددة'}
           </span>
         </div>
 
         <div className="flex flex-col gap-space-sm">
           <label className="font-label-md text-label-md font-semibold text-on-surface">
-            اختر الطابعة المتصلة عبر USB / Serial
+            اختر طابعة الإيصالات من أجهزة النظام (USB / Network / COM)
           </label>
           <select
             value={settings.thermalPrinter}
             onChange={(e) => onChange({ thermalPrinter: e.target.value })}
             className="w-full px-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none border border-transparent focus:border-primary/20"
           >
-            <option>Epson TM-T20III Thermal Receipt Printer (Port: COM3)</option>
-            <option>Xprinter XP-Q800 (USB001)</option>
-            <option>Bixolon SRP-330II (Port: COM1)</option>
+            <option value="">-- اختر طابعة إيصالات --</option>
+            {hasPrinters ? (
+              printersList.map((p) => (
+                <option key={p.name} value={p.name}>
+                  {p.displayName || p.name} {p.isDefault ? '• (الافتراضية)' : ''}
+                </option>
+              ))
+            ) : (
+              <option value="Generic POS 80mm">طابعة حرارية افتراضية (Generic 80mm ESC/POS)</option>
+            )}
           </select>
         </div>
 
@@ -108,13 +119,15 @@ export function ThermalPrinterCard({
       <div className="mt-space-lg pt-space-md border-t border-surface-variant flex items-center justify-between">
         <button
           type="button"
-          onClick={() => onTestPrint('حرارية 80mm')}
+          onClick={() => onTestPrint(settings.thermalPrinter || 'طابعة الإيصالات')}
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">print_connect</span>
           <span>طباعة إيصال اختباري (Test Slip)</span>
         </button>
-        <span className="font-caption text-caption text-outline">زمن الاستجابة: 24ms</span>
+        <span className="font-caption text-caption text-outline">
+          {settings.thermalPrinter ? `المحددة: ${settings.thermalPrinter}` : 'جاهز للتهيئة'}
+        </span>
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import { AppearanceSettings } from '../types'
+import { useTheme } from '@/app/providers/ThemeProvider'
 
 interface ThemeSelectionCardProps {
   settings: AppearanceSettings
@@ -9,6 +10,18 @@ export function ThemeSelectionCard({
   settings,
   onChange
 }: ThemeSelectionCardProps) {
+  const { setTheme, setAccentColor } = useTheme()
+
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+    onChange({ activeTheme: newTheme })
+    setTheme(newTheme)
+  }
+
+  const handleAccentChange = (newAccent: 'blue' | 'green' | 'purple' | 'navy') => {
+    onChange({ accentColor: newAccent })
+    setAccentColor(newAccent)
+  }
+
   return (
     <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-xs flex flex-col gap-space-md border border-surface-variant/40">
       <div className="flex items-center justify-between pb-space-xs">
@@ -25,7 +38,7 @@ export function ThemeSelectionCard({
       <div className="grid grid-cols-1 gap-space-sm">
         {/* Light Mode */}
         <div
-          onClick={() => onChange({ activeTheme: 'light' })}
+          onClick={() => handleThemeChange('light')}
           className={`p-space-md rounded-xl cursor-pointer flex items-center justify-between transition-all border ${
             settings.activeTheme === 'light'
               ? 'bg-surface-container-high/60 border-primary shadow-xs'
@@ -73,7 +86,7 @@ export function ThemeSelectionCard({
 
         {/* Dark / Slate Mode */}
         <div
-          onClick={() => onChange({ activeTheme: 'dark' })}
+          onClick={() => handleThemeChange('dark')}
           className={`p-space-md rounded-xl cursor-pointer flex items-center justify-between transition-all border ${
             settings.activeTheme === 'dark'
               ? 'bg-surface-container-high/60 border-primary shadow-xs'
@@ -114,7 +127,7 @@ export function ThemeSelectionCard({
 
         {/* OS Sync Mode */}
         <div
-          onClick={() => onChange({ activeTheme: 'system' })}
+          onClick={() => handleThemeChange('system')}
           className={`p-space-md rounded-xl cursor-pointer flex items-center justify-between transition-all border ${
             settings.activeTheme === 'system'
               ? 'bg-surface-container-high/60 border-primary shadow-xs'
@@ -152,7 +165,7 @@ export function ThemeSelectionCard({
         <div className="flex items-center justify-between bg-surface-container-low p-space-sm rounded-xl border border-surface-variant/30">
           <button
             type="button"
-            onClick={() => onChange({ accentColor: 'blue' })}
+            onClick={() => handleAccentChange('blue')}
             className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg transition-colors ${
               settings.accentColor === 'blue'
                 ? 'bg-surface-container-lowest shadow-xs'
@@ -167,7 +180,7 @@ export function ThemeSelectionCard({
 
           <button
             type="button"
-            onClick={() => onChange({ accentColor: 'green' })}
+            onClick={() => handleAccentChange('green')}
             className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors ${
               settings.accentColor === 'green'
                 ? 'bg-surface-container-lowest shadow-xs'
@@ -180,7 +193,7 @@ export function ThemeSelectionCard({
 
           <button
             type="button"
-            onClick={() => onChange({ accentColor: 'purple' })}
+            onClick={() => handleAccentChange('purple')}
             className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors ${
               settings.accentColor === 'purple'
                 ? 'bg-surface-container-lowest shadow-xs'
@@ -193,7 +206,7 @@ export function ThemeSelectionCard({
 
           <button
             type="button"
-            onClick={() => onChange({ accentColor: 'navy' })}
+            onClick={() => handleAccentChange('navy')}
             className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors ${
               settings.accentColor === 'navy'
                 ? 'bg-surface-container-lowest shadow-xs'

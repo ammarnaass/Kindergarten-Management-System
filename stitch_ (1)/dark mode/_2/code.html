@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "surface-container-high": "#dee9fc", "primary-container": "#2c72d9", "on-primary-fixed": "#001a40", "secondary-fixed-dim": "#ffb951", "on-background": "#121c2a", "outline-variant": "#c2c6d5", "tertiary": "#a33446", "surface-dim": "#d0dbed", "surface": "#f8f9ff", "surface-tint": "#005bbf", "secondary-container": "#fdb64b", "on-tertiary": "#ffffff", "on-tertiary-container": "#fffbff", "primary-fixed-dim": "#acc7ff", "on-error": "#ffffff", "on-secondary-container": "#704800", "surface-bright": "#f8f9ff", "surface-variant": "#d9e3f6", "on-primary-fixed-variant": "#004492", "inverse-on-surface": "#eaf1ff", "primary": "#0059ba", "tertiary-fixed-dim": "#ffb2b8", "surface-container-highest": "#d9e3f6", "tertiary-container": "#c34c5d", "outline": "#727784", "on-surface": "#121c2a", "inverse-primary": "#acc7ff", "on-secondary-fixed-variant": "#633f00", "on-surface-variant": "#424753", "on-secondary-fixed": "#291800", "on-secondary": "#ffffff", "surface-container-low": "#eff4ff", "tertiary-fixed": "#ffdadb", "surface-container": "#e6eeff", "on-tertiary-fixed-variant": "#861e32", "primary-fixed": "#d7e2ff", "surface-container-lowest": "#ffffff", "secondary-fixed": "#ffddb3", "on-primary-container": "#fefcff", "error": "#ba1a1a", "on-error-container": "#93000a", "background": "#f8f9ff", "secondary": "#825500", "error-container": "#ffdad6", "inverse-surface": "#27313f", "on-tertiary-fixed": "#40000f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "0.75rem", "space-xs": "0.25rem", "gutter": "1.25rem", "space-sm": "0.5rem", "gutter-compact": "0.75rem", "space-xl": "2rem", "margin": "1.5rem", "space-lg": "1.25rem", "margin-window": "0.75rem" }, "fontFamily": { "body-lg": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "body-sm": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "label-sm": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "label-md": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "caption": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "headline-sm": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "display-lg": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "label-lg": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "display-md": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "body-md": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "headline-lg": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "headline-md": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "headline": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""], "body": ["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "caption": ["10px", { "lineHeight": "14px", "fontWeight": "500" }], "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["32px", { "lineHeight": "44px", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "500" }], "display-md": ["26px", { "lineHeight": "36px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "32px", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "28px", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface select-none antialiased min-h-screen flex flex-col justify-between"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] select-none"><div class="h-10 w-full px-margin-window flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="w-6 h-6 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-on-surface" title="تصغير النافذة" type="button"><span class="material-symbols-outlined text-[16px]">remove</span></button><button class="w-6 h-6 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-on-surface" title="تكبير النافذة" type="button"><span class="material-symbols-outlined text-[14px]">crop_square</span></button><button class="w-6 h-6 rounded-full flex items-center justify-center hover:bg-error-container hover:text-on-error-container transition-colors text-on-surface-variant" title="إغلاق النافذة" type="button"><span class="material-symbols-outlined text-[16px]">close</span></button></div><div class="h-3 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[18px]">toys</span><span class="font-headline-sm text-headline-sm text-on-surface">روضتي - نظام الإدارة المكتبي Offline</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span>SQLite محلي نشط</span></div><div class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption uppercase">v2.0 Standalone</div></div></div></header><main class="w-full pt-10 flex-1 flex flex-col items-center justify-center p-margin"><div class="flex flex-col w-full">
+<!-- Progress & Stepper Bar -->
+<div class="w-full bg-surface-container-lowest shadow-sm rounded-xl p-space-lg mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md mb-1">
+<span class="material-symbols-outlined text-[16px]">install_desktop</span>
+<span>معالج التثبيت والتشغيل الأولي لنظام روضتي المكتبي</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">إعداد مدير النظام الرئيسي (Super Administrator)</h1>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">البيئة: محلية بالكامل (Air-Gapped / Offline-First)</span>
+</div>
+</div>
+<!-- 4-Step Indicator -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+<!-- Step 1 (Completed) -->
+<div class="flex items-center gap-space-sm p-space-sm bg-surface-container-low rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md text-label-md shrink-0">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="min-w-0">
+<p class="font-caption text-caption text-primary">الخطوة 1 - مكتملة</p>
+<p class="font-label-md text-label-md text-on-surface truncate">تهيئة قاعدة بيانات SQLite</p>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex items-center gap-space-sm p-space-sm bg-primary text-on-primary rounded-lg shadow-sm">
+<div class="w-8 h-8 rounded-full bg-on-primary text-primary flex items-center justify-center font-headline-sm text-headline-sm shrink-0 font-bold">
+          2
+        </div>
+<div class="min-w-0">
+<p class="font-caption text-caption text-primary-fixed">الخطوة الحالية</p>
+<p class="font-label-md text-label-md text-on-primary truncate">تعيين المسؤول الأعلى</p>
+</div>
+</div>
+<!-- Step 3 (Pending) -->
+<div class="flex items-center gap-space-sm p-space-sm bg-surface-container rounded-lg opacity-80">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md shrink-0">
+          3
+        </div>
+<div class="min-w-0">
+<p class="font-caption text-caption text-on-surface-variant">الخطوة التالية</p>
+<p class="font-label-md text-label-md text-on-surface-variant truncate">بيانات الروضة والفروع</p>
+</div>
+</div>
+<!-- Step 4 (Pending) -->
+<div class="flex items-center gap-space-sm p-space-sm bg-surface-container rounded-lg opacity-80">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md shrink-0">
+          4
+        </div>
+<div class="min-w-0">
+<p class="font-caption text-caption text-on-surface-variant">الخطوة الختامية</p>
+<p class="font-label-md text-label-md text-on-surface-variant truncate">التفضيلات والطباعة المحلية</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Alert Banner -->
+<div class="w-full bg-surface-container-high rounded-xl p-space-md mb-space-lg flex items-start gap-space-md shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">shield_person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">إنشاء حساب الجذر (Super Administrator)</span>
+<span class="bg-primary text-on-primary font-caption text-caption px-space-sm py-0.5 rounded-full">صلاحية مطلقة</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        يمتلك هذا الحساب الصلاحية الكاملة لإدارة قواعد البيانات المحلية، منح التراخيص للمشرفين والمعلمين، توليد النسخ الاحتياطية المشفرة، وإعادة ضبط الأمان في حالات الطوارئ دون الحاجة لأي خادم سحابي.
+      </p>
+</div>
+</div>
+<!-- Form Grid Workspace -->
+<form class="w-full flex flex-col gap-space-lg" id="superAdminForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+<!-- Row 1: Split Columns (Section A: Personal Data & Section B: Credentials) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Section A: Personal Information -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-low px-space-sm py-space-xs rounded-lg">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">القسم الأول: البيانات الإدارية والشخصية</h2>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">حقول مطلوبة للتوثيق الداخلي</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Full Name -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="fullName">الاسم الرباعي الكامل للمسؤول <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">person</span>
+<input class="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="fullName" placeholder="أدخل الاسم الرباعي المعتمد" required="" type="text" value="أ. عبد الرحمن بن سليمان المنصور"/>
+</div>
+</div>
+<!-- Role Selector -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="roleTitle">المسمى الوظيفي والصفة الرسمية <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">work</span>
+<select class="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm appearance-none" id="roleTitle">
+<option selected="" value="owner">مالك المنشأة / المدير العام التنفيذي</option>
+<option value="director">مدير/ـة الروضة المعتمد</option>
+<option value="it_admin">مدير تقنية المعلومات والأنظمة المحلية</option>
+<option value="finance_officer">المشرف العام للشؤون الإدارية والمالية</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- National ID / Iqama with Luhn format status -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md text-on-surface" for="nationalId">رقم الهوية الوطنية / الإقامة <span class="text-error">*</span></label>
+<span class="flex items-center gap-0.5 text-primary font-caption text-caption bg-surface-container px-2 py-0.5 rounded-full" id="luhnBadge">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>مطابق لخوارزمية التحقق (Luhn Valid)</span>
+</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">fingerprint</span>
+<input class="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface tracking-wider focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="nationalId" maxlength="10" placeholder="10 أرقام تبدأ بـ 1 أو 2" required="" type="text" value="1089345210"/>
+</div>
+</div>
+<!-- Emergency Mobile (Saudi Format) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="phone">رقم الجوال المعتمد لحالات الطوارئ الميدانية <span class="text-error">*</span></label>
+<div class="flex gap-space-xs" dir="ltr">
+<div class="bg-surface-container px-space-sm py-2 rounded-lg flex items-center gap-1 text-on-surface font-label-md text-label-md shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span>
+<span>+966</span>
+</div>
+<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="phone" placeholder="5X XXX XXXX" required="" type="text" value="50 123 4567"/>
+</div>
+</div>
+<!-- Local Archival Email -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="adminEmail">البريد الإلكتروني للأرشفة والتقارير الإدارية المحلية <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">mail</span>
+<input class="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="adminEmail" placeholder="name@domain.local" required="" type="email" value="admin@al-amal.rawdaty.local"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-1">يُستخدم لتسجيل التوقيعات الرقمية المحلية وتصدير السجلات بصيغة PDF مشفرة.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section B: Authentication & Security Credentials -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-low px-space-sm py-space-xs rounded-lg">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">القسم الثاني: بيانات المصادقة والأمان المحلي</h2>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">تشفير Argon2id محلي</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Master Username -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md text-on-surface" for="username">اسم مستخدم الحساب الرئيسي (Username) <span class="text-error">*</span></label>
+<span class="font-caption text-caption text-secondary">غير قابل للتعديل لاحقاً</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">alternate_email</span>
+<input class="w-full pr-10 pl-3 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface font-mono focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="username" required="" type="text" value="superadmin.almansoor"/>
+</div>
+</div>
+<!-- Master Password with toggler and strength meter -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md text-on-surface" for="password">كلمة المرور الرئيسية للنظام (Master Password) <span class="text-error">*</span></label>
+<span class="font-caption text-caption text-primary font-semibold">قوية جداً (100%)</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">key</span>
+<input class="w-full pr-10 pl-10 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="password" required="" type="password" value="Rawdati@2026#SecureAdmin"/>
+<button class="absolute left-3 top-2.5 text-on-surface-variant hover:text-on-surface" onclick="togglePasswordVisibility('password', 'toggleEyeIcon')" title="إظهار / إخفاء كلمة المرور" type="button">
+<span class="material-symbols-outlined text-[20px]" id="toggleEyeIcon">visibility</span>
+</button>
+</div>
+<!-- Password Strength Bars -->
+<div class="grid grid-cols-4 gap-1.5 mt-2">
+<div class="h-1.5 rounded-full bg-primary"></div>
+<div class="h-1.5 rounded-full bg-primary"></div>
+<div class="h-1.5 rounded-full bg-primary"></div>
+<div class="h-1.5 rounded-full bg-primary"></div>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-caption text-caption">
+<span>تتضمن: أحرف كبيرة وصغيرة، أرقام، رموز خاصة (Argon2id Salt)</span>
+<span>تشفير 256-bit</span>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="confirmPassword">تأكيد كلمة المرور الرئيسية <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant text-[20px]">check_circle</span>
+<input class="w-full pr-10 pl-10 py-2 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="confirmPassword" required="" type="password" value="Rawdati@2026#SecureAdmin"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-primary text-[20px]" title="كلمات المرور متطابقة">done_all</span>
+</div>
+</div>
+<!-- Quick Access PIN (6-digit) -->
+<div class="p-space-sm bg-surface-container-low rounded-xl">
+<div class="flex items-center justify-between mb-1">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-space-xs" for="pinCode">
+<span class="material-symbols-outlined text-primary text-[18px]">dialpad</span>
+<span>رمز المرور السريع للوحة المفاتيح (Quick 6-Digit PIN)</span>
+</label>
+<span class="font-caption text-caption bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">عمليات سريعة</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mb-space-sm">يسمح بالتفويض السريع للعمليات الحساسة (إلغاء فاتورة، إذن خروج طالب، أو قفل الشاشة) دون كتابة كلمة المرور الطويلة في كل مرة.</p>
+<div class="flex items-center gap-space-sm">
+<input class="w-48 px-3 py-2 bg-surface-container-lowest text-center tracking-[0.4em] font-headline-sm text-headline-sm rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-primary/20" id="pinCode" maxlength="6" placeholder="••••••" type="password" value="849201"/>
+<span class="font-caption text-caption text-on-surface-variant">6 أرقام رقمية فقط (Numpad Ready)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section C: Offline Emergency Recovery Protocol (Master Recovery Key) -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm mb-space-md bg-surface-container-low px-space-sm py-space-xs rounded-lg">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">key_vertical</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">القسم الثالث: بروتوكول استعادة الحساب بدون اتصال بالإنترنت (Offline Recovery)</h2>
+</div>
+<span class="font-caption text-caption bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-medium">مهم جداً للحفاظ على استمرارية المنشأة</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Visual & Explanation -->
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<p class="font-body-md text-body-md text-on-surface">
+            نظراً لأن نظام <strong>روضتي</strong> يعمل محلياً بالكامل ومفصولاً عن خوادم الإنترنت السحابية لحماية خصوصية بيانات الأطفال وعائلاتهم، فإنه لا يمكن طلب "إعادة تعيين كلمة المرور عبر البريد أو رسالة SMS".
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            هذا المفتاح المشفر أدناه هو الوسيلة الوحيدة لفتح قاعدة البيانات المشفرة إذا فُقدت كلمة المرور. احتفظ به في مكان آمن أو خزنة الروضة.
+          </p>
+<!-- Master Key Box -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-space-md mt-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">lock</span>
+<div>
+<span class="block font-caption text-caption text-on-surface-variant">مفتاح الطوارئ الرئيسي المشفر (AES-256 Recovery Key)</span>
+<span class="font-headline-sm text-headline-sm font-mono font-bold text-primary tracking-widest select-all" id="masterKeyText">RAW-9821-X4K9-Q7LM-2026</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="px-space-md py-2 bg-surface-container-lowest hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors shadow-sm" onclick="copyMasterKey()" type="button">
+<span class="material-symbols-outlined text-[16px]" id="copyIcon">content_copy</span>
+<span id="copyLabel">نسخ المفتاح</span>
+</button>
+<button class="px-space-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-1 hover:bg-primary-container transition-colors shadow-sm" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>طباعة شهادة الأمان (Ctrl+P)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Security Questions (Offline Fallback) -->
+<div class="lg:col-span-5 bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center gap-1 text-on-surface font-label-md text-label-md mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">quiz</span>
+<span>الأسئلة الأمنية الإضافية (استرجاع فوري محلي)</span>
+</div>
+<div>
+<label class="block font-caption text-caption text-on-surface-variant mb-1">السؤال الأمني الأول:</label>
+<select class="w-full px-space-sm py-1.5 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface mb-2 focus:outline-none">
+<option selected="">ما هو الاسم الأول لأول معلمة أسست الروضة؟</option>
+<option>ما هو رقم الترخيص الوزاري الممنوح للمنشأة؟</option>
+<option>ما هي سنة تدشين أول مبنى مدرسي للروضة؟</option>
+</select>
+<input class="w-full px-space-sm py-1.5 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" placeholder="إجابة السؤال الأول" type="text" value="أ. نورة الشمري"/>
+</div>
+<div>
+<label class="block font-caption text-caption text-on-surface-variant mb-1">السؤال الأمني الثاني:</label>
+<select class="w-full px-space-sm py-1.5 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface mb-2 focus:outline-none">
+<option>ما هو اسم أول دفعة أطفال تم تخرجهم؟</option>
+<option selected="">ما هو الرمز المالي لحساب بنك المنشأة المعتمد؟</option>
+</select>
+<input class="w-full px-space-sm py-1.5 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none" placeholder="إجابة السؤال الثاني" type="text" value="SA-ALAMAL-2018"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section D: Privileges Overview & Charter Commitment -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-space-xs text-primary pb-space-sm mb-space-md bg-surface-container-low px-space-sm py-space-xs rounded-lg">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">القسم الرابع: حزم الصلاحيات التلقائية وميثاق الأمان الرقمي</h2>
+</div>
+<!-- Root Permissions Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-sm mb-space-lg">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">manage_accounts</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">إدارة الموظفين</p>
+<p class="font-caption text-caption text-on-surface-variant">صلاحية شاملة 100%</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">account_balance_wallet</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">المالية والسندات</p>
+<p class="font-caption text-caption text-on-surface-variant">الاعتماد والإلغاء النهائي</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">database</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">النسخ وقاعدة البيانات</p>
+<p class="font-caption text-caption text-on-surface-variant">ترحيل، استيراد، تصدير</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">security</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">إعدادات التشفير</p>
+<p class="font-caption text-caption text-on-surface-variant">مفاتيح التخزين وAES-256</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">door_front</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">بوابات التحضير</p>
+<p class="font-caption text-caption text-on-surface-variant">ربط باركود وبصمة الحضور</p>
+</div>
+</div>
+</div>
+<!-- Legal & Privacy Pledge Checkbox -->
+<div class="p-space-md bg-surface-container rounded-xl flex items-start gap-space-sm">
+<input checked="" class="mt-1 w-5 h-5 text-primary rounded bg-surface-container-lowest focus:ring-0 cursor-pointer" id="charterAgreement" required="" type="checkbox"/>
+<label class="cursor-pointer font-body-sm text-body-sm text-on-surface leading-relaxed" for="charterAgreement">
+<strong class="font-label-md text-label-md text-on-surface block mb-0.5">إقرار المسؤولية والخصوصية المدرسية:</strong>
+          أتعهد بصفتي المسؤول الأعلى الأول المعتمد لنظام روضتي بالحفاظ على سرية سجلات الأطفال والبيانات الأسرية والتقارير الصحية والمالية وفق الأنظمة واللوائح المعتمدة، وتحمل مسؤولية حفظ مفتاح الاستعادة المشفر وكلمة المرور الرئيسية بعيداً عن متناول غير المصرح لهم.
+        </label>
+</div>
+</div>
+<!-- Sticky Desktop Action Bar -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col md:flex-row items-center justify-between gap-space-md sticky bottom-1 z-30">
+<!-- Quick Backup Restore option -->
+<button class="w-full md:w-auto px-space-lg py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="triggerRestoreDialog()" type="button">
+<span class="material-symbols-outlined text-[18px]">settings_backup_restore</span>
+<span>استيراد بيانات مدير من نسخة احتياطية سابقة (Ctrl+O)</span>
+</button>
+<!-- Primary Action Buttons -->
+<div class="flex items-center gap-space-md w-full md:w-auto justify-end">
+<button class="px-space-md py-2.5 text-on-surface-variant hover:text-error rounded-lg font-label-md text-label-md transition-colors" type="reset">
+          إعادة تعيين (Esc)
+        </button>
+<button class="w-full md:w-auto px-space-xl py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm transition-all shadow-md active:scale-95" type="submit">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>حفظ بيانات المدير والانتقال لإعدادات الروضة (F10 / Enter)</span>
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+</div>
+</div>
+</form>
+<!-- Technical Telemetry & Offline Status Panel -->
+<div class="w-full mt-space-md p-space-sm bg-surface-container-low rounded-lg flex flex-wrap items-center justify-between text-on-surface-variant font-caption text-caption gap-space-sm">
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">storage</span>
+<span>قاعدة البيانات: <code class="font-mono text-on-surface">C:\Rawdati\Data\app_v2.db (WAL Mode)</code></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">enhanced_encryption</span>
+<span>تشفير المستخدم: <code class="font-mono text-on-surface">Argon2id (m=65536, t=3, p=4)</code></span>
+</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span>اختصارات سطح المكتب: <kbd class="px-1 py-0.5 bg-surface-container rounded font-mono">F1</kbd> دليل التهيئة | <kbd class="px-1 py-0.5 bg-surface-container rounded font-mono">Ctrl+P</kbd> طباعة المفتاح | <kbd class="px-1 py-0.5 bg-surface-container rounded font-mono">Enter</kbd> حفظ ومتابعة</span>
+</div>
+</div>
+<!-- Interactive JavaScript logic for offline interactions -->
+<script>
+    function togglePasswordVisibility(fieldId, iconId) {
+      const field = document.getElementById(fieldId);
+      const icon = document.getElementById(iconId);
+      if (field.type === 'password') {
+        field.type = 'text';
+        icon.innerText = 'visibility_off';
+      } else {
+        field.type = 'password';
+        icon.innerText = 'visibility';
+      }
+    }
+
+    function copyMasterKey() {
+      const keyText = document.getElementById('masterKeyText').innerText;
+      navigator.clipboard.writeText(keyText).then(() => {
+        const copyIcon = document.getElementById('copyIcon');
+        const copyLabel = document.getElementById('copyLabel');
+        copyIcon.innerText = 'check';
+        copyLabel.innerText = 'تم النسخ بنجاح';
+        setTimeout(() => {
+          copyIcon.innerText = 'content_copy';
+          copyLabel.innerText = 'نسخ المفتاح';
+        }, 2500);
+      });
+    }
+
+    function triggerRestoreDialog() {
+      const confirmed = confirm('هل ترغب في استيراد ملف استعادة قاعدة بيانات سابقة بصيغة (.rawdaty-bak / .sqlite)؟ سيتم تجاوز الإعداد اليدوي واستعادة الحساب الرئيسي فوراً.');
+      if (confirmed) {
+        alert('يرجى اختيار ملف النسخة الاحتياطية من القرص المحلي في النافذة التالية...');
+      }
+    }
+
+    function handleFormSubmit() {
+      const btn = event.submitter;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>جاري تشفير الحساب محلياً في SQLite...</span>`;
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">task_alt</span><span>تم إنشاء وتوثيق حساب المسؤول بنجاح!</span>`;
+        setTimeout(() => {
+          alert('تم حفظ وتأمين حساب المدير الأعلى بنجاح. جاري نقلك الآن إلى الخطوة 3: بيانات الروضة والفروع.');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 800);
+      }, 1200);
+    }
+
+    // Keyboard Shortcuts Listener for Desktop Experience
+    document.addEventListener('keydown', function(e) {
+      // Ctrl + P
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
+        e.preventDefault();
+        window.print();
+      }
+      // Ctrl + O
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'o' || e.key === 'O')) {
+        e.preventDefault();
+        triggerRestoreDialog();
+      }
+      // F10 for fast submit
+      if (e.key === 'F10') {
+        e.preventDefault();
+        document.getElementById('superAdminForm').requestSubmit();
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_-1px_6px_rgba(0,0,0,0.02)] select-none"><div class="h-8 w-full px-margin-window flex items-center justify-between font-caption text-caption text-on-surface-variant"><div class="flex items-center gap-space-md"><span>مستودع البيانات: C:\Rawdati\Data\app_v2.db</span><span>حالة التشفير: AES-256 محلي</span></div><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[14px] text-primary">verified_user</span><span>إعداد مدير النظام - الوضع الآمن المنفصل</span></div></div></footer></body></html>

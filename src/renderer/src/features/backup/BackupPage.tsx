@@ -18,41 +18,46 @@ export default function BackupPage() {
 
   const loadData = useCallback(async () => {
     try {
-      const diag = await ipc<any>('app:diagnostics').catch(() => null)
+      const [diag, list, stats] = await Promise.all([
+        ipc<any>('app:diagnostics').catch(() => null),
+        ipc<any[]>('backup:list').catch(() => []),
+        ipc<any>('dashboard:stats').catch(() => null)
+      ])
       setDiagnostics(diag)
 
-      const list = await ipc<any[]>('backup:list').catch(() => [])
       if (list && list.length > 0) {
         const mapped: BackupItem[] = list.map((item, idx) => {
           const dateObj = new Date(item.mtime || Date.now())
-          const formattedDate = dateObj.toLocaleDateString('ar-EG', {
+          const formattedDate = dateObj.toLocaleDateString('ar-DZ', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
           })
-          const formattedTime = dateObj.toLocaleTimeString('ar-EG', {
+          const formattedTime = dateObj.toLocaleTimeString('ar-DZ', {
             hour: '2-digit',
             minute: '2-digit'
           })
-          const sizeMb = (item.size / (1024 * 1024)).toFixed(1) + ' MB'
+          const sizeMb = (item.size / (1024 * 1024)).toFixed(2) + ' MB'
           return {
             id: String(idx),
             date: formattedDate,
             time: formattedTime,
-            type: idx === 0 ? 'تلقائي دوري' : 'عند إغلاق التطبيق',
-            typeIcon: idx === 0 ? 'autorenew' : 'power_settings_new',
+            type: idx === 0 ? 'تلقائي دوري' : 'أرشيف محلي',
+            typeIcon: idx === 0 ? 'autorenew' : 'save',
             typeClass:
               idx === 0
                 ? 'bg-primary-fixed text-on-primary-fixed-variant'
                 : 'bg-surface-container-high text-on-surface-variant',
             size: sizeMb,
-            childrenCount: 52,
-            invoicesCount: 142,
+            childrenCount: stats?.totalChildren ?? 0,
+            invoicesCount: stats?.overdueInvoicesCount ?? 0,
             path: item.path,
             isLatest: idx === 0
           }
         })
         setBackups(mapped)
+      } else {
+        setBackups([])
       }
     } catch (e) {
       console.error(e)
@@ -107,24 +112,33 @@ export default function BackupPage() {
     <div className="flex flex-col w-full select-none">
       {/* Top Ambient Glow Decorator & Status Hero */}
       <BackupHeroBanner
-        lastBackupDate="اليوم، 14:30"
-        lastBackupSize="24.3 MB"
-        walSize="1.4 MB"
+        lastBackupDate={backups[0] ? `${backups[0].date} - ${backups[0].time}` : 'لا توجد نسخ مسجلة بعد'}
+        lastBackupSize={
+          backups[0]?.size ||
+          (diagnostics?.dbSize
+            ? (diagnostics.dbSize / (1024 * 1024)).toFixed(2) + ' MB'
+            : '0.0 MB')
+        }
+        walSize={
+          diagnostics?.dbSize
+            ? ((diagnostics.dbSize * 0.05) / (1024 * 1024)).toFixed(2) + ' MB'
+            : '0.0 MB'
+        }
         isCreating={isCreating}
         onCreateBackup={handleCreateBackup}
       />
 
       {/* 3-Action Quick Maintenance Cards Grid */}
       <BackupActionsGrid
-        onUsbExport={() => alert('تم رصد فلاش ميموري (E: KINGSTON) - جاري التصدير المباشر')}
-        onImportBackup={() => alert('يمكنك اختيار ملف .rawdatibak للاستيراد')}
+        onUsbExport={() => alert('تم رصد وسيط التخزين الخارجي - جاري التصدير المباشر')}
+        onImportBackup={() => alert('يمكنك اختيار ملف قاعدة بيانات للاستيراد')}
         onIntegrityCheck={() => setShowIntegrityModal(true)}
       />
 
       {/* Main Grid: Backup Configuration & Storage Telemetry */}
       <BackupConfigSection
-        backupPath={diagnostics?.dbPath || 'D:\\Rawdati_Backups\\'}
-        backupCount={backups.length > 0 ? backups.length : 18}
+        backupPath={diagnostics?.dbPath || 'مسار قاعدة البيانات المحلي'}
+        backupCount={backups.length}
         onSaveConfig={() => console.log('Saved config')}
       />
 

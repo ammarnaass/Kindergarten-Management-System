@@ -6,12 +6,17 @@ import { AppSidebar } from './components/AppSidebar'
 import { AppFooter } from './components/AppFooter'
 import { CommandPalette } from './components/CommandPalette'
 import { NewChildModal } from './components/NewChildModal'
+import { NotificationsDrawer, useNotifications } from '@/features/notifications'
 import { ipc } from '@/lib/ipc'
+import { useTheme } from './providers/ThemeProvider'
 
 export function Layout() {
   const navigate = useNavigate()
+  const { toggleTheme } = useTheme()
+  const notificationsHook = useNotifications()
   const [searchOpen, setSearchOpen] = useState(false)
   const [newChildOpen, setNewChildOpen] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [backupInfo, setBackupInfo] = useState<{ ok: boolean; text: string }>({
     ok: true,
     text: 'اليوم 14:30 (24.3 MB)',
@@ -43,7 +48,16 @@ export function Layout() {
   // Desktop Global Shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault()
+        toggleTheme()
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'j') {
+        e.preventDefault()
+        setNotificationsOpen((prev) => !prev)
+      } else if (e.altKey && e.key.toLowerCase() === 'n') {
+        e.preventDefault()
+        setNotificationsOpen((prev) => !prev)
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         setSearchOpen((prev) => !prev)
       } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'n') {
@@ -58,12 +72,15 @@ export function Layout() {
       } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
         e.preventDefault()
         window.print()
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'l') {
+        e.preventDefault()
+        navigate('/login')
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [navigate])
+  }, [navigate, toggleTheme])
 
   return (
     <div dir="rtl" className="min-h-screen w-screen bg-surface font-body-md text-on-surface antialiased select-none overflow-x-hidden">
@@ -75,6 +92,9 @@ export function Layout() {
         onOpenSearch={() => setSearchOpen(true)}
         onOpenNewChild={() => setNewChildOpen(true)}
         onOpenQuickPayment={() => navigate('/finance')}
+        onOpenNotifications={() => setNotificationsOpen(true)}
+        unreadNotificationsCount={notificationsHook.unreadCount}
+        hasCriticalAlerts={notificationsHook.criticalCount > 0}
         currentUser={user}
       />
 
@@ -106,12 +126,20 @@ export function Layout() {
         onClose={() => setSearchOpen(false)}
         onOpenNewChild={() => setNewChildOpen(true)}
         onOpenQuickPayment={() => navigate('/finance')}
+        onOpenNotifications={() => setNotificationsOpen(true)}
       />
 
       {/* 7. New Child Modal (Ctrl+N) */}
       <NewChildModal
         open={newChildOpen}
         onClose={() => setNewChildOpen(false)}
+      />
+
+      {/* 8. Left-Side Slide-Over Notifications Drawer (Ctrl+J) */}
+      <NotificationsDrawer
+        open={notificationsOpen}
+        onClose={() => setNotificationsOpen(false)}
+        notificationsHook={notificationsHook}
       />
     </div>
   )

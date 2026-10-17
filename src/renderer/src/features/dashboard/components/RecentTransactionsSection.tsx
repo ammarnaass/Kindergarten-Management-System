@@ -1,71 +1,43 @@
 import { useNavigate } from 'react-router-dom'
+import type { RecentPayment } from '@/lib/api/types'
 
-interface TransactionItem {
-  id: string
-  code: string
-  studentName: string
-  method: string
-  timeAgo: string
-  amount: string
-  note: string
-  icon: string
-  iconBg: string
-  iconColor: string
+interface RecentTransactionsSectionProps {
+  payments: RecentPayment[]
 }
 
-const TRANSACTIONS: TransactionItem[] = [
-  {
-    id: '1',
-    code: '#REC-8421',
-    studentName: 'ريان بلحاج',
-    method: 'نقداً',
-    timeAgo: 'منذ 18 دقيقة',
-    amount: '20,000 دج',
-    note: 'قسط أكتوبر',
-    icon: 'payments',
-    iconBg: 'bg-emerald-100',
-    iconColor: 'text-emerald-800',
-  },
-  {
-    id: '2',
-    code: '#REC-8420',
-    studentName: 'سيرين مزيان',
-    method: 'تحويل',
-    timeAgo: 'منذ ساعة',
-    amount: '35,000 دج',
-    note: 'رسوم دراسة + إطعام',
-    icon: 'account_balance',
-    iconBg: 'bg-primary-fixed',
-    iconColor: 'text-on-primary-fixed-variant',
-  },
-  {
-    id: '3',
-    code: '#REC-8419',
-    studentName: 'أمير شريف',
-    method: 'شيك بنكي',
-    timeAgo: 'اليوم 09:15',
-    amount: '18,500 دج',
-    note: 'قسط أكتوبر',
-    icon: 'history_edu',
-    iconBg: 'bg-amber-100',
-    iconColor: 'text-amber-800',
-  },
-  {
-    id: '4',
-    code: '#REC-8418',
-    studentName: 'كنزة بن ناصر',
-    method: 'نقداً',
-    timeAgo: 'أمس 15:40',
-    amount: '5,000 دج',
-    note: 'نشاط السباحة',
-    icon: 'payments',
-    iconBg: 'bg-emerald-100',
-    iconColor: 'text-emerald-800',
-  },
-]
+function formatCents(cents: number): string {
+  if (cents === 0) return '0 دج'
+  return `${(cents / 100).toLocaleString('ar-DZ')} دج`
+}
 
-export function RecentTransactionsSection() {
+function formatTime(val: Date | number | string): string {
+  try {
+    const d = new Date(val)
+    return d.toLocaleTimeString('ar-DZ', { hour: '2-digit', minute: '2-digit' })
+  } catch {
+    return 'اليوم'
+  }
+}
+
+function getMethodLabel(method: string): string {
+  switch (method) {
+    case 'cash':
+      return 'نقداً'
+    case 'transfer':
+      return 'تحويل بنكي'
+    case 'check':
+      return 'شيك'
+    case 'card':
+      return 'بطاقة'
+    default:
+      return method || 'نقداً'
+  }
+}
+
+export function RecentTransactionsSection({ payments }: RecentTransactionsSectionProps) {
   const navigate = useNavigate()
+
+  const totalCents = payments.reduce((acc, p) => acc + (p.amountCents ?? 0), 0)
 
   return (
     <div className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
@@ -80,7 +52,7 @@ export function RecentTransactionsSection() {
               آخر المدفوعات المسجلة
             </h2>
             <p className="font-caption text-caption text-on-surface-variant">
-              حفظ فوري في دفتر اليومية المحلي
+              حفظ فوري في دفتر المعاملات المحلي
             </p>
           </div>
         </div>
@@ -94,66 +66,80 @@ export function RecentTransactionsSection() {
         </button>
       </div>
 
-      {/* Transactions Compact Audit Table */}
-      <div className="space-y-space-sm">
-        {TRANSACTIONS.map((tx) => (
-          <div
-            key={tx.id}
-            className="rounded-lg bg-surface-container-low p-space-sm hover:bg-surface-container transition-colors flex items-center justify-between gap-2"
+      {payments.length === 0 ? (
+        <div className="p-8 text-center bg-surface-container-low rounded-lg">
+          <span className="material-symbols-outlined text-4xl text-outline mb-2">payments</span>
+          <p className="text-on-surface font-semibold text-sm">لا توجد مدفوعات مسجلة اليوم</p>
+          <p className="text-on-surface-variant text-xs mt-1">
+            يمكنك تسجيل دفعات أولياء الأمور بسهولة من شاشة المالية
+          </p>
+          <button
+            onClick={() => navigate('/finance')}
+            className="mt-3 px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:opacity-90 transition-opacity"
+            type="button"
           >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div
-                className={`w-8 h-8 rounded-full ${tx.iconBg} ${tx.iconColor} flex items-center justify-center shrink-0 font-bold`}
-              >
-                <span className="material-symbols-outlined text-sm">{tx.icon}</span>
+            تسجيل دفعة جديدة
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-space-sm">
+          {payments.map((tx) => (
+            <div
+              key={tx.id}
+              className="rounded-lg bg-surface-container-low p-space-sm hover:bg-surface-container transition-colors flex items-center justify-between gap-2"
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 font-bold">
+                  <span className="material-symbols-outlined text-sm">payments</span>
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-label-md text-label-md font-bold text-on-surface truncate">
+                      {tx.childFirstName} {tx.childLastName}
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption">
+                      {getMethodLabel(tx.method)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 font-caption text-caption text-on-surface-variant mt-0.5 font-mono">
+                    <span>{tx.receiptNumber}</span>
+                    <span>•</span>
+                    <span>{formatTime(tx.paidAt)}</span>
+                  </div>
+                </div>
               </div>
-              <div className="min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-label-md text-label-md font-bold text-on-surface truncate">
-                    {tx.studentName}
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption">
-                    {tx.method}
-                  </span>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <div className="text-left font-mono">
+                  <div className="font-label-md text-label-md font-bold text-on-surface">
+                    {formatCents(tx.amountCents)}
+                  </div>
+                  <div className="font-caption text-caption text-emerald-700 font-sans">
+                    تم الاستلام
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 font-caption text-caption text-on-surface-variant mt-0.5 font-mono">
-                  <span>{tx.code}</span>
-                  <span>•</span>
-                  <span>{tx.timeAgo}</span>
-                </div>
+                <button
+                  onClick={() => navigate('/finance')}
+                  className="w-7 h-7 rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface transition-colors flex items-center justify-center shadow-2xs"
+                  title="عرض التفاصيل في المالية"
+                  type="button"
+                >
+                  <span className="material-symbols-outlined text-sm">receipt_long</span>
+                </button>
               </div>
             </div>
+          ))}
+        </div>
+      )}
 
-            <div className="flex items-center gap-2 shrink-0">
-              <div className="text-left font-mono">
-                <div className="font-label-md text-label-md font-bold text-on-surface">
-                  {tx.amount}
-                </div>
-                <div className="font-caption text-caption text-emerald-700 font-sans">
-                  {tx.note}
-                </div>
-              </div>
-              <button
-                onClick={() => navigate('/finance')}
-                className="w-7 h-7 rounded bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface transition-colors flex items-center justify-center shadow-2xs"
-                title="طباعة الإيصال فوراً"
-                type="button"
-              >
-                <span className="material-symbols-outlined text-sm">print</span>
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Local Register Summary Footnote */}
+      {/* Summary Footer */}
       <div className="mt-4 pt-3 flex items-center justify-between bg-surface-container-low p-2.5 rounded-lg">
         <div className="flex items-center gap-2 font-caption text-caption text-on-surface-variant">
           <span className="material-symbols-outlined text-base text-primary">point_of_sale</span>
-          <span>مجموع صندوق اليوم:</span>
+          <span>مجموع المدفوعات المعروضة:</span>
         </div>
         <span className="font-label-md text-label-md font-bold font-mono text-primary">
-          78,500 دج
+          {formatCents(totalCents)}
         </span>
       </div>
     </div>

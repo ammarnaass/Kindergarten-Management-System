@@ -4,10 +4,10 @@ interface ActiveChildProfileHeaderProps {
   classroom: string
   childIdNumber: string
   entryTime: string
-  photoUrl: string
-  lockerNumber: string
-  allergiesNote: string
-  teacherNote: string
+  photoUrl?: string | null
+  lockerNumber?: string
+  allergiesNote?: string | null
+  teacherNote?: string | null
 }
 
 export function ActiveChildProfileHeader({
@@ -27,11 +27,17 @@ export function ActiveChildProfileHeader({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pb-space-md border-b border-outline-variant/30">
         <div className="flex items-center gap-space-md">
           <div className="relative">
-            <img
-              src={photoUrl}
-              alt={childName}
-              className="w-20 h-20 rounded-2xl object-cover ring-4 ring-primary-fixed shadow-sm bg-surface-container"
-            />
+            {photoUrl ? (
+              <img
+                src={photoUrl}
+                alt={childName}
+                className="w-20 h-20 rounded-2xl object-cover ring-4 ring-primary-fixed shadow-sm bg-surface-container"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center font-bold text-3xl ring-4 ring-primary-fixed shadow-sm">
+                {childName?.[0] || 'ط'}
+              </div>
+            )}
             <span className="absolute -bottom-1 -left-1 px-1.5 py-0.5 rounded-md bg-primary text-on-primary font-caption text-caption font-bold shadow-xs">
               حاضر
             </span>

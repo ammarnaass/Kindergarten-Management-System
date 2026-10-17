@@ -49,13 +49,23 @@ export function AuthorizedGuardianCards({
 
               <div>
                 <div className="flex items-center gap-3 mb-2.5">
-                  <img
-                    src={g.photoUrl}
-                    alt={g.name}
-                    className={`w-14 h-14 rounded-xl object-cover shadow-xs ${
-                      isSelected ? 'ring-2 ring-emerald-500' : 'ring-1 ring-outline-variant'
-                    }`}
-                  />
+                  {g.photoUrl ? (
+                    <img
+                      src={g.photoUrl}
+                      alt={g.name}
+                      className={`w-14 h-14 rounded-xl object-cover shadow-xs ${
+                        isSelected ? 'ring-2 ring-emerald-500' : 'ring-1 ring-outline-variant'
+                      }`}
+                    />
+                  ) : (
+                    <div
+                      className={`w-14 h-14 rounded-xl bg-surface-container-highest text-primary flex items-center justify-center font-bold text-xl shadow-xs ${
+                        isSelected ? 'ring-2 ring-emerald-500' : 'ring-1 ring-outline-variant'
+                      }`}
+                    >
+                      {g.name?.[0] || 'م'}
+                    </div>
+                  )}
                   <div>
                     <h4 className="font-label-lg text-label-lg font-bold text-on-surface">
                       {g.name}

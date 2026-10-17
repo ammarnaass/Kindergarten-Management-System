@@ -5,100 +5,239 @@
 @layer base {
   :root {
     --radius: 0.75rem;
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* ── روضتي Light Palette (Material 3 + Modern Arabic Tactile) ── */
+    /* Canvas & Surfaces: Clean Slate Neutral instead of muddy icy blue */
+    --surface: 248 250 252;                 /* #f8fafc (Slate-50) */
+    --surface-container-lowest: 255 255 255; /* #ffffff Pure Card White */
+    --surface-container-low: 241 245 249;   /* #f1f5f9 (Slate-100) */
+    --surface-container: 226 232 240;       /* #e2e8f0 (Slate-200) */
+    --surface-container-high: 241 245 249;  /* #f1f5f9 Smooth header */
+    --surface-container-highest: 203 213 225;/* #cbd5e1 (Slate-300) */
+    --surface-variant: 241 245 249;         /* #f1f5f9 */
+    --surface-dim: 226 232 240;             /* #e2e8f0 */
+    --surface-bright: 255 255 255;          /* #ffffff */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Typography & Contrast: Deep Slate-900 for razor-sharp Arabic text */
+    --on-surface: 15 23 42;                 /* #0f172a (Slate-900) */
+    --on-surface-variant: 71 85 105;        /* #475569 (Slate-600) */
+    --outline: 148 163 184;                 /* #94a3b8 (Slate-400) */
+    --outline-variant: 226 232 240;         /* #e2e8f0 (Slate-200) */
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    /* Inverses: Dark contrast cards and persistent footer */
+    --inverse-surface: 15 23 42;            /* #0f172a */
+    --inverse-on-surface: 248 250 252;      /* #f8fafc */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Primary Blue (Default: أزرق روضتي - Vibrant, trustworthy Royal Blue) */
+    --primary: 37 99 235;                   /* #2563eb (Blue-600) */
+    --on-primary: 255 255 255;              /* #ffffff */
+    --primary-container: 239 246 255;       /* #eff6ff (Blue-50 Soft Tint) */
+    --on-primary-container: 29 78 216;      /* #1d4ed8 (Blue-700) */
+    --primary-fixed: 219 234 254;           /* #dbeafe (Blue-100) */
+    --primary-fixed-dim: 191 219 254;       /* #bfdbfe (Blue-200) */
+    --on-primary-fixed: 30 58 138;          /* #1e3a8a (Blue-900) */
+    --on-primary-fixed-variant: 29 78 216;  /* #1d4ed8 */
+    --inverse-primary: 147 197 253;         /* #93c5fd */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Secondary Warm Amber (Milestones, Badges, Joyful kindergarten warmth) */
+    --secondary: 217 119 6;                 /* #d97706 (Amber-600) */
+    --on-secondary: 255 255 255;
+    --secondary-container: 254 243 199;     /* #fef3c7 (Amber-100) */
+    --on-secondary-container: 146 64 14;    /* #92400e (Amber-800) */
+    --secondary-fixed: 254 243 199;
+    --secondary-fixed-dim: 253 230 138;
+    --on-secondary-fixed: 120 53 15;
+    --on-secondary-fixed-variant: 146 64 14;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Tertiary Playful Coral/Rose (Child Care, Health alerts, Delights) */
+    --tertiary: 225 29 72;                  /* #e11d48 (Rose-600) */
+    --on-tertiary: 255 255 255;
+    --tertiary-container: 255 228 230;      /* #ffe4e6 (Rose-100) */
+    --on-tertiary-container: 159 18 57;     /* #9f1239 (Rose-800) */
+    --tertiary-fixed: 255 228 230;
+    --tertiary-fixed-dim: 254 205 211;
+    --on-tertiary-fixed: 136 19 55;
+    --on-tertiary-fixed-variant: 159 18 57;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Semantic Suite */
+    --success: 16 185 129;                  /* #10b981 (Emerald-500) */
+    --success-foreground: 255 255 255;
+    --warning: 245 158 11;                  /* #f59e0b (Amber-500) */
+    --warning-foreground: 255 255 255;
+    --error: 239 68 68;                     /* #ef4444 (Red-500) */
+    --error-container: 254 226 226;         /* #fee2e2 (Red-100) */
+    --on-error-container: 153 27 27;        /* #991b1b (Red-800) */
+    --on-error: 255 255 255;
+    --danger: 239 68 68;
+    --danger-foreground: 255 255 255;
 
-    --success: 142.1 70.6% 45.3%;
-    --success-foreground: 355.7 100% 97.3%;
+    /* Shadcn/Tailwind Variables Compatibility */
+    --background: 248 250 252;
+    --foreground: 15 23 42;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+    --muted: 241 245 249;
+    --muted-foreground: 71 85 105;
+    --accent: 239 246 255;
+    --accent-foreground: 29 78 216;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 37 99 235;
 
-    --warning: 47.9 95.8% 53.1%;
-    --warning-foreground: 26 83.3% 14.1%;
-
-    --danger: 0 84.2% 60.2%;
-    --danger-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 37 99 235;
+    --chart-2: 16 185 129;
+    --chart-3: 245 158 11;
+    --chart-4: 124 58 237;
+    --chart-5: 225 29 72;
 
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-arabic: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
     --font-mono: 'ui-monospace', SFMono-Regular, monospace;
   }
 
+  /* ── Accent Colors Overrides ── */
+  [data-accent="green"] {
+    --primary: 5 150 105;                   /* #059669 Emerald-600 */
+    --on-primary: 255 255 255;
+    --primary-container: 236 253 245;       /* #ecfdf5 Emerald-50 */
+    --on-primary-container: 6 95 70;        /* #065f46 Emerald-800 */
+    --primary-fixed: 209 250 229;
+    --on-primary-fixed: 6 78 59;
+    --ring: 5 150 105;
+  }
+
+  [data-accent="purple"] {
+    --primary: 124 58 237;                  /* #7c3aed Violet-600 */
+    --on-primary: 255 255 255;
+    --primary-container: 245 243 255;       /* #f5f3ff Violet-50 */
+    --on-primary-container: 91 33 182;      /* #5b21b6 Violet-800 */
+    --primary-fixed: 237 233 254;
+    --on-primary-fixed: 76 29 149;
+    --ring: 124 58 237;
+  }
+
+  [data-accent="navy"] {
+    --primary: 30 41 59;                    /* #1e293b Slate-800 */
+    --on-primary: 255 255 255;
+    --primary-container: 241 245 249;       /* #f1f5f9 Slate-100 */
+    --on-primary-container: 15 23 42;       /* #0f172a Slate-900 */
+    --primary-fixed: 226 232 240;
+    --on-primary-fixed: 15 23 42;
+    --ring: 30 41 59;
+  }
+
+  /* ── روضتي Dark Palette (Exact specification from stitch_ (1)/dark mode/DESIGN.md) ── */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --surface: 11 19 38;                    /* #0b1326 Deep obsidian canvas */
+    --surface-container-lowest: 11 15 25;   /* #0b0f19 Deep recessed canvas / lowest */
+    --surface-container-low: 17 24 39;      /* #111827 Base workspace layout / inputs */
+    --surface-container: 30 41 59;          /* #1e293b Primary content cards & navigation */
+    --surface-container-high: 39 53 73;     /* #273549 Hover states & active chips */
+    --surface-container-highest: 51 65 85;  /* #334155 Dividers & popovers */
+    --surface-variant: 45 52 73;            /* #2d3449 */
+    --surface-dim: 11 19 38;                /* #0b1326 */
+    --surface-bright: 49 57 77;             /* #31394d */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --on-surface: 248 250 252;              /* #f8fafc Crisp luminous light */
+    --on-surface-variant: 148 163 184;       /* #94a3b8 Muted slate */
+    --outline: 51 65 85;                    /* #334155 */
+    --outline-variant: 30 41 59;            /* #1e293b */
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --inverse-surface: 218 226 253;         /* #dae2fd */
+    --inverse-on-surface: 40 48 68;         /* #283044 */
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Primary Cerulean / Soft Glow for Dark Surfaces */
+    --primary: 164 201 255;                 /* #a4c9ff */
+    --on-primary: 0 49 93;                  /* #00315d */
+    --primary-container: 96 165 250;        /* #60a5fa Luminous cerulean */
+    --on-primary-container: 0 58 107;       /* #003a6b Deep contrast navy */
+    --primary-fixed: 212 227 255;           /* #d4e3ff */
+    --primary-fixed-dim: 164 201 255;       /* #a4c9ff */
+    --on-primary-fixed: 0 28 57;            /* #001c39 */
+    --on-primary-fixed-variant: 0 72 131;   /* #004883 */
+    --inverse-primary: 0 96 172;            /* #0060ac */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary Warm Amber */
+    --secondary: 255 185 95;                /* #ffb95f Amber gold */
+    --on-secondary: 71 42 0;                /* #472a00 */
+    --secondary-container: 238 152 0;       /* #ee9800 */
+    --on-secondary-container: 91 56 0;      /* #5b3800 */
+    --secondary-fixed: 255 221 184;
+    --secondary-fixed-dim: 255 185 95;
+    --on-secondary-fixed: 42 23 0;
+    --on-secondary-fixed-variant: 101 62 0;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Tertiary Playful Coral / Health Alerts */
+    --tertiary: 255 178 183;                /* #ffb2b7 */
+    --on-tertiary: 103 0 27;                /* #67001b */
+    --tertiary-container: 255 120 134;      /* #ff7886 */
+    --on-tertiary-container: 120 0 33;      /* #780021 */
+    --tertiary-fixed: 255 218 219;
+    --tertiary-fixed-dim: 255 178 183;
+    --on-tertiary-fixed: 64 0 13;
+    --on-tertiary-fixed-variant: 146 0 42;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Semantic Status Suite */
+    --success: 16 185 129;                  /* #10b981 */
+    --success-foreground: 0 49 93;
+    --warning: 245 158 11;                  /* #f59e0b */
+    --warning-foreground: 71 42 0;
+    --error: 255 180 171;                   /* #ffb4ab */
+    --error-container: 147 0 10;            /* #93000a */
+    --on-error-container: 255 218 214;      /* #ffdad6 */
+    --on-error: 105 0 5;                    /* #690005 */
+    --danger: 255 180 171;
+    --danger-foreground: 105 0 5;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --background: 11 19 38;                 /* #0b1326 */
+    --foreground: 248 250 252;              /* #f8fafc */
+    --card: 11 15 25;                       /* #0b0f19 */
+    --card-foreground: 248 250 252;
+    --popover: 11 15 25;
+    --popover-foreground: 248 250 252;
+    --muted: 17 24 39;
+    --muted-foreground: 148 163 184;
+    --accent: 39 53 73;
+    --accent-foreground: 248 250 252;
+    --destructive: 255 180 171;
+    --destructive-foreground: 105 0 5;
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 164 201 255;
+  }
 
-    --success: 142.1 70.6% 45.3%;
-    --success-foreground: 355.7 100% 97.3%;
+  .dark[data-accent="green"] {
+    --primary: 52 211 153;
+    --primary-container: 5 150 105;
+    --on-primary-container: 209 250 229;
+    --ring: 52 211 153;
+  }
 
-    --warning: 47.9 95.8% 53.1%;
-    --warning-foreground: 26 83.3% 14.1%;
+  .dark[data-accent="purple"] {
+    --primary: 196 181 253;
+    --primary-container: 124 58 237;
+    --on-primary-container: 237 233 254;
+    --ring: 196 181 253;
+  }
 
-    --danger: 0 62.8% 30.6%;
-    --danger-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 217.2 91.2% 59.8%;
+  .dark[data-accent="navy"] {
+    --primary: 148 163 184;
+    --primary-container: 30 41 59;
+    --on-primary-container: 241 245 249;
+    --ring: 148 163 184;
   }
 
   * {
-    border-color: hsl(var(--border));
+    border-color: rgb(var(--border) / 1);
   }
 
   body {
-    background-color: #f8f9ff;
-    color: #121c2a;
+    background-color: rgb(var(--surface));
+    color: rgb(var(--on-surface));
     font-family: var(--font-arabic);
     font-feature-settings: "rlig" 1, "calt" 1, "tnum" 1;
   }
@@ -110,7 +249,7 @@
   .rtl-mr-auto { margin-inline-end: auto; }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--ring));
+    outline: 2px solid rgb(var(--ring));
     outline-offset: 2px;
   }
 
@@ -142,3 +281,63 @@
     font-weight: 700;
   }
 }
+
+html.transition-theme,
+html.transition-theme *,
+html.transition-theme *::before,
+html.transition-theme *::after {
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease !important;
+  transition-delay: 0s !important;
+}
+
+/* ── Print Media Optimizations ───────────────────────── */
+@media print {
+  @page {
+    size: auto;
+    margin: 8mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Force light colors on paper even if app is in dark mode */
+  .dark {
+    --surface: 255 255 255 !important;
+    --on-surface: 15 23 42 !important;
+    --surface-container-lowest: 255 255 255 !important;
+    --surface-container: 248 250 252 !important;
+  }
+
+  /* Hide app chrome, navigation, status bar, and any .print:hidden elements */
+  .print\:hidden,
+  aside,
+  header,
+  footer,
+  nav,
+  .app-titlebar,
+  .app-footer {
+    display: none !important;
+  }
+
+  /* Reset container constraints for print */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure page breaks don't tear cards or tables awkwardly */
+  table, tr, td, th {
+    page-break-inside: avoid;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+}
+

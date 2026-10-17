@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><title>روضتي - نظام إدارة رياض الأطفال</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.drag-region{-webkit-app-region:drag;}.no-drag{-webkit-app-region:no-drag;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#121c2a","surface-dim":"#d0dbed","surface-variant":"#d9e3f6","outline-variant":"#c2c6d5","background":"#f8f9ff","on-tertiary-container":"#fffbff","tertiary":"#a33446","on-error-container":"#93000a","on-tertiary-fixed":"#40000f","on-surface-variant":"#424753","on-secondary-fixed":"#291800","on-primary":"#ffffff","on-primary-container":"#fefcff","error-container":"#ffdad6","primary":"#0059ba","inverse-on-surface":"#eaf1ff","on-secondary-fixed-variant":"#633f00","on-secondary-container":"#704800","error":"#ba1a1a","primary-container":"#2c72d9","on-primary-fixed":"#001a40","tertiary-fixed":"#ffdadb","on-tertiary":"#ffffff","secondary-fixed-dim":"#ffb951","surface-container-highest":"#d9e3f6","on-tertiary-fixed-variant":"#861e32","tertiary-fixed-dim":"#ffb2b8","surface-tint":"#005bbf","on-secondary":"#ffffff","secondary":"#825500","surface-bright":"#f8f9ff","on-primary-fixed-variant":"#004492","surface-container-lowest":"#ffffff","secondary-container":"#fdb64b","surface-container-high":"#dee9fc","surface-container":"#e6eeff","secondary-fixed":"#ffddb3","inverse-surface":"#27313f","surface-container-low":"#eff4ff","outline":"#727784","primary-fixed":"#d7e2ff","on-surface":"#121c2a","surface":"#f8f9ff","primary-fixed-dim":"#acc7ff","inverse-primary":"#acc7ff","tertiary-container":"#c34c5d","on-error":"#ffffff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter-compact":"0.75rem","space-sm":"0.5rem","margin-window":"0.75rem","gutter":"1.25rem","space-xl":"2rem","space-lg":"1.25rem","space-xs":"0.25rem","margin":"1.5rem","space-md":"0.75rem"},fontFamily:{"body-lg":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"label-md":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"caption":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"headline-sm":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"headline-lg":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"body-sm":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"label-lg":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"display-lg":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"display-md":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"headline-md":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"label-sm":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""],"body-md":["\"IBM Plex Sans, Cairo, system-ui, sans-serif\""]},fontSize:{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"500"}],"caption":["10px",{"lineHeight":"14px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-lg":["22px",{"lineHeight":"32px","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"500"}],"display-lg":["32px",{"lineHeight":"44px","fontWeight":"700"}],"display-md":["26px",{"lineHeight":"36px","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"28px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface select-none"><header class="fixed top-0 inset-x-0 h-10 z-50 bg-surface-container-low/95 backdrop-blur-md shadow-[0_1px_4px_rgba(0,0,0,0.03)] drag-region"><div class="h-10 w-full px-margin-window flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><div class="w-6 h-6 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[15px]">child_care</span></div><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">روضتي</span></div><span class="h-3 w-px bg-outline-variant/60"></span><div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[15px]">domain</span><span>فرع الياسمين النموذجي</span></div><span class="h-3 w-px bg-outline-variant/60"></span><span class="font-caption text-caption text-on-surface-variant bg-surface-container-highest/80 px-space-xs py-0.5 rounded">1446-1445 هـ</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container-highest/60 px-space-sm py-0.5 rounded-full text-on-surface-variant"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span><span class="font-label-sm text-label-sm font-mono">SQLite 3.44 WAL</span><span class="font-caption text-caption text-on-surface-variant/80">(محلي)</span></div><div class="flex items-center no-drag"><button aria-label="Minimize" class="h-7 w-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">remove</span></button><button aria-label="Maximize" class="h-7 w-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">crop_square</span></button><button aria-label="Close" class="h-7 w-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-error hover:text-on-error transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">close</span></button></div></div></div></header><main class="w-full pt-10 min-h-screen bg-background flex flex-col justify-between"><div class="flex flex-col w-full">
+<!-- Desktop App Window Under-Chrome Subheader -->
+<div class="w-full bg-surface-container-low px-margin-window py-space-sm flex flex-wrap items-center justify-between gap-space-sm shadow-sm select-none">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">security</span>
+<span>محطة الدخول المكتبي المستقل</span>
+</div>
+<span class="h-3 w-px bg-outline-variant/60"></span>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-space-sm py-1 rounded-full shadow-sm text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold">SQLite 3.44 WAL</span>
+<span class="text-on-surface-variant font-caption text-caption">AES-256 مشفر ومثبت</span>
+</div>
+<div class="hidden sm:flex items-center gap-1 bg-surface-container-high px-space-sm py-1 rounded-full text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-primary">wifi_off</span>
+<span>100% دون إنترنت — معالجة محلية بالكامل</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-lowest p-0.5 rounded-lg shadow-sm">
+<button class="px-2.5 py-1 rounded-md text-on-primary bg-primary font-label-sm text-label-sm transition-colors" type="button">العربية</button>
+<button class="px-2.5 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">English</button>
+<button class="px-2.5 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">Français</button>
+</div>
+<button class="flex items-center gap-1 bg-surface-container-lowest hover:bg-surface-variant px-2.5 py-1 rounded-lg text-on-surface font-label-sm text-label-sm shadow-sm transition-all" onclick="showHelpModal()" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary">help</span>
+<span>دليل الاستخدام</span>
+<kbd class="bg-surface-container-high text-on-surface-variant font-mono text-[10px] px-1 py-0.5 rounded shadow-sm">F1</kbd>
+</button>
+</div>
+</div>
+<!-- Main Canvas Workspace -->
+<div class="w-full flex-1 px-margin-window py-space-lg flex items-center justify-center">
+<div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-stretch">
+<!-- Right Column: Institutional Identity & Quick User Switcher -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-space-lg">
+<!-- Institution Branding Banner -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-md relative overflow-hidden">
+<div class="absolute -top-12 -left-12 w-44 h-44 rounded-full bg-primary-fixed/30 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -right-10 w-36 h-36 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">nest_eco_leaf</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display-md text-display-md text-primary tracking-tight">مرحباً بكم في روضتي</span>
+<span class="font-label-md text-label-md text-secondary font-semibold">منظومة الإدارة الذكية للتعليم المبكر</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              فرع الياسمين النموذجي — العام الدراسي 1445-1446هـ (2024-2025م). محطة الدخول المشفرة المحلية تضمن حماية السجلات وإدارة الصفوف وحضور الأطفال حتى في حال انقطاع الشبكة.
+            </p>
+<div class="bg-surface-container-low p-space-md rounded-lg flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-bold">حماية البيانات المشددة</span>
+<span class="font-caption text-caption text-on-surface-variant truncate">سجلات الأطفال والمدفوعات مشفرة بمفتاح محلي AES-256 غير سحابي</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Switcher Panel -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">groups</span>
+<span class="font-headline-sm text-headline-sm">المستخدمون النشطون على هذا الجهاز</span>
+</div>
+<span class="font-caption text-caption bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full">تبديل فوري</span>
+</div>
+<div class="space-y-space-xs" id="user-selector-container">
+<!-- User 1: Dr. Nadia (Active Default) -->
+<div class="user-card cursor-pointer p-space-sm rounded-lg bg-surface-container-high shadow-sm flex items-center justify-between transition-all duration-150" id="user-card-nadia" onclick="selectUser('nadia', 'د. نادية المنصوري', 'المشرفة العامة للنظام — إدارة الروضة', 'مدير النظام', 'primary', 'shield_person')">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm shadow-sm relative">
+<span class="material-symbols-outlined text-[20px]">shield_person</span>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate">د. نادية المنصوري</span>
+<span class="bg-primary text-on-primary font-caption text-caption px-1.5 py-0.2 rounded font-semibold">مدير النظام</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant truncate">آخر نشاط: اليوم 14:18 (جلسة مكتملة)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px] user-check">check_circle</span>
+</div>
+<!-- User 2: Fatima -->
+<div class="user-card cursor-pointer p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-all flex items-center justify-between" id="user-card-fatima" onclick="selectUser('fatima', 'أ. فاطمة الزهراني', 'معلمة معتمدة — فصل الأبطال KG2', 'معلمة صف', 'secondary', 'school')">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">school</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate">أ. فاطمة الزهراني</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-caption text-caption px-1.5 py-0.2 rounded font-semibold">معلمة صف</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant truncate">فصل الأبطال (KG2 - أ)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px] user-check hidden">check_circle</span>
+</div>
+<!-- User 3: Sarah -->
+<div class="user-card cursor-pointer p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-all flex items-center justify-between" id="user-card-sarah" onclick="selectUser('sarah', 'أ. سارة القحطاني', 'مسؤولة الاستقبال وبوابة الاستلام الآمن', 'شؤون القبول', 'tertiary', 'badge')">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate">أ. سارة القحطاني</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-caption text-caption px-1.5 py-0.2 rounded font-semibold">استقبال وبوابة</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant truncate">محطة بوابة الاستلام الذكي رقم 1</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px] user-check hidden">check_circle</span>
+</div>
+<!-- User 4: Reem -->
+<div class="user-card cursor-pointer p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-all flex items-center justify-between" id="user-card-reem" onclick="selectUser('reem', 'أ. ريم الدوسري', 'قسم المحاسبة والمصروفات والرسوم الدراسية', 'محاسبة مالية', 'primary', 'payments')">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-dim text-on-surface flex items-center justify-center font-bold text-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate">أ. ريم الدوسري</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-caption text-caption px-1.5 py-0.2 rounded font-semibold">شؤون مالية</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant truncate">سجل الرسوم والأقساط المحلية</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px] user-check hidden">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Other user switch link -->
+<div class="pt-space-sm mt-space-sm flex items-center justify-between">
+<button class="flex items-center gap-1.5 text-primary hover:text-primary-container font-label-md text-label-md font-semibold transition-colors" onclick="promptOtherUser()" type="button">
+<span class="material-symbols-outlined text-[17px]">person_add</span>
+<span>تسجيل الدخول بحساب محلي آخر</span>
+</button>
+<span class="font-caption text-caption text-on-surface-variant">Esc للتبديل</span>
+</div>
+</div>
+</div>
+<!-- Left Column: Authenticate Card (PIN, Password, RFID) -->
+<div class="lg:col-span-7 flex flex-col justify-center">
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-lg relative flex flex-col justify-between">
+<div>
+<!-- Active Selected Profile Banner -->
+<div class="flex items-center justify-between bg-surface-container-low p-space-md rounded-xl mb-space-lg">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold shadow-md" id="active-avatar-wrap">
+<span class="material-symbols-outlined text-[28px]" id="active-user-icon">shield_person</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold truncate" id="active-user-name">د. نادية المنصوري</h2>
+<span class="bg-primary text-on-primary font-caption text-caption px-2 py-0.5 rounded-full font-bold" id="active-user-badge">مدير النظام</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant truncate" id="active-user-role">المشرفة العامة للنظام — إدارة الروضة</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary p-1.5 rounded-lg hover:bg-surface-container-high transition-colors" onclick="focusPin()" title="إعادة تعيين الحقول" type="button">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+<!-- Auth Method Tabs: PIN Code vs Password -->
+<div class="flex items-center justify-start gap-space-sm mb-space-lg bg-surface-container p-1 rounded-lg">
+<button class="flex-1 py-2 rounded-md font-label-lg text-label-lg font-bold bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all" id="tab-pin-btn" onclick="switchAuthTab('pin')" type="button">
+<span class="material-symbols-outlined text-[18px]">pin</span>
+<span>رمز PIN السريع (للفصول والحضور)</span>
+</button>
+<button class="flex-1 py-2 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1.5 transition-all" id="tab-pwd-btn" onclick="switchAuthTab('pwd')" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>كلمة المرور الرئيسية</span>
+</button>
+</div>
+<!-- Form: PIN Mode -->
+<div class="space-y-space-md" id="auth-mode-pin">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface font-semibold flex items-center gap-1" for="pin-input">
+<span>أدخل رمز PIN المكون من 4 إلى 6 أرقام</span>
+<span class="text-error">*</span>
+</label>
+<span class="font-caption text-caption text-on-surface-variant">التبديل بين المعلمات دون خروج كامل</span>
+</div>
+<!-- Pin Digits Visualizer -->
+<div class="flex items-center justify-center gap-space-sm py-space-sm" id="pin-dots">
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="0">-</span>
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="1">-</span>
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="2">-</span>
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="3">-</span>
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="4">-</span>
+<span class="w-12 h-14 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-display-md text-display-md shadow-inner transition-colors pin-digit" data-idx="5">-</span>
+</div>
+<!-- Hidden/Direct PIN keyboard capture input -->
+<div class="relative">
+<input autofocus="" class="w-full h-12 bg-surface-container px-space-md rounded-lg text-center font-display-md tracking-widest text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors" id="pin-input" inputmode="numeric" maxlength="6" oninput="handlePinInput(this)" placeholder="انقر هنا واكتب الأرقام" type="password"/>
+<button class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-1" onclick="togglePinVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="pin-eye-icon">visibility</span>
+</button>
+</div>
+<!-- Mini Desktop Numpad for Touch / Fast Mouse Click -->
+<div class="grid grid-cols-3 gap-2 max-w-xs mx-auto pt-space-xs">
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('1')" type="button">1</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('2')" type="button">2</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('3')" type="button">3</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('4')" type="button">4</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('5')" type="button">5</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('6')" type="button">6</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('7')" type="button">7</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('8')" type="button">8</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('9')" type="button">9</button>
+<button class="h-10 rounded-lg bg-surface-variant hover:bg-surface-dim active:scale-95 text-tertiary font-label-md text-label-md font-bold shadow-sm transition-all" onclick="clearPin()" type="button">مسح</button>
+<button class="h-10 rounded-lg bg-surface-container-high hover:bg-surface-container-highest active:scale-95 text-on-surface font-headline-md text-headline-md font-bold shadow-sm transition-all" onclick="pressNumpad('0')" type="button">0</button>
+<button class="h-10 rounded-lg bg-surface-variant hover:bg-surface-dim active:scale-95 text-on-surface font-label-md text-label-md font-bold shadow-sm transition-all" onclick="backspacePin()" type="button">
+<span class="material-symbols-outlined text-[18px]">backspace</span>
+</button>
+</div>
+</div>
+<!-- Form: Full Password Mode (Initially Hidden) -->
+<div class="space-y-space-md hidden" id="auth-mode-pwd">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface font-semibold flex items-center justify-between mb-space-xs" for="pwd-input">
+<span>كلمة المرور المحلية</span>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="javascript:void(0)" onclick="alertRecoveryHint()">نسيت كلمة المرور؟</a>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">vpn_key</span>
+<input class="w-full h-12 bg-surface-container pr-10 pl-10 rounded-lg text-on-surface font-body-lg text-body-lg focus:outline-none focus:bg-surface-container-high transition-colors" id="pwd-input" placeholder="أدخل كلمة مرور الحساب المحلي..." type="password"/>
+<button class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-1" onclick="togglePwdVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="pwd-eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<span class="font-caption text-caption">صلاحية مدير النظام تتطلب التحقق الثنائي لكلمات المرور عند التعديل الشامل.</span>
+</div>
+</div>
+<!-- Keep Session Active & Remember Me -->
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">إبقاء جلسة اليوم نشطة على هذا الحاسوب</span>
+</label>
+<span class="font-caption text-caption text-on-surface-variant">انتهاء القفل التلقائي: 30 دقيقة</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-space-sm mt-space-lg">
+<button class="w-full h-12 bg-primary hover:bg-primary-container active:scale-[0.99] text-on-primary font-headline-sm text-headline-sm rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-space-sm transition-all duration-150" onclick="handleLoginSubmit()" type="button">
+<span class="material-symbols-outlined text-[20px]">login</span>
+<span>تسجيل الدخول للنظام</span>
+<kbd class="bg-on-primary/20 text-on-primary font-mono text-[11px] px-2 py-0.5 rounded shadow-inner">Enter ↵</kbd>
+</button>
+<!-- Card / RFID Alternate Access Button -->
+<button class="w-full h-11 bg-surface-container hover:bg-surface-container-high active:scale-[0.99] text-on-surface font-label-lg text-label-lg rounded-lg shadow-sm flex items-center justify-center gap-space-sm transition-all" onclick="triggerRfidScan()" type="button">
+<span class="material-symbols-outlined text-secondary text-[20px]">contactless</span>
+<span>تمرير بطاقة المعلمة الذكية (RFID) أو باركود الحضور</span>
+</button>
+</div>
+<!-- Quick Feedback Alert Banner (Toast Placeholder) -->
+<div class="hidden mt-space-md p-space-sm rounded-lg bg-error-container text-on-error-container font-label-md text-label-md flex items-center gap-space-xs" id="login-feedback">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span id="login-feedback-text">رمز المرور غير صحيح، يرجى المحاولة مرة أخرى.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Status Bar Footer (Above App Shell Global Footer) -->
+<div class="w-full bg-surface-container-high px-margin-window py-2 flex flex-wrap items-center justify-between gap-space-md text-on-surface-variant font-label-sm text-label-sm shadow-sm select-none">
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">database</span>
+<span class="text-on-surface-variant">الملف المحلي:</span>
+<span class="bg-surface-container-lowest px-1.5 py-0.5 rounded font-mono">C:\ProgramData\Rowdati\data\rowdati_prod.db</span>
+</div>
+<span class="h-3 w-px bg-outline-variant/60 hidden md:inline-block"></span>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>آخر نسخة احتياطية: اليوم 02:30 م</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] px-1.5 py-0.2 rounded font-bold">USB متصل ومفحوص</span>
+</div>
+</div>
+<!-- Shortcuts Cheat Sheet & Emergency Button -->
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="hidden lg:flex items-center gap-space-sm font-caption text-caption text-on-surface-variant">
+<span>اختصارات:</span>
+<span class="bg-surface-container-lowest px-1 rounded shadow-xs"><kbd>Enter</kbd> دخول</span>
+<span class="bg-surface-container-lowest px-1 rounded shadow-xs"><kbd>Tab</kbd> تنقل</span>
+<span class="bg-surface-container-lowest px-1 rounded shadow-xs"><kbd>Esc</kbd> تبديل مستخدم</span>
+<span class="bg-surface-container-lowest px-1 rounded shadow-xs"><kbd>F12</kbd> استرجاع احتياطي</span>
+</div>
+<button class="flex items-center gap-1 text-tertiary hover:text-on-tertiary-fixed-variant bg-surface-container-lowest hover:bg-tertiary-fixed px-2.5 py-1 rounded-md transition-colors font-label-sm text-label-sm font-semibold" onclick="showEmergencyMode()" type="button">
+<span class="material-symbols-outlined text-[14px]">build_circle</span>
+<span>وضع الطوارئ والصيانة</span>
+</button>
+</div>
+</div>
+<!-- Help & Documentation Modal (Offline-Ready) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="help-modal">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-xl shadow-2xl p-space-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-headline-lg text-headline-lg">
+<span class="material-symbols-outlined text-[24px]">help</span>
+<span>المساعدة والدعم المحلي المستقل</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg" onclick="closeHelpModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        نظام روضتي يعمل بنسبة 100% دون الحاجة إلى الإنترنت. في حال تعذر تسجيل الدخول أو فقدان كلمة المرور لمشرفة النظام:
+      </p>
+<div class="space-y-space-xs font-body-sm text-body-sm text-on-surface">
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<strong>1. مفتاح الاسترداد الإداري (Offline Master Key):</strong> متوفر في المغلف الأمني المطبوع داخل خزينة الروضة.
+        </div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<strong>2. بطاقة المعلمة السريعة:</strong> يمكن للمعلمات تمرير بطاقات RFID المعرفة للتبديل الفوري بين الصفوف.
+        </div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<strong>3. استرجاع قاعدة البيانات:</strong> اضغط على <kbd class="bg-surface-container-high px-1 rounded">F12</kbd> لاختيار ملف نسخة احتياطية من وحدة الذاكرة USB.
+        </div>
+</div>
+<div class="flex justify-end pt-space-xs">
+<button class="px-space-lg py-2 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg" onclick="closeHelpModal()" type="button">
+          فهمت ذلك، إغلاق
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentPin = '';
+  let activeUser = 'nadia';
+
+  function updatePinDisplay() {
+    const dots = document.querySelectorAll('.pin-digit');
+    const input = document.getElementById('pin-input');
+    const isShowing = input.type === 'text';
+
+    dots.forEach((dot, index) => {
+      if (index < currentPin.length) {
+        dot.textContent = isShowing ? currentPin[index] : '●';
+        dot.classList.remove('bg-surface-container');
+        dot.classList.add('bg-primary-fixed', 'text-primary', 'font-bold');
+      } else {
+        dot.textContent = '-';
+        dot.classList.remove('bg-primary-fixed', 'text-primary', 'font-bold');
+        dot.classList.add('bg-surface-container');
+      }
+    });
+
+    input.value = currentPin;
+  }
+
+  function handlePinInput(el) {
+    currentPin = el.value.replace(/[^0-9]/g, '').slice(0, 6);
+    updatePinDisplay();
+    if (currentPin.length === 6 || currentPin.length === 4) {
+      // Auto feedback trigger if user completed PIN
+    }
+  }
+
+  function pressNumpad(num) {
+    if (currentPin.length < 6) {
+      currentPin += num;
+      updatePinDisplay();
+      clearFeedback();
+    }
+  }
+
+  function backspacePin() {
+    if (currentPin.length > 0) {
+      currentPin = currentPin.slice(0, -1);
+      updatePinDisplay();
+      clearFeedback();
+    }
+  }
+
+  function clearPin() {
+    currentPin = '';
+    updatePinDisplay();
+    clearFeedback();
+  }
+
+  function togglePinVisibility() {
+    const input = document.getElementById('pin-input');
+    const icon = document.getElementById('pin-eye-icon');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility';
+    }
+    updatePinDisplay();
+  }
+
+  function togglePwdVisibility() {
+    const input = document.getElementById('pwd-input');
+    const icon = document.getElementById('pwd-eye-icon');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility';
+    }
+  }
+
+  function switchAuthTab(mode) {
+    const pinTab = document.getElementById('tab-pin-btn');
+    const pwdTab = document.getElementById('tab-pwd-btn');
+    const pinSection = document.getElementById('auth-mode-pin');
+    const pwdSection = document.getElementById('auth-mode-pwd');
+
+    if (mode === 'pin') {
+      pinTab.className = "flex-1 py-2 rounded-md font-label-lg text-label-lg font-bold bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all";
+      pwdTab.className = "flex-1 py-2 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1.5 transition-all";
+      pinSection.classList.remove('hidden');
+      pwdSection.classList.add('hidden');
+      document.getElementById('pin-input').focus();
+    } else {
+      pwdTab.className = "flex-1 py-2 rounded-md font-label-lg text-label-lg font-bold bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all";
+      pinTab.className = "flex-1 py-2 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1.5 transition-all";
+      pinSection.classList.add('hidden');
+      pwdSection.classList.remove('hidden');
+      document.getElementById('pwd-input').focus();
+    }
+    clearFeedback();
+  }
+
+  function selectUser(id, name, role, badge, tone, icon) {
+    activeUser = id;
+    
+    // Update active profile box
+    document.getElementById('active-user-name').textContent = name;
+    document.getElementById('active-user-role').textContent = role;
+    document.getElementById('active-user-badge').textContent = badge;
+    document.getElementById('active-user-icon').textContent = icon;
+
+    // Reset card borders/backgrounds
+    const cards = document.querySelectorAll('.user-card');
+    cards.forEach(c => {
+      c.classList.remove('bg-surface-container-high', 'shadow-sm');
+      c.classList.add('bg-surface-container-low');
+      const check = c.querySelector('.user-check');
+      if (check) check.classList.add('hidden');
+    });
+
+    const activeCard = document.getElementById('user-card-' + id);
+    if (activeCard) {
+      activeCard.classList.remove('bg-surface-container-low');
+      activeCard.classList.add('bg-surface-container-high', 'shadow-sm');
+      const check = activeCard.querySelector('.user-check');
+      if (check) check.classList.remove('hidden');
+    }
+
+    clearPin();
+    document.getElementById('pin-input').focus();
+    clearFeedback();
+  }
+
+  function handleLoginSubmit() {
+    const feedback = document.getElementById('login-feedback');
+    const feedbackText = document.getElementById('login-feedback-text');
+
+    if (currentPin.length === 0 && document.getElementById('pwd-input').value.trim() === '') {
+      feedbackText.textContent = 'يرجى إدخال رمز PIN أو كلمة المرور للمتابعة.';
+      feedback.classList.remove('hidden');
+      feedback.classList.remove('bg-emerald-100', 'text-emerald-900');
+      feedback.classList.add('bg-error-container', 'text-on-error-container');
+      return;
+    }
+
+    // Success Simulation
+    feedback.classList.remove('hidden', 'bg-error-container', 'text-on-error-container');
+    feedback.classList.add('bg-emerald-100', 'text-emerald-900');
+    feedbackText.innerHTML = '<strong>تم التحقق بنجاح!</strong> جاري تحميل قاعدة البيانات المحلية وجلسة ' + document.getElementById('active-user-name').textContent + '...';
+
+    setTimeout(() => {
+      feedbackText.innerHTML = 'مرحباً بكم. يتم التوجيه إلى لوحة القيادة...';
+    }, 900);
+  }
+
+  function clearFeedback() {
+    const feedback = document.getElementById('login-feedback');
+    if (feedback) feedback.classList.add('hidden');
+  }
+
+  function triggerRfidScan() {
+    const feedback = document.getElementById('login-feedback');
+    const feedbackText = document.getElementById('login-feedback-text');
+    feedback.classList.remove('hidden', 'bg-error-container', 'text-on-error-container');
+    feedback.classList.add('bg-primary-fixed', 'text-on-primary-fixed');
+    feedbackText.innerHTML = '<span class="animate-spin inline-block mr-1">⌛</span> قارئ البطاقات الذكية جاهز... يرجى تمرير بطاقة RFID أو مسح الباركود الآن.';
+  }
+
+  function promptOtherUser() {
+    const username = prompt("أدخل اسم المستخدم المحلي:");
+    if (username) {
+      selectUser('custom', username, 'حساب محلي مخصص', 'مستخدم محلي', 'primary', 'person');
+    }
+  }
+
+  function alertRecoveryHint() {
+    alert("لاستعادة كلمة المرور، يرجى الاستعانة بمدير النظام أو استخدام مفتاح الاسترداد الورقي المرفق مع الجهاز (مجلد الطوارئ Offline).");
+  }
+
+  function showHelpModal() {
+    document.getElementById('help-modal').classList.remove('hidden');
+  }
+
+  function closeHelpModal() {
+    document.getElementById('help-modal').classList.add('hidden');
+  }
+
+  function showEmergencyMode() {
+    if (confirm("هل ترغب في الانتقال إلى شاشة استعادة النظام وفحص سلامة قاعدة بيانات SQLite المحلية (Mode WAL)?")) {
+      alert("جاري بدء فحص السلامة: PRAGMA integrity_check; -> قاعدة البيانات سليمة 100%.");
+    }
+  }
+
+  function focusPin() {
+    clearPin();
+    document.getElementById('pin-input').focus();
+  }
+
+  // Keyboard shortcut listener for F1, F12, Escape, Enter
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'F1') {
+      e.preventDefault();
+      showHelpModal();
+    } else if (e.key === 'Escape') {
+      closeHelpModal();
+      // Cycle user
+      const users = ['nadia', 'fatima', 'sarah', 'reem'];
+      const nextIndex = (users.indexOf(activeUser) + 1) % users.length;
+      const target = users[nextIndex];
+      const card = document.getElementById('user-card-' + target);
+      if (card) card.click();
+    } else if (e.key === 'F12') {
+      e.preventDefault();
+      showEmergencyMode();
+    } else if (e.key === 'Enter') {
+      const modal = document.getElementById('help-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        closeHelpModal();
+      } else {
+        handleLoginSubmit();
+      }
+    }
+  });
+</script><footer class="h-8 w-full bg-surface-container-low px-margin-window flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm select-none shadow-[0_-1px_3px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-md"><span>وضع التشغيل المستقل (أوفلاين)</span><span class="h-2.5 w-px bg-outline-variant/50"></span><span>التشفير: AES-256 محلي</span></div><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[14px] text-primary">verified_user</span><span>إصدار التطبيق 2.4.0 (Electron Desktop)</span></div></footer></main></body></html>

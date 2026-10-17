@@ -9,6 +9,16 @@ export function RegionalLocalizationCard({
   settings,
   onChange
 }: RegionalLocalizationCardProps) {
+  const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+  const currencies = [
+    { id: 'دج (دينار جزائري)', label: 'دينار جزائري (دج)', symbol: 'DZD' },
+    { id: 'ر.س (ريال سعودي)', label: 'ريال سعودي (ر.س)', symbol: 'SAR' },
+    { id: 'د.إ (درهم إماراتي)', label: 'درهم إماراتي (د.إ)', symbol: 'AED' },
+    { id: '$ (دولار أمريكي)', label: 'دولار أمريكي ($)', symbol: 'USD' },
+    { id: '€ (يورو)', label: 'يورو (€)', symbol: 'EUR' }
+  ]
+
   return (
     <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-xs flex flex-col gap-space-md border border-surface-variant/40">
       <div className="flex items-center justify-between pb-space-xs">
@@ -19,7 +29,7 @@ export function RegionalLocalizationCard({
           </h2>
         </div>
         <span className="px-2 py-0.5 rounded bg-surface-container text-primary font-mono text-[11px] font-bold">
-          AR-SA
+          {settings.uiLanguage.toUpperCase()}-LOCAL
         </span>
       </div>
 
@@ -31,37 +41,18 @@ export function RegionalLocalizationCard({
         <div className="p-space-sm rounded-xl bg-surface-container flex items-center justify-between border border-primary/20">
           <div className="flex items-center gap-2">
             <div className="w-7 h-5 rounded bg-surface-container-high flex items-center justify-center font-bold text-[10px] text-primary">
-              🇸🇦
+              AR
             </div>
             <div className="flex flex-col">
               <span className="font-label-md text-label-md font-bold text-on-surface">
                 العربية (Arabic - RTL)
               </span>
               <span className="font-caption text-caption text-on-surface-variant">
-                واجهة متكاملة من اليمين لليسار مع مفردات تربوية معتمدة
+                واجهة متكاملة من اليمين لليسار مع مصطلحات تربوية معتمدة
               </span>
             </div>
           </div>
           <span className="material-symbols-outlined text-primary text-[20px]">check_circle</span>
-        </div>
-
-        <div className="flex items-center justify-between p-2 rounded-lg bg-surface-container-low mt-1 border border-surface-variant/30">
-          <div className="flex flex-col">
-            <span className="font-label-sm text-label-sm font-medium text-on-surface">
-              لغات ثانوية للشهادات والتقارير المطبوعة
-            </span>
-            <span className="font-caption text-caption text-outline">
-              الإنجليزية (English) والفرنسية (Français)
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] font-bold text-on-surface">
-              EN
-            </span>
-            <span className="px-2 py-0.5 rounded bg-surface-container-highest text-[10px] font-bold text-on-surface">
-              FR
-            </span>
-          </div>
         </div>
       </div>
 
@@ -75,16 +66,16 @@ export function RegionalLocalizationCard({
             <input
               type="radio"
               name="calendar_type_regional"
-              checked={settings.calendarType === 'hijri'}
-              onChange={() => onChange({ calendarType: 'hijri' })}
+              checked={settings.calendarType === 'gregorian'}
+              onChange={() => onChange({ calendarType: 'gregorian' })}
               className="mt-1 text-primary focus:ring-0"
             />
             <div className="flex flex-col">
               <span className="font-label-md text-label-md font-bold text-on-surface">
-                التقويم الهجري أولاً (أم القرى) مع المقابل الميلادي
+                التقويم الميلادي الأساسي (الأشهر الميلادية الرسمية)
               </span>
               <span className="font-caption text-caption text-on-surface-variant">
-                مثال: 14 شعبان 1446هـ (13 فبراير 2025م)
+                مثال: {new Date().toLocaleDateString('ar-EG', { dateStyle: 'full' })}
               </span>
             </div>
           </label>
@@ -93,16 +84,16 @@ export function RegionalLocalizationCard({
             <input
               type="radio"
               name="calendar_type_regional"
-              checked={settings.calendarType === 'gregorian'}
-              onChange={() => onChange({ calendarType: 'gregorian' })}
+              checked={settings.calendarType === 'hijri'}
+              onChange={() => onChange({ calendarType: 'hijri' })}
               className="mt-1 text-primary focus:ring-0"
             />
             <div className="flex flex-col">
               <span className="font-label-md text-label-md font-medium text-on-surface">
-                التقويم الميلادي أولاً مع المقابل الهجري
+                التقويم الهجري (تقويم أم القرى)
               </span>
               <span className="font-caption text-caption text-outline">
-                مثال: 13 فبراير 2025م (14 شعبان 1446هـ)
+                عرض التواريخ الهجرية في السجلات والتقارير
               </span>
             </div>
           </label>
@@ -113,31 +104,40 @@ export function RegionalLocalizationCard({
       <div className="grid grid-cols-2 gap-space-sm pt-space-xs">
         <div className="flex flex-col gap-1">
           <label className="font-label-sm text-label-sm font-bold text-on-surface">العملة الافتراضية</label>
-          <div className="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between border border-surface-variant/30">
-            <span className="font-label-md text-label-md font-bold text-on-surface">
-              {settings.currency}
-            </span>
-            <span className="font-mono text-caption text-primary font-bold">SAR</span>
-          </div>
+          <select
+            value={settings.currency}
+            onChange={(e) => onChange({ currency: e.target.value })}
+            className="p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none border border-surface-variant/30"
+          >
+            {currencies.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="flex flex-col gap-1">
           <label className="font-label-sm text-label-sm font-bold text-on-surface">صيغة التوقيت</label>
-          <div className="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between border border-surface-variant/30">
-            <span className="font-label-md text-label-md font-bold text-on-surface">نظام 12 ساعة</span>
-            <span className="font-mono text-caption text-outline">08:30 ص</span>
-          </div>
+          <select
+            value={settings.timeFormat}
+            onChange={(e) => onChange({ timeFormat: e.target.value as any })}
+            className="p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none border border-surface-variant/30"
+          >
+            <option value="12h">نظام 12 ساعة (08:30 ص / 01:30 م)</option>
+            <option value="24h">نظام 24 ساعة (08:30 / 13:30)</option>
+          </select>
         </div>
       </div>
 
       {/* Local Clock Sync Info */}
       <div className="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm text-on-surface-variant border border-surface-variant/30">
-        <span className="material-symbols-outlined text-primary text-[20px]">update</span>
+        <span className="material-symbols-outlined text-primary text-[20px]">schedule</span>
         <div className="flex flex-col">
           <span className="font-label-sm text-label-sm font-semibold text-on-surface">
-            توقيت مكة المكرمة (GMT+3)
+            المنطقة الزمنية المحلية: {localTimeZone}
           </span>
           <span className="font-caption text-caption">
-            مزامنة تامة وغير منقطعة مع ساعة اللوحة الأم (Hardware RTC)
+            مزامنة مباشرة مع ساعة نظام التشغيل وساعة اللوحة الأم (Hardware RTC)
           </span>
         </div>
       </div>

@@ -1,21 +1,34 @@
 import { useState } from 'react'
 import { PaymentFormState } from './PaymentEntryForm'
 import { ReceiptPaperView } from './ReceiptPaperView'
+import type { InvoiceItem } from '@/lib/api/types'
 
 interface ReceiptPreviewCanvasProps {
   form: PaymentFormState
   receiptNumber?: string
   receiptDate?: string
   onPrint?: () => void
+  selectedInvoice?: InvoiceItem | null
 }
 
 export function ReceiptPreviewCanvas({
   form,
-  receiptNumber = 'REC-2026-00842',
-  receiptDate = '16/10/2026 • 10:45 ص',
-  onPrint = () => window.print()
+  receiptNumber = 'REC-2026-000001',
+  receiptDate,
+  onPrint = () => window.print(),
+  selectedInvoice = null,
 }: ReceiptPreviewCanvasProps) {
   const [format, setFormat] = useState<'80mm' | 'a5' | 'a4'>('a5')
+
+  const dateDisplay =
+    receiptDate ||
+    new Date().toLocaleDateString('ar-DZ', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
 
   return (
     <div className="flex flex-col gap-space-sm select-none">
@@ -78,15 +91,6 @@ export function ReceiptPreviewCanvas({
           >
             <span className="material-symbols-outlined text-base">picture_as_pdf</span>
           </button>
-
-          <button
-            onClick={() => alert(`إرسال السند ${receiptNumber} إلى واتساب الولي: ${form.guardianPhone}`)}
-            className="p-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-            title="إرسال عبر واتساب لولي الأمر"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-base">send</span>
-          </button>
         </div>
       </div>
 
@@ -94,8 +98,9 @@ export function ReceiptPreviewCanvas({
       <ReceiptPaperView
         form={form}
         receiptNumber={receiptNumber}
-        receiptDate={receiptDate}
+        receiptDate={dateDisplay}
         format={format}
+        selectedInvoice={selectedInvoice}
       />
     </div>
   )

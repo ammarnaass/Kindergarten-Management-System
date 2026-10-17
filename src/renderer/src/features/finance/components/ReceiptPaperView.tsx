@@ -1,24 +1,53 @@
 import { PaymentFormState } from './PaymentEntryForm'
 import { numberToWordsArabic } from './numberToWordsArabic'
+import type { InvoiceItem } from '@/lib/api/types'
 
 interface ReceiptPaperViewProps {
   form: PaymentFormState
   receiptNumber: string
   receiptDate: string
   format: '80mm' | 'a5' | 'a4'
+  selectedInvoice?: InvoiceItem | null
 }
 
 export function ReceiptPaperView({
   form,
   receiptNumber,
   receiptDate,
-  format
+  format,
+  selectedInvoice,
 }: ReceiptPaperViewProps) {
   const words = numberToWordsArabic(form.amount)
 
+  const getMethodText = (method: string) => {
+    switch (method) {
+      case 'cash':
+        return 'نقداً (Cash)'
+      case 'cheque':
+        return 'صك بنكي (Cheque)'
+      case 'transfer':
+        return 'تحويل بنكي / BaridiMob'
+      case 'card':
+        return 'بطاقة بنكية CIB / الذهبية'
+      default:
+        return 'نقداً'
+    }
+  }
+
+  const items = selectedInvoice?.items && selectedInvoice.items.length > 0
+    ? selectedInvoice.items
+    : [
+        {
+          id: '1',
+          label: form.note || selectedInvoice?.period || 'رسوم التمدرس والخدمات المقررة',
+          quantity: 1,
+          unitCents: form.amount * 100,
+        },
+      ]
+
   return (
     <div
-      className={`relative mx-auto bg-white text-slate-900 border border-slate-200 shadow-md rounded-lg overflow-hidden transition-all ${
+      className={`receipt-printable relative mx-auto bg-white text-slate-900 border border-slate-200 shadow-md rounded-lg overflow-hidden transition-all ${
         format === '80mm' ? 'max-w-[340px] p-4 text-xs' : 'max-w-[480px] p-6 text-sm'
       }`}
     >
@@ -33,7 +62,7 @@ export function ReceiptPaperView({
               روضة براعم الياسمين النموذجية
             </h4>
             <span className="text-[11px] text-slate-500 block">
-              رقم الاعتماد الوزاري: 14/2020 • بلدية الياسمين
+              نظام روضتي لإدارة رياض الأطفال • وصل رسمي
             </span>
           </div>
         </div>
@@ -43,7 +72,7 @@ export function ReceiptPaperView({
         </div>
       </div>
 
-      {/* Watermark Status */}
+      {/* Status Banner */}
       <div className="text-center my-3 py-1 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 font-bold text-sm tracking-wide">
         وصل قبض وسداد رسمي — مبرأ للذمة
       </div>
@@ -52,27 +81,19 @@ export function ReceiptPaperView({
       <div className="bg-slate-50 rounded-lg p-3 my-3 space-y-1.5 text-xs text-slate-700">
         <div className="flex justify-between">
           <span className="text-slate-500">اسم الطفل الكامل:</span>
-          <span className="font-bold text-slate-900">{form.childName}</span>
+          <span className="font-bold text-slate-900">{form.childName || '—'}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-slate-500">الفصل الدراسي:</span>
-          <span className="font-semibold">{form.classroom}</span>
+          <span className="font-semibold">{form.classroom || 'غير محدد'}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-slate-500">ولي الأمر الحاضر:</span>
-          <span className="font-semibold">{form.guardianName} (أب)</span>
+          <span className="text-slate-500">ولي الأمر المستلم:</span>
+          <span className="font-semibold">{form.guardianName || 'ولي الأمر'}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-slate-500">وسيلة الدفع:</span>
-          <span className="font-semibold text-primary">
-            {form.paymentMethod === 'cash'
-              ? 'نقداً (Cash)'
-              : form.paymentMethod === 'cheque'
-              ? 'صك بنكي'
-              : form.paymentMethod === 'transfer'
-              ? 'تحويل BaridiMob'
-              : 'بطاقة CIB'}
-          </span>
+          <span className="font-semibold text-primary">{getMethodText(form.paymentMethod)}</span>
         </div>
       </div>
 
@@ -85,14 +106,14 @@ export function ReceiptPaperView({
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100 font-mono">
-          <tr>
-            <td className="py-2">اشتراك التمدرس (شهر نوفمبر 2026)</td>
-            <td className="py-2 text-left font-bold">14,000.00 دج</td>
-          </tr>
-          <tr>
-            <td className="py-2">اشتراك النقل المدرسي (ذهاب وإياب)</td>
-            <td className="py-2 text-left font-bold">6,000.00 دج</td>
-          </tr>
+          {items.map((item, idx) => (
+            <tr key={idx}>
+              <td className="py-2">{item.label}</td>
+              <td className="py-2 text-left font-bold">
+                {((item.unitCents * (item.quantity || 1)) / 100).toLocaleString('ar-DZ')} دج
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -100,14 +121,14 @@ export function ReceiptPaperView({
       <div className="border-t-2 border-slate-900 pt-3 flex items-baseline justify-between">
         <span className="font-bold text-sm text-slate-900">المجموع المدفوع:</span>
         <span className="font-mono text-lg font-bold text-primary">
-          {form.amount.toLocaleString()} دج
+          {form.amount.toLocaleString('ar-DZ')} دج
         </span>
       </div>
 
       {/* Words */}
       <div className="mt-2 p-2 bg-slate-50 rounded text-[11px] text-slate-700 leading-snug">
         <span className="font-bold">فقط وقدره: </span>
-        <span>{words} لا غير.</span>
+        <span>{words}</span>
       </div>
 
       {/* Signatures & Stamp */}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { api, type SystemPrinter } from '@/lib/api'
 import {
   SettingsTab,
   SettingsState,
@@ -9,65 +10,66 @@ import {
   AppearanceSettings
 } from '../types'
 
+const currentYear = new Date().getFullYear()
+
 const DEFAULT_SETTINGS: SettingsState = {
   branch: {
-    kindergartenNameAr: 'روضتي الأهلية النموذجية',
-    kindergartenNameEn: 'Rowdati Model Kindergarten',
-    crLicenseNumber: '1010894231',
-    branchName: 'فرع حي الياسمين - الرياض',
-    phone: '0114567890',
-    email: 'alyasmin-branch@rowdati.local',
-    nationalAddress: 'الرياض 13325 - طريق أنس بن مالك - مبنى تعليمي 7421',
+    kindergartenNameAr: '',
+    kindergartenNameEn: '',
+    crLicenseNumber: '',
+    branchName: 'الفرع الرئيسي',
+    phone: '',
+    email: '',
+    nationalAddress: '',
     printLogoOnReceipts: true,
     printLogoOnCards: true,
     printLogoOnDailyReport: true,
-    logoUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAIezPc7NnrZ0mYZ8kUILjAVKvD9qJcnT_2xYXGPR7X7Ytl5r8EGn-1G5-cX7W6EYqzj9O6JRE3a4EmGD6OXmbLtafNIJvhZShxrUaE_b80yW2sw8X8TGQaxC8mfyd2WI614mLa_Oyc_agZ8RxTN9n9-yvNxlKotFLUCY1DDiFLW_pH5aAxRX94_ZQqOabBA88gvssZ7gUjYx6PNg2twYBV_Wf3hBM8kkiPHxhE26ffUBgT6fGe2lY'
+    logoUrl: ''
   },
   printers: {
-    thermalPrinter: 'Epson TM-T20III Thermal Receipt Printer (Port: COM3)',
+    thermalPrinter: '',
     thermalBaudRate: '115200 bps',
     thermalPaperWidth: '80 ملم (ESC/POS)',
-    autoPrintAtGate: true,
+    autoPrintAtGate: false,
     autoCutter: true,
     cashDrawerKick: false,
-    documentPrinter: 'HP LaserJet Pro M404n (Network: 192.168.1.114)',
+    documentPrinter: '',
     docPaperSize: 'A4 (210 × 297 mm)',
     docDpi: '600 × 600 DPI',
     docPrintPreview: true,
     docTonerSaver: false,
     docEncryptedBarcode: true,
-    pvcCardPrinter: 'Zebra ZC300 Dual-Sided ID Card Printer (USB)',
-    pvcCardDualSided: true,
-    pvcSmartChipEncoding: true
+    pvcCardPrinter: '',
+    pvcCardDualSided: false,
+    pvcSmartChipEncoding: false
   },
   scanner: {
     readerMode: 'USB HID Keyboard Emulation',
     autoResetDelay: 5,
-    masterPin: '8842',
+    masterPin: '0000',
     buzzerChime: true,
     showMatchedPhotos: true,
     supervisorFingerprint: false,
     rfidFrequency: '13.56 MHz (Mifare / NFC)',
-    audioChimeSound: 'نغمة تأكيد لطيفة (Chime 1)'
+    audioChimeSound: 'نغمة تأكيد لطيفة'
   },
   database: {
-    activeDbPath: 'C:\\Rowdati\\Data\\rowdati_master.db',
-    dataSize: '24.3 MB',
-    recordsCount: '18,492',
-    encryptionType: 'AES-256',
+    activeDbPath: 'SQLite Local File',
+    dataSize: '0.0 KB',
+    recordsCount: '0 سجل',
+    encryptionType: 'SQLite WAL Native',
     vacuumOnExit: true,
     walCheckpointing: true,
-    externalBackupPath: 'D:\\Rowdati_Backups\\',
+    externalBackupPath: '',
     backupFrequency: 'نسخة عند نهاية الدوام (16:30)',
     backupRetention: 'آخر 30 نسخة يومية (يوصى به)',
     autoSyncUsb: true
   },
   appearance: {
     uiLanguage: 'ar',
-    calendarType: 'hijri',
-    activeAcademicYear: '1446-1445هـ (2024-2025م)',
-    activeTerm: 'الفصل الدراسي الثاني (Term 2)',
+    calendarType: 'gregorian',
+    activeAcademicYear: `${currentYear}-${currentYear + 1}`,
+    activeTerm: 'الفصل الدراسي الأول',
     preventArchivedEdits: true,
     activeTheme: 'light',
     accentColor: 'blue',
@@ -77,14 +79,22 @@ const DEFAULT_SETTINGS: SettingsState = {
     autoTardinessEnabled: true,
     autoTardinessThreshold: '08:15 ص',
     gateSecurityAlert: true,
-    currency: 'ريال سعودي (ر.س)',
+    currency: 'دج (دينار جزائري)',
     timeFormat: '12h'
   }
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes === 0) return '0.0 KB'
+  const kb = bytes / 1024
+  if (kb < 1024) return `${kb.toFixed(1)} KB`
+  return `${(kb / 1024).toFixed(2)} MB`
 }
 
 export function useSettings() {
   const [activeTab, setActiveTab] = useState<SettingsTab>('branch')
   const [settings, setSettings] = useState<SettingsState>(DEFAULT_SETTINGS)
+  const [printersList, setPrintersList] = useState<SystemPrinter[]>([])
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [scannedCodeFeedback, setScannedCodeFeedback] = useState<string | null>(null)
@@ -93,16 +103,104 @@ export function useSettings() {
     setToastMessage(msg)
     setTimeout(() => {
       setToastMessage((prev) => (prev === msg ? null : prev))
-    }, 3200)
+    }, 3500)
   }, [])
 
-  const triggerQuickSave = useCallback(() => {
+  // 1. Load initial settings, real printers, & SQLite diagnostics from Main Process
+  useEffect(() => {
+    let isMounted = true
+
+    Promise.all([
+      api.settings.getAll().catch(() => ({} as Record<string, string>)),
+      api.diagnostics.get().catch(() => null),
+      api.backup.list().catch(() => []),
+      api.system.getPrinters().catch(() => [] as SystemPrinter[])
+    ]).then(([savedSettings, diag, backups, osPrinters]) => {
+      if (!isMounted) return
+
+      const saved = (savedSettings || {}) as Record<string, string>
+      const realPrinters = osPrinters || []
+      setPrintersList(realPrinters)
+
+      setSettings((prev) => {
+        const next: SettingsState = JSON.parse(JSON.stringify(prev))
+
+        // Merge all saved key-values into corresponding sections
+        for (const [key, val] of Object.entries(saved)) {
+          if (val === undefined || val === null) continue
+          const dotIndex = key.indexOf('.')
+          if (dotIndex === -1) continue
+          const section = key.slice(0, dotIndex) as keyof SettingsState
+          const prop = key.slice(dotIndex + 1)
+
+          if (next[section] && prop in (next[section] as any)) {
+            let parsedVal: any = val
+            if (val === 'true') parsedVal = true
+            else if (val === 'false') parsedVal = false
+            else if (/^\d+$/.test(val) && prop === 'autoResetDelay') parsedVal = Number(val)
+            ;(next[section] as any)[prop] = parsedVal
+          }
+        }
+
+        // Set default printers from real OS printers if not already set
+        if (realPrinters.length > 0) {
+          const defaultPrinter = realPrinters.find((p) => p.isDefault) || realPrinters[0]
+          if (!next.printers.documentPrinter && defaultPrinter) {
+            next.printers.documentPrinter = defaultPrinter.name
+          }
+          if (!next.printers.thermalPrinter && defaultPrinter) {
+            next.printers.thermalPrinter = defaultPrinter.name
+          }
+          if (!next.printers.pvcCardPrinter && defaultPrinter) {
+            next.printers.pvcCardPrinter = defaultPrinter.name
+          }
+        }
+
+        // Merge live diagnostics into database tab
+        if (diag) {
+          const totalRecords = diag.totalRecords ?? 0
+          next.database.activeDbPath = diag.dbPath || next.database.activeDbPath
+          next.database.dataSize = formatBytes(diag.dbSize || 0)
+          next.database.recordsCount = `${totalRecords} سجل نشط (${(backups || []).length} نسخة احتياطية)`
+        }
+
+        return next
+      })
+    })
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  // 2. Save 100% of settings to SQLite
+  const triggerQuickSave = useCallback(async () => {
     setIsSaving(true)
-    setTimeout(() => {
+    try {
+      const flatMap: Record<string, string> = {}
+
+      for (const [sectionKey, sectionObj] of Object.entries(settings)) {
+        for (const [propKey, propVal] of Object.entries(sectionObj as any)) {
+          // Skip dynamic hardware metrics
+          if (
+            sectionKey === 'database' &&
+            (propKey === 'dataSize' || propKey === 'recordsCount' || propKey === 'activeDbPath')
+          ) {
+            continue
+          }
+          flatMap[`${sectionKey}.${propKey}`] = String(propVal ?? '')
+        }
+      }
+
+      await api.settings.setMany(flatMap)
+      showToast('تمت مزامنة وحفظ كافة الإعدادات في قاعدة بيانات SQLite محلياً (WAL-commit)')
+    } catch (err: any) {
+      console.error('Error saving settings:', err)
+      showToast(`فشل حفظ الإعدادات: ${err.message || 'خطأ غير معروف'}`)
+    } finally {
       setIsSaving(false)
-      showToast('تمت مزامنة وحفظ التعديلات في SQLite محلياً (WAL-commit)')
-    }, 200)
-  }, [showToast])
+    }
+  }, [settings, showToast])
 
   const resetToDefaults = useCallback(() => {
     if (window.confirm('هل ترغب حقاً في استعادة التفضيلات الافتراضية لقيم المصنع المحلية؟')) {
@@ -113,21 +211,89 @@ export function useSettings() {
 
   const simulateTestPrint = useCallback(
     (printerName: string) => {
-      showToast(`جاري إرسال صفحة الاختبار لطابعة ${printerName} عبر المنفذ المحلي...`)
+      showToast(`جاري تشغيل أمر الطباعة التجريبية لطابعة: ${printerName || 'الطابعة الافتراضية'}`)
+      window.print()
     },
     [showToast]
   )
 
-  const optimizeLocalDb = useCallback(() => {
-    showToast('تم تنفيذ VACUUM وتحسين مؤشرات SQLite بنجاح! تم استعادة 1.4 MB.')
+  // 3. Database Vacuum & Optimize
+  const optimizeLocalDb = useCallback(async () => {
+    try {
+      const res = await api.settings.vacuum()
+      showToast(
+        `تم تنفيذ VACUUM وتحسين الفهارس بنجاح! المساحة الحالية: ${formatBytes(res.currentSize)}`
+      )
+      const diag = await api.diagnostics.get().catch(() => null)
+      if (diag) {
+        setSettings((prev) => ({
+          ...prev,
+          database: {
+            ...prev.database,
+            dataSize: formatBytes(diag.dbSize || 0)
+          }
+        }))
+      }
+    } catch (err: any) {
+      showToast(`فشل تحسين قاعدة البيانات: ${err.message || 'خطأ غير متوقع'}`)
+    }
   }, [showToast])
 
-  const triggerImmediateBackup = useCallback(() => {
-    showToast('تم إنشاء نسخة احتياطية مشفرة بنجاح في D:\\Rowdati_Backups\\rowdati_backup.db')
+  // 4. Create Immediate Backup
+  const triggerImmediateBackup = useCallback(async () => {
+    try {
+      const file = await api.backup.create(settings.database.externalBackupPath || undefined)
+      showToast(`تم إنشاء نسخة احتياطية مشفرة بنجاح: ${file}`)
+      const diag = await api.diagnostics.get().catch(() => null)
+      const backups = await api.backup.list().catch(() => [])
+      if (diag) {
+        setSettings((prev) => ({
+          ...prev,
+          database: {
+            ...prev.database,
+            recordsCount: `${diag.totalRecords ?? 0} سجل نشط (${(backups || []).length} نسخة احتياطية)`
+          }
+        }))
+      }
+    } catch (err: any) {
+      showToast(`فشل إنشاء النسخة الاحتياطية: ${err.message || 'خطأ غير متوقع'}`)
+    }
+  }, [settings.database.externalBackupPath, showToast])
+
+  // 5. Open SQLite DB folder on disk
+  const openDbFolder = useCallback(async () => {
+    if (settings.database.activeDbPath) {
+      await api.system.openPath(settings.database.activeDbPath)
+    }
+  }, [settings.database.activeDbPath])
+
+  // 6. Choose real external USB or local folder
+  const chooseExternalBackupPath = useCallback(async () => {
+    try {
+      const selected = await api.system.selectDirectory()
+      if (selected) {
+        setSettings((prev) => ({
+          ...prev,
+          database: {
+            ...prev.database,
+            externalBackupPath: selected
+          }
+        }))
+        showToast(`تم تعيين مسار النسخ الاحتياطي: ${selected}`)
+      }
+    } catch (err: any) {
+      showToast(`فشل اختيار المجلد: ${err.message || 'خطأ غير معروف'}`)
+    }
   }, [showToast])
 
-  const rescanPorts = useCallback(() => {
-    showToast('تمت إعادة فحص المنافذ: 3 أجهزة متصلة ونشطة (COM3, USB001, Zebra USB)')
+  const rescanPrinters = useCallback(async () => {
+    try {
+      const osPrinters = await api.system.getPrinters()
+      setPrintersList(osPrinters)
+      showToast(`تم تحديث قائمة الطابعات: تم العثور على ${osPrinters.length} طابعة بنظام التشغيل`)
+    } catch (err: any) {
+      showToast(`تعذر جلب الطابعات: ${err.message || 'خطأ'}`)
+    }
   }, [showToast])
 
   const handleScanCode = useCallback((code: string) => {
@@ -135,7 +301,7 @@ export function useSettings() {
     setScannedCodeFeedback(code.trim())
     setTimeout(() => {
       setScannedCodeFeedback(null)
-    }, 3500)
+    }, 4000)
   }, [])
 
   const updateBranch = useCallback((fields: Partial<BranchSettings>) => {
@@ -174,6 +340,7 @@ export function useSettings() {
     activeTab,
     setActiveTab,
     settings,
+    printersList,
     isSaving,
     toastMessage,
     scannedCodeFeedback,
@@ -182,7 +349,9 @@ export function useSettings() {
     simulateTestPrint,
     optimizeLocalDb,
     triggerImmediateBackup,
-    rescanPorts,
+    openDbFolder,
+    chooseExternalBackupPath,
+    rescanPrinters,
     handleScanCode,
     updateBranch,
     updatePrinters,

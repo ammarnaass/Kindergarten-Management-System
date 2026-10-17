@@ -6,17 +6,51 @@ interface ProfileHeroBannerProps {
     firstName: string
     lastName: string
     birthDate?: string
-    photoPath?: string
-    classroomId?: string
-    allergies?: string
+    gender?: 'male' | 'female'
+    photoPath?: string | null
+    classroomId?: string | null
+    classroomName?: string | null
+    status?: string
+    allergies?: string | null
+    medicalNotes?: string | null
   }
   onEdit?: () => void
   onPrint?: () => void
 }
 
+function getAgeString(birthDateStr?: string): string {
+  if (!birthDateStr) return ''
+  try {
+    const birth = new Date(birthDateStr)
+    const now = new Date()
+    let years = now.getFullYear() - birth.getFullYear()
+    let months = now.getMonth() - birth.getMonth()
+    if (months < 0 || (months === 0 && now.getDate() < birth.getDate())) {
+      years--
+      months += 12
+    }
+    if (years <= 0) return `${months} أشهر`
+    if (months === 0) return `${years} سنوات`
+    return `${years} سنوات و ${months} أشهر`
+  } catch {
+    return ''
+  }
+}
+
 export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerProps) {
   const navigate = useNavigate()
   const fullName = `${child.firstName} ${child.lastName}`
+  const age = getAgeString(child.birthDate)
+
+  const isMale = child.gender === 'male'
+  const statusLabel =
+    child.status === 'active'
+      ? isMale ? 'نشط ومسجل' : 'نشطة ومسجلة'
+      : child.status === 'waitlist'
+        ? 'قائمة الانتظار'
+        : child.status === 'graduated'
+          ? 'متخرج'
+          : 'منسحب'
 
   return (
     <section className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm relative overflow-hidden select-none">
@@ -34,12 +68,20 @@ export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerP
               />
             ) : (
               <div className="w-24 h-24 lg:w-28 lg:h-28 rounded-xl bg-primary-fixed text-primary flex items-center justify-center font-bold text-3xl shadow-sm ring-2 ring-primary">
-                {child.firstName?.[0] || 'س'}
+                {child.firstName?.[0] || 'ط'}
               </div>
             )}
-            <span className="absolute -bottom-2 -right-1 px-2 py-0.5 rounded-full bg-emerald-600 text-surface-container-lowest font-caption text-caption flex items-center gap-1 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping" />
-              نشِطة ومسجلة
+            <span
+              className={`absolute -bottom-2 -right-1 px-2 py-0.5 rounded-full font-caption text-caption flex items-center gap-1 shadow-xs ${
+                child.status === 'active'
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-surface-container-highest text-on-surface-variant'
+              }`}
+            >
+              {child.status === 'active' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+              )}
+              {statusLabel}
             </span>
           </div>
 
@@ -49,37 +91,48 @@ export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerP
                 {fullName}
               </h1>
               <span className="font-caption text-caption font-semibold px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono">
-                #KDG-2024-118
+                #{child.id.slice(0, 8).toUpperCase()}
               </span>
               <span className="font-caption text-caption px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-medium">
-                العام 2026/2027
+                العام الدراسي الحالي
               </span>
             </div>
 
             <div className="flex flex-wrap items-center gap-x-space-lg gap-y-1 text-on-surface-variant font-body-sm text-body-sm">
-              <div className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-base text-primary">cake</span>
-                <span>4 سنوات و 3 أشهر (مواليد {child.birthDate || '12 يوليو 2022'})</span>
-              </div>
+              {child.birthDate && (
+                <div className="flex items-center gap-1">
+                  <span className="material-symbols-outlined text-base text-primary">cake</span>
+                  <span>
+                    {age ? `${age} • ` : ''}مواليد {child.birthDate}
+                  </span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
                 <span className="material-symbols-outlined text-base text-secondary">meeting_room</span>
                 <span>
-                  الفصل: <strong className="text-on-surface font-semibold">فصل النجوم</strong>
+                  الفصل: <strong className="text-on-surface font-semibold">{child.classroomName || 'غير مسكن'}</strong>
                 </span>
               </div>
               <div className="flex items-center gap-1">
                 <span className="material-symbols-outlined text-base text-outline">badge</span>
-                <span>المعلمة: أ. مريم العابد</span>
+                <span>الجنس: {isMale ? 'ذكر' : 'أنثى'}</span>
               </div>
             </div>
 
             <div className="flex items-center gap-space-sm pt-1">
-              <span className="px-2 py-0.5 rounded bg-error-container text-on-error-container font-caption text-caption font-semibold flex items-center gap-1">
-                <span className="material-symbols-outlined text-xs">emergency</span>
-                حساسية حرجة موثقة
-              </span>
+              {child.allergies ? (
+                <span className="px-2 py-0.5 rounded bg-error-container text-on-error-container font-caption text-caption font-semibold flex items-center gap-1">
+                  <span className="material-symbols-outlined text-xs">emergency</span>
+                  حساسية: {child.allergies}
+                </span>
+              ) : (
+                <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-caption text-caption flex items-center gap-1">
+                  <span className="material-symbols-outlined text-xs">check_circle</span>
+                  لا توجد حساسيات معروفة
+                </span>
+              )}
               <span className="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-caption">
-                ملف محلي مشفر ومحمي
+                سجل محلي معتمد
               </span>
             </div>
           </div>
@@ -105,7 +158,7 @@ export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerP
             type="button"
           >
             <span className="material-symbols-outlined text-base">print</span>
-            <span>طباعة الملف / البطاقة</span>
+            <span>طباعة الملف</span>
           </button>
 
           <button
@@ -114,7 +167,7 @@ export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerP
             type="button"
           >
             <span className="material-symbols-outlined text-base">payments</span>
-            <span>تسجيل دفعة للطفل</span>
+            <span>تسجيل دفعة</span>
           </button>
         </div>
       </div>

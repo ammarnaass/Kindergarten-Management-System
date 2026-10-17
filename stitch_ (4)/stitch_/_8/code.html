@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-dim": "#d0dbed", "on-background": "#121c2a", "background": "#f8f9ff", "on-error": "#ffffff", "inverse-primary": "#acc7ff", "primary-fixed-dim": "#acc7ff", "surface-container-low": "#eff4ff", "tertiary-container": "#c34c5d", "on-tertiary-fixed-variant": "#861e32", "surface": "#f8f9ff", "surface-container-highest": "#d9e3f6", "on-primary": "#ffffff", "on-secondary-container": "#704800", "tertiary-fixed": "#ffdadb", "inverse-surface": "#27313f", "secondary-fixed": "#ffddb3", "on-secondary-fixed-variant": "#633f00", "surface-container": "#e6eeff", "on-tertiary": "#ffffff", "secondary-container": "#fdb64b", "outline": "#727784", "secondary": "#825500", "tertiary-fixed-dim": "#ffb2b8", "primary": "#0059ba", "secondary-fixed-dim": "#ffb951", "primary-container": "#2c72d9", "on-secondary": "#ffffff", "surface-tint": "#005bbf", "on-tertiary-container": "#fffbff", "error": "#ba1a1a", "surface-container-high": "#dee9fc", "inverse-on-surface": "#eaf1ff", "surface-bright": "#f8f9ff", "on-surface": "#121c2a", "error-container": "#ffdad6", "on-secondary-fixed": "#291800", "primary-fixed": "#d7e2ff", "on-primary-container": "#fefcff", "on-error-container": "#93000a", "tertiary": "#a33446", "on-primary-fixed-variant": "#004492", "surface-container-lowest": "#ffffff", "on-surface-variant": "#424753", "on-tertiary-fixed": "#40000f", "on-primary-fixed": "#001a40", "surface-variant": "#d9e3f6", "outline-variant": "#c2c6d5" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-compact": "0.75rem", "margin": "1.5rem", "margin-window": "0.75rem", "space-sm": "0.5rem", "space-md": "0.75rem", "space-xs": "0.25rem", "space-xl": "2rem", "gutter": "1.25rem", "space-lg": "1.25rem" }, "fontFamily": { "body-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "caption": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "label-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "display-lg": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "body-md": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ], "headline-sm": [ "\"IBM Plex Sans, Cairo, system-ui, sans-serif\"" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "headline-md": [ "18px", { "lineHeight": "28px", "fontWeight": "600" } ], "caption": [ "10px", { "lineHeight": "14px", "fontWeight": "500" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "display-md": [ "26px", { "lineHeight": "36px", "fontWeight": "700" } ], "headline-lg": [ "22px", { "lineHeight": "32px", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "44px", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed right-0 top-0 h-full w-64 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container"><span class="material-symbols-outlined text-[22px]">local_florist</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">روضتي</span><span class="font-caption text-caption text-outline">المكتبي v3.4.0</span></div></div><div class="w-2.5 h-2.5 rounded-full bg-secondary-container" title="متصل محلياً"></div></div><div class="px-space-md py-space-sm"><span class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">القوائم التشغيلية</span></div><nav class="flex flex-col gap-space-xs px-space-md overflow-y-auto max-h-[calc(100vh-210px)]" data-active-classes="bg-primary-container text-on-primary-container font-headline-sm rounded-lg shadow-sm"><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">لوحة التحكم</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="children" href="#"><span class="material-symbols-outlined text-[20px]">child_care</span><span class="font-label-lg text-label-lg">الأطفال</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="classes" href="#"><span class="material-symbols-outlined text-[20px]">meeting_room</span><span class="font-label-lg text-label-lg">الفصول</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="attendance" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span class="font-label-lg text-label-lg">الحضور والانصراف</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="finance" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span class="font-label-lg text-label-lg">المالية</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-2.5 transition-colors bg-primary-container text-on-primary-container font-headline-sm rounded-lg shadow-sm" data-path="daily-report" href="#"><span class="material-symbols-outlined text-[20px]">summarize</span><span class="font-label-lg text-label-lg">التقرير اليومي</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="health-safety" href="#"><span class="material-symbols-outlined text-[20px]">health_and_safety</span><span class="font-label-lg text-label-lg">الصحة والسلامة</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="parents" href="#"><span class="material-symbols-outlined text-[20px]">family_restroom</span><span class="font-label-lg text-label-lg">أولياء الأمور</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="staff" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">الموظفون</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="reports-printouts" href="#"><span class="material-symbols-outlined text-[20px]">print</span><span class="font-label-lg text-label-lg">التقارير والمطبوعات</span></a><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="backup" href="#"><span class="material-symbols-outlined text-[20px]">cloud_sync</span><span class="font-label-lg text-label-lg">النسخ الاحتياطي</span></a></nav></div><div class="p-space-md bg-surface-container"><a class="flex items-center gap-space-md px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-lg text-label-lg">الإعدادات</span></a></div></aside><div class="pr-64"><header class="fixed top-0 right-64 left-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg select-none"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-1.5 rounded-lg text-on-surface"><span class="material-symbols-outlined text-[16px] text-primary">database</span><span class="font-label-sm text-label-sm font-semibold">SQLite غير متصل 100%</span></div><div class="hidden xl:flex items-center gap-space-sm text-outline"><span class="material-symbols-outlined text-[16px]">calendar_today</span><span class="font-caption text-caption text-on-surface-variant">14 شوال 1445 هـ | 23 أبريل 2024 م</span><span class="px-1.5 py-0.5 rounded bg-surface-container-highest font-caption text-caption text-on-surface">الفصل الثاني</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center bg-surface-container-lowest px-space-md py-1.5 rounded-lg shadow-[0_1px_4px_rgba(0,0,0,0.02)] cursor-pointer text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[18px] ml-space-sm">search</span><span class="font-body-sm text-body-sm text-outline ml-space-xl">بحث سريع في السجلات...</span><kbd class="bg-surface-container font-caption text-caption px-1.5 py-0.5 rounded text-on-surface-variant font-mono">Ctrl+K</kbd></div><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight font-semibold">أ. سارة المنصور</span><span class="font-caption text-caption text-outline">روضة الأمل النموذجية</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 pb-8 min-h-screen bg-background w-full px-gutter"><div class="flex flex-col w-full gap-space-lg select-none">
+<!-- Top Command & Filter Bar -->
+<div class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<!-- Title & Context -->
+<div class="flex items-center gap-space-md">
+<div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">fact_check</span>
+</div>
+<div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">التقرير اليومي والملاحظات التربوية</h1>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-caption text-caption">مزامنة SQLite فورية</span>
+</div>
+<div class="flex items-center gap-space-xs text-outline mt-0.5">
+<span class="material-symbols-outlined text-[15px]">event</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">الثلاثاء 16 ربيع الآخر 1446هـ (16 أكتوبر 2024م)</span>
+<span class="mx-1">•</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium">الفصل الدراسي الأول</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center flex-wrap gap-space-sm">
+<button class="flex items-center gap-space-xs bg-surface-container-low hover:bg-surface-container-high text-on-surface px-space-md py-2 rounded-lg transition-colors font-label-md text-label-md" title="تطبيق نمط روتيني موحد">
+<span class="material-symbols-outlined text-[18px] text-primary">dynamic_feed</span>
+<span>تطبيق نمط جماعي</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container-low hover:bg-surface-container-high text-on-surface px-space-md py-2 rounded-lg transition-colors font-label-md text-label-md" title="تصدير السجلات">
+<span class="material-symbols-outlined text-[18px] text-outline">file_download</span>
+<span>تصدير Excel/PDF</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-lg shadow-sm transition-all font-label-md text-label-md" title="طباعة تقارير الفصل A5 دفعة واحدة">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>طباعة مجمّعة للفصل (Ctrl+P)</span>
+</button>
+</div>
+</div>
+<!-- Classroom Switcher Pills -->
+<div class="flex items-center justify-between pt-space-xs overflow-x-auto">
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+<span>فصل الأبطال (روضة 2)</span>
+<span class="bg-primary-container/60 text-on-primary font-caption text-caption px-1.5 py-0.5 rounded-full">16 طفلاً</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-outline">auto_awesome</span>
+<span>فصل النجوم (تمهيدي 1)</span>
+<span class="bg-surface-container text-outline font-caption text-caption px-1.5 py-0.5 rounded-full">18 طفلاً</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-outline">yard</span>
+<span>فصل الزهور (حضانة كبار)</span>
+<span class="bg-surface-container text-outline font-caption text-caption px-1.5 py-0.5 rounded-full">12 طفلاً</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-outline">filter_vintage</span>
+<span>فصل الفراشات (روضة 1)</span>
+<span class="bg-surface-container text-outline font-caption text-caption px-1.5 py-0.5 rounded-full">14 طفلاً</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-outline">spa</span>
+<span>فصل البراعم</span>
+<span class="bg-surface-container text-outline font-caption text-caption px-1.5 py-0.5 rounded-full">10 أطفال</span>
+</button>
+</div>
+<div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant font-caption text-caption bg-surface-container-low px-space-sm py-1 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span>حفظ تلقائي فعّال (SQLite محلي v3)</span>
+</div>
+</div>
+</div>
+<!-- Classroom Daily KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-outline">اكتمال التقارير اليومية</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-display-md text-display-md text-on-surface">75%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(12 / 16 طفلاً)</span>
+</div>
+<div class="w-36 h-1.5 bg-surface-container-high rounded-full overflow-hidden mt-1.5">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">pie_chart</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-outline">بحاجة لاعتماد المشرفة</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-display-md text-display-md text-secondary">04</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">أطفال جاهزون</span>
+</div>
+<span class="font-caption text-caption text-outline mt-1">بانتظار المراجعة النهائية</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">pending_actions</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-outline">تنبيهات وملاحظات للأولياء</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-display-md text-display-md text-tertiary">03</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ملاحظات بارزة</span>
+</div>
+<span class="font-caption text-caption text-tertiary mt-1">صحية وسلوكية تستوجب الإشعار</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">notifications_active</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-outline">الصور المرفقة للأنشطة</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-display-md text-display-md text-on-surface">28</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">لقطة حية اليوم</span>
+</div>
+<span class="font-caption text-caption text-outline mt-1">مخزنة في مجلد الوسائط المحلي</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]">photo_library</span>
+</div>
+</div>
+</div>
+<!-- Main Work Desk Layout (35% Children List, 65% Interactive Editor) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Right Panel (35% on Desktop - 4 cols of 12 or 5 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<!-- Panel Header & Search Filter -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">سجل أطفال الفصل</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant">16</span>
+</div>
+<div class="flex items-center gap-1 font-caption text-caption text-outline">
+<kbd class="bg-surface-container px-1 py-0.5 rounded text-on-surface-variant font-mono">▲</kbd>
+<kbd class="bg-surface-container px-1 py-0.5 rounded text-on-surface-variant font-mono">▼</kbd>
+<span>للتنقل</span>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="relative flex items-center bg-surface-container-low rounded-lg px-space-sm py-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline ml-space-xs">search</span>
+<input class="w-full bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="بحث باسم الطفل أو الرقم الأكاديمي..." type="text"/>
+<button class="text-outline hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-space-xs overflow-x-auto py-0.5">
+<button class="px-space-sm py-1 rounded bg-primary text-on-primary font-caption text-caption whitespace-nowrap">الكل (16)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-caption text-caption whitespace-nowrap">غير مكتمل (4)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-caption text-caption whitespace-nowrap">ملاحظة طبية (3)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-caption text-caption whitespace-nowrap">غائب (2)</button>
+</div>
+</div>
+<!-- Scrollable Children Registry -->
+<div class="flex flex-col gap-space-xs max-h-[calc(100vh-320px)] overflow-y-auto pr-0.5">
+<!-- Child Card 1: Active Selected -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-high/60 cursor-pointer transition-all shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative shrink-0">
+<div class="w-10 h-10 rounded-full bg-cover bg-center overflow-hidden" data-alt="A portrait of a happy Saudi kindergartener boy named Saud with gentle lighting in modern school uniform, warm friendly expression, clean minimal background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwLMUA-AYjZxWvZ9JJ8k9VFtszfX5tiAJTSRZ5PzTxW6uoXBbKLtoYm5mL4w7iCuUNwGUi-peHJbOdBTvz-rxgglq_zZSSe3wE9X37acvWEoXINjvlYGR7EhTHxHYgcu85VKkMfrFSU10MEtSugy-NJJ4WYmvKx4yZOranaEgS5F5lBerWjhm50OEFMD1TzIRDgQc513pQwCVXP9OKmGU1jOyV-Or09h6JBCOFfxy5rTtPRvxG-J0')"></div>
+<span class="absolute -bottom-1 -left-1 w-3.5 h-3.5 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-caption text-[8px]" title="حساسية طبية">!</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md font-semibold text-primary truncate">سعود بن فيصل العتيبي</span>
+</div>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0402</span>
+<span>•</span>
+<span class="text-tertiary font-medium">حساسية فول سوداني</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-primary font-bold">90%</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-caption text-[10px]">قيد التحرير</span>
+</div>
+</div>
+<!-- Child Card 2 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-cover bg-center overflow-hidden" data-alt="Warm studio photo of a smiling Arab young kindergartener girl Sarah wearing an educational uniform with soft natural lighting and classroom elements" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyX1uM0RKulPz2VrmYwkAH73_k-CQCir77AQ1VFcjUhX6o0kmJARYvpDox48N1VGNZ4OfRpETGWP16ru3A8jLIDqvwWchVwI9qW5ghDfsIWAXVc3EdxwuYUfXYEOuaCs88G2tYtl1MKZtvT3qOpLMGd56jRrmCitcZKuFWA26JdfnCc-KBaNhnS4fbiUDD3lFudPeYKunPOiRbWYTEiXrYC5WwZH50LblI8Zby56gJYGfmKULGTos')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">سارة بنت علي الحربي</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0415</span>
+<span>•</span>
+<span class="text-secondary font-medium">نجمة الأسبوع 🌟</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">100%</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-[10px]">مكتمل</span>
+</div>
+</div>
+<!-- Child Card 3 -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-cover bg-center overflow-hidden" data-alt="Portrait of a cheerful young Saudi boy Rayan in a kindergarten classroom setting, holding a crayon with bright eyes and gentle smile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzAfJwdh-1yZez0U06eK0TQ9xF4NWXWNduMtk48wdu3tHL0LzW3KIAgC1Zg0Y_CKc2JVhKNS4wzs_OH1uVWENMRQFMMF9dZ0c4A64mXhVvc3-Y_CdLRy75olqvLMGKWGWxIYPqGkZYaJ30jxr8gUJkILoqY6-B_ZU8WRKVlJmaF1TSPN0HccbBiyVepV0cGG8bfZwqWzStOgWv1KrlHZvdQe4P7tT9Fd02fvOsA7MfjQWGObcq7DU')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">ريان ماجد الصالح</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0398</span>
+<span>•</span>
+<span>نشاط فني متميز</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">100%</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-[10px]">مكتمل</span>
+</div>
+</div>
+<!-- Child Card 4: In Progress -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-cover bg-center overflow-hidden" data-alt="Close up portrait of a polite 5-year old Middle Eastern boy Karim sitting in a daycare playroom, smiling warmly in daylight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5YkNOgZy9fDgQsyDWa3iZ5B6x8Ry4Ff4uLP9Yq5F1qf0k_aNULucq_MUoyKUZmqRoVQgCQWzkCN1SoGk8WKJ33pN2tifPe1G6grRHLllOYnRbUtnKHSra20qiQ4P0Y0uopVazCb0diqVWOa4z0DFYXzeo1epK7mr-ypIvtxt6ol9dClDeLB_nlJkqJSvUIkJxOffovTxhNWQCAs3u0rPyBk_I7DfeshQXhNtKWAwb6JmKDAjfLl8')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">كريم منصور أحمد</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0422</span>
+<span>•</span>
+<span class="text-secondary">بانتظار الغداء</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">45%</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-[10px]">قيد الإدخال</span>
+</div>
+</div>
+<!-- Child Card 5: Completed -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-cover bg-center overflow-hidden" data-alt="Headshot of a sweet 4-year old Arab girl Jana with braided hair wearing a kindergarten polo shirt, bright clean indoor environment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCobtg18Bv5JckCnGrbvYnIzLbOgIHeDIL-chvfmJ8E-xCP6PUi9_75uo0iqiOEHlYGifQ9pXqNEgGoX1yvMyOXjVom-ytk6pPQajFrdSOyzpEphm8HivO2kWessZ1vhU2SuQl3d9x-FklZEdQBSbYSJaDTqUx1EpYU_2_VaisBMI1CrCwKMyy_wT-VOTnGonKYXUw7jiGEAji0mzQQPacu8nl_r1JncI-h5xQcZGbUE0BK226rqFE')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">جنى عبد العزيز الرويلي</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0411</span>
+<span>•</span>
+<span>تقرير نموذجي</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">100%</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-[10px]">مكتمل</span>
+</div>
+</div>
+<!-- Child Card 6: Absent With Excuse -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container opacity-80 cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-outline truncate">عمر بن بسام الناصر</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0430</span>
+<span>•</span>
+<span class="text-tertiary">غائب (عذر مرضي)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">-</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-caption text-[10px]">معلّق</span>
+</div>
+</div>
+<!-- Child Card 7: Absent -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container opacity-80 cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="shrink-0 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-outline truncate">طارق يوسف الشمري</span>
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>KG2-0408</span>
+<span>•</span>
+<span>غائب (سفر عائلي)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-0.5">
+<span class="font-caption text-caption text-outline">-</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-caption text-[10px]">إجازة</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Left Panel (65% on Desktop - 8 cols of 12) Comprehensive Child Editor -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Child Profile & Medical Alert Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="relative">
+<div class="w-14 h-14 rounded-xl bg-cover bg-center overflow-hidden" data-alt="High detail crisp portrait of 5-year old Saudi kindergartener Saud smiling politely wearing navy school polo shirt against a bright cheerful classroom background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMKLc3Flybj0QGFhslxnOu8EHCLimixSXXEOzA2oGGUUBywbmAmHBkluej3r4talAzRNltDy_2-ArIPRaPjGwYsuTH0RvtAZaecG6yvnAxcaJ5noVuqQniXxLTBc-RRqgnHwq4IRas8yRFl7D875Nbb10k1CS1qEYw_ovAPWE8CuQ6udHfjBRf94D60D6aWif9UiZP5uegkTlVdfu3cYnUE74_bgluZy-svSM2rRX6maYla-QcsYc')"></div>
+<span class="absolute -bottom-1 -left-1 px-1 py-0.2 rounded bg-tertiary text-on-tertiary font-caption text-[9px] font-bold">حساسية</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">سعود بن فيصل بن راشد العتيبي</h2>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">KG2-0402</span>
+</div>
+<div class="flex items-center gap-space-md text-outline font-body-sm text-body-sm mt-0.5 flex-wrap">
+<span>الفصل: <strong>روضة 2 (الأبطال)</strong></span>
+<span>•</span>
+<span>المشرفة: <strong>أ. فاطمة الزهراني</strong></span>
+<span>•</span>
+<span class="text-secondary font-medium">الحضور: 07:45 ص (في الموعد)</span>
+</div>
+</div>
+</div>
+<!-- Quick Emergency Note Badge -->
+<div class="flex sm:flex-col items-end gap-1 bg-tertiary-fixed/60 p-space-sm rounded-lg">
+<div class="flex items-center gap-1 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">medical_services</span>
+<span>تنبيه صحي: حساسية فول سوداني</span>
+</div>
+<span class="font-caption text-caption text-tertiary">بخاخ إبينفرين متوفر بعيادة الروضة</span>
+</div>
+</div>
+<!-- Editor Section 1: Meals & Nutrition -->
+<div class="flex flex-col gap-space-md p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">1. سجل الوجبات والتغذية (Meals &amp; Snacks)</h3>
+</div>
+<span class="font-caption text-caption text-outline">تم التوثيق بواسطة معلمة المائدة</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Breakfast -->
+<div class="flex flex-col gap-space-xs p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">وجبة الإفطار الصباحية (09:00 ص)</span>
+<span class="font-caption text-caption text-primary font-bold">كاملة 100%</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-1">
+<button class="py-1.5 px-2 rounded bg-primary text-on-primary font-label-sm text-label-sm font-medium shadow-xs">أكلها كاملة 💯</button>
+<button class="py-1.5 px-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">نصف الوجبة</button>
+<button class="py-1.5 px-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">لم يرغب بالأكل</button>
+</div>
+<input class="w-full bg-surface-container-lowest p-2 rounded text-on-surface font-body-sm text-body-sm outline-none mt-1" type="text" value="تناول شطيرة الجبن مع شرائح الخيار بالكامل وبداية يوم نشيطة"/>
+</div>
+<!-- Lunch -->
+<div class="flex flex-col gap-space-xs p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">وجبة الغداء (12:00 م)</span>
+<span class="font-caption text-caption text-secondary font-bold">النصف 50%</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-1">
+<button class="py-1.5 px-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">أكلها كاملة</button>
+<button class="py-1.5 px-2 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-medium shadow-xs">نصف الوجبة</button>
+<button class="py-1.5 px-2 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm">لم يرغب بالأكل</button>
+</div>
+<input class="w-full bg-surface-container-lowest p-2 rounded text-on-surface font-body-sm text-body-sm outline-none mt-1" type="text" value="أكل الأرز والدجاج المطهو ورفض شرب اللبن الرائب"/>
+</div>
+</div>
+<!-- Afternoon Snack -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">lunch_dining</span>
+<span class="font-label-md text-label-md text-on-surface">سناك العصر:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">تناول قطعة تفاح طازجة وعصير برتقال طبيعي معتمد</span>
+</div>
+<span class="font-caption text-caption text-primary">تم الفحص ضد الحساسية</span>
+</div>
+</div>
+<!-- Editor Section 2: Nap & Rest Time -->
+<div class="flex flex-col gap-space-md p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">bedtime</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">2. فترة القيلولة والراحة (Nap &amp; Rest)</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant font-mono">12:45 م - 01:45 م (ساعة واحدة)</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<div class="flex items-center justify-between p-space-md rounded-lg bg-primary/10 cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">hotel</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-primary">نام بهدوء وعمق</span>
+<span class="font-caption text-caption text-outline">استغراق مريح طوال المدة</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">airline_seat_recline_normal</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">استرخاء وقراءة هادئة</span>
+<span class="font-caption text-caption text-outline">لم ينم لكنه بقي هادئاً</span>
+</div>
+</div>
+<span class="w-4 h-4 rounded-full bg-surface-container-highest"></span>
+</div>
+<div class="flex items-center justify-between p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">running_with_errors</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">كان قلقاً / لم ينم</span>
+<span class="font-caption text-caption text-outline">احتاج متابعة خاصة</span>
+</div>
+</div>
+<span class="w-4 h-4 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+</div>
+<!-- Editor Section 3: Educational Milestones & Play -->
+<div class="flex flex-col gap-space-md p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3. الأنشطة التعليمية والإبداعية والبدنية</h3>
+</div>
+<button class="flex items-center gap-1 font-caption text-caption text-primary hover:underline">
+<span class="material-symbols-outlined text-[14px]">add_a_photo</span>
+<span>إرفاق صورة جديدة</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Milestone Card 1 -->
+<div class="flex flex-col gap-space-xs p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="font-label-md text-label-md font-semibold">حلقة الحروف والأرقام:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">تعلّم كتابة حرف (س) ورسم سمكة ملونة بالألوان الشمعية. تمكن من التعرف على أصوات الحروف بدقة ملحوظة.</p>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-caption text-caption">إتقان: ممتاز ⭐️⭐️⭐️</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-caption text-caption">الدفتر ص 14</span>
+</div>
+</div>
+<!-- Milestone Card 2 -->
+<div class="flex flex-col gap-space-xs p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[18px]">sports_soccer</span>
+<span class="font-label-md text-label-md font-semibold">اللعب البدني والاجتماعي:</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">مشاركة ممتازة في لعبة سباق الألوان بالفناء الخارجي. أبدى روحاً تعاونية رائعة مع زملائه ريان وكريم أثناء جمع الحلقات.</p>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-caption text-caption">اللياقة والمهارة: عالية</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-caption text-caption">الفناء الخارجي</span>
+</div>
+</div>
+</div>
+<!-- Thumbnails of attached photos for Saud today -->
+<div class="flex items-center gap-space-sm pt-space-xs overflow-x-auto">
+<div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A candid photo of a little Saudi boy drawing with colorful wax crayons on paper in a sunny kindergarten classroom table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBcJ1xlPG8KgnBcugLCwEU6As5VGykKCzk6bZjUXvSis-SfoKkdOyvSYHQ4Lhk0VSwVbqSstQlJgI_ZBzAjrzLy8RzvheC4JRJy6QJXz-RnhBS1K3jIR4WCdICnOLn9Q_iehBJ7P70Qv4U_1tsUYwhUmStpV5w_JgxvWI75TN8_NFHI5qlbGIeOIbjXBzTW1r_suyA0YP5KGbr5GDUsz81OUh5Xs01Ihty9hj3vP8TTicUIRWx7L4')"></div>
+<span class="absolute bottom-1 right-1 bg-inverse-surface/80 text-inverse-on-surface font-caption text-[9px] px-1 rounded">09:40 ص</span>
+</div>
+<div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A joyful shot of children running across artificial green turf in a modern kindergarten playground holding colorful plastic hoops" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyB3KOkGLNkXRI0Lus15a0yCbAcePeHkSA8ztq4JY7hpf5jzyYmWMBg3A-3dEaEW10lm72atkbjhXWsVHJ2XaQJgZxErZilQ5YdB9uYrz1n9uTaNru1p5Q2P_8MHtA3ipTrLHQ6HGIjTr2QWShJW40In-A7eISEfxZAhxt2AEYr1a5v0V4NT-HKd-A0U55X-EruKTYNthjrG5KLnZbMLh_s-EmpxBpqR-tPMpESa9TkH-O32G3sSU')"></div>
+<span class="absolute bottom-1 right-1 bg-inverse-surface/80 text-inverse-on-surface font-caption text-[9px] px-1 rounded">10:55 ص</span>
+</div>
+<div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="Close up of a child handcrafted sea fish drawing on paper with stickers and Arabic letter Seen neatly traced" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXM8-dTeg3AoNqnya8199r2kl6SxGJsDEn-wTLuzxAWs6penGGaGOgDcQBmnzWJMsGLxuxEipLToakSdxHXatleodTgZ5W-jZYF4wm4Gqbtbr5nY0eteuZxV_zqeMs2zxZhlkazOQJFPO0_y6BauslFYm7thl0GBGj8JNsZSg_Q5f0LA3McbVr3Emk74CRrzC-0xHusFocPyLFzCb4VhamvHti9nlq2gDdGA5Ii27cFNbrSebGs30')"></div>
+<span class="absolute bottom-1 right-1 bg-inverse-surface/80 text-inverse-on-surface font-caption text-[9px] px-1 rounded">11:30 ص</span>
+</div>
+<button class="w-20 h-20 rounded-lg bg-surface-container-low hover:bg-surface-container-high flex flex-col items-center justify-center text-outline hover:text-on-surface shrink-0 transition-colors">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+<span class="font-caption text-caption mt-0.5">إضافة لقطة</span>
+</button>
+</div>
+</div>
+<!-- Editor Section 4: Mood & Psychological State -->
+<div class="flex flex-col gap-space-md p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">sentiment_satisfied</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">4. المزاج والحالة النفسية والسلوكية (Mood Tracker)</h3>
+</div>
+<span class="font-caption text-caption text-outline">اختر الحالة السائدة خلال اليوم</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-space-sm">
+<!-- Mood 1: Active Selected -->
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-primary-fixed text-on-primary-fixed-variant shadow-xs">
+<span class="text-3xl mb-1">😊</span>
+<span class="font-label-sm text-label-sm font-bold">سعيد ومبتهج</span>
+<span class="font-caption text-[10px] opacity-80">أغلب أوقات اليوم</span>
+</button>
+<!-- Mood 2 -->
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors">
+<span class="text-3xl mb-1">🌟</span>
+<span class="font-label-sm text-label-sm">متحمس ونشيط</span>
+<span class="font-caption text-[10px] text-outline">طاقة إيجابية</span>
+</button>
+<!-- Mood 3 -->
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors">
+<span class="text-3xl mb-1">😌</span>
+<span class="font-label-sm text-label-sm">هادئ ومستقر</span>
+<span class="font-caption text-[10px] text-outline">تركيز ممتاز</span>
+</button>
+<!-- Mood 4 -->
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors">
+<span class="text-3xl mb-1">🥱</span>
+<span class="font-label-sm text-label-sm">متعب قليلاً</span>
+<span class="font-caption text-[10px] text-outline">بحاجة نوم مبكر</span>
+</button>
+<!-- Mood 5 -->
+<button class="flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors">
+<span class="text-3xl mb-1">🥺</span>
+<span class="font-label-sm text-label-sm">حساس / متقلب</span>
+<span class="font-caption text-[10px] text-outline">احتاج احتواء</span>
+</button>
+</div>
+<!-- Daily Honor Badge Selector -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="text-2xl">🎖️</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">وسام التميز لليوم:</span>
+<span class="font-body-sm text-body-sm text-primary font-medium mr-1">"المساعد الصغير - تنظيم وترتيب ركن الألعاب"</span>
+</div>
+</div>
+<button class="font-label-sm text-label-sm text-outline hover:text-on-surface underline">تغيير الوسام</button>
+</div>
+</div>
+<!-- Editor Section 5: Teacher's Personal Note to Parents -->
+<div class="flex flex-col gap-space-sm p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">5. رسالة المعلمة الخاصة لولي الأمر</h3>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded text-on-surface font-caption text-caption hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[14px]">auto_fix_high</span>
+<span>قوالب ثناء جاهزة</span>
+</button>
+<button class="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded text-on-surface font-caption text-caption hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[14px]">translate</span>
+<span>فحص لغوي</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low p-space-md rounded-lg font-body-sm text-body-sm text-on-surface outline-none resize-none placeholder:text-outline leading-relaxed" rows="3">سعود أظهر تركيزاً رائعاً في حلقة القراءة واللغة اليوم، يرجى تشجيعه ومراجعة بطاقة حرف (س) المرفقة بالحقيبة لتعزيز إتقانه. نود طمأنتكم بأنه بصحة تامة ولم تظهر عليه أي أعراض تحسس ولله الحمد طوال ساعات الدوام.</textarea>
+<div class="absolute bottom-2 left-2 flex items-center gap-space-xs text-outline font-caption text-caption">
+<span>184 / 300 حرف</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-space-xs text-outline font-caption text-caption">
+<span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+<span>سيتم تضمين ملخص الوجبات والمزاج تلقائياً في الإشعار الرقمي</span>
+</div>
+<button class="flex items-center gap-1 text-primary hover:text-primary-container font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+<span>معاينة رسالة WhatsApp / SMS لولي الأمر</span>
+</button>
+</div>
+</div>
+<!-- Bottom Sticky Action Bar inside Editor Canvas -->
+<div class="flex flex-wrap items-center justify-between gap-space-md p-space-md bg-surface-container-lowest rounded-xl shadow-md">
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-lg py-2.5 rounded-lg shadow-sm font-label-lg text-label-lg transition-all" title="حفظ واعتماد التقرير نهائياً">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>حفظ واعتماد التقرير (Ctrl+S)</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-2.5 rounded-lg font-label-md text-label-md transition-colors" title="معاينة طباعة A5 الفردية">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>طباعة فردية A5</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface px-space-md py-2.5 rounded-lg font-label-md text-label-md transition-colors" title="إرسال إشعار مباشر لولي الأمر">
+<span class="material-symbols-outlined text-[18px] text-primary">send</span>
+<span>إرسال فوري لولي الأمر</span>
+</button>
+</div>
+<!-- Next / Prev Child Navigation Hotkeys -->
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1 bg-surface-container-low hover:bg-surface-container px-space-sm py-2 rounded-lg text-on-surface-variant font-label-sm text-label-sm transition-colors" title="الطفل السابق">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+<span>السابق</span>
+</button>
+<span class="text-outline font-caption text-caption px-1">1 من 16</span>
+<button class="flex items-center gap-1 bg-surface-container-low hover:bg-surface-container px-space-sm py-2 rounded-lg text-on-surface font-label-sm text-label-sm transition-colors" title="الطفل التالي (F8)">
+<span>التالي (سارة الحربي)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<kbd class="bg-surface-container px-1 py-0.5 rounded text-outline font-mono text-[10px]">F8</kbd>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for active selections
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mood buttons toggle demo
+    const moodBtns = document.querySelectorAll('button:has(> .text-3xl)');
+    moodBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        moodBtns.forEach(b => {
+          b.className = 'flex flex-col items-center justify-center p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors';
+        });
+        btn.className = 'flex flex-col items-center justify-center p-space-md rounded-xl bg-primary-fixed text-on-primary-fixed-variant shadow-xs';
+      });
+    });
+
+    // Keyboard shortcut listeners simulation
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        // Toast feedback or quick save status indication
+        const saveIndicator = document.querySelector('.animate-pulse');
+        if (saveIndicator) {
+          saveIndicator.parentElement.classList.add('bg-primary-fixed');
+          setTimeout(() => saveIndicator.parentElement.classList.remove('bg-primary-fixed'), 1200);
+        }
+      }
+    });
+  });
+</script></main><footer class="fixed bottom-0 right-64 left-0 h-8 bg-inverse-surface text-inverse-on-surface z-40 flex items-center justify-between px-space-lg select-none"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-container"></span><span class="font-caption text-caption">محرك SQLite محلي متصل: روضتي DB (0.8 ms)</span></div><span class="text-outline font-caption">|</span><span class="font-caption text-caption">آخر حفظ محلي: منذ دقيقة</span></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm font-caption text-caption"><kbd class="bg-on-surface-variant px-1 rounded text-inverse-on-surface font-mono">F1</kbd><span>المساعدة</span><kbd class="bg-on-surface-variant px-1 rounded text-inverse-on-surface font-mono">F5</kbd><span>تحديث السجلات</span><kbd class="bg-on-surface-variant px-1 rounded text-inverse-on-surface font-mono">Ctrl+P</kbd><span>طباعة سريعة</span></div><span class="font-caption text-caption text-surface-dim">روضتي Desktop v3.4.0-standalone</span></div></footer></div></body></html>

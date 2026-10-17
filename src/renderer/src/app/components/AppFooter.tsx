@@ -60,6 +60,10 @@ export function AppFooter({
           <span className="font-mono text-caption text-inverse-on-surface/70">
             Ctrl+P طباعة
           </span>
+          <span className="font-mono text-caption text-inverse-on-surface/70">•</span>
+          <span className="font-mono text-caption text-inverse-on-surface/70">
+            Ctrl+Shift+D مظهر
+          </span>
         </div>
         <div className="px-2 py-0.5 rounded bg-surface-container-highest/20 font-mono text-caption text-inverse-on-surface/90">
           v2.0 Desktop Offline

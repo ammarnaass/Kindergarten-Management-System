@@ -1,17 +1,46 @@
-import { useId } from 'react'
+import type { InvoiceItem } from '@/lib/api/types'
 
 interface InvoicesSelectionStepProps {
-  paidInvoices: string[]
-  onToggleInvoice: (invoiceId: string) => void
+  invoices: InvoiceItem[]
+  selectedInvoiceId: string | null
+  onSelectInvoice: (invoiceId: string) => void
+  onQuickCreateInvoice?: () => void
+  isCreatingInvoice?: boolean
+  childSelected: boolean
+}
+
+function formatCents(cents: number): string {
+  if (cents === 0) return '0 دج'
+  return `${(cents / 100).toLocaleString('ar-DZ')} دج`
+}
+
+function getStatusBadge(status: string, dueDate: string) {
+  const today = new Date().toISOString().slice(0, 10)
+  const isOverdue = dueDate < today && (status === 'issued' || status === 'partial')
+
+  if (status === 'paid') {
+    return { label: 'مسددة بالكامل', bg: 'bg-emerald-100 text-emerald-800' }
+  }
+  if (isOverdue) {
+    return { label: 'متأخرة السداد', bg: 'bg-error-container text-on-error-container' }
+  }
+  if (status === 'partial') {
+    return { label: 'مسددة جزئياً', bg: 'bg-amber-100 text-amber-800' }
+  }
+  if (status === 'issued') {
+    return { label: 'مستحقة للدفع', bg: 'bg-primary-fixed text-on-primary-fixed font-semibold' }
+  }
+  return { label: 'مسودة', bg: 'bg-surface-container-highest text-on-surface-variant' }
 }
 
 export function InvoicesSelectionStep({
-  paidInvoices,
-  onToggleInvoice
+  invoices,
+  selectedInvoiceId,
+  onSelectInvoice,
+  onQuickCreateInvoice,
+  isCreatingInvoice = false,
+  childSelected,
 }: InvoicesSelectionStepProps) {
-  const inv1Id = useId()
-  const inv2Id = useId()
-
   return (
     <div className="flex flex-col gap-space-xs pt-1 select-none">
       <div className="flex items-center justify-between">
@@ -20,95 +49,96 @@ export function InvoicesSelectionStep({
             2
           </span>
           <span className="font-label-lg text-label-lg font-bold text-on-surface">
-            الفواتير المعلقة المستهدفة بالسداد
+            الفاتورة المستهدفة بالسداد
           </span>
         </div>
-        <span className="font-caption text-caption text-outline">
-          تم تحديد ({paidInvoices.length}) فاتورة
-        </span>
+        {invoices.length > 0 && (
+          <span className="font-caption text-caption text-outline">
+            {selectedInvoiceId ? 'تم تحديد فاتورة للسداد' : `متاح (${invoices.length}) فواتير`}
+          </span>
+        )}
       </div>
 
-      <div className="flex flex-col gap-2">
-        {/* Invoice 1 */}
-        <label
-          htmlFor={inv1Id}
-          className={`flex items-center justify-between p-space-md rounded-xl cursor-pointer transition-colors ${
-            paidInvoices.includes('nov2026')
-              ? 'bg-surface-container-high'
-              : 'bg-surface-container-low hover:bg-surface-container'
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <input
-              id={inv1Id}
-              type="checkbox"
-              checked={paidInvoices.includes('nov2026')}
-              onChange={() => onToggleInvoice('nov2026')}
-              className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer accent-primary"
-            />
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-label-md text-label-md font-bold text-on-surface">
-                  فاتورة شهر نوفمبر 2026
-                </span>
-                <span className="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-caption text-caption font-semibold">
-                  مستحقة فوراً
-                </span>
-              </div>
-              <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">
-                رسوم التمدرس الأساسية + اشتراك النقل المدرسي
-              </span>
-            </div>
-          </div>
-          <div className="text-left">
-            <span className="font-label-lg text-label-lg font-bold text-primary font-mono">
-              20,000.00 دج
-            </span>
-            <span className="font-caption text-caption text-outline block">المتبقي: 20,000 دج</span>
-          </div>
-        </label>
+      {!childSelected ? (
+        <div className="p-6 text-center bg-surface-container-low rounded-xl text-on-surface-variant text-sm">
+          يرجى اختيار الطفل أولاً لعرض الفواتير المستحقة عليه
+        </div>
+      ) : invoices.length === 0 ? (
+        <div className="p-6 text-center bg-surface-container-low rounded-xl border border-dashed border-outline-variant/60 flex flex-col items-center gap-2">
+          <span className="material-symbols-outlined text-3xl text-outline">receipt_long</span>
+          <p className="text-on-surface font-semibold text-sm">لا توجد فواتير مسجلة لهذا الطفل حالياً</p>
+          <p className="text-on-surface-variant text-xs">
+            يمكنك إصدار فاتورة شهرية جديدة فوراً وتسجيل دفعتها مباشرة
+          </p>
+          {onQuickCreateInvoice && (
+            <button
+              onClick={onQuickCreateInvoice}
+              disabled={isCreatingInvoice}
+              className="mt-2 px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:opacity-90 transition-opacity flex items-center gap-1.5 shadow-xs"
+              type="button"
+            >
+              <span className="material-symbols-outlined text-base">add_circle</span>
+              <span>{isCreatingInvoice ? 'جاري إصدار الفاتورة...' : 'إصدار فاتورة تمدرس لهذا الشهر'}</span>
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-2">
+          {invoices.map((inv) => {
+            const isSelected = selectedInvoiceId === inv.id
+            const badge = getStatusBadge(inv.status, inv.dueDate)
+            const remaining = inv.remainingCents ?? Math.max(0, inv.totalCents - inv.discountCents - (inv.paidCents ?? 0))
+            const itemsSummary = inv.items?.map((i) => i.label).join(' + ') || inv.period || 'رسوم دراسية'
 
-        {/* Invoice 2 */}
-        <label
-          htmlFor={inv2Id}
-          className={`flex items-center justify-between p-space-md rounded-xl cursor-pointer transition-colors ${
-            paidInvoices.includes('dec2026')
-              ? 'bg-surface-container-high'
-              : 'bg-surface-container-low hover:bg-surface-container opacity-75'
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <input
-              id={inv2Id}
-              type="checkbox"
-              checked={paidInvoices.includes('dec2026')}
-              onChange={() => onToggleInvoice('dec2026')}
-              className="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer accent-primary"
-            />
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-label-md text-label-md font-medium text-on-surface">
-                  فاتورة شهر ديسمبر 2026
-                </span>
-                <span className="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-caption text-caption">
-                  مستقبلية
-                </span>
-              </div>
-              <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">
-                رسوم التمدرس فقط (بدون إطعام ونقل)
-              </span>
-            </div>
-          </div>
-          <div className="text-left">
-            <span className="font-label-lg text-label-lg font-medium text-on-surface font-mono">
-              16,000.00 دج
-            </span>
-            <span className="font-caption text-caption text-outline block">
-              تستحق في: 01/12/2026
-            </span>
-          </div>
-        </label>
-      </div>
+            return (
+              <label
+                key={inv.id}
+                htmlFor={`inv-${inv.id}`}
+                className={`flex items-center justify-between p-space-md rounded-xl cursor-pointer transition-colors ${
+                  isSelected
+                    ? 'bg-surface-container-high ring-1 ring-primary'
+                    : 'bg-surface-container-low hover:bg-surface-container'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <input
+                    id={`inv-${inv.id}`}
+                    type="radio"
+                    name="selected-invoice"
+                    checked={isSelected}
+                    onChange={() => onSelectInvoice(inv.id)}
+                    className="w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                  />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-label-md text-label-md font-bold text-on-surface font-mono">
+                        {inv.number}
+                      </span>
+                      <span className={`px-1.5 py-0.5 rounded font-caption text-caption font-semibold ${badge.bg}`}>
+                        {badge.label}
+                      </span>
+                    </div>
+                    <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">
+                      {itemsSummary}
+                    </span>
+                    <span className="font-caption text-caption text-outline font-mono block">
+                      تاريخ الاستحقاق: {inv.dueDate}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-left font-mono">
+                  <span className="font-label-lg text-label-lg font-bold text-primary block">
+                    {formatCents(inv.totalCents - inv.discountCents)}
+                  </span>
+                  <span className="font-caption text-caption text-error font-semibold block">
+                    {remaining > 0 ? `المتبقي: ${formatCents(remaining)}` : 'مدفوعة'}
+                  </span>
+                </div>
+              </label>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

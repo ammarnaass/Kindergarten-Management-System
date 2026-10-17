@@ -44,10 +44,10 @@ export function ChildrenTableView({ children, onOpenProfile }: ChildrenTableView
                 </div>
               </td>
               <td className="py-3 px-4 text-on-surface-variant">
-                {child.classroomId || 'فصل النجوم'}
+                {child.classroomId || 'غير مسكن بفصل'}
               </td>
               <td className="py-3 px-4 font-mono text-on-surface-variant">
-                {child.birthDate || '2022-07-12'}
+                {child.birthDate || '-'}
               </td>
               <td className="py-3 px-4">
                 {child.allergies ? (
