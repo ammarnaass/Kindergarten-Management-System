@@ -13,14 +13,14 @@ export const loginPinSchema = z.object({
 export type LoginPinInput = z.infer<typeof loginPinSchema>
 
 export const superAdminRegisterSchema = z.object({
-  fullName: z.string().min(3, 'الاسم الرباعي مطلوب'),
-  roleTitle: z.string().default('مالك المنشأة / المدير العام التنفيذي'),
-  nationalId: z.string().regex(/^[12]\d{9}$/, 'رقم الهوية الوطنية/الإقامة 10 أرقام تبدأ بـ 1 أو 2'),
-  phone: z.string().min(9, 'رقم الجوال مطلوب'),
-  adminEmail: z.string().email('صيغة البريد الإلكتروني غير صحيحة'),
+  fullName: z.string().min(3, 'الاسم مطلوب'),
+  roleTitle: z.string().default('مدير النظام / المشرف العام'),
+  nationalId: z.string().regex(/^[12]\d{9}$/, 'رقم الهوية الوطنية/الإقامة 10 أرقام تبدأ بـ 1 أو 2').optional().or(z.literal('')),
+  phone: z.string().min(9, 'رقم الجوال مطلوب').optional().or(z.literal('')),
+  adminEmail: z.string().email('صيغة البريد الإلكتروني غير صحيحة').optional().or(z.literal('')),
   username: z.string().min(3, 'اسم المستخدم 3 أحرف على الأقل').max(50),
   password: z.string().min(8, 'كلمة المرور 8 خانات على الأقل'),
-  pinCode: z.string().min(4).max(6).optional(),
+  pinCode: z.string().min(4).max(6).optional().or(z.literal('')),
   recoveryKey: z.string().optional(),
   securityQuestions: z.array(z.object({
     question: z.string(),

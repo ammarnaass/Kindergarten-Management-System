@@ -15,7 +15,8 @@ interface ChildrenTableViewProps {
 export function ChildrenTableView({ children, onOpenProfile }: ChildrenTableViewProps) {
   return (
     <div className="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/40 overflow-hidden select-none">
-      <table className="w-full text-right border-collapse">
+      <div className="overflow-x-auto scrollbar-thin">
+        <table className="w-full min-w-[640px] text-right border-collapse">
         <thead>
           <tr className="bg-surface-container-low text-on-surface-variant font-label-md text-label-md border-b border-outline-variant/40">
             <th className="py-3 px-4">الطفل</th>
@@ -79,6 +80,7 @@ export function ChildrenTableView({ children, onOpenProfile }: ChildrenTableView
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   )
 }

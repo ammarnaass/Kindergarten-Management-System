@@ -1,4 +1,7 @@
 export { default as SafePickupPage } from './SafePickupPage'
+export * from './types'
+export * from './hooks/useSafePickupData'
+export * from './utils/dateHelpers'
 export * from './components/GateHeaderStatus'
 export * from './components/GateScannerInput'
 export * from './components/ActiveChildVerificationCard'

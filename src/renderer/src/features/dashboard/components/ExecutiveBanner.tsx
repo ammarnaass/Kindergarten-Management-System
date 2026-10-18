@@ -7,21 +7,21 @@ interface ExecutiveBannerProps {
 }
 
 export function ExecutiveBanner({
-  teacherName = 'أ. نادية',
-  dateString = 'الثلاثاء 16 أكتوبر 2026',
+  teacherName = 'مدير النظام',
+  dateString = 'اليوم',
   onNewChild
 }: ExecutiveBannerProps) {
   const navigate = useNavigate()
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
+    <div className="relative overflow-hidden rounded-xl bg-surface-container-lowest p-4 sm:p-space-lg shadow-sm">
       {/* Subtle architectural background glow */}
       <div className="absolute -top-24 -left-20 w-80 h-80 rounded-full bg-primary-fixed/25 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-16 w-72 h-72 rounded-full bg-secondary-fixed/20 blur-3xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-space-md">
         {/* Title & Live Temporal Meta */}
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 min-w-0">
           <div className="flex items-center gap-space-sm flex-wrap">
             <span className="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-caption text-caption font-semibold flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
@@ -30,15 +30,15 @@ export function ExecutiveBanner({
             <span className="text-outline-variant">•</span>
             <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1">
               <span className="material-symbols-outlined text-xs text-outline">dns</span>
-              قاعدة SQLite محلية مشفرة (active.db)
+              قاعدة SQLite محلية (100% دون إنترنت)
             </span>
           </div>
 
-          <div className="flex items-baseline gap-3 mt-1">
-            <h1 className="font-display-md text-display-md text-on-surface font-bold tracking-tight">
-              صباح الخير، {teacherName} 👋
+          <div className="flex items-baseline gap-2 sm:gap-3 mt-1 flex-wrap">
+            <h1 className="font-display-md text-headline-lg sm:text-display-md text-on-surface font-bold tracking-tight">
+              أهلاً بك، {teacherName} 👋
             </h1>
-            <span className="font-body-md text-body-md text-on-surface-variant">
+            <span className="font-body-md text-body-sm sm:text-body-md text-on-surface-variant">
               يوم دراسي مفعم بالنشاط والحيوية
             </span>
           </div>

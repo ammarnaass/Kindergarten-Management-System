@@ -256,84 +256,21 @@ function ensureUserColumns() {
   const roleIdMap: Record<string, string> = {}
   for (const r of roleList) roleIdMap[r.name] = r.id
 
-  const DEFAULT_USERS = [
-    {
-      username: 'nadia',
-      displayName: 'د. نادية المنصوري',
-      role: 'admin',
-      roleTitle: 'المشرفة العامة للنظام — إدارة الروضة',
-      avatarIcon: 'shield_person',
-      pin: '849201',
-      password: 'admin'
-    },
-    {
-      username: 'fatima',
-      displayName: 'أ. فاطمة الزهراني',
-      role: 'educator',
-      roleTitle: 'معلمة معتمدة — فصل الأبطال KG2',
-      avatarIcon: 'school',
-      pin: '2222',
-      password: 'user123'
-    },
-    {
-      username: 'sarah',
-      displayName: 'أ. سارة القحطاني',
-      role: 'staff',
-      roleTitle: 'مسؤولة الاستقبال وبوابة الاستلام الآمن',
-      avatarIcon: 'badge',
-      pin: '3333',
-      password: 'user123'
-    },
-    {
-      username: 'reem',
-      displayName: 'أ. ريم الدوسري',
-      role: 'accountant',
-      roleTitle: 'قسم المحاسبة والمصروفات والرسوم الدراسية',
-      avatarIcon: 'payments',
-      pin: '4444',
-      password: 'user123'
-    },
-    {
-      username: 'admin',
-      displayName: 'المدير العام',
-      role: 'admin',
-      roleTitle: 'مدير النظام الأعلى',
-      avatarIcon: 'shield_person',
-      pin: '1234',
-      password: 'admin123'
+  // Prune any legacy dummy users that were previously seeded
+  try {
+    const sqlite = getSqlite()
+    const adminUser = sqlite.prepare("SELECT id FROM users WHERE username = 'admin'").get() as { id: string } | undefined
+    if (adminUser) {
+      sqlite.prepare("UPDATE attendance SET recorded_by = ? WHERE recorded_by IN (SELECT id FROM users WHERE username IN ('nadia', 'fatima', 'sarah', 'reem'))").run(adminUser.id)
+      sqlite.prepare("UPDATE expenses SET recorded_by = ? WHERE recorded_by IN (SELECT id FROM users WHERE username IN ('nadia', 'fatima', 'sarah', 'reem'))").run(adminUser.id)
+      sqlite.prepare("UPDATE payments SET recorded_by = ? WHERE recorded_by IN (SELECT id FROM users WHERE username IN ('nadia', 'fatima', 'sarah', 'reem'))").run(adminUser.id)
     }
-  ]
+    sqlite.prepare("DELETE FROM users WHERE username IN ('nadia', 'fatima', 'sarah', 'reem')").run()
+  } catch {}
 
-  for (const du of DEFAULT_USERS) {
-    const existing = db.select().from(users).where(eq(users.username, du.username)).all()
-    const rId = roleIdMap[du.role] || roleIdMap['admin']
-    if (existing.length === 0) {
-      db.insert(users).values({
-        id: randomUUID(),
-        username: du.username,
-        displayName: du.displayName,
-        roleId: rId,
-        roleTitle: du.roleTitle,
-        avatarIcon: du.avatarIcon,
-        passwordHash: hashPassword(du.password),
-        pinHash: hashPassword(du.pin),
-        isActive: true,
-        lastLoginAt: new Date()
-      }).run()
-    } else {
-      // Ensure pinHash and roleTitle are populated if empty
-      const u = existing[0]
-      if (!u.pinHash || !u.roleTitle || !u.avatarIcon) {
-        db.update(users).set({
-          pinHash: u.pinHash || hashPassword(du.pin),
-          roleTitle: u.roleTitle || du.roleTitle,
-          avatarIcon: u.avatarIcon || du.avatarIcon
-        }).where(eq(users.id, u.id)).run()
-      }
-    }
-  }
-
-  const primaryAdmin = db.select().from(users).where(eq(users.username, 'nadia')).all()[0] || db.select().from(users).limit(1).all()[0]
+  const adminRoleId = roleIdMap['admin']
+  const allDbUsers = db.select().from(users).all()
+  const primaryAdmin = allDbUsers.find((u: any) => u.roleId === adminRoleId) || allDbUsers[0]
   if (primaryAdmin) {
     session.set({
       id: primaryAdmin.id,

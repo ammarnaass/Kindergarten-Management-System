@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, dialog } from 'electron'
+import { app, BrowserWindow, shell, dialog, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import log from './infra/logger'
@@ -10,8 +10,19 @@ import { createBackup } from './db/backup'
 let win: BrowserWindow | null = null
 
 function createWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width: screenWidth, height: screenHeight } = primaryDisplay.workAreaSize
+
+  // Scale window comfortably according to display resolution
+  const initialWidth = Math.min(1440, Math.max(1024, Math.round(screenWidth * 0.9)))
+  const initialHeight = Math.min(920, Math.max(680, Math.round(screenHeight * 0.9)))
+
   win = new BrowserWindow({
-    width: 1280, height: 800, show: false,
+    width: initialWidth,
+    height: initialHeight,
+    minWidth: 800,
+    minHeight: 560,
+    show: false,
     autoHideMenuBar: true,
     frame: false,
     icon: join(__dirname, '../../resources/icon.png'),

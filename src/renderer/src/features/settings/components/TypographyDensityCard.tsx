@@ -1,4 +1,5 @@
 import { AppearanceSettings } from '../types'
+import { useDisplayZoom } from '@/app/providers/DisplayZoomProvider'
 
 interface TypographyDensityCardProps {
   settings: AppearanceSettings
@@ -9,16 +10,18 @@ export function TypographyDensityCard({
   settings,
   onChange
 }: TypographyDensityCardProps) {
+  const { zoomLevel, setZoomLevel, resetZoom, availableZoomLevels } = useDisplayZoom()
+
   return (
     <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-xs flex flex-col gap-space-md border border-surface-variant/40">
       <div className="flex items-center justify-between pb-space-xs">
         <div className="flex items-center gap-space-sm">
           <span className="material-symbols-outlined text-primary text-[22px]">text_fields</span>
           <h2 className="font-headline-sm text-headline-sm text-on-surface font-bold">
-            الخطوط وكثافة العرض (Typography)
+            الخطوط وتكبير العرض (Display & Typography)
           </h2>
         </div>
-        <span className="material-symbols-outlined text-outline text-[18px]">density_medium</span>
+        <span className="material-symbols-outlined text-outline text-[18px]">aspect_ratio</span>
       </div>
 
       {/* Font Family Selector */}
@@ -94,6 +97,54 @@ export function TypographyDensityCard({
             كبير (110%)
           </button>
         </div>
+      </div>
+
+      {/* Display Zoom & Resolution Scaling */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-between">
+          <label className="font-label-sm text-label-sm font-bold text-on-surface flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[18px] text-primary">aspect_ratio</span>
+            تحجيم الشاشة (Display Zoom)
+          </label>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-label-sm text-label-sm font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
+              {zoomLevel}%
+            </span>
+            {zoomLevel !== 100 && (
+              <button
+                type="button"
+                onClick={resetZoom}
+                className="text-xs text-on-surface-variant hover:text-primary transition-colors underline"
+                title="إعادة ضبط إلى 100%"
+              >
+                إعادة ضبط
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="grid grid-cols-4 sm:grid-cols-7 gap-1 bg-surface-container-low p-1 rounded-xl border border-surface-variant/30">
+          {availableZoomLevels.map((lvl) => (
+            <button
+              key={lvl}
+              type="button"
+              onClick={() => setZoomLevel(lvl)}
+              className={`py-1.5 text-center rounded-lg font-mono text-xs transition-all ${
+                zoomLevel === lvl
+                  ? 'bg-primary text-on-primary font-bold shadow-xs'
+                  : 'text-on-surface-variant hover:bg-surface-container'
+              }`}
+            >
+              {lvl}%
+            </button>
+          ))}
+        </div>
+        <p className="text-[11px] text-on-surface-variant flex items-center gap-1 flex-wrap">
+          <span className="material-symbols-outlined text-[14px] text-outline">info</span>
+          يتكيف فورياً مع مختلف الشاشات. اختصارات لوحة المفاتيح:
+          <span className="font-mono font-bold mx-1">Ctrl +</span> و
+          <span className="font-mono font-bold mx-1">Ctrl -</span> و
+          <span className="font-mono font-bold mx-1">Ctrl 0</span>
+        </p>
       </div>
 
       {/* Interface Density Mode */}

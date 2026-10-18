@@ -49,13 +49,13 @@ export function TitleBar({ appName = 'روضتي — نظام إدارة الر�
       >
         <AppLogo size="xs" iconOnly />
         <div className="flex items-center gap-1.5">
-          <span className="font-label-sm text-label-sm font-bold text-on-surface tracking-wide">
+          <span className="font-label-sm text-label-sm font-bold text-on-surface tracking-wide truncate max-w-[200px] sm:max-w-none">
             {appName}
           </span>
-          <span className="px-2 py-0.5 rounded-md bg-primary-container/20 text-primary font-caption text-[11px] font-bold">
+          <span className="hidden md:inline-block px-2 py-0.5 rounded-md bg-primary-container/20 text-primary font-caption text-[11px] font-bold">
             2026/2027
           </span>
-          <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-[10px]">
+          <span className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-[10px]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>نظام محلي 100% • دون اتصال</span>
           </span>

@@ -69,8 +69,8 @@ export const AccountsTableView: React.FC<AccountsTableViewProps> = ({
 
   return (
     <div className="border border-border rounded-2xl bg-card/60 backdrop-blur-sm overflow-hidden shadow-sm">
-      <div className="overflow-x-auto">
-        <table className="w-full text-right text-xs">
+      <div className="overflow-x-auto scrollbar-thin">
+        <table className="w-full min-w-[760px] text-right text-xs">
           <thead>
             <tr className="bg-muted/40 border-b border-border text-muted-foreground font-semibold">
               <th className="py-3 px-4">المستخدم</th>

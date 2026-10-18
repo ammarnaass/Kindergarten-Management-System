@@ -250,8 +250,8 @@ export function InvoicesLedgerTable({
 
       {/* جدول الفواتير الفعلي */}
       <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-xs overflow-hidden flex flex-col flex-1">
-        <div className="overflow-x-auto flex-1">
-          <table className="w-full text-right border-collapse">
+        <div className="overflow-x-auto scrollbar-thin flex-1">
+          <table className="w-full min-w-[800px] text-right border-collapse">
             <thead>
               <tr className="bg-surface-container-low border-b border-outline-variant/60 text-xs font-bold text-on-surface-variant">
                 <th className="py-3 px-4">رقم الفاتورة</th>

@@ -12,7 +12,7 @@ interface AppLogoProps {
 export function AppLogo({
   size = 'md',
   showText = true,
-  subtitle = 'فرع الياسمين النموذجي',
+  subtitle = 'منظومة الإدارة الذكية للتعليم المبكر',
   iconOnly = false,
   className = ''
 }: AppLogoProps) {

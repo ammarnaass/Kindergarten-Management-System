@@ -16,7 +16,7 @@ export const RecoveryKeyCertificate: React.FC<RecoveryKeyCertificateProps> = ({
   username,
   nationalId,
   createdAt,
-  kindergartenName = 'روضتي الأهلية النموذجية',
+  kindergartenName = 'نظام روضتي',
   onClose
 }) => {
   return (

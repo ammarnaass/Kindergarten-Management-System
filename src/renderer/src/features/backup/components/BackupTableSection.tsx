@@ -73,8 +73,8 @@ export function BackupTableSection({
         </div>
 
         {/* Table Content */}
-        <div className="w-full overflow-x-auto">
-          <table className="w-full text-right border-collapse">
+        <div className="w-full overflow-x-auto scrollbar-thin">
+          <table className="w-full min-w-[700px] text-right border-collapse">
             <thead>
               <tr className="bg-surface-container-high/60 text-on-surface-variant font-label-md text-label-md">
                 <th className="py-2.5 px-space-md font-semibold">تاريخ ووقت النسخة</th>

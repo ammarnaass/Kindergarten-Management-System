@@ -21,8 +21,8 @@ export const GuardiansTableView: React.FC<GuardiansTableViewProps> = ({
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-right border-collapse">
+    <div className="overflow-x-auto scrollbar-thin">
+      <table className="w-full min-w-[720px] text-right border-collapse">
         <thead>
           <tr className="bg-surface-container-low text-on-surface-variant font-label-md text-label-md select-none border-b border-outline-variant/10">
             <th className="py-3 px-space-md font-semibold">ولي الأمر / المستلم</th>

@@ -25,17 +25,17 @@ export const RegistrationWizardPage: React.FC = () => {
   const { toast } = useToast()
 
   // Form Fields
-  const [fullName, setFullName] = useState('أ. عبد الرحمن بن سليمان المنصور')
-  const [roleTitle, setRoleTitle] = useState('مالك المنشأة / المدير العام التنفيذي')
-  const [nationalId, setNationalId] = useState('1089345210')
-  const [phone, setPhone] = useState('501234567')
-  const [adminEmail, setAdminEmail] = useState('admin@al-amal.rawdaty.local')
+  const [fullName, setFullName] = useState('')
+  const [roleTitle, setRoleTitle] = useState('مدير النظام / المشرف العام')
+  const [nationalId, setNationalId] = useState('')
+  const [phone, setPhone] = useState('')
+  const [adminEmail, setAdminEmail] = useState('')
 
-  const [username, setUsername] = useState('superadmin')
-  const [password, setPassword] = useState('Rawdati@2026#SecureAdmin')
-  const [confirmPassword, setConfirmPassword] = useState('Rawdati@2026#SecureAdmin')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [pinCode, setPinCode] = useState('849201')
+  const [pinCode, setPinCode] = useState('')
 
   // Offline Recovery Key
   const [recoveryKey] = useState(() => {
@@ -45,12 +45,12 @@ export const RegistrationWizardPage: React.FC = () => {
     return `RAW-${r1}-${r2}-${r3}-2026`
   })
 
-  const [q1, setQ1] = useState('ما هو الاسم الأول لأول معلمة أسست الروضة؟')
-  const [a1, setA1] = useState('أ. نورة الشمري')
-  const [q2, setQ2] = useState('ما هو الرمز المالي لحساب بنك المنشأة المعتمد؟')
-  const [a2, setA2] = useState('SA-ALAMAL-2018')
+  const [q1, setQ1] = useState('')
+  const [a1, setA1] = useState('')
+  const [q2, setQ2] = useState('')
+  const [a2, setA2] = useState('')
 
-  const [agreed, setAgreed] = useState(true)
+  const [agreed, setAgreed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showCertificate, setShowCertificate] = useState(false)
   const [emergencyOpen, setEmergencyOpen] = useState(false)
@@ -70,7 +70,7 @@ export const RegistrationWizardPage: React.FC = () => {
   }, [navigate, toast])
 
   // Validation Checkers
-  const isLuhnValid = useMemo(() => validateSaudiId(nationalId), [nationalId])
+  const isLuhnValid = useMemo(() => (!nationalId.trim() ? true : validateSaudiId(nationalId)), [nationalId])
   const passwordsMatch = password.length > 0 && password === confirmPassword
   const isFormValid =
     fullName.trim().length >= 3 &&
@@ -85,7 +85,7 @@ export const RegistrationWizardPage: React.FC = () => {
     if (!isFormValid) {
       toast({
         title: 'يرجى استكمال البيانات المطلوبة',
-        description: 'تأكد من مطابقة كلمة المرور وصحة رقم الهوية والموافقة على التعهد.',
+        description: 'تأكد من مطابقة كلمة المرور وصحة اسم المستخدم والموافقة على التعهد.',
         variant: 'destructive'
       })
       return
@@ -96,17 +96,20 @@ export const RegistrationWizardPage: React.FC = () => {
       await api.auth.registerSuperAdmin({
         fullName: fullName.trim(),
         roleTitle,
-        nationalId: nationalId.trim(),
-        phone: phone.trim(),
-        adminEmail: adminEmail.trim(),
+        nationalId: nationalId.trim() || undefined,
+        phone: phone.trim() || undefined,
+        adminEmail: adminEmail.trim() || undefined,
         username: username.trim(),
         password,
-        pinCode: pinCode.trim(),
+        pinCode: pinCode.trim() || undefined,
         recoveryKey,
-        securityQuestions: [
-          { question: q1, answer: a1 },
-          { question: q2, answer: a2 }
-        ]
+        securityQuestions:
+          q1.trim() && a1.trim()
+            ? [
+                { question: q1.trim(), answer: a1.trim() },
+                ...(q2.trim() && a2.trim() ? [{ question: q2.trim(), answer: a2.trim() }] : [])
+              ]
+            : undefined
       })
 
       toast({

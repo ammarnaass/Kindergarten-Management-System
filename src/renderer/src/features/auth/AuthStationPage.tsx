@@ -42,6 +42,7 @@ export const AuthStationPage: React.FC = () => {
   const [helpOpen, setHelpOpen] = useState(false)
   const [emergencyOpen, setEmergencyOpen] = useState(false)
   const [settings, setSettings] = useState<Record<string, string>>({})
+  const [dbPath, setDbPath] = useState<string>('')
 
   // Fetch local users and settings
   const loadInitialData = async () => {
@@ -53,6 +54,9 @@ export const AuthStationPage: React.FC = () => {
       ])
       setUsersList(users)
       setSettings(sett || {})
+      api.system.integrityCheck().then((res) => {
+        if (res?.dbPath) setDbPath(res.dbPath)
+      }).catch(() => {})
 
       const needsAdminSetup = !setupStatus.hasAdmin || users.length === 0
       setIsFirstRun(needsAdminSetup)
@@ -167,13 +171,10 @@ export const AuthStationPage: React.FC = () => {
     try {
       await api.auth.registerSuperAdmin({
         fullName: regDisplayName.trim(),
-        roleTitle: 'المشرف العام — إدارة الروضة',
+        roleTitle: 'مدير النظام — المشرف العام',
         username: regUsername.trim().toLowerCase(),
         password: regPassword,
-        pinCode: regPin.trim() || undefined,
-        nationalId: '1000000000',
-        phone: '0500000000',
-        adminEmail: 'admin@rawdati.local'
+        pinCode: regPin.trim() || undefined
       })
 
       setFeedback({
@@ -197,36 +198,14 @@ export const AuthStationPage: React.FC = () => {
     }
   }
 
-  // RFID / Card quick scan simulation
+  // RFID / Barcode Scanner quick prompt
   const handleRfidScan = () => {
     if (!selectedUser) return
-    setRfidScanning(true)
     setFeedback({
       type: 'info',
-      message: 'قارئ البطاقات الذكية نشط... جاري قراءة الشريحة الإلكترونية أو باركود الحضور.'
+      message: 'قارئ البطاقات والباركود جاهز: مرر البطاقة أو امسح الباركود على الجهاز، وسيتم إدخال الرمز مباشرة.'
     })
-
-    setTimeout(async () => {
-      setRfidScanning(false)
-      try {
-        await api.auth.login({
-          username: selectedUser.username,
-          password: 'user123'
-        }).catch(() => {
-          return api.auth.loginPin({ username: selectedUser.username, pin: '2222' })
-        })
-        setFeedback({
-          type: 'success',
-          message: `تم مسح بطاقة ${selectedUser.displayName} بنجاح! جاري التوجيه إلى لوحة القيادة...`
-        })
-        setTimeout(() => navigate('/dashboard'), 500)
-      } catch {
-        setFeedback({
-          type: 'error',
-          message: 'تعذر التحقق من بطاقة RFID. يرجى إدخال رمز PIN أو كلمة المرور يدوياً.'
-        })
-      }
-    }, 1200)
+    setAuthMode('pin')
   }
 
   const handlePromptCustomUser = () => {
@@ -236,23 +215,15 @@ export const AuthStationPage: React.FC = () => {
       if (existing) {
         setSelectedUser(existing)
         setAuthMode(existing.hasPin ? 'pin' : 'password')
+        setPin('')
+        setPassword('')
+        setFeedback(null)
       } else {
-        const newUser: LocalUserSummary = {
-          id: `custom-${Date.now()}`,
-          username: custom.trim(),
-          displayName: custom.trim(),
-          role: 'staff',
-          roleTitle: 'حساب محلي مخصص',
-          avatarIcon: 'person',
-          hasPin: false
-        }
-        setUsersList((prev) => [newUser, ...prev])
-        setSelectedUser(newUser)
-        setAuthMode('password')
+        setFeedback({
+          type: 'error',
+          message: `اسم المستخدم "${custom.trim()}" غير مسجل في النظام المحلي.`
+        })
       }
-      setPin('')
-      setPassword('')
-      setFeedback(null)
     }
   }
 
@@ -281,9 +252,13 @@ export const AuthStationPage: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [helpOpen, emergencyOpen, loading, regLoading, stationTab, cycleNextUser, handleLogin])
 
-  const kindergartenName = settings['branch.kindergartenNameAr'] || 'روضتي الأهلية النموذجية'
-  const branchName = settings['branch.branchName'] || 'فرع الياسمين النموذجي'
-  const academicYear = settings['appearance.activeAcademicYear'] || '1446-1447هـ (2024-2025م)'
+  const kindergartenName =
+    settings['branch.name'] || settings['branch.kindergartenNameAr'] || 'نظام روضتي'
+  const branchCity = settings['branch.city'] || ''
+  const branchName =
+    settings['branch.branchName'] || (branchCity ? `فرع ${branchCity}` : '')
+  const academicYear =
+    settings['branch.academicYear'] || settings['appearance.activeAcademicYear'] || ''
 
   const avatarOptions = [
     { id: 'shield_person', label: 'إدارة' },
@@ -376,7 +351,9 @@ export const AuthStationPage: React.FC = () => {
                 </div>
 
                 <p className="text-body-sm text-on-surface-variant leading-relaxed">
-                  {branchName} — العام الدراسي {academicYear}. محطة الدخول المشفرة تضمن حماية سجلات الأطفال وحضور الفصول حتى في حال انقطاع الشبكة.
+                  {[branchName, academicYear ? `العام الدراسي ${academicYear}` : null].filter(Boolean).join(' — ')}
+                  {branchName || academicYear ? '. ' : ''}
+                  محطة الدخول المشفرة تضمن حماية سجلات الأطفال وحضور الفصول محلياً دون الحاجة للإنترنت.
                 </p>
 
                 <div className="bg-surface-container-low p-2.5 rounded-xl flex items-center gap-2.5 text-on-surface border border-outline-variant/20">
@@ -924,8 +901,8 @@ export const AuthStationPage: React.FC = () => {
           <div className="flex items-center gap-1.5 font-mono text-[11px] text-on-surface">
             <span className="material-symbols-outlined text-[16px] text-primary">database</span>
             <span className="text-on-surface-variant">الملف المحلي:</span>
-            <span className="bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant/20">
-              C:\ProgramData\Rowdati\data\rawdati_prod.db
+            <span className="bg-surface-container-lowest px-2 py-0.5 rounded border border-outline-variant/20 max-w-xs truncate" title={dbPath || 'قاعدة البيانات المحلية'}>
+              {dbPath ? dbPath.split(/[/\\]/).pop() || dbPath : 'قاعدة البيانات المحلية النشطة'}
             </span>
           </div>
 
@@ -933,9 +910,9 @@ export const AuthStationPage: React.FC = () => {
 
           <div className="flex items-center gap-1.5 text-on-surface">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>آخر نسخة احتياطية: اليوم</span>
+            <span>قاعدة البيانات متصلة وسليمة</span>
             <span className="bg-secondary-container text-on-secondary-container text-[10px] px-1.5 py-0.2 rounded font-bold">
-              USB متصل ومفحوص
+              100% محلي دون إنترنت
             </span>
           </div>
         </div>
