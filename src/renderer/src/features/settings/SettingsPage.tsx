@@ -2,6 +2,7 @@ import { useSettings } from './hooks/useSettings'
 import { SettingsHeaderBanner } from './components/SettingsHeaderBanner'
 import { SettingsNavigationTabs } from './components/SettingsNavigationTabs'
 import { BranchIdentityTab } from './components/BranchIdentityTab'
+import { AccountsManagementTab } from './components/accounts'
 import { HardwarePrintersTab } from './components/HardwarePrintersTab'
 import { BarcodeScannerTab } from './components/BarcodeScannerTab'
 import { DatabaseMaintenanceTab } from './components/DatabaseMaintenanceTab'
@@ -54,6 +55,10 @@ export function SettingsPage() {
             onChange={updateBranch}
             onSave={triggerQuickSave}
           />
+        )}
+
+        {activeTab === 'users' && (
+          <AccountsManagementTab />
         )}
 
         {activeTab === 'printers' && (

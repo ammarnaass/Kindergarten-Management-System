@@ -10,7 +10,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { id: 'dashboard', label: 'الرئيسية', icon: 'dashboard', path: '/dashboard' },
   { id: 'children', label: 'الأطفال', icon: 'escalator_warning', path: '/children' },
-  { id: 'classrooms', label: 'الفصول ووضع الفصل', icon: 'meeting_room', path: '/attendance' },
+  { id: 'classrooms', label: 'الفصول ووضع الفصل', icon: 'meeting_room', path: '/classrooms' },
   { id: 'attendance', label: 'الحضور والانصراف', icon: 'how_to_reg', path: '/attendance' },
   { id: 'safe-pickup', label: 'الاستلام الآمن عند البوابة', icon: 'qr_code_scanner', path: '/safe-pickup' },
   { id: 'finance', label: 'المالية والمدفوعات', icon: 'account_balance_wallet', path: '/finance' },

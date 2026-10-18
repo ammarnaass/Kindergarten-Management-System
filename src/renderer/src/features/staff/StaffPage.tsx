@@ -45,14 +45,15 @@ export default function StaffPage() {
         api.staff.listLeaves(),
       ])
 
-      setStats(statsRes)
-      setStaffList(listRes)
-      setAttendanceSheet(attRes.items)
-      setLeavesList(leavesRes)
+      setStats(statsRes ?? null)
+      setStaffList(listRes ?? [])
+      const items = attRes?.items ?? (Array.isArray(attRes) ? attRes : [])
+      setAttendanceSheet(items)
+      setLeavesList(leavesRes ?? [])
 
       // Initialize attendance draft from fetched attendance items
       const draft: Record<string, { status: 'present' | 'absent' | 'late' | 'excused'; note: string }> = {}
-      for (const item of attRes.items) {
+      for (const item of items) {
         draft[item.staffId] = {
           status: item.status ?? 'present',
           note: item.note ?? '',

@@ -30,14 +30,52 @@ export const superAdminRegisterSchema = z.object({
 export type SuperAdminRegisterInput = z.infer<typeof superAdminRegisterSchema>
 
 export const userCreateSchema = z.object({
-  username: z.string().min(3).max(50),
-  password: z.string().min(8, 'كلمة المرور 8 أحرف على الأقل'),
-  displayName: z.string().min(1),
-  roleId: z.string().min(1),
+  username: z.string().min(3, 'اسم المستخدم 3 أحرف على الأقل').max(50),
+  password: z.string().min(6, 'كلمة المرور 6 أحرف على الأقل'),
+  displayName: z.string().min(2, 'الاسم الكامل مطلوب'),
+  roleId: z.string().min(1, 'الدور الوظيفي مطلوب'),
   roleTitle: z.string().optional(),
+  phone: z.string().optional(),
+  email: z.string().optional(),
   pinCode: z.string().min(4).max(6).optional(),
   avatarIcon: z.string().optional(),
   isActive: z.boolean().default(true)
 })
 export type UserCreate = z.infer<typeof userCreateSchema>
+
+export const userUpdateSchema = z.object({
+  id: z.string().uuid('معرف المستخدم غير صحيح'),
+  displayName: z.string().min(2, 'الاسم الكامل مطلوب'),
+  roleId: z.string().min(1, 'الدور الوظيفي مطلوب'),
+  roleTitle: z.string().optional(),
+  phone: z.string().optional(),
+  email: z.string().optional(),
+  avatarIcon: z.string().optional(),
+  isActive: z.boolean().optional()
+})
+export type UserUpdate = z.infer<typeof userUpdateSchema>
+
+export const userResetPasswordSchema = z.object({
+  id: z.string().uuid('معرف المستخدم غير صحيح'),
+  newPassword: z.string().min(6, 'كلمة المرور الجديدة 6 أحرف على الأقل')
+})
+export type UserResetPassword = z.infer<typeof userResetPasswordSchema>
+
+export const userResetPinSchema = z.object({
+  id: z.string().uuid('معرف المستخدم غير صحيح'),
+  newPin: z.string().min(4, 'رمز PIN لا يقل عن 4 أرقام').max(6, 'رمز PIN لا يزيد عن 6 أرقام').nullable()
+})
+export type UserResetPin = z.infer<typeof userResetPinSchema>
+
+export const userToggleActiveSchema = z.object({
+  id: z.string().uuid('معرف المستخدم غير صحيح'),
+  isActive: z.boolean()
+})
+export type UserToggleActive = z.infer<typeof userToggleActiveSchema>
+
+export const userDeleteSchema = z.object({
+  id: z.string().uuid('معرف المستخدم غير صحيح')
+})
+export type UserDelete = z.infer<typeof userDeleteSchema>
+
 

@@ -12,8 +12,21 @@ export const ipcApi: AppApi = {
     registerSuperAdmin: (input) => ipc('auth:registerSuperAdmin', input),
     createUser: (input) => ipc('users:create', input)
   },
+  users: {
+    list: () => ipc('users:list'),
+    get: (id) => ipc('users:get', { id }),
+    create: (input) => ipc('users:create', input),
+    update: (input) => ipc('users:update', input),
+    resetPassword: (input) => ipc('users:resetPassword', input),
+    resetPin: (input) => ipc('users:resetPin', input),
+    toggleActive: (input) => ipc('users:toggleActive', input),
+    delete: (id) => ipc('users:delete', { id }),
+    listRoles: () => ipc('roles:list')
+  },
   system: {
     integrityCheck: () => ipc('system:integrityCheck'),
+    isInstalled: () => ipc('system:isInstalled'),
+    completeSetup: (payload) => ipc('system:completeSetup', payload),
     getPrinters: () => ipc('system:getPrinters'),
     openPath: (path: string) => ipc('system:openPath', { path }),
     selectDirectory: () => ipc('system:selectDirectory')
@@ -39,8 +52,13 @@ export const ipcApi: AppApi = {
     removePickup: (id) => ipc('children:removePickup', { id })
   },
   classrooms: {
-    list: () => ipc('classrooms:list'),
-    attendance: (date?) => ipc('classrooms:attendance', date ? { date } : undefined)
+    list: () => ipc<any[]>('classrooms:list'),
+    attendance: (date?: string) => ipc<any[]>('classrooms:attendance', date ? { date } : undefined),
+    create: (input: { name: string; capacity?: number; room?: string | null; teacherId?: string | null }) =>
+      ipc<any>('classrooms:create', input),
+    update: (input: { id: string; name?: string; capacity?: number; room?: string | null; teacherId?: string | null }) =>
+      ipc<any>('classrooms:update', input),
+    delete: (id: string) => ipc<boolean>('classrooms:delete', { id })
   },
   attendance: {
     mark: (date, entries) => ipc('attendance:mark', { date, entries }),
@@ -110,3 +128,6 @@ export const ipcApi: AppApi = {
     vacuum: () => ipc('settings:vacuum')
   }
 }
+
+export const api = ipcApi
+

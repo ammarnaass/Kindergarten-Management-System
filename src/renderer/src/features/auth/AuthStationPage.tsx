@@ -49,64 +49,28 @@ export const AuthStationPage: React.FC = () => {
       const [users, sett, setupStatus] = await Promise.all([
         api.auth.listUsers(),
         api.settings.getAll().catch(() => ({})),
-        api.auth.checkSetup().catch(() => ({ isSetupComplete: true, hasAdmin: true, userCount: 1 }))
+        api.auth.checkSetup().catch(() => ({ isSetupComplete: true, hasAdmin: true, allowRegistration: false, userCount: 1 }))
       ])
       setUsersList(users)
       setSettings(sett || {})
 
-      if (setupStatus && (!setupStatus.isSetupComplete || users.length === 0)) {
-        setIsFirstRun(true)
+      const needsAdminSetup = !setupStatus.hasAdmin || users.length === 0
+      setIsFirstRun(needsAdminSetup)
+
+      if (needsAdminSetup) {
         setStationTab('register')
         setRegRole('admin')
         setRegAvatar('shield_person')
-      } else if (users.length > 0) {
-        // Select admin or first user
-        const defaultUser = users.find((u) => u.username === 'nadia') || users[0]
-        setSelectedUser(defaultUser)
-        setAuthMode(defaultUser.hasPin ? 'pin' : 'password')
+      } else {
+        setStationTab('login')
+        const adminUser = users.find((u) => u.role === 'admin') || users[0]
+        if (adminUser) {
+          setSelectedUser(adminUser)
+          setAuthMode(adminUser.hasPin ? 'pin' : 'password')
+        }
       }
     } catch {
-      // Fallback local mockup users if database is in initial migration
-      const fallbacks: LocalUserSummary[] = [
-        {
-          id: 'u-1',
-          username: 'nadia',
-          displayName: 'د. نادية المنصوري',
-          role: 'admin',
-          roleTitle: 'المشرفة العامة للنظام — إدارة الروضة',
-          avatarIcon: 'shield_person',
-          hasPin: true
-        },
-        {
-          id: 'u-2',
-          username: 'fatima',
-          displayName: 'أ. فاطمة الزهراني',
-          role: 'educator',
-          roleTitle: 'معلمة معتمدة — فصل الأبطال KG2',
-          avatarIcon: 'school',
-          hasPin: true
-        },
-        {
-          id: 'u-3',
-          username: 'sarah',
-          displayName: 'أ. سارة القحطاني',
-          role: 'staff',
-          roleTitle: 'مسؤولة الاستقبال وبوابة الاستلام الآمن',
-          avatarIcon: 'badge',
-          hasPin: true
-        },
-        {
-          id: 'u-4',
-          username: 'reem',
-          displayName: 'أ. ريم الدوسري',
-          role: 'accountant',
-          roleTitle: 'قسم المحاسبة والمصروفات والرسوم الدراسية',
-          avatarIcon: 'payments',
-          hasPin: true
-        }
-      ]
-      setUsersList(fallbacks)
-      setSelectedUser(fallbacks[0])
+      setUsersList([])
     }
   }
 
@@ -177,7 +141,7 @@ export const AuthStationPage: React.FC = () => {
     }
   }
 
-  // Account Creation Handler
+  // Super Admin One-Time Setup Handler
   const handleRegisterUser = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!regDisplayName.trim() || regDisplayName.trim().length < 3) {
@@ -201,29 +165,24 @@ export const AuthStationPage: React.FC = () => {
     setFeedback(null)
 
     try {
-      const roleTitles = {
-        admin: 'مدير النظام الأعلى',
-        educator: 'معلمة رياض أطفال معتمدة',
-        staff: 'مسؤولة الاستقبال وبوابة الاستلام',
-        accountant: 'مسؤول الرسوم والمالية'
-      }
-
-      await api.auth.createUser({
-        displayName: regDisplayName.trim(),
+      await api.auth.registerSuperAdmin({
+        fullName: regDisplayName.trim(),
+        roleTitle: 'المشرف العام — إدارة الروضة',
         username: regUsername.trim().toLowerCase(),
         password: regPassword,
-        roleId: regRole,
-        roleTitle: roleTitles[regRole],
         pinCode: regPin.trim() || undefined,
-        avatarIcon: regAvatar,
-        isActive: true
+        nationalId: '1000000000',
+        phone: '0500000000',
+        adminEmail: 'admin@rawdati.local'
       })
 
       setFeedback({
         type: 'success',
-        message: `تم إنشاء حساب "${regDisplayName}" بنجاح! جاري بدء الجلسة فوراً...`
+        message: `تم إنشاء حساب مدير النظام "${regDisplayName}" بنجاح! تم قفل التسجيل وبدء الجلسة فوراً...`
       })
 
+      setIsFirstRun(false)
+      setStationTab('login')
       await loadInitialData()
       setTimeout(() => {
         navigate('/dashboard')
@@ -231,7 +190,7 @@ export const AuthStationPage: React.FC = () => {
     } catch (err: any) {
       setFeedback({
         type: 'error',
-        message: err.message || 'تعذر إنشاء الحساب، يرجى التأكد من عدم تكرار اسم المستخدم.'
+        message: err.message || 'تعذر إنشاء حساب مدير النظام، يرجى التأكد من عدم تكرار اسم المستخدم.'
       })
     } finally {
       setRegLoading(false)
@@ -472,21 +431,23 @@ export const AuthStationPage: React.FC = () => {
 
               {/* Quick Actions at Bottom of Users List */}
               <div className="pt-3 mt-3 border-t border-outline-variant/20 flex flex-col gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setStationTab('register')
-                    setFeedback(null)
-                  }}
-                  className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl font-bold text-label-md transition-all ${
-                    stationTab === 'register'
-                      ? 'bg-primary text-on-primary shadow-xs'
-                      : 'bg-primary/10 text-primary hover:bg-primary/20'
-                  }`}
-                >
-                  <span className="material-symbols-outlined text-[18px]">person_add</span>
-                  <span>إنشاء حساب مستخدم جديد</span>
-                </button>
+                {isFirstRun && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setStationTab('register')
+                      setFeedback(null)
+                    }}
+                    className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl font-bold text-label-md transition-all ${
+                      stationTab === 'register'
+                        ? 'bg-primary text-on-primary shadow-xs'
+                        : 'bg-primary/10 text-primary hover:bg-primary/20'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+                    <span>تهيئة حساب مدير النظام</span>
+                  </button>
+                )}
 
                 <div className="flex items-center justify-between text-xs text-on-surface-variant pt-1">
                   <button
@@ -509,40 +470,20 @@ export const AuthStationPage: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col justify-center">
             <div className="bg-surface-container-lowest p-6 sm:p-8 rounded-2xl shadow-md border border-outline-variant/30 flex flex-col justify-between">
               <div>
-                {/* ── Primary Unified Tab Switcher (تسجيل الدخول / إنشاء حساب جديد) ── */}
-                <div className="flex items-center p-1 bg-surface-container rounded-2xl mb-6 border border-outline-variant/30">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setStationTab('login')
-                      setFeedback(null)
-                    }}
-                    className={`flex-1 py-2.5 rounded-xl font-bold text-label-lg flex items-center justify-center gap-2 transition-all ${
-                      stationTab === 'login'
-                        ? 'bg-surface-container-lowest text-primary shadow-sm'
-                        : 'text-on-surface-variant hover:text-on-surface'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[20px]">login</span>
-                    <span>تسجيل الدخول</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setStationTab('register')
-                      setFeedback(null)
-                    }}
-                    className={`flex-1 py-2.5 rounded-xl font-bold text-label-lg flex items-center justify-center gap-2 transition-all ${
-                      stationTab === 'register'
-                        ? 'bg-primary text-on-primary shadow-sm'
-                        : 'text-on-surface-variant hover:text-on-surface'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[20px]">person_add</span>
-                    <span>إنشاء حساب جديد</span>
-                  </button>
-                </div>
+                {/* ── First-Run Super Admin Notice (يظهر فقط عند التثبيت لأول مرة ويختفي نهائياً بعد إنشاء الحساب) ── */}
+                {isFirstRun && (
+                  <div className="flex items-center gap-3 p-3.5 bg-primary/10 border border-primary/20 rounded-2xl mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+                      <span className="material-symbols-outlined text-[24px]">admin_panel_settings</span>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-label-lg text-primary">تهيئة حساب مدير النظام (للمرة الأولى فقط)</h3>
+                      <p className="text-body-xs text-on-surface-variant">
+                        يتم إنشاء هذا الحساب لمرة واحدة فقط كمسؤول أعلى للنظام، ثم تُقفل شاشة التسجيل تلقائياً.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* ── Mode 1: LOGIN TAB ── */}
                 {stationTab === 'login' && (
@@ -750,115 +691,59 @@ export const AuthStationPage: React.FC = () => {
                       </button>
 
                       {/* Switch to Registration Callout */}
-                      <div className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/20 flex items-center justify-between">
-                        <span className="text-body-sm text-on-surface-variant">
-                          ليس لديك حساب مسجل بعد؟
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setStationTab('register')
-                            setFeedback(null)
-                          }}
-                          className="text-primary font-bold text-label-md hover:underline flex items-center gap-1"
-                        >
-                          <span>إنشاء حساب جديد الآن</span>
-                          <span className="material-symbols-outlined text-sm">arrow_back</span>
-                        </button>
-                      </div>
+                      {isFirstRun ? (
+                        <div className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/20 flex items-center justify-between">
+                          <span className="text-body-sm text-on-surface-variant">
+                            تهيئة المشرف العام للنظام لأول مرة:
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setStationTab('register')
+                              setFeedback(null)
+                            }}
+                            className="text-primary font-bold text-label-md hover:underline flex items-center gap-1"
+                          >
+                            <span>تهيئة حساب مدير النظام الآن</span>
+                            <span className="material-symbols-outlined text-sm">arrow_back</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/20 flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-on-surface-variant text-body-xs">
+                            <span className="material-symbols-outlined text-base text-primary">security</span>
+                            <span>إضافة وتعديل حسابات المعلمات والموظفين تتم حصراً من داخل لوحة التحكم بواسطة المشرف الإداري.</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </>
                 )}
 
-                {/* ── Mode 2: REGISTER TAB (إنشاء حساب جديد موحد) ── */}
-                {stationTab === 'register' && (
+                {/* ── Mode 2: REGISTER TAB (تهيئة مدير النظام للمرة الأولى فقط) ── */}
+                {isFirstRun && stationTab === 'register' && (
                   <form onSubmit={handleRegisterUser} className="space-y-4">
                     {/* Welcome Callout if First Run */}
-                    {isFirstRun && (
-                      <div className="p-3.5 bg-primary-container/40 text-on-primary-container rounded-xl border border-primary/30 flex items-start gap-2.5 mb-2">
-                        <span className="material-symbols-outlined text-primary text-[22px] shrink-0">
-                          waving_hand
-                        </span>
-                        <div className="text-body-sm">
-                          <strong className="block font-bold">مرحباً بك في نظام روضتي المكتبي!</strong>
-                          هذه أول عملية تشغيل على هذا الجهاز. يرجى ملء بيانات حساب المسؤول لتهيئة النظام وبدء الاستخدام.
-                        </div>
+                    <div className="p-3.5 bg-primary-container/40 text-on-primary-container rounded-xl border border-primary/30 flex items-start gap-2.5 mb-2">
+                      <span className="material-symbols-outlined text-primary text-[22px] shrink-0">
+                        waving_hand
+                      </span>
+                      <div className="text-body-sm">
+                        <strong className="block font-bold">مرحباً بك في نظام روضتي المكتبي!</strong>
+                        هذه أول عملية تشغيل بعد تثبيت البرنامج. يرجى إنشاء حساب مدير النظام (المسؤول الأعلى). سيتم قفل إمكانية إنشاء الحسابات الخارجية بعد هذه الخطوة مباشرة.
                       </div>
-                    )}
+                    </div>
 
-                    {/* Role Selector Strip */}
-                    <div>
-                      <label className="font-semibold text-label-md text-on-surface block mb-2">
-                        اختر نوع الحساب والصلاحية:
-                      </label>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setRegRole('admin')
-                            setRegAvatar('shield_person')
-                          }}
-                          className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all text-center ${
-                            regRole === 'admin'
-                              ? 'bg-primary text-on-primary border-primary shadow-xs'
-                              : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/30 text-on-surface'
-                          }`}
-                        >
-                          <span className="material-symbols-outlined text-[22px]">shield_person</span>
-                          <span className="font-bold text-label-sm">مدير النظام</span>
-                          <span className="text-[10px] opacity-80">كامل الصلاحيات</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setRegRole('educator')
-                            setRegAvatar('school')
-                          }}
-                          className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all text-center ${
-                            regRole === 'educator'
-                              ? 'bg-primary text-on-primary border-primary shadow-xs'
-                              : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/30 text-on-surface'
-                          }`}
-                        >
-                          <span className="material-symbols-outlined text-[22px]">school</span>
-                          <span className="font-bold text-label-sm">معلمة فصل</span>
-                          <span className="text-[10px] opacity-80">فصول وحضور</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setRegRole('staff')
-                            setRegAvatar('badge')
-                          }}
-                          className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all text-center ${
-                            regRole === 'staff'
-                              ? 'bg-primary text-on-primary border-primary shadow-xs'
-                              : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/30 text-on-surface'
-                          }`}
-                        >
-                          <span className="material-symbols-outlined text-[22px]">badge</span>
-                          <span className="font-bold text-label-sm">استقبال وبوابة</span>
-                          <span className="text-[10px] opacity-80">استلام آمن</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setRegRole('accountant')
-                            setRegAvatar('payments')
-                          }}
-                          className={`p-2.5 rounded-xl border flex flex-col items-center gap-1.5 transition-all text-center ${
-                            regRole === 'accountant'
-                              ? 'bg-primary text-on-primary border-primary shadow-xs'
-                              : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/30 text-on-surface'
-                          }`}
-                        >
-                          <span className="material-symbols-outlined text-[22px]">payments</span>
-                          <span className="font-bold text-label-sm">محاسب مالي</span>
-                          <span className="text-[10px] opacity-80">رسوم وفواتير</span>
-                        </button>
+                    {/* Role Locked Card */}
+                    <div className="p-3.5 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-xs shrink-0">
+                        <span className="material-symbols-outlined text-[24px]">shield_person</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-bold text-label-md text-primary">نوع الحساب: مدير النظام الأعلى (Super Admin)</div>
+                        <div className="text-body-xs text-on-surface-variant">
+                          كامل الصلاحيات الإدارية والمالية والأمنية • يُنشأ لمرة واحدة فقط
+                        </div>
                       </div>
                     </div>
 
@@ -989,7 +874,7 @@ export const AuthStationPage: React.FC = () => {
                         ) : (
                           <span className="material-symbols-outlined text-[22px]">how_to_reg</span>
                         )}
-                        <span>إنشاء الحساب وبدء الاستخدام فوراً</span>
+                        <span>إنشاء حساب مدير النظام وبدء الاستخدام</span>
                       </button>
 
                       {/* Super Admin Wizard Link */}

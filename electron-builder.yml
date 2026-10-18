@@ -1,7 +1,9 @@
 appId: com.rawdati.app
 productName: روضتي
+artifactName: '${productName}-Setup-${version}.${ext}'
 directories:
   output: dist
+  buildResources: resources
 files:
   - out/**
 asarUnpack:
@@ -11,20 +13,38 @@ extraResources:
     to: 'drizzle'
   - from: 'resources/fonts'
     to: 'fonts'
+  - from: 'resources/logo.png'
+    to: 'logo.png'
+  - from: 'resources/icon.png'
+    to: 'icon.png'
 win:
+  icon: resources/icon.png
   target:
-    - nsis
-mac:
-  target:
-    - dmg
-  hardenedRuntime: true
+    - target: nsis
+      arch:
+        - x64
 linux:
+  icon: resources/icon.png
+  category: Education
+  synopsis: نظام إدارة رياض الأطفال لسطح المكتب
+  description: برنامج مكتبي متكامل لإدارة رياض الأطفال، الحضور، التقارير والمالية
   target:
     - AppImage
     - deb
+  desktop:
+    StartupWMClass: rawdati
+    Terminal: false
 nsis:
   oneClick: false
+  perMachine: false
   allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: روضتي
+  uninstallDisplayName: '${productName}'
+  deleteAppDataOnUninstall: false
+  runAfterFinish: true
 publish:
   provider: generic
   url: https://updates.example.com/rawdati
+

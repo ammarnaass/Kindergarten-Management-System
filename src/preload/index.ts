@@ -3,8 +3,9 @@ import type { Channel } from '@shared/ipc-contract'
 import type { IpcResult } from '@shared/ipc-contract'
 
 const ALLOWED: Channel[] = [
-  'auth:login','auth:loginPin','auth:logout','auth:me','auth:listUsers','auth:checkSetup','auth:registerSuperAdmin','users:create',
-  'system:integrityCheck','system:getPrinters','system:openPath','system:selectDirectory',
+  'auth:login','auth:loginPin','auth:logout','auth:me','auth:listUsers','auth:checkSetup','auth:registerSuperAdmin',
+  'users:list','users:get','users:create','users:update','users:resetPassword','users:resetPin','users:toggleActive','users:delete','roles:list',
+  'system:integrityCheck','system:isInstalled','system:completeSetup','system:getPrinters','system:openPath','system:selectDirectory',
   'children:list','children:get','children:guardians','children:pickups','children:createPickup',
   'children:create','children:update','children:remove','children:birthdaysSoon',
   'guardians:create','children:linkGuardian',

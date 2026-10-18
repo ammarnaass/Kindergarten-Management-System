@@ -21,6 +21,8 @@
     "test:unit": "vitest run tests/unit",
     "dist": "npm run build && electron-builder --publish never",
     "dist:win": "npm run build && electron-builder --win --publish never",
+    "dist:linux": "npm run build && electron-builder --linux --publish never",
+    "dist:all": "npm run build && electron-builder --publish never",
     "install:core": "npm install --no-audit --no-fund --no-save electron electron-vite vite @vitejs/plugin-react typescript",
     "install:app": "npm install --no-audit --no-fund --no-save react react-dom react-router-dom @tanstack/react-query zustand zod drizzle-orm better-sqlite3 electron-log @electron-toolkit/utils i18next react-i18next react-hook-form @hookform/resolvers"
   },

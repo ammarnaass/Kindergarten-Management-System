@@ -17,15 +17,15 @@ function assertTrustedSender(event: Electron.IpcMainInvokeEvent) {
 export function handle<C extends Channel>(
   channel: C,
   permission: string | null,
-  fn: (input: any, ctx: { userId: string | null }) => unknown
+  fn: (input: any, ctx: { userId: string | null; event: Electron.IpcMainInvokeEvent }) => unknown
 ) {
-  ipcMain.handle(channel, (event, raw) => {
+  ipcMain.handle(channel, async (event, raw) => {
     try {
       assertTrustedSender(event)
       let userId: string | null = session.get()?.id ?? null
       if (permission) userId = requirePermission(permission).id
       const input = (ipcContract[channel] as any).input.parse(raw)
-      const data = fn(input, { userId, event } as any)
+      const data = await fn(input, { userId, event } as any)
       return { ok: true, data }
     } catch (e) {
       log.warn(`ipc ${channel} failed`, e)

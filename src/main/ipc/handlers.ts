@@ -14,6 +14,7 @@ import { createBackup, listBackups } from '../db/backup'
 import { getSqlite, getDbPath } from '../db/client'
 import { settingsRepo } from '../repositories/settingsRepo'
 import { timetableRepo } from '../repositories/timetableRepo'
+import { setupService } from '../services/setupService'
 
 export function registerHandlers() {
   // ── المصادقة ────────────────────────────────────────────────
@@ -24,6 +25,19 @@ export function registerHandlers() {
   handle('auth:listUsers', null, () => authService.listUsers())
   handle('auth:checkSetup', null, () => authService.checkSetup())
   handle('auth:registerSuperAdmin', null, (input: any) => authService.registerSuperAdmin(input))
+
+  // ── إدارة المستخدمين والحسابات ─────────────────────────────
+  handle('users:list', null, () => authService.listDetailedUsers())
+  handle('users:get', null, (input: any) => authService.getUserById(input.id))
+  handle('users:create', null, (input: any) => authService.createUser(input))
+  handle('users:update', null, (input: any) => authService.updateUser(input))
+  handle('users:resetPassword', null, (input: any) => authService.resetPassword(input))
+  handle('users:resetPin', null, (input: any) => authService.resetPin(input))
+  handle('users:toggleActive', null, (input: any) => authService.toggleActive(input.id, input.isActive))
+  handle('users:delete', null, (input: any) => authService.deleteUser(input.id))
+  handle('roles:list', null, () => authService.listRoles())
+  handle('system:isInstalled', null, () => setupService.isInstalled())
+  handle('system:completeSetup', null, (input: any) => setupService.completeSetup(input))
   handle('system:integrityCheck', null, () => {
     const sqlite = getSqlite()
     const result = sqlite.pragma('integrity_check') as any[]
@@ -38,7 +52,7 @@ export function registerHandlers() {
   })
   handle('system:getPrinters', null, async (_input: any, ctx: any) => {
     try {
-      const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow()
+      const win = BrowserWindow.fromWebContents(ctx.event?.sender) || BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0]
       if (!win) return []
       const printers = await win.webContents.getPrintersAsync()
       return printers.map((p) => ({
@@ -77,7 +91,7 @@ export function registerHandlers() {
       return null
     }
   })
-  handle('users:create', null, (input: any) => authService.createUser(input))
+
 
   // ── الأطفال والأولياء ───────────────────────────────────────
   handle('children:list', PERMISSIONS.CHILDREN_READ, (input: any) => childrenRepo.list(input))
@@ -98,6 +112,9 @@ export function registerHandlers() {
   // ── الفصول ──────────────────────────────────────────────────
   handle('classrooms:list', PERMISSIONS.CHILDREN_READ, () => classroomsRepo.list())
   handle('classrooms:attendance', PERMISSIONS.CHILDREN_READ, (input: any) => dashboardRepo.getClassroomsAttendance(input?.date))
+  handle('classrooms:create', PERMISSIONS.CHILDREN_WRITE, (input: any) => classroomsRepo.create(input))
+  handle('classrooms:update', PERMISSIONS.CHILDREN_WRITE, (input: any) => classroomsRepo.update(input.id, input))
+  handle('classrooms:delete', PERMISSIONS.CHILDREN_WRITE, (input: any) => classroomsRepo.delete(input.id))
 
   // ── الحضور ──────────────────────────────────────────────────
   handle('attendance:mark', PERMISSIONS.ATTENDANCE_WRITE, (input: any, ctx) => attendanceRepo.markDay(input.date, input.entries, ctx.userId ?? undefined))

@@ -15,8 +15,11 @@ import { ParentsPage } from '../features/parents'
 import { ReportsPage } from '../features/reports'
 import { SettingsPage } from '../features/settings'
 import { TimetablePage } from '../features/timetable'
+import { SetupWizardPage } from '../features/setup'
+import { ClassroomsPage } from '../features/classrooms'
 
 export const router = createBrowserRouter([
+  { path: '/setup', element: <SetupWizardPage /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <RegistrationWizardPage /> },
   {
@@ -27,6 +30,7 @@ export const router = createBrowserRouter([
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'children', element: <ChildrenPage /> },
       { path: 'children/:id', element: <ChildProfilePage /> },
+      { path: 'classrooms', element: <ClassroomsPage /> },
       { path: 'attendance', element: <AttendancePage /> },
       { path: 'safe-pickup', element: <SafePickupPage /> },
       { path: 'daily', element: <DailyReportPage /> },

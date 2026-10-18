@@ -5,8 +5,19 @@ import { invoiceCreateSchema, paymentCreateSchema, invoiceFilterSchema, monthlyB
 import { dailyReportSaveSchema } from './schemas/daily'
 import { clinicVisitCreateSchema, incidentCreateSchema, medicationLogCreateSchema, healthFilterSchema } from './schemas/health'
 import { staffCreateSchema, staffUpdateSchema, staffFilterSchema, staffAttendanceRecordSchema, staffAttendanceBatchSchema, leaveCreateSchema } from './schemas/staff'
-import { loginSchema, loginPinSchema, superAdminRegisterSchema, userCreateSchema } from './schemas/auth'
+import {
+  loginSchema,
+  loginPinSchema,
+  superAdminRegisterSchema,
+  userCreateSchema,
+  userUpdateSchema,
+  userResetPasswordSchema,
+  userResetPinSchema,
+  userToggleActiveSchema,
+  userDeleteSchema
+} from './schemas/auth'
 import { timetablePeriodInputSchema, staffDutyInputSchema } from './schemas/timetable'
+import { setupPayloadSchema } from './schemas/setup'
 
 export const ipcContract = {
   'auth:login': { input: loginSchema },
@@ -16,8 +27,19 @@ export const ipcContract = {
   'auth:listUsers': { input: z.void().optional() },
   'auth:checkSetup': { input: z.void().optional() },
   'auth:registerSuperAdmin': { input: superAdminRegisterSchema },
+
+  'users:list': { input: z.void().optional() },
+  'users:get': { input: z.object({ id: z.string().uuid() }) },
   'users:create': { input: userCreateSchema },
+  'users:update': { input: userUpdateSchema },
+  'users:resetPassword': { input: userResetPasswordSchema },
+  'users:resetPin': { input: userResetPinSchema },
+  'users:toggleActive': { input: userToggleActiveSchema },
+  'users:delete': { input: userDeleteSchema },
+  'roles:list': { input: z.void().optional() },
   'system:integrityCheck': { input: z.void().optional() },
+  'system:isInstalled': { input: z.void().optional() },
+  'system:completeSetup': { input: setupPayloadSchema },
   'system:getPrinters': { input: z.void().optional() },
   'system:openPath': { input: z.object({ path: z.string() }) },
   'system:selectDirectory': { input: z.void().optional() },
@@ -39,6 +61,26 @@ export const ipcContract = {
 
   'classrooms:list': { input: z.void().optional() },
   'classrooms:attendance': { input: z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/) }).optional() },
+  'classrooms:create': {
+    input: z.object({
+      name: z.string().min(1, 'اسم الفصل مطلوب'),
+      capacity: z.number().int().min(1).default(20),
+      room: z.string().optional().nullable(),
+      teacherId: z.string().uuid().optional().nullable()
+    })
+  },
+  'classrooms:update': {
+    input: z.object({
+      id: z.string().uuid(),
+      name: z.string().min(1).optional(),
+      capacity: z.number().int().min(1).optional(),
+      room: z.string().optional().nullable(),
+      teacherId: z.string().uuid().optional().nullable()
+    })
+  },
+  'classrooms:delete': {
+    input: z.object({ id: z.string().uuid() })
+  },
 
   'attendance:mark': { input: attendanceMarkSchema },
   'attendance:list': { input: attendanceFilterSchema },

@@ -4,6 +4,7 @@ import type { InvoiceCreate, PaymentCreate, InvoiceFilterInput, MonthlyBilling }
 import type { DailyReportSave } from '@shared/schemas/daily'
 import type { ClinicVisitCreate, IncidentCreate, MedicationLogCreate, HealthFilter } from '@shared/schemas/health'
 import type { StaffCreateInput, StaffUpdateInput, StaffFilterInput, StaffAttendanceRecordInput, StaffAttendanceBatchInput, LeaveCreateInput } from '@shared/schemas/staff'
+import type { SetupPayload } from '@shared/schemas/setup'
 
 // ── أنواع مشتركة ────────────────────────────────────────────
 export interface PaginatedResult<T> {
@@ -378,6 +379,9 @@ export interface GuardiansApi {
 export interface ClassroomsApi {
   list(): Promise<ClassroomItem[]>
   attendance(date?: string): Promise<ClassroomAttendanceStat[]>
+  create(input: { name: string; capacity?: number; room?: string | null; teacherId?: string | null }): Promise<any>
+  update(input: { id: string; name?: string; capacity?: number; room?: string | null; teacherId?: string | null }): Promise<any>
+  delete(id: string): Promise<boolean>
 }
 
 export interface AttendanceApi {
@@ -444,6 +448,7 @@ export interface LocalUserSummary {
 export interface SetupStatus {
   isSetupComplete: boolean
   hasAdmin: boolean
+  allowRegistration?: boolean
   userCount: number
 }
 
@@ -463,8 +468,16 @@ export interface SystemPrinter {
   status: number
 }
 
+export interface InstallationStatus {
+  isInstalled: boolean
+  installedAt?: string | null
+  branchName?: string | null
+}
+
 export interface SystemApi {
   integrityCheck(): Promise<IntegrityCheckResult>
+  isInstalled(): Promise<InstallationStatus>
+  completeSetup(payload: SetupPayload): Promise<{ ok: boolean; adminUsername: string; branchName: string }>
   getPrinters(): Promise<SystemPrinter[]>
   openPath(path: string): Promise<boolean>
   selectDirectory(): Promise<string | null>
@@ -479,6 +492,41 @@ export interface AuthApi {
   checkSetup(): Promise<SetupStatus>
   registerSuperAdmin(input: any): Promise<{ user: any; recoveryKey: string }>
   createUser(input: any): Promise<{ user: any }>
+}
+
+export interface DetailedUserItem {
+  id: string
+  username: string
+  displayName: string
+  roleId: string
+  roleName: string
+  roleTitle: string | null
+  avatarIcon: string | null
+  phone: string | null
+  email: string | null
+  hasPin: boolean
+  isActive: boolean
+  lastLoginAt: string | null
+  createdAt: string | null
+}
+
+export interface RoleWithPermissionsItem {
+  id: string
+  name: string
+  description: string | null
+  permissions: string[]
+}
+
+export interface UsersApi {
+  list(): Promise<DetailedUserItem[]>
+  get(id: string): Promise<DetailedUserItem>
+  create(input: any): Promise<{ user: any }>
+  update(input: any): Promise<DetailedUserItem>
+  resetPassword(input: { id: string; newPassword: string }): Promise<boolean>
+  resetPin(input: { id: string; newPin: string | null }): Promise<boolean>
+  toggleActive(input: { id: string; isActive: boolean }): Promise<boolean>
+  delete(id: string): Promise<boolean>
+  listRoles(): Promise<RoleWithPermissionsItem[]>
 }
 
 export interface TimetablePeriod {
@@ -519,6 +567,7 @@ export interface TimetableApi {
 
 export interface AppApi {
   auth: AuthApi
+  users: UsersApi
   system: SystemApi
   children: ChildrenApi
   guardians: GuardiansApi

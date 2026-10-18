@@ -1,7 +1,7 @@
 import type { SystemPrinter } from '@/lib/api'
 
 export type { SystemPrinter }
-export type SettingsTab = 'branch' | 'printers' | 'scanner' | 'backup' | 'appearance'
+export type SettingsTab = 'branch' | 'users' | 'printers' | 'scanner' | 'backup' | 'appearance'
 
 export interface BranchSettings {
   kindergartenNameAr: string

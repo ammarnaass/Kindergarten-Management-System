@@ -29,6 +29,14 @@ export function Layout() {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
+        const installStatus = await ipc<{ isInstalled: boolean }>('system:isInstalled')
+        if (installStatus && !installStatus.isInstalled) {
+          navigate('/setup', { replace: true })
+          return
+        }
+      } catch {}
+
+      try {
         const diag = await ipc<any>('app:diagnostics')
         if (diag) {
           setBackupInfo({
@@ -43,7 +51,7 @@ export function Layout() {
       } catch {}
     }
     fetchStatus()
-  }, [])
+  }, [navigate])
 
   // Desktop Global Shortcuts
   useEffect(() => {

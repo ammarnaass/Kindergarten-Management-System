@@ -9,6 +9,7 @@ interface TabItem {
 
 const TABS: TabItem[] = [
   { id: 'branch', label: 'بيانات الروضة والفرع', icon: 'apartment' },
+  { id: 'users', label: 'إدارة الحسابات والمستخدمين', icon: 'manage_accounts', badgeDot: true },
   { id: 'printers', label: 'الأجهزة والطابعات (Hardware)', icon: 'print', badgeDot: true },
   { id: 'scanner', label: 'قارئات الباركود والبطاقات', icon: 'qr_code_scanner' },
   { id: 'backup', label: 'قاعدة البيانات والأرشفة', icon: 'dns' },

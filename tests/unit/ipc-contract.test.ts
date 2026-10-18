@@ -258,9 +258,85 @@ describe('ipc-contract', () => {
     expect((ipcContract['guardians:list'].input as any).safeParse(undefined).success).toBe(true)
     expect((ipcContract['guardians:allPickups'].input as any).safeParse(undefined).success).toBe(true)
   })
-  it('validates children:removePickup requires valid UUID', () => {
-    expect((ipcContract['children:removePickup'].input as any).safeParse({ id: '0192994f-1234-7000-8000-000000000001' }).success).toBe(true)
-    expect((ipcContract['children:removePickup'].input as any).safeParse({ id: 'invalid-id' }).success).toBe(false)
+  it('validates system:isInstalled and system:completeSetup channels', () => {
+    expect((ipcContract['system:isInstalled'].input as any).safeParse(undefined).success).toBe(true)
+
+    const validSetup = (ipcContract['system:completeSetup'].input as any).safeParse({
+      branch: {
+        name: 'روضة براعم المستقبل',
+        licenseNumber: 'LIC-9982-2026',
+        city: 'الرياض',
+        phone: '0555001122',
+        email: 'info@baraem.edu.sa',
+        academicYear: '2024-2025',
+        currency: 'SAR',
+        timeFormat: '12h'
+      },
+      admin: {
+        username: 'superadmin',
+        displayName: 'الأستاذة نورة المنصور',
+        password: 'password123',
+        pin: '1234',
+        recoveryKey: 'RAW-8842-X8K1-2026'
+      },
+      classrooms: [
+        { name: 'فصل النجوم KG1', room: 'قاعة 101', capacity: 18 },
+        { name: 'فصل البراعم KG2', room: 'قاعة 102', capacity: 20 }
+      ],
+      printers: {
+        documentPrinter: 'HP LaserJet',
+        receiptPrinter: 'EPSON TM-T20',
+        cardPrinter: ''
+      }
+    })
+    expect(validSetup.success).toBe(true)
+
+    const invalidSetupNoAdmin = (ipcContract['system:completeSetup'].input as any).safeParse({
+      branch: { name: 'روضة' },
+      classrooms: []
+    })
+    expect(invalidSetupNoAdmin.success).toBe(false)
+  })
+
+  it('validates classrooms:create requires name and positive capacity', () => {
+    const valid = (ipcContract['classrooms:create'].input as any).safeParse({
+      name: 'فصل الأبطال',
+      capacity: 22,
+      room: '101'
+    })
+    expect(valid.success).toBe(true)
+
+    const invalidEmptyName = (ipcContract['classrooms:create'].input as any).safeParse({
+      name: '',
+      capacity: 20
+    })
+    expect(invalidEmptyName.success).toBe(false)
+  })
+
+  it('validates classrooms:update requires valid uuid', () => {
+    const valid = (ipcContract['classrooms:update'].input as any).safeParse({
+      id: '0192994f-1234-7000-8000-000000000001',
+      name: 'فصل النجوم الجديد'
+    })
+    expect(valid.success).toBe(true)
+
+    const invalidUuid = (ipcContract['classrooms:update'].input as any).safeParse({
+      id: 'bad-id',
+      name: 'فصل'
+    })
+    expect(invalidUuid.success).toBe(false)
+  })
+
+  it('validates classrooms:delete requires valid uuid', () => {
+    const valid = (ipcContract['classrooms:delete'].input as any).safeParse({
+      id: '0192994f-1234-7000-8000-000000000001'
+    })
+    expect(valid.success).toBe(true)
+
+    const invalid = (ipcContract['classrooms:delete'].input as any).safeParse({
+      id: '123'
+    })
+    expect(invalid.success).toBe(false)
   })
 })
 

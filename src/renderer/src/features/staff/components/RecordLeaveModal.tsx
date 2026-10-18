@@ -19,6 +19,12 @@ export function RecordLeaveModal({ isOpen, onClose, onSuccess, staffList }: Reco
   const [status, setStatus] = useState<'pending' | 'approved' | 'rejected'>('approved')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  React.useEffect(() => {
+    if (!selectedStaffId && staffList.length > 0) {
+      setSelectedStaffId(staffList[0].id)
+    }
+  }, [staffList, selectedStaffId])
+
   if (!isOpen) return null
 
   const handleSubmit = async (e: React.FormEvent) => {

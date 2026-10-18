@@ -55,6 +55,20 @@ export const RegistrationWizardPage: React.FC = () => {
   const [showCertificate, setShowCertificate] = useState(false)
   const [emergencyOpen, setEmergencyOpen] = useState(false)
 
+  // Redirect to /login if admin is already registered (one-time setup lock)
+  React.useEffect(() => {
+    api.auth.checkSetup().then((status) => {
+      if (status.hasAdmin) {
+        toast({
+          title: 'النظام مهيأ بالفعل',
+          description: 'تم تسجيل مدير النظام مسبقاً. إنشاء الحسابات الإضافية يتم فقط من داخل الإعدادات بعد تسجيل الدخول.',
+          variant: 'warning'
+        })
+        navigate('/login', { replace: true })
+      }
+    }).catch(() => {})
+  }, [navigate, toast])
+
   // Validation Checkers
   const isLuhnValid = useMemo(() => validateSaudiId(nationalId), [nationalId])
   const passwordsMatch = password.length > 0 && password === confirmPassword

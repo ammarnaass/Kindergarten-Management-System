@@ -132,7 +132,13 @@ const ToastContext = createContext<{ state: State; dispatch: (action: Action) =>
 
 const useToast = () => {
   const context = useContext(ToastContext)
-  if (!context) throw new Error('useToast must be used within a ToastProvider')
+  if (!context) {
+    return {
+      state: memoryState,
+      dispatch,
+      toast
+    }
+  }
   return context
 }
 
