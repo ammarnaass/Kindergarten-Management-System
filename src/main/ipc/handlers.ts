@@ -141,6 +141,7 @@ export function registerHandlers() {
   handle('staff:get', PERMISSIONS.STAFF_READ, (input: any) => staffRepo.getById(input.id))
   handle('staff:create', PERMISSIONS.STAFF_WRITE, (input: any, ctx) => staffRepo.create(input, ctx.userId ?? undefined))
   handle('staff:update', PERMISSIONS.STAFF_WRITE, (input: any, ctx) => staffRepo.update(input, ctx.userId ?? undefined))
+  handle('staff:delete', PERMISSIONS.STAFF_WRITE, (input: any, ctx) => staffRepo.delete(input.id, ctx.userId ?? undefined))
   handle('staff:attendance:list', PERMISSIONS.STAFF_READ, (input: any) => staffRepo.listAttendance(input?.date))
   handle('staff:attendance:record', PERMISSIONS.STAFF_WRITE, (input: any) => staffRepo.recordAttendance(input))
   handle('staff:attendance:batch', PERMISSIONS.STAFF_WRITE, (input: any) => staffRepo.batchRecordAttendance(input))

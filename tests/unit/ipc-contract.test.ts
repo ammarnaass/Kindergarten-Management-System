@@ -338,6 +338,18 @@ describe('ipc-contract', () => {
     })
     expect(invalid.success).toBe(false)
   })
+
+  it('validates staff:delete requires valid uuid', () => {
+    const valid = (ipcContract['staff:delete'].input as any).safeParse({
+      id: '0192994f-1234-7000-8000-000000000001'
+    })
+    expect(valid.success).toBe(true)
+
+    const invalid = (ipcContract['staff:delete'].input as any).safeParse({
+      id: 'not-a-uuid'
+    })
+    expect(invalid.success).toBe(false)
+  })
 })
 
 

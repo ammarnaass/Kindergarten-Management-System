@@ -250,6 +250,7 @@ export interface StaffApi {
   get(id: string): Promise<StaffMember | null>
   create(input: StaffCreateInput): Promise<StaffMember>
   update(input: StaffUpdateInput): Promise<StaffMember>
+  delete(id: string): Promise<boolean>
   listAttendance(date?: string): Promise<StaffAttendanceListResult>
   recordAttendance(input: StaffAttendanceRecordInput): Promise<any>
   batchRecordAttendance(input: StaffAttendanceBatchInput): Promise<any>

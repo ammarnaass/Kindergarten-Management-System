@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { api } from '../../../lib/api'
 import { useToast } from '@/components/ui/toast'
 import type { StaffMember } from '../../../lib/api/types'
+import { AddStaffFormFields, PRESET_ROLES } from './AddStaffFormFields'
 
 interface AddStaffModalProps {
   isOpen: boolean
@@ -9,18 +10,6 @@ interface AddStaffModalProps {
   onSuccess: () => void
   staffMember?: StaffMember | null
 }
-
-const PRESET_ROLES = [
-  'معلمة رياض أطفال',
-  'مساعدة معلمة',
-  'أخصائية نطق وتخاطب',
-  'ممرضة صحية',
-  'إدارية شؤون أطفال',
-  'مشرفة نقل وحافلات',
-  'عاملة رعاية وخدمات',
-  'حارس أمن وسلامة',
-  'أخرى'
-]
 
 export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddStaffModalProps) {
   const { toast } = useToast()
@@ -30,7 +19,7 @@ export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddSt
   const [customRole, setCustomRole] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [salarySar, setSalarySar] = useState<string>('4500')
+  const [salaryDzd, setSalaryDzd] = useState<string>('35000')
   const [hiredAt, setHiredAt] = useState(new Date().toISOString().slice(0, 10))
   const [isActive, setIsActive] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -48,7 +37,7 @@ export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddSt
       }
       setPhone(staffMember.phone ?? '')
       setEmail(staffMember.email ?? '')
-      setSalarySar(String(Math.round(staffMember.salaryCents / 100)))
+      setSalaryDzd(String(Math.round(staffMember.salaryCents / 100)))
       setHiredAt(staffMember.hiredAt ?? new Date().toISOString().slice(0, 10))
       setIsActive(staffMember.isActive)
     } else {
@@ -58,7 +47,7 @@ export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddSt
       setCustomRole('')
       setPhone('')
       setEmail('')
-      setSalarySar('4500')
+      setSalaryDzd('35000')
       setHiredAt(new Date().toISOString().slice(0, 10))
       setIsActive(true)
     }
@@ -88,7 +77,7 @@ export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddSt
       return
     }
 
-    const salaryNumber = parseFloat(salarySar) || 0
+    const salaryNumber = parseFloat(salaryDzd) || 0
     const salaryCents = Math.round(salaryNumber * 100)
 
     setIsSubmitting(true)
@@ -169,143 +158,26 @@ export function AddStaffModal({ isOpen, onClose, onSuccess, staffMember }: AddSt
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                الاسم الأول <span className="text-error">*</span>
-              </label>
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="مثال: نورة"
-                required
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary"
-              />
-            </div>
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                اسم العائلة <span className="text-error">*</span>
-              </label>
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="مثال: العتيبي"
-                required
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                المسمى الوظيفي <span className="text-error">*</span>
-              </label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary"
-              >
-                {PRESET_ROLES.map((r) => (
-                  <option key={r} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {role === 'أخرى' && (
-              <div>
-                <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                  اكتب المسمى الوظيفي <span className="text-error">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={customRole}
-                  onChange={(e) => setCustomRole(e.target.value)}
-                  placeholder="مثال: منسقة فعاليات"
-                  required
-                  className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary"
-                />
-              </div>
-            )}
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                رقم الجوال
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="05xxxxxxxx"
-                dir="ltr"
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary text-right"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                البريد الإلكتروني
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="teacher@rawdati.local"
-                dir="ltr"
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary text-right"
-              />
-            </div>
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                الراتب الأساسي (ريال سعودي)
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  type="number"
-                  min="0"
-                  step="100"
-                  value={salarySar}
-                  onChange={(e) => setSalarySar(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary pl-12"
-                />
-                <span className="absolute left-3 text-caption font-caption text-on-surface-variant pointer-events-none">
-                  ر.س
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-label-sm font-label-sm text-on-surface-variant mb-1 font-semibold">
-                تاريخ المباشرة
-              </label>
-              <input
-                type="date"
-                value={hiredAt}
-                onChange={(e) => setHiredAt(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface text-body-md focus:outline-none focus:border-primary"
-              />
-            </div>
-            <div className="flex items-center gap-3 pt-6">
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={isActive}
-                  onChange={(e) => setIsActive(e.target.checked)}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                <span className="ms-3 text-label-sm font-label-sm text-on-surface font-semibold">
-                  {isActive ? 'على رأس العمل (نشط)' : 'متوقف / غير نشط'}
-                </span>
-              </label>
-            </div>
-          </div>
+          <AddStaffFormFields
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            role={role}
+            setRole={setRole}
+            customRole={customRole}
+            setCustomRole={setCustomRole}
+            phone={phone}
+            setPhone={setPhone}
+            email={email}
+            setEmail={setEmail}
+            salaryDzd={salaryDzd}
+            setSalaryDzd={setSalaryDzd}
+            hiredAt={hiredAt}
+            setHiredAt={setHiredAt}
+            isActive={isActive}
+            setIsActive={setIsActive}
+          />
 
           {/* Footer Actions */}
           <div className="pt-4 border-t border-surface-container-high flex items-center justify-end gap-3">

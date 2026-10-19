@@ -6,13 +6,15 @@ interface StaffDirectoryCardProps {
   onEdit: (staff: StaffMember) => void
   onToggleActive: (staff: StaffMember) => void
   onOpenCard: (staff: StaffMember) => void
+  onDelete: (staff: StaffMember) => void
 }
 
 export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
   staff,
   onEdit,
   onToggleActive,
-  onOpenCard
+  onOpenCard,
+  onDelete
 }) => {
   return (
     <div className="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary/40 transition-all flex flex-col justify-between gap-4 shadow-xs">
@@ -52,7 +54,7 @@ export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
         <div className="flex items-center justify-between text-caption text-on-surface-variant">
           <span>الراتب الأساسي:</span>
           <span className="font-mono text-on-surface font-bold">
-            {(staff.salaryCents / 100).toLocaleString('ar-SA')} ر.س
+            {(staff.salaryCents / 100).toLocaleString('ar-DZ')} دج
           </span>
         </div>
         <div className="flex items-center justify-between text-caption text-on-surface-variant">
@@ -61,7 +63,7 @@ export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
         </div>
       </div>
 
-      <div className="pt-3 border-t border-outline-variant/20 flex items-center justify-between gap-2">
+      <div className="pt-3 border-t border-outline-variant/20 flex items-center justify-between gap-1.5">
         <button
           type="button"
           onClick={() => onOpenCard(staff)}
@@ -75,7 +77,7 @@ export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
         <button
           type="button"
           onClick={() => onEdit(staff)}
-          className="py-1.5 px-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-caption font-semibold transition-colors"
+          className="py-1.5 px-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-caption font-semibold transition-colors"
         >
           تعديل
         </button>
@@ -83,9 +85,9 @@ export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
         <button
           type="button"
           onClick={() => onToggleActive(staff)}
-          className={`py-1.5 px-2.5 rounded-lg text-caption font-semibold transition-colors ${
+          className={`py-1.5 px-2 rounded-lg text-caption font-semibold transition-colors ${
             staff.isActive
-              ? 'text-error hover:bg-error-container/20'
+              ? 'text-on-surface-variant hover:bg-surface-container-high'
               : 'text-primary hover:bg-primary/10'
           }`}
           title={staff.isActive ? 'إيقاف الموظف مؤقتاً' : 'إعادة التنشيط'}
@@ -93,6 +95,15 @@ export const StaffDirectoryCard: React.FC<StaffDirectoryCardProps> = ({
           <span className="material-symbols-outlined text-[16px]">
             {staff.isActive ? 'pause_circle' : 'play_circle'}
           </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onDelete(staff)}
+          className="py-1.5 px-2 rounded-lg text-error hover:bg-error-container/20 text-caption font-semibold transition-colors"
+          title="حذف الموظف نهائياً"
+        >
+          <span className="material-symbols-outlined text-[16px]">delete</span>
         </button>
       </div>
     </div>

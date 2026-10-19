@@ -103,6 +103,7 @@ export const ipcContract = {
   'staff:get': { input: z.object({ id: z.string().uuid() }) },
   'staff:create': { input: staffCreateSchema },
   'staff:update': { input: staffUpdateSchema },
+  'staff:delete': { input: z.object({ id: z.string().uuid() }) },
   'staff:attendance:list': { input: z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional() }).optional() },
   'staff:attendance:record': { input: staffAttendanceRecordSchema },
   'staff:attendance:batch': { input: staffAttendanceBatchSchema },

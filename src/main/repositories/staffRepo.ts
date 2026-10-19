@@ -1,5 +1,5 @@
 import { getDb } from '../db/client'
-import { staff, staffAttendance, leaves, auditLogs } from '../db/schema'
+import { staff, staffAttendance, leaves, auditLogs, classroomStaff, payrollEntries } from '../db/schema'
 import { eq, and, desc, sql } from 'drizzle-orm'
 import { randomUUID } from 'crypto'
 import type {
@@ -189,6 +189,33 @@ export const staffRepo = {
       .run()
 
     return this.getById(input.id)
+  },
+
+  delete(id: string, userId?: string): boolean {
+    const db = getDb() as any
+    const existing = db.select().from(staff).where(eq(staff.id, id)).get()
+    if (!existing) return false
+
+    // Clean up dependent records
+    db.delete(classroomStaff).where(eq(classroomStaff.staffId, id)).run()
+    db.delete(staffAttendance).where(eq(staffAttendance.staffId, id)).run()
+    db.delete(leaves).where(eq(leaves.staffId, id)).run()
+    db.delete(payrollEntries).where(eq(payrollEntries.staffId, id)).run()
+
+    // Delete staff member
+    db.delete(staff).where(eq(staff.id, id)).run()
+
+    db.insert(auditLogs)
+      .values({
+        id: randomUUID(),
+        userId: userId ?? null,
+        action: 'staff:deleted',
+        entityId: id,
+        detail: JSON.stringify({ name: `${existing.firstName} ${existing.lastName}`, role: existing.role })
+      })
+      .run()
+
+    return true
   },
 
   listAttendance(date: string) {

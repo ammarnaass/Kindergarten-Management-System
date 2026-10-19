@@ -9,6 +9,7 @@ interface StaffDirectoryTabProps {
   onEdit: (staff: StaffMember) => void
   onToggleActive: (staff: StaffMember) => void
   onOpenCard: (staff: StaffMember) => void
+  onDelete: (staff: StaffMember) => void
 }
 
 export const StaffDirectoryTab: React.FC<StaffDirectoryTabProps> = ({
@@ -17,7 +18,8 @@ export const StaffDirectoryTab: React.FC<StaffDirectoryTabProps> = ({
   directoryViewMode,
   onEdit,
   onToggleActive,
-  onOpenCard
+  onOpenCard,
+  onDelete
 }) => {
   return (
     <div className="p-6 flex-1 flex flex-col">
@@ -43,6 +45,7 @@ export const StaffDirectoryTab: React.FC<StaffDirectoryTabProps> = ({
               onEdit={onEdit}
               onToggleActive={onToggleActive}
               onOpenCard={onOpenCard}
+              onDelete={onDelete}
             />
           ))}
         </div>
@@ -81,7 +84,7 @@ export const StaffDirectoryTab: React.FC<StaffDirectoryTabProps> = ({
                     {staff.email || '—'}
                   </td>
                   <td className="py-3 px-4 font-mono font-semibold text-on-surface">
-                    {(staff.salaryCents / 100).toLocaleString('ar-SA')} ر.س
+                    {(staff.salaryCents / 100).toLocaleString('ar-DZ')} دج
                   </td>
                   <td className="py-3 px-4 text-on-surface-variant text-caption font-mono">
                     {staff.hiredAt || '—'}
@@ -114,6 +117,14 @@ export const StaffDirectoryTab: React.FC<StaffDirectoryTabProps> = ({
                         className="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-caption font-semibold transition-colors"
                       >
                         تعديل
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onDelete(staff)}
+                        className="p-1 rounded hover:bg-error-container/20 text-error transition-colors"
+                        title="حذف الموظف نهائياً"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">delete</span>
                       </button>
                     </div>
                   </td>

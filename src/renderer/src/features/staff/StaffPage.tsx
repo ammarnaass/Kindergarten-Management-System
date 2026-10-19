@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { api } from '../../lib/api'
+import { useToast } from '@/components/ui/toast'
+import type { StaffMember } from '../../lib/api/types'
 import { useStaffData } from './hooks/useStaffData'
 import { StaffHeaderBar } from './components/StaffHeaderBar'
 import { StaffKpiMetrics } from './components/StaffKpiMetrics'
@@ -10,8 +13,13 @@ import { StaffShortcutsBar } from './components/StaffShortcutsBar'
 import { AddStaffModal } from './components/AddStaffModal'
 import { RecordLeaveModal } from './components/RecordLeaveModal'
 import { StaffCardModal } from './components/StaffCardModal'
+import { ConfirmDeleteStaffModal } from './components/ConfirmDeleteStaffModal'
 
 export default function StaffPage() {
+  const { toast } = useToast()
+  const [staffToDelete, setStaffToDelete] = useState<StaffMember | null>(null)
+  const [isDeletingStaff, setIsDeletingStaff] = useState(false)
+
   const {
     activeTab,
     setActiveTab,
@@ -48,6 +56,29 @@ export default function StaffPage() {
     uniqueRoles,
     attendanceRate
   } = useStaffData()
+
+  const handleDeleteStaff = async () => {
+    if (!staffToDelete) return
+    setIsDeletingStaff(true)
+    try {
+      await api.staff.delete(staffToDelete.id)
+      toast({
+        title: 'تم حذف الموظف بنجاح',
+        description: `تم إزالة بيانات الموظف «${staffToDelete.firstName} ${staffToDelete.lastName}» من كادر الروضة.`,
+        variant: 'default'
+      })
+      setStaffToDelete(null)
+      loadData()
+    } catch (err: any) {
+      toast({
+        title: 'فشل حذف الموظف',
+        description: err.message || 'تعذر إتمام عملية الحذف من قاعدة البيانات.',
+        variant: 'destructive'
+      })
+    } finally {
+      setIsDeletingStaff(false)
+    }
+  }
 
   return (
     <div className="flex flex-col gap-6 p-6 min-h-[calc(100vh-140px)] bg-background select-none">
@@ -113,6 +144,7 @@ export default function StaffPage() {
             }}
             onToggleActive={handleToggleActive}
             onOpenCard={(staff) => setStaffForCard(staff)}
+            onDelete={(staff) => setStaffToDelete(staff)}
           />
         )}
 
@@ -147,6 +179,14 @@ export default function StaffPage() {
         isOpen={Boolean(staffForCard)}
         onClose={() => setStaffForCard(null)}
         staff={staffForCard}
+      />
+
+      <ConfirmDeleteStaffModal
+        isOpen={Boolean(staffToDelete)}
+        staffMember={staffToDelete}
+        isDeleting={isDeletingStaff}
+        onClose={() => setStaffToDelete(null)}
+        onConfirm={handleDeleteStaff}
       />
     </div>
   )

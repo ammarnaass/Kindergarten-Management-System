@@ -14,7 +14,7 @@ const ALLOWED: Channel[] = [
   'daily:get','daily:save','daily:listByClassroom',
   'health:stats','health:clinicVisits','health:incidents','health:medications','health:criticalAllergies',
   'health:recordClinicVisit','health:recordIncident','health:recordMedication',
-  'staff:stats','staff:list','staff:get','staff:create','staff:update',
+  'staff:stats','staff:list','staff:get','staff:create','staff:update','staff:delete',
   'staff:attendance:list','staff:attendance:record','staff:attendance:batch',
   'staff:leaves:list','staff:leaves:create',
   'invoices:list','invoices:get','invoices:create','invoices:createAndIssue','invoices:issue','invoices:listByChild','invoices:generateMonthly',

@@ -85,6 +85,7 @@ export const ipcApi: AppApi = {
     get: (id) => ipc('staff:get', { id }),
     create: (input) => ipc('staff:create', input),
     update: (input) => ipc('staff:update', input),
+    delete: (id) => ipc('staff:delete', { id }),
     listAttendance: (date?) => ipc('staff:attendance:list', date ? { date } : undefined),
     recordAttendance: (input) => ipc('staff:attendance:record', input),
     batchRecordAttendance: (input) => ipc('staff:attendance:batch', input),
