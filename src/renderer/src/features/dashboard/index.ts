@@ -1,4 +1,5 @@
 export { default as Dashboard } from './Dashboard'
+export * from './hooks/useDashboardData'
 export * from './components/ExecutiveBanner'
 export * from './components/MetricCardsGrid'
 export * from './components/UrgentAttentionBanner'

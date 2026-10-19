@@ -1,4 +1,5 @@
 export { default as ChildrenPage } from './ChildrenPage'
+export * from './hooks/useChildrenData'
 export * from './components/ChildrenHeaderFilter'
 export * from './components/ChildrenGridView'
 export * from './components/ChildrenTableView'

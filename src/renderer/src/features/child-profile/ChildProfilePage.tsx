@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { api } from '@/lib/api'
-import type { ClassroomItem, ChildItem } from '@/lib/api/types'
+import React from 'react'
+import { useChildProfileData } from './hooks/useChildProfileData'
 import {
   ProfileHeroBanner,
   CriticalHealthAlertBanner,
@@ -9,61 +7,26 @@ import {
   ParentsAndPickupsSection,
   GrowthAndAuditSection,
   EditChildModal,
-  AddPickupModal,
-  ProfileTabId
+  AddPickupModal
 } from './index'
 
 export default function ChildProfilePage() {
-  const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
-
-  const [child, setChild] = useState<ChildItem | null>(null)
-  const [guardians, setGuardians] = useState<any[]>([])
-  const [pickups, setPickups] = useState<any[]>([])
-  const [classrooms, setClassrooms] = useState<ClassroomItem[]>([])
-  const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<ProfileTabId>('overview')
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const [isAddPickupModalOpen, setIsAddPickupModalOpen] = useState(false)
-
-  const load = useCallback(async () => {
-    if (!id) return
-    setLoading(true)
-    try {
-      const [c, g, p, cls] = await Promise.all([
-        api.children.get(id).catch(() => null),
-        api.children.getGuardians(id).catch(() => []),
-        api.children.getPickups(id).catch(() => []),
-        api.classrooms.list().catch(() => [])
-      ])
-      setChild(c)
-      setGuardians(g ?? [])
-      setPickups(p ?? [])
-      setClassrooms(cls ?? [])
-    } catch (e: any) {
-      console.error('Error loading child profile:', e)
-    } finally {
-      setLoading(false)
-    }
-  }, [id])
-
-  useEffect(() => {
-    load()
-  }, [load])
-
-  // Desktop keyboard shortcuts (Ctrl+E for Edit, Ctrl+P for Print)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'e') {
-        e.preventDefault()
-        if (child) {
-          setIsEditModalOpen(true)
-        }
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [child])
+  const {
+    child,
+    guardians,
+    pickups,
+    classrooms,
+    loading,
+    activeTab,
+    setActiveTab,
+    isEditModalOpen,
+    setIsEditModalOpen,
+    isAddPickupModalOpen,
+    setIsAddPickupModalOpen,
+    load,
+    navigateToChildrenRoster,
+    handlePrint
+  } = useChildProfileData()
 
   // Loading state
   if (loading && !child) {
@@ -90,7 +53,7 @@ export default function ChildProfilePage() {
           المعرّف المطلوب غير مسجل، أو ربما تم حذف ملف هذا الطفل من قاعدة البيانات المحلية.
         </p>
         <button
-          onClick={() => navigate('/children')}
+          onClick={navigateToChildrenRoster}
           className="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-semibold text-sm hover:opacity-90 transition-opacity flex items-center gap-2"
           type="button"
         >
@@ -107,7 +70,7 @@ export default function ChildProfilePage() {
       <ProfileHeroBanner
         child={child}
         onEdit={() => setIsEditModalOpen(true)}
-        onPrint={() => window.print()}
+        onPrint={handlePrint}
       />
 
       {/* Critical Permanent Health Alert Banner (renders only if allergies or notes exist) */}

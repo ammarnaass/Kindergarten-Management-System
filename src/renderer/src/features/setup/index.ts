@@ -1,3 +1,6 @@
 export * from './SetupWizardPage'
 export * from './types'
 export * from './constants'
+export * from './hooks/useSetupWizard'
+export * from './validators/validateSetupStep'
+export * from './utils/generateRecoveryKey'

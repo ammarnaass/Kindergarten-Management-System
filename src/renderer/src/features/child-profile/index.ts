@@ -1,4 +1,5 @@
 export { default as ChildProfilePage } from './ChildProfilePage'
+export * from './hooks/useChildProfileData'
 export * from './components/ProfileHeroBanner'
 export * from './components/CriticalHealthAlertBanner'
 export * from './components/ProfileNavigationTabs'

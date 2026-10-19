@@ -3,16 +3,8 @@ import { api } from '../../../lib/api'
 import type { SystemPrinter } from '../../../lib/api/types'
 import type { SetupStep, SetupFormData, SetupClassroomItem } from '../types'
 import { DEFAULT_INITIAL_CLASSROOMS } from '../constants'
-
-function generateRecoveryKey(): string {
-  const segment1 = Math.floor(1000 + Math.random() * 9000)
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  let segment2 = ''
-  for (let i = 0; i < 4; i++) {
-    segment2 += chars.charAt(Math.floor(Math.random() * chars.length))
-  }
-  return `RAW-${segment1}-${segment2}-${new Date().getFullYear()}`
-}
+import { generateRecoveryKey } from '../utils/generateRecoveryKey'
+import { validateSetupStep } from '../validators/validateSetupStep'
 
 export function useSetupWizard() {
   const [currentStep, setCurrentStep] = useState<SetupStep>(1)
@@ -113,49 +105,10 @@ export function useSetupWizard() {
   // Validation per step
   const validateStep = (step: SetupStep): boolean => {
     setError(null)
-    if (step === 1) {
-      if (!formData.agreedToTerms) {
-        setError('يرجى الموافقة على شروط الاستخدام والأمان المحلي للمتابعة.')
-        return false
-      }
-      return true
-    }
-    if (step === 2) {
-      if (!formData.branchName.trim()) {
-        setError('يرجى إدخال اسم الروضة أو المركز التعليمي.')
-        return false
-      }
-      return true
-    }
-    if (step === 3) {
-      if (!formData.adminDisplayName.trim()) {
-        setError('يرجى إدخال الاسم الكامل للمشرف العام.')
-        return false
-      }
-      if (!formData.adminUsername.trim() || formData.adminUsername.length < 3) {
-        setError('اسم المستخدم يجب ألا يقل عن 3 أحرف إنجليزية.')
-        return false
-      }
-      if (!formData.adminPassword || formData.adminPassword.length < 4) {
-        setError('كلمة المرور يجب أن تكون 4 خانات على الأقل.')
-        return false
-      }
-      if (formData.adminPassword !== formData.adminConfirmPassword) {
-        setError('كلمة المرور وتأكيدها غير متطابقين.')
-        return false
-      }
-      if (!formData.adminPin || formData.adminPin.length < 4) {
-        setError('رمز PIN للدخول السريع يجب أن يتكون من 4 إلى 6 أرقام.')
-        return false
-      }
-      return true
-    }
-    if (step === 4) {
-      if (formData.classrooms.length === 0) {
-        setError('يجب تحديد فصل دراسي واحد على الأقل.')
-        return false
-      }
-      return true
+    const validationError = validateSetupStep(step, formData)
+    if (validationError) {
+      setError(validationError)
+      return false
     }
     return true
   }
