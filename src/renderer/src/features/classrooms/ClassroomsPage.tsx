@@ -5,10 +5,13 @@ import { useClassroomTimer } from './hooks/useClassroomTimer'
 import { ClassroomsHeaderBanner } from './components/ClassroomsHeaderBanner'
 import { ClassroomsMetrics } from './components/ClassroomsMetrics'
 import { ClassroomCard } from './components/ClassroomCard'
+import { ClassroomOverviewEmptyState } from './components/ClassroomOverviewEmptyState'
 import { AddEditClassroomModal } from './components/AddEditClassroomModal'
+import { ConfirmDeleteClassroomModal } from './components/ConfirmDeleteClassroomModal'
 import { ClassroomLiveHeader } from './components/live-mode/ClassroomLiveHeader'
 import { ClassroomLiveStatsBar } from './components/live-mode/ClassroomLiveStatsBar'
 import { ClassroomChildrenGrid } from './components/live-mode/ClassroomChildrenGrid'
+import { ClassroomLiveEmptyState } from './components/live-mode/ClassroomLiveEmptyState'
 import { ClassroomActivityTimer } from './components/live-mode/ClassroomActivityTimer'
 import { ClassroomPickupAlerts } from './components/live-mode/ClassroomPickupAlerts'
 import { ChildQuickActionModal } from './components/live-mode/ChildQuickActionModal'
@@ -19,6 +22,8 @@ export const ClassroomsPage: React.FC = () => {
   const [selectedClassroomId, setSelectedClassroomId] = useState<string | null>(null)
   const [isAddEditModalOpen, setIsAddEditModalOpen] = useState(false)
   const [classroomToEdit, setClassroomToEdit] = useState<ClassroomItem | null>(null)
+  const [classroomToDelete, setClassroomToDelete] = useState<ClassroomItem | null>(null)
+  const [isDeletingClassroom, setIsDeletingClassroom] = useState(false)
   const [isPickupAlertsOpen, setIsPickupAlertsOpen] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -47,10 +52,21 @@ export const ClassroomsPage: React.FC = () => {
     setIsAddEditModalOpen(true)
   }
 
-  const handleDeleteClassroom = async (c: ClassroomItem) => {
-    const confirmed = window.confirm(`هل أنتِ متأكدة من حذف فصل "${c.name}"؟`)
-    if (confirmed) {
-      await classroomsData.deleteClassroom(c.id)
+  const handleDeleteClassroom = (c: ClassroomItem) => {
+    setClassroomToDelete(c)
+  }
+
+  const handleConfirmDelete = async () => {
+    if (!classroomToDelete) return
+    setIsDeletingClassroom(true)
+    try {
+      await classroomsData.deleteClassroom(classroomToDelete.id)
+      setClassroomToDelete(null)
+      if (selectedClassroomId === classroomToDelete.id) {
+        setSelectedClassroomId(null)
+      }
+    } finally {
+      setIsDeletingClassroom(false)
     }
   }
 
@@ -81,7 +97,6 @@ export const ClassroomsPage: React.FC = () => {
     <div className="flex flex-col w-full gap-y-6 pb-12 select-none">
       {viewMode === 'overview' ? (
         <>
-          {/* Header Banner */}
           <ClassroomsHeaderBanner
             searchQuery={classroomsData.searchQuery}
             onSearchChange={classroomsData.setSearchQuery}
@@ -91,10 +106,8 @@ export const ClassroomsPage: React.FC = () => {
             isLoading={classroomsData.isLoading}
           />
 
-          {/* Metrics Cards */}
           <ClassroomsMetrics metrics={classroomsData.metrics} />
 
-          {/* Classrooms Grid */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between px-1">
               <div className="flex items-center gap-2">
@@ -115,25 +128,7 @@ export const ClassroomsPage: React.FC = () => {
                 ))}
               </div>
             ) : classroomsData.classrooms.length === 0 ? (
-              <div className="text-center py-16 bg-surface-container-lowest rounded-2xl border border-outline-variant/30">
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3">
-                  <span className="material-symbols-outlined text-3xl">meeting_room</span>
-                </div>
-                <h3 className="font-headline-sm text-headline-sm font-bold text-on-surface">
-                  لا توجد فصول دراسية مضافة حتى الآن
-                </h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-sm mx-auto">
-                  ابدئي بإضافة فصول الروضة وتحديد سعتها الاستيعابية لتمكين المعلمات من تسجيل الحضور والأنشطة.
-                </p>
-                <button
-                  type="button"
-                  onClick={handleOpenAddModal}
-                  className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary font-bold shadow-xs hover:bg-primary-container"
-                >
-                  <span className="material-symbols-outlined text-[18px]">add_circle</span>
-                  <span>إضافة أول فصل الآن</span>
-                </button>
-              </div>
+              <ClassroomOverviewEmptyState onAddClassroom={handleOpenAddModal} />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {classroomsData.classrooms.map((c) => (
@@ -149,8 +144,12 @@ export const ClassroomsPage: React.FC = () => {
             )}
           </div>
         </>
+      ) : classroomsData.allClassrooms.length === 0 ? (
+        <ClassroomLiveEmptyState
+          onAddClassroom={handleOpenAddModal}
+          onExitLiveMode={handleExitLiveMode}
+        />
       ) : (
-        /* LIVE CLASSROOM MODE */
         <div className="flex flex-col gap-4">
           <ClassroomLiveHeader
             classrooms={classroomsData.allClassrooms}
@@ -183,7 +182,6 @@ export const ClassroomsPage: React.FC = () => {
             onOpenQuickAction={(student) => liveMode.setSelectedChildForQuickAction(student)}
           />
 
-          {/* Floating Undo Notification Bar */}
           {liveMode.undoToast && (
             <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-inverse-surface text-inverse-on-surface px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-4 animate-scale-in">
               <span className="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
@@ -200,7 +198,7 @@ export const ClassroomsPage: React.FC = () => {
         </div>
       )}
 
-      {/* Modals */}
+      {/* Modal: Add or Edit Classroom */}
       <AddEditClassroomModal
         isOpen={isAddEditModalOpen}
         onClose={() => setIsAddEditModalOpen(false)}
@@ -210,12 +208,24 @@ export const ClassroomsPage: React.FC = () => {
         isSubmitting={classroomsData.isCreating || classroomsData.isUpdating}
       />
 
+      {/* Modal: Confirm Delete Classroom */}
+      <ConfirmDeleteClassroomModal
+        isOpen={!!classroomToDelete}
+        classroomName={classroomToDelete?.name || ''}
+        classroomId={classroomToDelete?.id}
+        isDeleting={isDeletingClassroom}
+        onClose={() => setClassroomToDelete(null)}
+        onConfirm={handleConfirmDelete}
+      />
+
+      {/* Modal: Classroom Activity Timer */}
       <ClassroomActivityTimer
         isOpen={liveMode.isTimerOpen}
         onClose={() => liveMode.setIsTimerOpen(false)}
         timer={timer}
       />
 
+      {/* Modal: Classroom Pickup Alerts */}
       <ClassroomPickupAlerts
         isOpen={isPickupAlertsOpen}
         onClose={() => setIsPickupAlertsOpen(false)}
@@ -223,6 +233,7 @@ export const ClassroomsPage: React.FC = () => {
         onDismissAlert={liveMode.dismissPickupAlert}
       />
 
+      {/* Modal: Child Quick Action */}
       <ChildQuickActionModal
         student={liveMode.selectedChildForQuickAction}
         isOpen={!!liveMode.selectedChildForQuickAction}

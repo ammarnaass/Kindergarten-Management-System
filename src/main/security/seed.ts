@@ -12,74 +12,10 @@ const ROLE_DEFS: Record<string, string[]> = {
   staff: ['children.read', 'attendance.read']
 }
 
-import { classrooms } from '../db/schema/classrooms'
-import { staff } from '../db/schema/staff'
 import { session } from './session'
-
-const DEFAULT_CLASSROOMS = [
-  { name: 'فصل النجوم (روضة أولى KG1)', capacity: 20, room: 'قاعة 1' },
-  { name: 'فصل الفراشات (روضة ثانية KG2)', capacity: 20, room: 'قاعة 2' },
-  { name: 'فصل العباقرة (تمهيدي KG3)', capacity: 18, room: 'قاعة 3' },
-  { name: 'فصل البراعم (الحضانة)', capacity: 15, room: 'قاعة 4' }
-]
 
 export function ensureSeed() {
   const db = getDb() as any
-
-  // Seed default kindergarten classrooms if empty
-  try {
-    const existingClassrooms = db.select().from(classrooms).limit(1).all()
-    if (existingClassrooms.length === 0) {
-      for (const c of DEFAULT_CLASSROOMS) {
-        db.insert(classrooms).values({ id: randomUUID(), ...c }).run()
-      }
-    }
-  } catch {}
-
-  // Seed default staff members if empty
-  try {
-    const existingStaff = db.select().from(staff).limit(1).all()
-    if (existingStaff.length === 0) {
-      const sampleStaff = [
-        {
-          id: randomUUID(),
-          firstName: 'نورة',
-          lastName: 'العتيبي',
-          role: 'معلمة رياض أطفال',
-          phone: '0555123456',
-          email: 'noura@rawdati.local',
-          salaryCents: 550000,
-          hiredAt: '2024-09-01',
-          isActive: true
-        },
-        {
-          id: randomUUID(),
-          firstName: 'سارة',
-          lastName: 'السبيعي',
-          role: 'ممرضة صحية',
-          phone: '0555987654',
-          email: 'sara.nurse@rawdati.local',
-          salaryCents: 600000,
-          hiredAt: '2024-08-15',
-          isActive: true
-        },
-        {
-          id: randomUUID(),
-          firstName: 'فاطمة',
-          lastName: 'الغامدي',
-          role: 'مساعدة معلمة',
-          phone: '0555333444',
-          email: 'fatimah@rawdati.local',
-          salaryCents: 400000,
-          hiredAt: '2024-10-01',
-          isActive: true
-        }
-      ]
-      for (const s of sampleStaff) {
-        db.insert(staff).values(s).run()
-      }
-    }
-  } catch {}
 
   function ensureUserColumns() {
   const sqlite = getSqlite()

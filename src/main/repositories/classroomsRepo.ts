@@ -184,7 +184,9 @@ export const classroomsRepo = {
 
   delete(id: string) {
     const db = getDb() as any
-    db.update(classrooms).set({ deletedAt: new Date().toISOString() }).where(eq(classrooms.id, id)).run()
+    db.update(classrooms).set({ deletedAt: new Date() }).where(eq(classrooms.id, id)).run()
+    db.delete(classroomStaff).where(eq(classroomStaff.classroomId, id)).run()
+    db.update(children).set({ classroomId: null }).where(eq(children.classroomId, id)).run()
     return true
   }
 }
