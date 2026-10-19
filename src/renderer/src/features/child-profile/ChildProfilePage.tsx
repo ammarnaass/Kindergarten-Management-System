@@ -7,7 +7,11 @@ import {
   ProfileNavigationTabs,
   ParentsAndPickupsSection,
   GrowthAndAuditSection,
-  ScannedDocumentsCard,
+  ChildAttendanceTab,
+  ChildFinanceTab,
+  ChildGrowthTab,
+  ChildDocumentsTab,
+  ChildAuditTab,
   EditChildModal,
   AddPickupModal
 } from './index'
@@ -98,9 +102,10 @@ export default function ChildProfilePage() {
 
       {/* Dynamic Tab-based Content */}
       {activeTab === 'documents' ? (
-        <div className="w-full space-y-space-md animate-in fade-in duration-200">
-          <ScannedDocumentsCard />
-        </div>
+        <ChildDocumentsTab
+          childId={child.id}
+          childName={`${child.firstName} ${child.lastName}`}
+        />
       ) : activeTab === 'guardians' ? (
         <div className="w-full max-w-4xl mx-auto animate-in fade-in duration-200">
           <ParentsAndPickupsSection
@@ -116,10 +121,20 @@ export default function ChildProfilePage() {
             onAddPickup={() => setIsAddPickupModalOpen(true)}
           />
         </div>
-      ) : activeTab === 'growth' || activeTab === 'attendance' || activeTab === 'finance' || activeTab === 'audit' ? (
-        <div className="w-full max-w-4xl mx-auto animate-in fade-in duration-200">
-          <GrowthAndAuditSection childId={child.id} child={child} />
-        </div>
+      ) : activeTab === 'attendance' ? (
+        <ChildAttendanceTab
+          childId={child.id}
+          childName={`${child.firstName} ${child.lastName}`}
+        />
+      ) : activeTab === 'finance' ? (
+        <ChildFinanceTab
+          childId={child.id}
+          childName={`${child.firstName} ${child.lastName}`}
+        />
+      ) : activeTab === 'growth' ? (
+        <ChildGrowthTab child={child} />
+      ) : activeTab === 'audit' ? (
+        <ChildAuditTab child={child} />
       ) : (
         /* Two-Column Rich Desktop Layout for Overview */
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start animate-in fade-in duration-200">
