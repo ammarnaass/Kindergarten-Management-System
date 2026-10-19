@@ -19,6 +19,7 @@ interface EditChildModalProps {
   isOpen: boolean
   onClose: () => void
   onSaved: () => void
+  onDelete?: () => void
 }
 
 export function EditChildModal({
@@ -27,6 +28,7 @@ export function EditChildModal({
   isOpen,
   onClose,
   onSaved,
+  onDelete
 }: EditChildModalProps) {
   const [firstName, setFirstName] = useState(child.firstName || '')
   const [lastName, setLastName] = useState(child.lastName || '')
@@ -224,21 +226,39 @@ export function EditChildModal({
             />
           </div>
 
-          <div className="flex items-center justify-end gap-2 pt-3 border-t border-outline-variant/60">
-            <button
-              onClick={onClose}
-              type="button"
-              className="px-4 py-2 rounded-xl bg-surface-container text-on-surface font-label-md text-sm hover:bg-surface-container-high transition-colors"
-            >
-              إلغاء
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-5 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
-            >
-              {isSubmitting ? 'جاري الحفظ...' : 'حفظ التغييرات'}
-            </button>
+          <div className="flex items-center justify-between gap-2 pt-3 border-t border-outline-variant/60">
+            <div>
+              {onDelete && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose()
+                    onDelete()
+                  }}
+                  className="px-3 py-1.5 rounded-lg text-error hover:bg-error-container/30 font-label-md text-xs font-semibold transition-colors flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-base">delete</span>
+                  <span>حذف ملف الطفل</span>
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={onClose}
+                type="button"
+                className="px-4 py-2 rounded-xl bg-surface-container text-on-surface font-label-md text-sm hover:bg-surface-container-high transition-colors"
+              >
+                إلغاء
+              </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="px-5 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {isSubmitting ? 'جاري الحفظ...' : 'حفظ التغييرات'}
+              </button>
+            </div>
           </div>
         </form>
       </div>

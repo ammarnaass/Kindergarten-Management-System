@@ -4,6 +4,7 @@ import { ChildrenHeaderFilter } from './components/ChildrenHeaderFilter'
 import { ChildrenGridView } from './components/ChildrenGridView'
 import { ChildrenTableView } from './components/ChildrenTableView'
 import { ChildrenEmptyState } from './components/ChildrenEmptyState'
+import { ConfirmDeleteChildModal } from './components/ConfirmDeleteChildModal'
 
 export default function ChildrenPage() {
   const {
@@ -18,6 +19,11 @@ export default function ChildrenPage() {
     totalCount,
     isLoading,
     isFiltered,
+    childToDelete,
+    isDeleting,
+    promptDeleteChild,
+    cancelDeleteChild,
+    confirmDeleteChild,
     handleOpenNewChild,
     handleOpenProfile,
     handlePayTuition,
@@ -56,13 +62,25 @@ export default function ChildrenPage() {
           children={formattedChildren}
           onOpenProfile={handleOpenProfile}
           onPayTuition={handlePayTuition}
+          onDeleteChild={promptDeleteChild}
         />
       ) : (
         <ChildrenTableView
           children={formattedChildren}
           onOpenProfile={handleOpenProfile}
+          onDeleteChild={promptDeleteChild}
         />
       )}
+
+      {/* Confirm Delete Child Modal */}
+      <ConfirmDeleteChildModal
+        isOpen={Boolean(childToDelete)}
+        childName={childToDelete?.name || ''}
+        childId={childToDelete?.id}
+        isDeleting={isDeleting}
+        onClose={cancelDeleteChild}
+        onConfirm={confirmDeleteChild}
+      />
     </div>
   )
 }

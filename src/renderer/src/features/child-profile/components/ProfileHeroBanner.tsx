@@ -16,6 +16,7 @@ interface ProfileHeroBannerProps {
   }
   onEdit?: () => void
   onPrint?: () => void
+  onDelete?: () => void
 }
 
 function getAgeString(birthDateStr?: string): string {
@@ -37,7 +38,7 @@ function getAgeString(birthDateStr?: string): string {
   }
 }
 
-export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerProps) {
+export function ProfileHeroBanner({ child, onEdit, onPrint, onDelete }: ProfileHeroBannerProps) {
   const navigate = useNavigate()
   const fullName = `${child.firstName} ${child.lastName}`
   const age = getAgeString(child.birthDate)
@@ -169,6 +170,18 @@ export function ProfileHeroBanner({ child, onEdit, onPrint }: ProfileHeroBannerP
             <span className="material-symbols-outlined text-base">payments</span>
             <span>تسجيل دفعة</span>
           </button>
+
+          {onDelete && (
+            <button
+              onClick={onDelete}
+              className="flex items-center gap-1 px-3 py-2 rounded-lg bg-error-container/30 text-error hover:bg-error-container/60 font-label-md text-label-md transition-colors"
+              title="حذف ملف الطفل ونقله للأرشيف"
+              type="button"
+            >
+              <span className="material-symbols-outlined text-base">delete</span>
+              <span>حذف الملف</span>
+            </button>
+          )}
         </div>
       </div>
     </section>

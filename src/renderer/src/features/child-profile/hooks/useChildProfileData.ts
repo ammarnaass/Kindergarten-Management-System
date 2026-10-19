@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { api } from '@/lib/api'
+import { toast } from '@/components/ui/toast'
 import type { ClassroomItem, ChildItem } from '@/lib/api/types'
 import type { ProfileTabId } from '../components/ProfileNavigationTabs'
 
@@ -16,6 +17,8 @@ export function useChildProfileData() {
   const [activeTab, setActiveTab] = useState<ProfileTabId>('overview')
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isAddPickupModalOpen, setIsAddPickupModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const load = useCallback(async () => {
     if (!id) return
@@ -64,6 +67,28 @@ export function useChildProfileData() {
     window.print()
   }
 
+  const handleDeleteChild = async () => {
+    if (!id || !child) return
+    setIsDeleting(true)
+    try {
+      await api.children.remove(id)
+      toast({
+        title: 'تم حذف ملف الطفل',
+        description: `تم نقل ملف «${child.firstName} ${child.lastName}» إلى الأرشيف بنجاح.`
+      })
+      navigate('/children')
+    } catch (err: any) {
+      toast({
+        title: 'خطأ أثناء حذف ملف الطفل',
+        description: err.message || 'تعذر إتمام عملية الحذف في قاعدة البيانات.',
+        variant: 'destructive'
+      })
+    } finally {
+      setIsDeleting(false)
+      setIsDeleteModalOpen(false)
+    }
+  }
+
   return {
     id,
     child,
@@ -77,6 +102,10 @@ export function useChildProfileData() {
     setIsEditModalOpen,
     isAddPickupModalOpen,
     setIsAddPickupModalOpen,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+    isDeleting,
+    handleDeleteChild,
     load,
     navigateToChildrenRoster,
     handlePrint

@@ -14,12 +14,14 @@ interface ChildrenGridViewProps {
   children: ChildCardItem[]
   onOpenProfile: (id: string) => void
   onPayTuition: (id: string) => void
+  onDeleteChild?: (id: string, name: string) => void
 }
 
 export function ChildrenGridView({
   children,
   onOpenProfile,
-  onPayTuition
+  onPayTuition,
+  onDeleteChild
 }: ChildrenGridViewProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md select-none">
@@ -99,6 +101,16 @@ export function ChildrenGridView({
                 <span>الملف</span>
                 <span className="material-symbols-outlined text-xs">arrow_back</span>
               </button>
+              {onDeleteChild && (
+                <button
+                  onClick={() => onDeleteChild(child.id, `${child.firstName} ${child.lastName}`)}
+                  className="p-1.5 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/30 transition-colors"
+                  title="حذف ملف الطفل"
+                  type="button"
+                >
+                  <span className="material-symbols-outlined text-base">delete</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

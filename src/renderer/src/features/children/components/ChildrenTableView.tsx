@@ -10,9 +10,10 @@ interface ChildTableItem {
 interface ChildrenTableViewProps {
   children: ChildTableItem[]
   onOpenProfile: (id: string) => void
+  onDeleteChild?: (id: string, name: string) => void
 }
 
-export function ChildrenTableView({ children, onOpenProfile }: ChildrenTableViewProps) {
+export function ChildrenTableView({ children, onOpenProfile, onDeleteChild }: ChildrenTableViewProps) {
   return (
     <div className="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/40 overflow-hidden select-none">
       <div className="overflow-x-auto scrollbar-thin">
@@ -65,16 +66,31 @@ export function ChildrenTableView({ children, onOpenProfile }: ChildrenTableView
                 </span>
               </td>
               <td className="py-3 px-4 text-left">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    onOpenProfile(child.id)
-                  }}
-                  className="px-3 py-1 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors"
-                  type="button"
-                >
-                  عرض التفاصيل
-                </button>
+                <div className="flex items-center justify-end gap-1.5">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onOpenProfile(child.id)
+                    }}
+                    className="px-3 py-1 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors"
+                    type="button"
+                  >
+                    عرض التفاصيل
+                  </button>
+                  {onDeleteChild && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onDeleteChild(child.id, `${child.firstName} ${child.lastName}`)
+                      }}
+                      className="p-1 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/30 transition-colors"
+                      title="حذف ملف الطفل"
+                      type="button"
+                    >
+                      <span className="material-symbols-outlined text-base">delete</span>
+                    </button>
+                  )}
+                </div>
               </td>
             </tr>
           ))}
