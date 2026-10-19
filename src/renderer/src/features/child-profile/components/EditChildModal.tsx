@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { api } from '@/lib/api'
 import { toast } from '@/components/ui/toast'
 import type { ClassroomItem } from '@/lib/api/types'
+import { EditChildFormFields } from './EditChildFormFields'
 
 interface EditChildModalProps {
   child: {
@@ -112,119 +113,25 @@ export function EditChildModal({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                الاسم الشخصي *
-              </label>
-              <input
-                type="text"
-                required
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                اللقب العائلي *
-              </label>
-              <input
-                type="text"
-                required
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                تاريخ الميلاد *
-              </label>
-              <input
-                type="date"
-                required
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface font-mono"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">الجنس *</label>
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value as 'male' | 'female')}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-              >
-                <option value="male">ذكر</option>
-                <option value="female">أنثى</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                الفصل الدراسي
-              </label>
-              <select
-                value={classroomId}
-                onChange={(e) => setClassroomId(e.target.value)}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-              >
-                <option value="">غير مسكن في فصل</option>
-                {classrooms.map((cls) => (
-                  <option key={cls.id} value={cls.id}>
-                    {cls.name} {cls.room ? `(${cls.room})` : ''}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                حالة القيد
-              </label>
-              <select
-                value={status}
-                onChange={(e) => setStatus(e.target.value as any)}
-                className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-              >
-                <option value="active">نشط ومسجل</option>
-                <option value="waitlist">قائمة الانتظار</option>
-                <option value="graduated">متخرج</option>
-                <option value="withdrawn">منسحب</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-              الحساسيات الغذائية والدوائية
-            </label>
-            <input
-              type="text"
-              placeholder="مثال: حساسية الفول السوداني، حساسية البنسلين..."
-              value={allergies}
-              onChange={(e) => setAllergies(e.target.value)}
-              className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-              ملاحظات صحية خاصة
-            </label>
-            <textarea
-              rows={2}
-              placeholder="أي إرشادات طبية أو بروتوكول طوارئ خاص بالطفل..."
-              value={medicalNotes}
-              onChange={(e) => setMedicalNotes(e.target.value)}
-              className="w-full p-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-            />
-          </div>
+          <EditChildFormFields
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            birthDate={birthDate}
+            setBirthDate={setBirthDate}
+            gender={gender}
+            setGender={setGender}
+            classroomId={classroomId}
+            setClassroomId={setClassroomId}
+            status={status}
+            setStatus={setStatus}
+            allergies={allergies}
+            setAllergies={setAllergies}
+            medicalNotes={medicalNotes}
+            setMedicalNotes={setMedicalNotes}
+            classrooms={classrooms}
+          />
 
           <div className="flex items-center justify-between gap-2 pt-3 border-t border-outline-variant/60">
             <div>

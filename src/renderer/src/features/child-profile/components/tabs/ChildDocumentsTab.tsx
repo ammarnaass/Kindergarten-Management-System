@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { toast } from '@/components/ui/toast'
+import { UploadDocumentModal } from './UploadDocumentModal'
 
 interface ChildDocumentsTabProps {
   childId: string
@@ -16,7 +17,7 @@ interface DocumentItem {
   status: 'verified' | 'pending'
 }
 
-export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps) {
+export function ChildDocumentsTab({ childId: _childId, childName: _childName }: ChildDocumentsTabProps) {
   const [documents, setDocuments] = useState<DocumentItem[]>([
     {
       id: 'doc-1',
@@ -48,22 +49,11 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
   ])
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-  const [newTitle, setNewTitle] = useState('')
-  const [newType, setNewType] = useState('شهادة طبية')
 
-  const handleAddDocument = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!newTitle.trim()) {
-      toast({
-        title: 'يرجى إدخال عنوان المستند',
-        variant: 'warning'
-      })
-      return
-    }
-
+  const handleAddDocument = (title: string, _type: string) => {
     const newDoc: DocumentItem = {
       id: `doc-${Date.now()}`,
-      title: newTitle.trim(),
+      title,
       type: 'PDF',
       size: '1.5 MB',
       date: new Date().toISOString().slice(0, 10),
@@ -72,7 +62,6 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
     }
 
     setDocuments((prev) => [newDoc, ...prev])
-    setNewTitle('')
     setIsAddModalOpen(false)
     toast({
       title: 'تم إرفاق المستند بنجاح',
@@ -98,17 +87,17 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
           <div>
             <h3 className="font-bold text-on-surface text-label-lg">أرشيف المستندات والملفات الممسوحة</h3>
             <p className="text-caption text-on-surface-variant">
-              الملفات الورقية والمستندات الرسمية المحفوظة محلياً للطفل «{childName}»
+              الأرشيف الإلكتروني الآمن للوثائق الرسمية والشهادات الصحية وعقود التسجيل
             </p>
           </div>
         </div>
 
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:bg-primary/90 transition-all shadow-xs"
+          className="px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-xs"
           type="button"
         >
-          <span className="material-symbols-outlined text-base">upload_file</span>
+          <span className="material-symbols-outlined text-lg">upload_file</span>
           <span>إرفاق مستند جديد</span>
         </button>
       </div>
@@ -118,17 +107,17 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
         {documents.map((doc) => (
           <div
             key={doc.id}
-            className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between space-y-space-md group"
+            className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs hover:border-primary/40 hover:shadow-sm transition-all group flex flex-col justify-between"
           >
             <div className="flex items-start gap-3">
-              <div className="w-12 h-12 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0 group-hover:bg-primary-fixed group-hover:text-primary transition-colors">
+              <div className="w-11 h-11 rounded-xl bg-primary-fixed/20 text-primary flex items-center justify-center shrink-0">
                 <span className="material-symbols-outlined text-2xl">{doc.icon}</span>
               </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="font-bold text-on-surface text-label-md truncate group-hover:text-primary transition-colors">
+              <div className="min-w-0 flex-1">
+                <h4 className="font-bold text-on-surface text-body-md truncate group-hover:text-primary transition-colors">
                   {doc.title}
                 </h4>
-                <div className="flex items-center gap-2 text-caption text-on-surface-variant font-mono mt-1">
+                <div className="flex items-center gap-2 mt-1 text-caption text-on-surface-variant font-mono">
                   <span>{doc.type}</span>
                   <span>•</span>
                   <span>{doc.size}</span>
@@ -138,10 +127,10 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
               </div>
             </div>
 
-            <div className="pt-2 border-t border-outline-variant/30 flex items-center justify-between">
-              <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1">
-                <span className="material-symbols-outlined text-xs">verified</span>
-                مستند موثق
+            <div className="flex items-center justify-between pt-3 mt-4 border-t border-outline-variant/30 text-caption">
+              <span className="flex items-center gap-1 text-emerald-700 font-semibold">
+                <span className="material-symbols-outlined text-base">verified</span>
+                <span>وثيقة معتمدة</span>
               </span>
 
               <div className="flex items-center gap-1">
@@ -159,82 +148,12 @@ export function ChildDocumentsTab({ childId, childName }: ChildDocumentsTabProps
         ))}
       </div>
 
-      {/* 3. Add Document Modal */}
-      {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-2xl border border-outline-variant/40 overflow-hidden">
-            <div className="p-6">
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-outline-variant/30">
-                <h3 className="font-bold text-on-surface text-label-lg flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary text-xl">upload_file</span>
-                  <span>إرفاق مستند ورقي بملف الطفل</span>
-                </h3>
-                <button
-                  onClick={() => setIsAddModalOpen(false)}
-                  className="p-1 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors"
-                  type="button"
-                >
-                  <span className="material-symbols-outlined text-lg">close</span>
-                </button>
-              </div>
-
-              <form onSubmit={handleAddDocument} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                    اسم أو نوع المستند
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="مثال: بطاقة التطعيم الإضافية، صك ولاية..."
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-on-surface-variant mb-1">
-                    تصنيف المستند
-                  </label>
-                  <select
-                    value={newType}
-                    onChange={(e) => setNewType(e.target.value)}
-                    className="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-sm focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
-                  >
-                    <option value="شهادة طبية">شهادة طبية / تقرير صحي</option>
-                    <option value="مستند رسمي">مستند رسمي / هوية</option>
-                    <option value="استمارة ورقية">استمارة ورقية موقعة</option>
-                    <option value="أخرى">أخرى</option>
-                  </select>
-                </div>
-
-                <div className="p-3 bg-surface-container-low rounded-xl border border-dashed border-outline-variant flex flex-col items-center justify-center text-center py-6 cursor-pointer hover:bg-surface-container transition-colors">
-                  <span className="material-symbols-outlined text-3xl text-primary mb-1">cloud_upload</span>
-                  <span className="text-body-sm font-semibold text-on-surface">اختر ملف من جهازك (PDF أو صورة)</span>
-                  <span className="text-caption text-on-surface-variant mt-0.5">الحد الأقصى 10 ميغابايت</span>
-                </div>
-
-                <div className="flex items-center justify-end gap-2 pt-3 border-t border-outline-variant/30">
-                  <button
-                    onClick={() => setIsAddModalOpen(false)}
-                    type="button"
-                    className="px-4 py-2 rounded-xl bg-surface-container text-on-surface font-label-md text-sm font-semibold hover:bg-surface-container-high transition-colors"
-                  >
-                    إلغاء
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-5 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:bg-primary/90 transition-all shadow-xs"
-                  >
-                    حفظ المستند
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* 3. Add Document Modal Component */}
+      <UploadDocumentModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onAddDocument={handleAddDocument}
+      />
     </div>
   )
 }

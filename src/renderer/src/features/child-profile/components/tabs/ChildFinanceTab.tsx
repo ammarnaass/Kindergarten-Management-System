@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
+import { ChildFinanceKpiCards } from './ChildFinanceKpiCards'
 
 interface ChildFinanceTabProps {
   childId: string
@@ -62,137 +63,92 @@ export function ChildFinanceTab({ childId, childName }: ChildFinanceTabProps) {
   return (
     <div className="space-y-space-lg select-none animate-in fade-in duration-200">
       {/* 1. Financial KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-on-surface-variant font-medium">إجمالي الرسوم المعتمدة</span>
-          <div className="text-headline-md font-bold text-on-surface font-mono mt-2">
-            {(stats.totalInvoiced / 100).toLocaleString('ar-DZ')}{' '}
-            <span className="text-body-sm font-normal">دج</span>
-          </div>
-        </div>
+      <ChildFinanceKpiCards stats={stats} />
 
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-emerald-700 font-medium">إجمالي المبالغ المسددة</span>
-          <div className="text-headline-md font-bold text-emerald-700 font-mono mt-2">
-            {(stats.totalPaid / 100).toLocaleString('ar-DZ')}{' '}
-            <span className="text-body-sm font-normal">دج</span>
-          </div>
-        </div>
-
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-on-surface-variant font-medium">الرصيد المتبقي المستحق</span>
-          <div
-            className={`text-headline-md font-bold font-mono mt-2 ${
-              stats.isSettled ? 'text-emerald-700' : 'text-error'
-            }`}
-          >
-            {(stats.totalDue / 100).toLocaleString('ar-DZ')}{' '}
-            <span className="text-body-sm font-normal">دج</span>
-          </div>
-        </div>
-
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-on-surface-variant font-medium">حالة الحساب المالي</span>
-          <div className="mt-2">
-            <span
-              className={`px-3 py-1 rounded-xl text-label-sm font-bold inline-block ${
-                stats.isSettled
-                  ? 'bg-emerald-100 text-emerald-800'
-                  : 'bg-error-container text-on-error-container'
-              }`}
-            >
-              {stats.isSettled ? 'منتظم ومسوى بالكامل' : 'توجد مستحقات معلقة'}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Invoices List Table */}
-      <div className="bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-xs space-y-space-md">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-outline-variant/30">
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary text-2xl">account_balance_wallet</span>
-            <div>
-              <h3 className="font-bold text-on-surface text-label-lg">سجل الفواتير والمطالبات المالية</h3>
-              <p className="text-caption text-on-surface-variant">كشف الحساب المالي المعتمد للطفل</p>
-            </div>
+      {/* 2. Invoices & Billing Table */}
+      <div className="bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-xs">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-4 border-b border-outline-variant/30">
+          <div>
+            <h3 className="font-bold text-on-surface text-label-lg">سجل الفواتير والمستحقات للطفل</h3>
+            <p className="text-caption text-on-surface-variant">
+              كافة الرسوم الشهرية وفواتير الخدمات المسجلة باسم «{childName}»
+            </p>
           </div>
 
           <button
             onClick={() => navigate('/finance')}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:bg-primary/90 transition-all shadow-xs"
+            className="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-xs"
             type="button"
           >
             <span className="material-symbols-outlined text-base">payments</span>
-            <span>تسجيل دفعة في المالية</span>
+            <span>تسجيل دفعة أو فاتورة في المالية</span>
           </button>
         </div>
 
         {isLoading ? (
-          <div className="py-12 text-center text-on-surface-variant font-body-sm flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined animate-spin text-primary text-xl">progress_activity</span>
-            <span>جاري استرجاع الفواتير المالية...</span>
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <span className="material-symbols-outlined text-4xl text-primary animate-spin mb-2">
+              progress_activity
+            </span>
+            <span className="text-body-sm text-on-surface-variant">جاري تحميل المعاملات المالية...</span>
           </div>
         ) : invoices.length === 0 ? (
-          <div className="py-14 text-center text-on-surface-variant bg-surface-container-low/30 rounded-xl space-y-2">
-            <span className="material-symbols-outlined text-[44px] text-outline mb-1 block">receipt_long</span>
-            <p className="font-bold text-on-surface text-body-md">لا توجد فواتير أو رسوم مسجلة للطفل «{childName}»</p>
-            <p className="text-caption max-w-sm mx-auto text-on-surface-variant">
-              يمكنك إصدار فاتورة رسوم دراسية أو تسجيل دفعة جديدة مباشرة من قسم المالية.
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center text-on-surface-variant mb-3">
+              <span className="material-symbols-outlined text-3xl">receipt_long</span>
+            </div>
+            <h4 className="font-bold text-on-surface text-body-lg">لا توجد فواتير مسجلة للطفل</h4>
+            <p className="text-caption text-on-surface-variant max-w-sm mt-1">
+              لم يتم إصدار أي رسوم شهرية أو خدمات إضافية لهذا الطفل في السجلات المالية حتى الآن.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto rounded-xl border border-outline-variant/30">
-            <table className="w-full text-right border-collapse text-body-sm">
+            <table className="w-full text-right border-collapse">
               <thead>
-                <tr className="bg-surface-container-low text-on-surface-variant text-label-sm font-semibold border-b border-outline-variant/30">
+                <tr className="bg-surface-container-low text-on-surface-variant text-caption font-bold border-b border-outline-variant/30">
                   <th className="py-3 px-4">رقم الفاتورة</th>
-                  <th className="py-3 px-3">تاريخ الاستحقاق</th>
-                  <th className="py-3 px-3 text-center">الإجمالي</th>
-                  <th className="py-3 px-3 text-center">الخصم</th>
-                  <th className="py-3 px-3 text-center">المدفوع</th>
-                  <th className="py-3 px-3 text-center">المتبقي</th>
-                  <th className="py-3 px-3 text-center">الحالة</th>
-                  <th className="py-3 px-4 text-left">إجراءات</th>
+                  <th className="py-3 px-4">تاريخ الاستحقاق</th>
+                  <th className="py-3 px-4">إجمالي الرسوم</th>
+                  <th className="py-3 px-4">المدفوع</th>
+                  <th className="py-3 px-4">المتبقي</th>
+                  <th className="py-3 px-4">الحالة</th>
+                  <th className="py-3 px-4 text-center">الإجراءات</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-outline-variant/20 font-mono">
-                {invoices.map((inv: any) => {
+              <tbody className="divide-y divide-outline-variant/20 text-body-sm">
+                {invoices.map((inv) => {
                   const total = inv.totalCents ?? 0
                   const discount = inv.discountCents ?? 0
                   const paid = inv.paidCents ?? 0
                   const remaining = inv.remainingCents ?? Math.max(0, total - discount - paid)
 
                   return (
-                    <tr key={inv.id} className="hover:bg-surface-container-low/40 transition-colors">
-                      <td className="py-3 px-4 font-semibold text-on-surface font-sans">
-                        #{inv.id.slice(0, 8).toUpperCase()}
+                    <tr key={inv.id} className="hover:bg-surface-container-low/50 transition-colors">
+                      <td className="py-3 px-4 font-mono font-bold text-primary">
+                        {inv.number || inv.id.slice(0, 8)}
                       </td>
-                      <td className="py-3 px-3 text-on-surface-variant">{inv.dueDate || '—'}</td>
-                      <td className="py-3 px-3 text-center">{(total / 100).toLocaleString('ar-DZ')} دج</td>
-                      <td className="py-3 px-3 text-center text-on-surface-variant">
-                        {(discount / 100).toLocaleString('ar-DZ')} دج
+                      <td className="py-3 px-4 text-on-surface font-mono">
+                        {inv.dueDate || (inv.createdAt ? new Date(inv.createdAt).toISOString().slice(0, 10) : 'غير محدد')}
                       </td>
-                      <td className="py-3 px-3 text-center text-emerald-700 font-semibold">
+                      <td className="py-3 px-4 font-mono font-semibold text-on-surface">
+                        {((total - discount) / 100).toLocaleString('ar-DZ')} دج
+                      </td>
+                      <td className="py-3 px-4 font-mono text-emerald-700 font-semibold">
                         {(paid / 100).toLocaleString('ar-DZ')} دج
                       </td>
-                      <td
-                        className={`py-3 px-3 text-center font-bold ${
-                          remaining > 0 ? 'text-error' : 'text-emerald-700'
-                        }`}
-                      >
+                      <td className="py-3 px-4 font-mono font-bold text-error">
                         {(remaining / 100).toLocaleString('ar-DZ')} دج
                       </td>
-                      <td className="py-3 px-3 text-center font-sans">
-                        {getStatusBadge(inv.status, remaining)}
-                      </td>
-                      <td className="py-3 px-4 text-left font-sans">
+                      <td className="py-3 px-4">{getStatusBadge(inv.status, remaining)}</td>
+                      <td className="py-3 px-4 text-center">
                         <button
                           onClick={() => navigate('/finance')}
-                          className="px-2.5 py-1 rounded-lg bg-surface-container text-primary font-label-sm text-caption font-semibold hover:bg-surface-container-high transition-colors"
+                          className="px-3 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-caption font-semibold transition-colors inline-flex items-center gap-1"
                           type="button"
                         >
-                          سداد دفعة
+                          <span className="material-symbols-outlined text-sm">visibility</span>
+                          <span>عرض</span>
                         </button>
                       </td>
                     </tr>

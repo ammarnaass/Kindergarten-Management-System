@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
+import { ChildAttendanceKpiCards } from './ChildAttendanceKpiCards'
 
 interface ChildAttendanceTabProps {
   childId: string
@@ -79,98 +80,86 @@ export function ChildAttendanceTab({ childId, childName }: ChildAttendanceTabPro
   return (
     <div className="space-y-space-lg select-none animate-in fade-in duration-200">
       {/* 1. Attendance Metrics KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-md">
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-on-surface-variant font-medium">إجمالي الأيام المسجلة</span>
-          <div className="text-headline-md font-bold text-on-surface font-mono mt-2">{stats.total}</div>
-        </div>
+      <ChildAttendanceKpiCards stats={stats} />
 
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-emerald-700 font-medium">أيام الحضور</span>
-          <div className="text-headline-md font-bold text-emerald-700 font-mono mt-2">{stats.present}</div>
-        </div>
-
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-amber-700 font-medium">مرات التأخر</span>
-          <div className="text-headline-md font-bold text-amber-700 font-mono mt-2">{stats.late}</div>
-        </div>
-
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between">
-          <span className="text-caption text-rose-700 font-medium">أيام الغياب</span>
-          <div className="text-headline-md font-bold text-rose-700 font-mono mt-2">{stats.absent}</div>
-        </div>
-
-        <div className="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-xs flex flex-col justify-between col-span-2 sm:col-span-1">
-          <span className="text-caption text-primary font-medium">نسبة الانضباط</span>
-          <div className="text-headline-md font-bold text-primary font-mono mt-2">
-            {stats.total > 0 ? `${stats.rate}%` : '—'}
+      {/* 2. Detailed History Table */}
+      <div className="bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-xs">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-4 border-b border-outline-variant/30">
+          <div>
+            <h3 className="font-bold text-on-surface text-label-lg">سجل الحضور الشهري للطفل</h3>
+            <p className="text-caption text-on-surface-variant">
+              الأيام المسجلة، أوقات الحضور والانصراف، وأسماء مستلمي الطفل «{childName}»
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* 2. Detailed Attendance Table Card */}
-      <div className="bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-xs space-y-space-md">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-outline-variant/30">
           <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary text-2xl">how_to_reg</span>
-            <div>
-              <h3 className="font-bold text-on-surface text-label-lg">سجل الحضور اليومي للطفل</h3>
-              <p className="text-caption text-on-surface-variant">السجلات المعتمدة إلكترونياً المحفوظة محلياً</p>
-            </div>
-          </div>
+            <input
+              type="month"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="h-9 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-caption font-mono text-on-surface focus:outline-none focus:ring-2 focus:ring-primary"
+            />
 
-          <button
-            onClick={() => navigate('/attendance')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-sm font-semibold transition-colors"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-base">calendar_month</span>
-            <span>فتح كشك التحضير اليومي</span>
-          </button>
+            <button
+              onClick={() => navigate('/attendance')}
+              className="px-3.5 py-2 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-caption font-semibold transition-colors flex items-center gap-1.5"
+              type="button"
+            >
+              <span className="material-symbols-outlined text-base">calendar_month</span>
+              <span>سجل التحضير العام</span>
+            </button>
+          </div>
         </div>
 
         {isLoading ? (
-          <div className="py-12 text-center text-on-surface-variant font-body-sm flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined animate-spin text-primary text-xl">progress_activity</span>
-            <span>جاري استرجاع سجلات الحضور...</span>
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <span className="material-symbols-outlined text-4xl text-primary animate-spin mb-2">
+              progress_activity
+            </span>
+            <span className="text-body-sm text-on-surface-variant">جاري تحميل سجلات الحضور...</span>
           </div>
         ) : filteredList.length === 0 ? (
-          <div className="py-14 text-center text-on-surface-variant bg-surface-container-low/30 rounded-xl space-y-2">
-            <span className="material-symbols-outlined text-[44px] text-outline mb-1 block">fact_check</span>
-            <p className="font-bold text-on-surface text-body-md">لا توجد سجلات حضور مسجلة للطفل «{childName}»</p>
-            <p className="text-caption max-w-sm mx-auto text-on-surface-variant">
-              يمكنك رصد أول يوم حضور للطفل بسهولة عبر شاشة التحضير اليومي للفصول.
+          <div className="py-12 flex flex-col items-center justify-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center text-on-surface-variant mb-3">
+              <span className="material-symbols-outlined text-3xl">event_busy</span>
+            </div>
+            <h4 className="font-bold text-on-surface text-body-lg">لا توجد سجلات حضور مسجلة</h4>
+            <p className="text-caption text-on-surface-variant max-w-sm mt-1">
+              لم يتم تسجيل أي حضور أو انصراف لهذا الطفل في الفترة المحددة حتى الآن.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto rounded-xl border border-outline-variant/30">
-            <table className="w-full text-right border-collapse text-body-sm">
+            <table className="w-full text-right border-collapse">
               <thead>
-                <tr className="bg-surface-container-low text-on-surface-variant text-label-sm font-semibold border-b border-outline-variant/30">
+                <tr className="bg-surface-container-low text-on-surface-variant text-caption font-bold border-b border-outline-variant/30">
                   <th className="py-3 px-4">التاريخ</th>
-                  <th className="py-3 px-3 text-center">وقت الحضور</th>
-                  <th className="py-3 px-3 text-center">وقت الانصراف</th>
-                  <th className="py-3 px-3 text-center">المستلم</th>
-                  <th className="py-3 px-3 text-center">الحالة</th>
+                  <th className="py-3 px-4">وقت الحضور</th>
+                  <th className="py-3 px-4">وقت الانصراف</th>
+                  <th className="py-3 px-4">الشخص المستلم</th>
+                  <th className="py-3 px-4">الحالة</th>
                   <th className="py-3 px-4">الملاحظات</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-outline-variant/20 font-mono">
-                {filteredList.map((item: any) => (
-                  <tr key={item.id} className="hover:bg-surface-container-low/40 transition-colors">
-                    <td className="py-3 px-4 font-semibold text-on-surface">{item.date}</td>
-                    <td className="py-3 px-3 text-center text-on-surface-variant font-medium">
-                      {formatTime(item.checkInAt)}
+              <tbody className="divide-y divide-outline-variant/20 text-body-sm">
+                {filteredList.map((rec: any) => (
+                  <tr key={rec.id} className="hover:bg-surface-container-low/50 transition-colors">
+                    <td className="py-3 px-4 font-mono font-bold text-on-surface">{rec.date}</td>
+                    <td className="py-3 px-4 text-on-surface font-mono">{formatTime(rec.checkInTime)}</td>
+                    <td className="py-3 px-4 text-on-surface font-mono">{formatTime(rec.checkOutTime)}</td>
+                    <td className="py-3 px-4 text-on-surface">
+                      {rec.pickupPersonName ? (
+                        <span className="inline-flex items-center gap-1 font-semibold text-primary">
+                          <span className="material-symbols-outlined text-sm">badge</span>
+                          <span>{rec.pickupPersonName}</span>
+                        </span>
+                      ) : (
+                        <span className="text-on-surface-variant text-caption font-mono">—</span>
+                      )}
                     </td>
-                    <td className="py-3 px-3 text-center text-on-surface-variant font-medium">
-                      {formatTime(item.checkOutAt)}
-                    </td>
-                    <td className="py-3 px-3 text-center font-sans text-caption text-on-surface">
-                      {item.pickedUpBy || '—'}
-                    </td>
-                    <td className="py-3 px-3 text-center">{getStatusBadge(item.status)}</td>
-                    <td className="py-3 px-4 font-sans text-caption text-on-surface-variant">
-                      {item.note || '—'}
+                    <td className="py-3 px-4">{getStatusBadge(rec.status)}</td>
+                    <td className="py-3 px-4 text-caption text-on-surface-variant">
+                      {rec.note || '—'}
                     </td>
                   </tr>
                 ))}
