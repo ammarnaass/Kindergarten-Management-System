@@ -14,14 +14,13 @@ const ROLE_DEFS: Record<string, string[]> = {
 
 import { classrooms } from '../db/schema/classrooms'
 import { staff } from '../db/schema/staff'
-import { children, guardians, childGuardians, authorizedPickups } from '../db/schema/children'
 import { session } from './session'
 
 const DEFAULT_CLASSROOMS = [
-  { name: 'فصل النجوم (4 سنوات)', capacity: 20, room: 'قاعة 1' },
-  { name: 'فصل الفراشات (3 سنوات)', capacity: 20, room: 'قاعة 2' },
-  { name: 'فصل الزهور (5 سنوات)', capacity: 18, room: 'قاعة 3' },
-  { name: 'فصل البراعم (تحضيري)', capacity: 15, room: 'قاعة 4' }
+  { name: 'فصل النجوم (روضة أولى KG1)', capacity: 20, room: 'قاعة 1' },
+  { name: 'فصل الفراشات (روضة ثانية KG2)', capacity: 20, room: 'قاعة 2' },
+  { name: 'فصل العباقرة (تمهيدي KG3)', capacity: 18, room: 'قاعة 3' },
+  { name: 'فصل البراعم (الحضانة)', capacity: 15, room: 'قاعة 4' }
 ]
 
 export function ensureSeed() {
@@ -82,132 +81,7 @@ export function ensureSeed() {
     }
   } catch {}
 
-  // Seed default children and guardians if empty
-  try {
-    const existingGuardians = db.select().from(guardians).limit(1).all()
-    if (existingGuardians.length === 0) {
-      const clsList = db.select().from(classrooms).all()
-      const cls1 = clsList[0]?.id ?? null
-      const cls2 = clsList[1]?.id ?? null
-      const cls3 = clsList[2]?.id ?? null
-
-      const child1Id = randomUUID()
-      const child2Id = randomUUID()
-      const child3Id = randomUUID()
-      const child4Id = randomUUID()
-
-      db.insert(children).values([
-        {
-          id: child1Id,
-          firstName: 'سعود',
-          lastName: 'العتيبي',
-          birthDate: '2020-04-12',
-          gender: 'male',
-          classroomId: cls1,
-          status: 'active'
-        },
-        {
-          id: child2Id,
-          firstName: 'سارة',
-          lastName: 'محمد',
-          birthDate: '2021-01-18',
-          gender: 'female',
-          classroomId: cls2,
-          status: 'active'
-        },
-        {
-          id: child3Id,
-          firstName: 'ليان',
-          lastName: 'المطيري',
-          birthDate: '2020-09-05',
-          gender: 'female',
-          classroomId: cls1,
-          status: 'active'
-        },
-        {
-          id: child4Id,
-          firstName: 'ياسمين',
-          lastName: 'الدوسري',
-          birthDate: '2021-03-22',
-          gender: 'female',
-          classroomId: cls3,
-          status: 'active'
-        }
-      ]).run()
-
-      const g1Id = randomUUID()
-      const g2Id = randomUUID()
-      const g3Id = randomUUID()
-      const g4Id = randomUUID()
-
-      db.insert(guardians).values([
-        {
-          id: g1Id,
-          firstName: 'فيصل بن عبد الله',
-          lastName: 'العتيبي',
-          phone: '0554918820',
-          email: 'faisal.otaibi@example.com',
-          address: 'حي النرجس، شارع 14',
-          nationalId: '1048829103'
-        },
-        {
-          id: g2Id,
-          firstName: 'نورة بنت سعد',
-          lastName: 'القحطاني',
-          phone: '0503129941',
-          email: 'noura.qahtani@example.com',
-          address: 'حي الملقا',
-          nationalId: '1087443190'
-        },
-        {
-          id: g3Id,
-          firstName: 'فهد بن مشعل',
-          lastName: 'المطيري',
-          phone: '0542201883',
-          email: 'fahad.mutairi@example.com',
-          address: 'حي الصحافة',
-          nationalId: '1029481944'
-        },
-        {
-          id: g4Id,
-          firstName: 'خالد بن راشد',
-          lastName: 'الدوسري',
-          phone: '0509924110',
-          email: null,
-          address: 'حي الياسمين',
-          nationalId: '1039912001'
-        }
-      ]).run()
-
-      db.insert(childGuardians).values([
-        { childId: child1Id, guardianId: g1Id, relation: 'أب (ولي شرعي)', isPrimary: true, canPickup: true },
-        { childId: child2Id, guardianId: g2Id, relation: 'أم', isPrimary: true, canPickup: true },
-        { childId: child3Id, guardianId: g3Id, relation: 'أب', isPrimary: true, canPickup: true },
-        { childId: child4Id, guardianId: g4Id, relation: 'قريب سابق', isPrimary: false, canPickup: false }
-      ]).run()
-
-      db.insert(authorizedPickups).values([
-        {
-          id: randomUUID(),
-          childId: child1Id,
-          fullName: 'مشعل بن عبد الله العتيبي',
-          phone: '0559013328',
-          nationalId: '1066542109',
-          note: 'العم - تفويض موسمي'
-        },
-        {
-          id: randomUUID(),
-          childId: child1Id,
-          fullName: 'محمد كومار خان',
-          phone: '0568812049',
-          nationalId: '2391094821',
-          note: 'سائق خاص - مشروط بالرمز QR'
-        }
-      ]).run()
-    }
-  } catch {}
-
-function ensureUserColumns() {
+  function ensureUserColumns() {
   const sqlite = getSqlite()
   try {
     const cols = sqlite.pragma('table_info(users)') as { name: string }[]

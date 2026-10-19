@@ -18,8 +18,8 @@ export function GateReceiptReport({
 }: GateReceiptReportProps) {
   const [selectedChildId, setSelectedChildId] = useState<string>('')
   const [pickupReason, setPickupReason] = useState('انصراف اعتيادي من البوابة')
-  const [recipientName, setRecipientName] = useState('فيصل بن عبد الله العتيبي (الأب)')
-  const [recipientPhone, setRecipientPhone] = useState('0554918820')
+  const [recipientName, setRecipientName] = useState('')
+  const [recipientPhone, setRecipientPhone] = useState('')
   const [format, setFormat] = useState<'80mm' | 'a5'>('80mm')
 
   const filteredChildren = useMemo(() => {
@@ -128,10 +128,10 @@ export function GateReceiptReport({
             <div>
               <span className="text-slate-500 text-[10px] block">اسم الطفل المستلم:</span>
               <span className="font-bold text-slate-900 text-sm block">
-                {currentChild ? `${currentChild.firstName} ${currentChild.lastName}` : 'سعود بن فيصل العتيبي'}
+                {currentChild ? `${currentChild.firstName} ${currentChild.lastName}` : '—'}
               </span>
               <span className="text-[10px] text-slate-600">
-                {currentClassroom?.name || 'فصل النجوم (KG2)'}
+                {currentClassroom?.name || '—'}
               </span>
             </div>
 
@@ -140,6 +140,7 @@ export function GateReceiptReport({
               <input
                 type="text"
                 value={recipientName}
+                placeholder="اسم الشخص المستلم (اختياري)"
                 onChange={(e) => setRecipientName(e.target.value)}
                 className="w-full bg-slate-50 border border-slate-300 p-1 rounded font-bold text-xs"
               />
@@ -196,15 +197,15 @@ export function GateReceiptReport({
             <div className="border border-slate-200 p-3 rounded-xl bg-slate-50">
               <span className="text-slate-500 block text-[10px]">الطفل المسلم:</span>
               <span className="font-bold text-sm text-slate-900 block mt-1">
-                {currentChild ? `${currentChild.firstName} ${currentChild.lastName}` : 'سعود العتيبي'}
+                {currentChild ? `${currentChild.firstName} ${currentChild.lastName}` : '—'}
               </span>
-              <span className="text-slate-600 mt-1 block">{currentClassroom?.name || 'فصل البراعم'}</span>
+              <span className="text-slate-600 mt-1 block">{currentClassroom?.name || '—'}</span>
             </div>
 
             <div className="border border-slate-200 p-3 rounded-xl bg-slate-50">
               <span className="text-slate-500 block text-[10px]">المستلم المصرح له:</span>
-              <span className="font-bold text-sm text-slate-900 block mt-1">{recipientName}</span>
-              <span className="font-mono text-slate-600 mt-1 block dir-ltr text-right">{recipientPhone}</span>
+              <span className="font-bold text-sm text-slate-900 block mt-1">{recipientName || '—'}</span>
+              <span className="font-mono text-slate-600 mt-1 block dir-ltr text-right">{recipientPhone || '—'}</span>
             </div>
           </div>
 

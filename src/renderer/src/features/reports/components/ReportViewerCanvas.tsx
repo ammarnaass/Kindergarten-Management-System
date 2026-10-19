@@ -12,7 +12,8 @@ import type {
   ClassroomItem,
   InvoiceItem,
   CriticalAllergyChild,
-  ClinicVisitItem
+  ClinicVisitItem,
+  AttendanceRecordItem
 } from '../types'
 
 interface ReportViewerCanvasProps {
@@ -28,6 +29,7 @@ interface ReportViewerCanvasProps {
   period: string
   allergiesList: CriticalAllergyChild[]
   clinicVisits: ClinicVisitItem[]
+  attendanceRecords?: AttendanceRecordItem[]
 }
 
 export const ReportViewerCanvas: React.FC<ReportViewerCanvasProps> = ({
@@ -42,7 +44,8 @@ export const ReportViewerCanvas: React.FC<ReportViewerCanvasProps> = ({
   invoices,
   period,
   allergiesList,
-  clinicVisits
+  clinicVisits,
+  attendanceRecords = []
 }) => {
   if (isLoading) {
     return (
@@ -109,6 +112,7 @@ export const ReportViewerCanvas: React.FC<ReportViewerCanvasProps> = ({
           kindergartenName={kindergartenName}
           branchName={branchName}
           academicYear={academicYear}
+          attendanceRecords={attendanceRecords}
         />
       )}
 

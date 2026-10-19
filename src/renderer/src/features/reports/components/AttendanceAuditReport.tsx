@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import type { ChildItem, ClassroomItem } from '@/lib/api/types'
+import type { AttendanceRecordItem } from '../types'
 
 interface AttendanceAuditReportProps {
   childrenList: ChildItem[]
@@ -9,6 +10,7 @@ interface AttendanceAuditReportProps {
   kindergartenName: string
   branchName: string
   academicYear: string
+  attendanceRecords?: AttendanceRecordItem[]
 }
 
 export function AttendanceAuditReport({
@@ -18,7 +20,8 @@ export function AttendanceAuditReport({
   period,
   kindergartenName,
   branchName,
-  academicYear
+  academicYear,
+  attendanceRecords = []
 }: AttendanceAuditReportProps) {
   const selectedClassroom = useMemo(() => {
     return classrooms.find((c) => c.id === selectedClassroomId)
@@ -104,13 +107,18 @@ export function AttendanceAuditReport({
             </thead>
             <tbody className="divide-y divide-outline-variant/20">
               {filteredChildren.map((child, idx) => {
-                // Realistic mock/calculated metrics per student
-                const presentDays = 20
-                const lateDays = idx % 4 === 0 ? 1 : 0
-                const excusedDays = idx % 6 === 0 ? 1 : 0
-                const absentDays = idx % 8 === 0 ? 1 : 0
-                const totalDays = 22
-                const rate = Math.round(((presentDays + lateDays) / totalDays) * 100)
+                // Real calculated metrics per student
+                const childRecords = attendanceRecords.filter((a) => {
+                  if (a.childId !== child.id) return false
+                  if (period && !a.date.startsWith(period)) return false
+                  return true
+                })
+                const presentDays = childRecords.filter((a) => a.status === 'present').length
+                const lateDays = childRecords.filter((a) => a.status === 'late').length
+                const excusedDays = childRecords.filter((a) => a.status === 'excused').length
+                const absentDays = childRecords.filter((a) => a.status === 'absent').length
+                const totalDays = childRecords.length
+                const rate = totalDays > 0 ? Math.round(((presentDays + lateDays) / totalDays) * 100) : null
 
                 return (
                   <tr key={child.id} className="hover:bg-surface-container-low/40 transition-colors">
@@ -136,8 +144,18 @@ export function AttendanceAuditReport({
                       {absentDays}
                     </td>
                     <td className="py-2.5 px-4 text-center">
-                      <span className="px-2.5 py-0.5 rounded-full font-bold text-caption font-mono bg-emerald-50 text-emerald-800">
-                        {rate}%
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full font-bold text-caption font-mono ${
+                          rate !== null
+                            ? rate >= 85
+                              ? 'bg-emerald-50 text-emerald-800'
+                              : rate >= 70
+                                ? 'bg-amber-50 text-amber-800'
+                                : 'bg-rose-50 text-rose-800'
+                            : 'bg-surface-container-high text-on-surface-variant'
+                        }`}
+                      >
+                        {rate !== null ? `${rate}%` : '—'}
                       </span>
                     </td>
                   </tr>

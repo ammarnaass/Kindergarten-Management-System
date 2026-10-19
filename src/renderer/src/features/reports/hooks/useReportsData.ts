@@ -7,7 +7,8 @@ import type {
   ClassroomItem,
   InvoiceItem,
   CriticalAllergyChild,
-  ClinicVisitItem
+  ClinicVisitItem,
+  AttendanceRecordItem
 } from '../types'
 
 export function useReportsData() {
@@ -22,19 +23,21 @@ export function useReportsData() {
   const [invoices, setInvoices] = useState<InvoiceItem[]>([])
   const [allergiesList, setAllergiesList] = useState<CriticalAllergyChild[]>([])
   const [clinicVisits, setClinicVisits] = useState<ClinicVisitItem[]>([])
+  const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecordItem[]>([])
   const [settings, setSettings] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(true)
 
   const loadData = useCallback(async () => {
     setIsLoading(true)
     try {
-      const [childRes, classRes, invRes, allergRes, visitRes, settRes] = await Promise.all([
+      const [childRes, classRes, invRes, allergRes, visitRes, settRes, attendRes] = await Promise.all([
         api.children.list({ limit: 100, offset: 0 }),
         api.classrooms.list(),
         api.finance.list({ limit: 100, offset: 0, status: 'all' }),
         api.health.criticalAllergies(),
         api.health.clinicVisits(),
-        api.settings.getAll()
+        api.settings.getAll(),
+        api.attendance.list({})
       ])
 
       setChildrenList(childRes.items)
@@ -43,6 +46,7 @@ export function useReportsData() {
       setAllergiesList(allergRes)
       setClinicVisits(visitRes)
       setSettings(settRes || {})
+      setAttendanceRecords((attendRes as any[]) || [])
     } catch (err: any) {
       toast({
         title: 'خطأ أثناء تحميل بيانات التقارير',
@@ -74,6 +78,7 @@ export function useReportsData() {
     invoices,
     allergiesList,
     clinicVisits,
+    attendanceRecords,
     isLoading,
     loadData,
     kindergartenName,

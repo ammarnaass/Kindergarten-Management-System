@@ -18,6 +18,7 @@ export default function ReportsPage() {
     invoices,
     allergiesList,
     clinicVisits,
+    attendanceRecords,
     isLoading,
     loadData,
     kindergartenName,
@@ -62,6 +63,7 @@ export default function ReportsPage() {
           period={period}
           allergiesList={allergiesList}
           clinicVisits={clinicVisits}
+          attendanceRecords={attendanceRecords}
         />
       </div>
     </div>

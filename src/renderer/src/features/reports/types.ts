@@ -15,6 +15,17 @@ export type ReportType =
   | 'registration'
   | 'receipt'
 
+export interface AttendanceRecordItem {
+  id: string
+  childId: string
+  date: string
+  status: 'present' | 'absent' | 'late' | 'excused'
+  checkInAt?: number | null
+  checkOutAt?: number | null
+  pickedUpBy?: string | null
+  note?: string | null
+}
+
 export type {
   ChildItem,
   ClassroomItem,
